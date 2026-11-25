@@ -13,7 +13,7 @@
 | 发展投资的报价、目标和退出 | [B246 发展投资](#b246-development-investment) |
 | 资产清算、配置及训练就绪 | [B247 身份事务](#b247-implementation-and-validation)、[B248 训练入口](#b248-training-access-follow-up)、[B249 启动与恢复](#b249-event-driven-readiness) |
 
-[B489 两种环境的限定实机记录](../../Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047)记录实际比较和证据范围。早期商业化与施工队联合批次、资本投资和资产重组的实施计划见[固定发布版本](../../Historical/README.md#delivered-commerce-and-industry-implementation-plans-in-git-history)。
+[B489 两种环境的限定实机记录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047)记录实际比较和证据范围。早期商业化与施工队联合批次、资本投资和资产重组的实施计划见[固定发布版本](../../Historical/README.md#delivered-commerce-and-industry-implementation-plans-in-git-history)。
 
 ## 当前落地与可复用范围
 

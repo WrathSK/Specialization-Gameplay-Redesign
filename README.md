@@ -33,7 +33,7 @@ Xuting Zheng leads gameplay design and project direction, defines system boundar
 
 **Shared rules across building environments.** Building tiers follow the actual upgrade chain loaded for the same district. A building inserted into that chain can change later tiers, while virtual or unrelated prerequisites do not automatically add a tier. A shared catalog supplies these facts to abilities in both official and HD environments, using the approved depth calculation rules. Both environments have targeted playtest records. [Environment and shared depth](Specialization/Architecture/Specialization_v0.1_Architecture.md#environment-assembly-and-shared-depth--a0185)
 
-**Evidence for irreversible grants.** Construction crew grants require evidence linking the city, order, completion, and unit. A bounded diagnostic recorded two cities completing the same crew in one turn. In the observed sequence, each order produced one bound unit, with no additional grant after the recorded reload. Other counter and callback orders retain their own evidence boundaries. [B413 playtest record](Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902)
+**Evidence for irreversible grants.** Construction crew grants require evidence linking the city, order, completion, and unit. A bounded diagnostic recorded two cities completing the same crew in one turn. In the observed sequence, each order produced one bound unit, with no additional grant after the recorded reload. Other counter and callback orders retain their own evidence boundaries. [B413 playtest record](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902)
 
 ### Status and next steps
 
@@ -95,7 +95,7 @@ Xuting Zheng 负责玩法设计、项目方向、系统边界与关键取舍，�
 
 **让不同建筑体系使用共享规则。** 建筑层级依据本局加载的同区域升级链计算。扩展在链中插入建筑，可以改变后续建筑的层级；虚拟或无关前置条件不会自动增加层级。共享目录向官方与 HD 环境中的能力提供这些事实，沿用已批准的基础设施深度计算规则。两种环境均有定向实机记录。 [环境与共享深度](Specialization/Architecture/Specialization_v0.1_Architecture.md#environment-assembly-and-shared-depth--a0185)
 
-**为不可逆操作保留完成凭据。** 施工队发放需要能够关联城市、订单、完成依据和实际单位。一次有上限的诊断记录了两座城市同回合完成同级施工队的过程。在所测顺序下，两笔订单各绑定一支队伍，记录中的读档后没有额外发放。其他计数和回调顺序保留各自的证据边界。 [B413 实机记录](Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902)
+**为不可逆操作保留完成凭据。** 施工队发放需要能够关联城市、订单、完成依据和实际单位。一次有上限的诊断记录了两座城市同回合完成同级施工队的过程。在所测顺序下，两笔订单各绑定一支队伍，记录中的读档后没有额外发放。其他计数和回调顺序保留各自的证据边界。 [B413 实机记录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#focused-b413-native-evidence-reviewed--s0902)
 
 ### 当前状态与后续方向
 

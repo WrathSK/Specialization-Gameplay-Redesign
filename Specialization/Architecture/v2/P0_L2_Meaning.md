@@ -8,7 +8,7 @@ B166.193正常自动意义延展已获用户整批人工PASS，并单独确认�
 
 B165原语与44项本地证据按原范围继承；当前七域五yield，Culture追加隔离及D0048主题化暂行／Balance保留。不扩大为完整九域六yield或所有环境通过。
 
-[B489 官方风暴环境的观察范围](../../Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047)按其原始验收记录解读。B165/B166 接入准备阶段的手动场景和旧下一批建议见[完整原件](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)。
+[B489 官方风暴环境的观察范围](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047)按其原始验收记录解读。B165/B166 接入准备阶段的手动场景和旧下一批建议见[完整原件](../../Historical/README.md#delivered-culture-preparation-and-playtest-plans-in-git-history)。
 
 ## B166已授权 — 意义延展自动接入
 

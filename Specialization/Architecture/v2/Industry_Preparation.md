@@ -11,7 +11,7 @@
 | 要追查的行为 | 实施与验证入口 |
 |---|---|
 | 奇观历史、时代信用、区域和建筑模板 | [B233 历史和模板合同](#b233-implementation-contract) |
-| 标准化来源、逐模板取优与旧效果退出 | [B234 实施与验收](#b234-implementation-and-validation)、[两种环境的限定实机记录](../../Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) |
+| 标准化来源、逐模板取优与旧效果退出 | [B234 实施与验收](#b234-implementation-and-validation)、[两种环境的限定实机记录](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#b489-two-profile-native-acceptance-complete--s1047) |
 | 工程传统研习与旧时代奇观产出 | [B235 实施与验收](#b235-implementation-and-validation) |
 | 施工队来源、费用、暂停续建与施工 | [B236 发放和绑定](#b236-implementation-and-validation)、[B237 续建](#b237-continuation-and-fixed-injection-boundary)、[B238 原生生产加成](#b238-modifier-acceptance-and-industry-closeout)、[B239 暂停项目占位](#b239-occupancy-implementation) |
 

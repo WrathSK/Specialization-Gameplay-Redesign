@@ -66,12 +66,12 @@
     },
     "engineering_closeout": {
       "status": "OWNER_ACCEPTED",
-      "report": "Specialization/Status/Specialization_P0_Status.md#owner-accepted-architecture-convergence-closeout--s1095",
-      "subsequent_cleanup": "Specialization/Status/Specialization_P0_Status.md#residual-diagnostic-and-unloaded-city-files--s1096"
+      "report": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#owner-accepted-architecture-convergence-closeout--s1095",
+      "subsequent_cleanup": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#residual-diagnostic-and-unloaded-city-files--s1096"
     },
     "native_evidence": {
-      "hd": "Specialization/Status/Specialization_P0_Status.md#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091",
-      "official_branch": "Specialization/Status/Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093",
+      "hd": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#b527-hd-great-work-and-cold-load-evidence-reviewed--s1091",
+      "official_branch": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Specialization_P0_Status.md#b527-no-hd-culture-network-and-load-readiness-verified--s1093",
       "limits": "Specialization/Status/Playtest_Backlog.md#current-playtest",
       "scope": "No new native result. B527 no-HD observation used 69 loaded targets, not the earlier pinned 28; no reload followed that positive Culture benefit."
     },
