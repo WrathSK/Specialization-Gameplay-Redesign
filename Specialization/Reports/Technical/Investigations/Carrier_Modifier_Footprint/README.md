@@ -1,5 +1,7 @@
 # Carrier / Modifier Footprint Audit
 
+> 历史调查导航。报告链接固定到当时的原件，结论以各报告标注的代码基线为准。
+
 Investigation / Non-authoritative / No design decision implied
 
 Status: Stable
@@ -16,7 +18,7 @@ Scope: source definitions, manifest loading, actual consumers and compatibility,
 
 Across all 65 SQL files under `Mod/`, the current manifest selects **49 distinct InGame UpdateDatabase SQL files in 44 actions**. Their literal declarations contain **4,181 unique Modifier IDs and 1,790 unique InternalOnly Buildings**. Adding three catalog-independent SQL-generated families gives **4,420 Modifier definitions and 2,013 Buildings before catalog-dependent expansions**. This is a source-derived subtotal, not the final loaded database total.
 
-The final source-generated total depends on loaded building, district, era, yield and target catalogs. Its exact algebra is recorded in the [inventory](Definition_Inventory.md). **A current effective-loaded total is NOT_CONFIRMED:** the project has no configured read-only HD database in this environment. An unrelated old application cache was not substituted. Actual active instances, resident memory and engine time are **UNMEASURED**.
+The final source-generated total depends on loaded building, district, era, yield and target catalogs. Its exact algebra is recorded in the [inventory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Carrier_Modifier_Footprint/Definition_Inventory.md). **A current effective-loaded total is NOT_CONFIRMED:** the project has no configured read-only HD database in this environment. An unrelated old application cache was not substituted. Actual active instances, resident memory and engine time are **UNMEASURED**.
 
 The largest catalog-independent Modifier families are NetworkBoost 2,064; GreatWorkAdjacency 1,092; Meaning 644; Insights Tourism 192; and NetworkBoostInteger 180. This is not a global ranking: generated Standardization/Engineering can overtake them depending on actual catalogs.
 
@@ -28,9 +30,9 @@ Three structural findings deserve attention:
 
 ## Reading order
 
-- [Audit report](Audit_Report.md): meaning of the counts, dependencies, native constraints, scaling, options and Owner gates.
-- [Definition inventory](Definition_Inventory.md): every gameplay SQL, literal counts, generated formulas, loading contexts and bounded integrity results.
-- [Reproduction and evidence limits](Reproduction_Method.md): executable read-only source parser, read-only database queries, exact baseline and validation boundaries.
+- [Audit report](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Carrier_Modifier_Footprint/Audit_Report.md): meaning of the counts, dependencies, native constraints, scaling, options and Owner gates.
+- [Definition inventory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Carrier_Modifier_Footprint/Definition_Inventory.md): every gameplay SQL, literal counts, generated formulas, loading contexts and bounded integrity results.
+- [Reproduction and evidence limits](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Carrier_Modifier_Footprint/Reproduction_Method.md): executable read-only source parser, read-only database queries, exact baseline and validation boundaries.
 
 Existing Architecture Reconstruction and Convergence v3 materials are untouched. This topic provides investigation evidence only; approved Architecture Markdown remains authoritative. No new implementation priority or migration order is inferred.
 

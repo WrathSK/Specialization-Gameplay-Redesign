@@ -1,5 +1,7 @@
 # Architecture Reconstruction — investigation workspace
 
+> 历史调查导航。报告链接固定到当时的原件，结论以各报告标注的代码基线为准。
+
 Investigation / Non-authoritative / No design decision implied
 
 Status: Stable — reviewed investigation checkpoint, 2026-10-28. Stable means evidence ready for review, not architecture approval or native acceptance.
@@ -15,14 +17,14 @@ Only new delivery Markdown in this topic is writable. No source/configuration, e
 
 | Reader question | Report |
 |---|---|
-| How does the current code fit together? | [As-Is overview](As_Is.md) — start here |
-| What should the accepted refactor produce? | [To-Be expected architecture](To_Be.md) — approved requirements and current gaps |
-| What happens after a particular trigger? | [Event chain atlas](Event_Chains.md) — E01–E10 |
-| Who owns each fact, cache, history and applied result? | [Shared state matrix](Shared_State.md) — F01–F13 |
-| Where are collection scans, turn work and deferred recovery? | [Scan inventory](Scan_Inventory.md) — S01–S33 |
-| What differs, and what is still unknown? | [Consistency and questions](Comparison_and_Questions.md) — C01–C12, Q01–Q08 |
-| Where is a particular Lua file in this map? | [Module index](Module_Index.md) — M01–M14, 218 packaged Lua files |
-| Which direct native listeners have distinct duties or overlap shared notifications? | [Direct Event Listener Audit](Direct_Event_Listener_Audit.md) — supplementary four-profession audit at `abcc2b0`; classifications and source evidence |
+| How does the current code fit together? | [As-Is overview](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/As_Is.md) — start here |
+| What should the accepted refactor produce? | [To-Be expected architecture](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/To_Be.md) — approved requirements and current gaps |
+| What happens after a particular trigger? | [Event chain atlas](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Event_Chains.md) — E01–E10 |
+| Who owns each fact, cache, history and applied result? | [Shared state matrix](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Shared_State.md) — F01–F13 |
+| Where are collection scans, turn work and deferred recovery? | [Scan inventory](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Scan_Inventory.md) — S01–S33 |
+| What differs, and what is still unknown? | [Consistency and questions](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Comparison_and_Questions.md) — C01–C12, Q01–Q08 |
+| Where is a particular Lua file in this map? | [Module index](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Module_Index.md) — M01–M14, 218 packaged Lua files |
+| Which direct native listeners have distinct duties or overlap shared notifications? | [Direct Event Listener Audit](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Direct_Event_Listener_Audit.md) — supplementary four-profession audit at `abcc2b0`; classifications and source evidence |
 
 Read As-Is and To-Be first; open only the event/state/scan details relevant to the question. Group IDs are investigation navigation labels, not proposed runtime services or a new authority registry. To-Be local T01–T24 labels are distinct from Workflow T01–T08 validation gates.
 
@@ -64,4 +66,4 @@ User decision: review the As-Is/To-Be views and any genuine conflict at the owne
 
 ## Supplementary direct-listener checkpoint — 2026-10-30
 
-[Direct Event Listener Audit](Direct_Event_Listener_Audit.md) records the subsequent user-requested read-only listener review at develop `abcc2b0` / B396.423 metadata. It rechecks current registration/activation paths, parameters, shared-notification overlap, enumeration and recovery duties. The original B393 baseline, coverage and validation statements above remain historical statements about that earlier checkpoint; this addition does not refresh or supersede those reports. The audit remains non-authoritative and does not approve listener deletion or a centralized-push redesign.
+[Direct Event Listener Audit](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Reports/Technical/Investigations/Architecture_Reconstruction/Direct_Event_Listener_Audit.md) records the subsequent user-requested read-only listener review at develop `abcc2b0` / B396.423 metadata. It rechecks current registration/activation paths, parameters, shared-notification overlap, enumeration and recovery duties. The original B393 baseline, coverage and validation statements above remain historical statements about that earlier checkpoint; this addition does not refresh or supersede those reports. The audit remains non-authoritative and does not approve listener deletion or a centralized-push redesign.
