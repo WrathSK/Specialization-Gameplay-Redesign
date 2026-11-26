@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1147",
+    "status": "S1148",
     "runtime": "B541.568 / modinfo568",
     "military": "D0037",
     "harbor": "D0037",
@@ -61,7 +61,7 @@
   "result": {
     "runtime_identity": {
       "source": "B541.568 / modinfo568 source uses the native wide window and Governor background. B540.567 remains installed.",
-      "installed": "B540.567 / modinfo567 temporary, 301/301 MATCH at 172264a4985511cdfc4746dcc5ac662579f3cb8ca4bc66852c5ee7d51fcc20c5. Receipt B540.567-adc6b64-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
+      "installed": "B541.568 / modinfo568 temporary, 301/301 MATCH at 1ac8ff78dd2b0ee87f8fab59d31229bdb4c4aa45f64159bb29af60a7996b72b5. Receipt B541.568-9c62772-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
@@ -110,7 +110,7 @@
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
       "native_validation": "USER_GAME_TEST_REQUIRED",
-      "deployment": "Specialization/Status/Specialization_P0_Status.md#management-capacity-native-screen-installed--s1146"
+      "deployment": "Specialization/Status/Specialization_P0_Status.md#management-capacity-native-screen-installed--s1148"
     }
   }
 }

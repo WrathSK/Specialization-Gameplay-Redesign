@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1147
-Implementation Build: develop B541.568 / modinfo568. Installed temporary B540.567 / modinfo567. Stable B528.555 / modinfo555.
+Status Revision: S1148
+Implementation Build: develop B541.568 / modinfo568. Installed temporary B541.568 / modinfo568. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B541.568 / modinfo568 [改用主界面层](#management-capacity-preview-screen-layer--s1147)。本机仍为 B540.567 临时包，main 稳定包是 B528.555。 |
+| Source and installation | Develop B541.568 / modinfo568 [改用主界面层](#management-capacity-preview-screen-layer--s1147)。本机[已临时安装 B541.568](#management-capacity-native-screen-installed--s1148)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B540 实机确认主界面层级正确。B541 复用统一窗口外框和总督底纹，原生样式待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B541 临时安装核验后，对照蓝标题栏、金边和总督页底纹，检查样式及关闭重开。布局使用固定示例到位点数。 |
+| Next action | 对照蓝标题栏、金边和总督页底纹，检查样式及关闭重开。布局使用固定示例到位点数。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Management capacity native screen installed — S1148
+
+B541.568 / modinfo568 temporary, 301/301 MATCH at 1ac8ff78dd2b0ee87f8fab59d31229bdb4c4aa45f64159bb29af60a7996b72b5. Receipt B541.568-9c62772-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified. 安装源码 9c62772b3d96ee91d67d0e925cec625cdc0fb9c2。实机窗口样式与关闭行为待复验。
 
 ### Management capacity preview screen layer — S1147
 
