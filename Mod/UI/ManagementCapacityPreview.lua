@@ -25,31 +25,42 @@ local emblems = {
 }
 -- Governor promotion button visual states: 0 open, 3 unavailable, 4 earned, 5 selected.
 local VIS_OPEN, VIS_LOCKED, VIS_EARNED, VIS_SELECTED = 0, 3, 4, 5
+local ABILITY_COLOR = {ACTIVE="[COLOR:ResGoldLabelCS]", INACTIVE="", UNBUILT=""}
 
--- Level state for one slot. Arrived capacity counts only up to the confirmed allocation.
+-- Ability names are the headings inside each institution's help text ("Name:" then a line break),
+-- so the window reuses the one localized source instead of keeping a second name list.
+local function abilityNames(help)
+  local names = {}
+  for heading in help:gmatch("%[NEWLINE%]%[NEWLINE%]([^%[]-)%s*%[NEWLINE%]") do
+    local name = heading:match("^(.-)：$") or heading:match("^(.-):$")
+    if name and name ~= "" then names[#names+1] = name end
+  end
+  return names
+end
+
+-- Potential is shown to the player as "institution established"; arrived capacity as "active".
 local function levelState(sample, level)
-  local reached = level <= sample.potential
-  if level <= sample.arrived then
-    if level > sample.draft then return VIS_OPEN, Locale.Lookup("LOC_SPC_CAP_STATE_WITHDRAW") end
-    if reached then return VIS_EARNED, Locale.Lookup("LOC_SPC_CAP_STATE_ACTIVE") end
-    return VIS_OPEN, Locale.Lookup("LOC_SPC_CAP_STATE_ARRIVED_LOCKED")
+  local built = level <= sample.potential
+  local active = built and level <= sample.arrived
+  local arrival = ""
+  if level <= sample.arrived and level > sample.draft then
+    arrival = Locale.Lookup("LOC_SPC_CAP_WITHDRAW")
+  elseif level > sample.arrived and level <= sample.draft then
+    arrival = Locale.Lookup("LOC_SPC_CAP_ARRIVES", level - sample.arrived)
   end
-  if level <= sample.draft then
-    local key = reached and "LOC_SPC_CAP_STATE_PENDING" or "LOC_SPC_CAP_STATE_PENDING_LOCKED"
-    return VIS_SELECTED, Locale.Lookup(key, level - sample.arrived)
-  end
-  if reached then return VIS_OPEN, Locale.Lookup("LOC_SPC_CAP_STATE_OPEN") end
-  return VIS_LOCKED, Locale.Lookup("LOC_SPC_CAP_STATE_LOCKED")
+  local visual
+  if active then visual = VIS_EARNED
+  elseif level > sample.arrived and level <= sample.draft then visual = VIS_SELECTED
+  elseif built then visual = VIS_OPEN
+  else visual = VIS_LOCKED end
+  return visual, (active and "ACTIVE") or (built and "INACTIVE") or "UNBUILT", arrival
 end
 
 local function status(sample)
-  local active = math.min(sample.arrived, sample.potential)
-  local key
-  if sample.draft ~= sample.assigned then key = "LOC_SPC_CAP_STATUS_UNCONFIRMED"
-  elseif sample.assigned == 0 then key = "LOC_SPC_CAP_STATUS_IDLE"
-  elseif sample.arrived < sample.assigned then key = "LOC_SPC_CAP_STATUS_GROWING"
-  else key = "LOC_SPC_CAP_STATUS_SETTLED" end
-  return Locale.Lookup(key, active)
+  if sample.draft ~= sample.assigned then return Locale.Lookup("LOC_SPC_CAP_STATUS_UNCONFIRMED") end
+  if sample.assigned == 0 then return Locale.Lookup("LOC_SPC_CAP_STATUS_IDLE") end
+  if sample.arrived < sample.assigned then return Locale.Lookup("LOC_SPC_CAP_STATUS_GROWING") end
+  return Locale.Lookup("LOC_SPC_CAP_STATUS_SETTLED")
 end
 
 local function render()
@@ -58,11 +69,22 @@ local function render()
   for i, sample in ipairs(examples) do
     local row = rows[i]
     for level, slot in ipairs(row.slots) do
-      local visual, text = levelState(sample, level)
+      local visual, state, arrival = levelState(sample, level)
       slot.Slot:SetDisabled(true)
       slot.Slot:SetVisState(visual)
-      slot.LevelState:SetText(text)
+      slot.InstitutionIcon:SetAlpha(state == "UNBUILT" and 0.45 or 1)
+      slot.Arrival:SetText(arrival)
+      -- Leave the right side of the title for the arrival note.
+      local room = row.slotWidth - 56
+      if arrival ~= "" then room = room - slot.Arrival:GetSizeX() - 8 end
+      slot.InstitutionName:SetTruncateWidth(room)
+      slot.InstitutionName:SetText(slot.name)
+      local text = ABILITY_COLOR[state] .. Locale.Lookup("LOC_SPC_CAP_ABILITY_" .. state)
+      if ABILITY_COLOR[state] ~= "" then text = text .. "[ENDCOLOR]" end
+      for _, ability in ipairs(slot.abilities) do ability.AbilityState:SetText(text) end
     end
+    row.Levels:SetText(Locale.Lookup("LOC_SPC_CAP_CITY_LEVELS", sample.potential,
+      math.min(sample.potential, sample.arrived)))
     row.Status:SetText(status(sample))
     row.Points:SetText(tostring(sample.draft) .. " / " .. tostring(perCity))
     row.Minus:SetDisabled(sample.draft == 0)
@@ -74,6 +96,34 @@ local function render()
   Controls.Total:SetText(Locale.Lookup("LOC_SPC_CAP_TOTAL", total))
   Controls.Confirm:SetDisabled(not dirty)
   Controls.Undo:SetDisabled(not dirty)
+end
+
+-- Vanilla slot width is 204 and the card 300 on screens of 1280 or wider; narrower screens
+-- shrink both down to the slot texture's 174 minimum so four levels still fit beside the card.
+local function layout()
+  local width = Controls.Window:GetSizeX()
+  local wide = width >= 1280
+  local gap, card = wide and 28 or 20, wide and 300 or 240
+  local slotWidth = math.max(174, math.min(204, math.floor((width - 48 - card - 4 * gap) / 4)))
+  for _, row in ipairs(rows) do
+    row.slotWidth = slotWidth
+    row.Root:SetSizeX(card + 4 * (gap + slotWidth))
+    row.Card:SetSizeX(card)
+    for level, slot in ipairs(row.slots) do
+      local x = card + level * gap + (level - 1) * slotWidth
+      row["Path" .. level]:SetOffsetX(x - gap)
+      row["Path" .. level]:SetSizeX(gap)
+      slot.Slot:SetOffsetX(x)
+      slot.Slot:SetSizeX(slotWidth)
+      for _, ability in ipairs(slot.abilities) do
+        ability.Line:SetSizeX(slotWidth - 24)
+        ability.AbilityName:SetTruncateWidth(slotWidth - 90)
+      end
+    end
+  end
+  Controls.Cities:CalculateSize()
+  Controls.CityScroll:CalculateSize()
+  render()
 end
 
 local function discard()
@@ -97,6 +147,7 @@ local function openPanel()
   ContextPtr:SetHide(false)
   Controls.Backdrop:SetHide(false)
   Controls.Window:SetHide(false)
+  layout()
   UIManager:QueuePopup(ContextPtr, PopupPriority.Low, {
     RenderAtCurrentParent=true,
     InputAtCurrentParent=true,
@@ -117,24 +168,32 @@ local function buildRows()
   for i, sample in ipairs(examples) do
     local row = {slots={}}
     ContextPtr:BuildInstanceForControl("CapacityCityRow", row, Controls.Cities)
+    local profession = Locale.Lookup("LOC_SPC_LEVEL_" .. sample.profession)
     row.Emblem:SetIcon(emblems[sample.profession], 50)
     row.Name:SetText(Locale.Lookup("LOC_CITY_NAME_" .. sample.city))
-    row.Title:SetText(Locale.Lookup("LOC_SPC_CAP_CITY_TITLE",
-      Locale.Lookup("LOC_SPC_LEVEL_" .. sample.profession), sample.potential))
+    row.Title:SetText(Locale.Lookup("LOC_SPC_CAP_CITY_TITLE", profession))
     for level = 1, perCity do
-      local slot = {}
-      ContextPtr:BuildInstanceForControl("CapacityLevelSlot", slot, row.Levels)
-      slot.LevelName:SetText(Locale.Lookup("LOC_SPC_CAP_LEVEL_" .. level))
+      local slot = {abilities={}}
+      ContextPtr:BuildInstanceForControl("CapacityLevelSlot", slot, row.Slots)
+      local key = "LOC_SPC_" .. sample.profession .. "_INSTITUTION_" .. level
+      local help = Locale.Lookup(key .. "_HELP")
+      slot.InstitutionIcon:SetIcon("ICON_SPC_INSTITUTION_" .. sample.profession .. "_" .. level, 32)
+      slot.name = Locale.Lookup(key)
+      slot.Slot:SetToolTipString(Locale.Lookup(key) .. "[NEWLINE][NEWLINE]" .. help:gsub("@SPC_METRIC@", ""))
+      for _, name in ipairs(abilityNames(help)) do
+        local ability = {}
+        ContextPtr:BuildInstanceForControl("CapacityAbility", ability, slot.Abilities)
+        ability.AbilityName:SetText(name)
+        slot.abilities[#slot.abilities+1] = ability
+      end
       row.slots[level] = slot
     end
-    row.Levels:CalculateSize()
     row.Minus:RegisterCallback(Mouse.eLClick, function() adjust(sample, -1) end)
     row.Plus:RegisterCallback(Mouse.eLClick, function() adjust(sample, 1) end)
     rows[i] = row
   end
-  Controls.Cities:CalculateSize()
-  Controls.CityScroll:CalculateSize()
-  discard()
+  for _, sample in ipairs(examples) do sample.draft = sample.assigned end
+  layout()
 end
 
 local function resizeLaunch(stack)

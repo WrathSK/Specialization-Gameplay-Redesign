@@ -11,8 +11,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1150",
-    "runtime": "B542.569 / modinfo569",
+    "status": "S1151",
+    "runtime": "B543.570 / modinfo570",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -60,7 +60,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B542.569 / modinfo569 source redesigns the capacity window as city rows with Governor promotion-style level slots. B541.568 remains installed.",
+      "source": "B543.570 / modinfo570 source shows institution titles, ability states and screen-width layout. B542.569 remains installed.",
       "installed": "B542.569 / modinfo569 temporary, 301/301 MATCH at 2a39b1b9fda847af7f3547ac831e2985b97763f5dbf7d8233e11e26a91d3a6fb. Receipt B542.569-dd37d33-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,7 +105,7 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-governor-tree-layout--s1149",
+      "report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-institution-slots--s1151",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",

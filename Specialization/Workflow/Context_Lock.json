@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "review_basis": "S1150 D0067 A0192. Capacity window content redesign; native review pending.",
+  "review_basis": "S1151 D0067 A0192. Capacity window institution slots; native review pending.",
   "files": {
     "AGENTS.md": "4f6d8f8e14c70b8a8fc50c90e92e23635c822d3353f3a7adf93b5559ca4973ab",
     "Art/Institutions/README.md": "c206b2105baf3f69e73f422e9b3e1b4eb0d567ee1774d2b157971bcf61354628",
@@ -356,7 +356,7 @@
     "Mod/NetworkSender.lua": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
     "Mod/OrdinaryBuildingCatalog.lua": "c7ee8fd0a9cb6da6dbef2a9210a90ced851b75bec8c45df05a4a4c1e145e776c",
     "Mod/PerformanceCounters.lua": "af296b19cb3f9c866d9131bfb331f22a04b32ce65935b285955806c096241860",
-    "Mod/Probe.lua": "24e5369c9570cc87c4ef424ed7ce27ddd89b22352b5ee74064b939b6d1dcd2a7",
+    "Mod/Probe.lua": "25fc2e5af9065155b3a36746a4fae9cd2f330bafd6a904f249882dd265313cb1",
     "Mod/ReadinessSummary.lua": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
     "Mod/ResearchApply.lua": "61d2d0bc74d4b4a7d8216a68485bf4fe31b9251a58929ce7f283c34669d914ef",
     "Mod/ResearchApplyModel.lua": "8f09915faa202858bbeec746723db882571f8f1ef4ed6bfdb8b937d20a655b30",
@@ -377,7 +377,7 @@
     "Mod/SampleLifecycle.lua": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
     "Mod/SpecialistSupport.lua": "476341541fc0284fe1164ac4c155593b9bb883342679106ccceebe37c9126ea9",
     "Mod/Specialization.dep": "77b56743d8848d681829a7cc4dc908c824672de86a6be2dbffd1cae3a6edba3b",
-    "Mod/SpecializationP0.modinfo": "9d0c0982a862213ff7c1b6d1c82c27e655e81f6c80101e635df16e21d65853fb",
+    "Mod/SpecializationP0.modinfo": "dba73e83032c2fac2377a5fcb09908f8e95ae846467034aded73f3d3ff8145e2",
     "Mod/Standardization.lua": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
     "Mod/StandardizationCatalog.lua": "de5b99ccbab52890dcd8bfb790d21fce23f62bb4e354fd05c01d9b7a469bc000",
     "Mod/StandardizationEffects.lua": "9853870ba496ffc00ccb2bf876c5bdde65a59bd35a2ebdacb2bddad54984cb29",
@@ -552,7 +552,7 @@
     "Specialization/Reports/Technical/Specialization_Expedition_Training_Preflight.md": "9bfc03c85d8d840e0d2b69df8122d02d1e89510dc51bc49f3dfe7994f5e268d1",
     "Specialization/Reports/Technical/Specialization_Project_Action_Interception_and_Full_Turn.md": "44077c968acc0718eae2525124b40678786e373a1e31310c4397966b40bbdd94",
     "Specialization/Status/Playtest_Backlog.md": "17a62b7ac0a1f61e5481938bedd5490408b86ee91914ed4774b6f2e14a268b4e",
-    "Specialization/Status/Specialization_P0_Status.md": "5e95ac1a2c3a82871a21ffa5922b9ce089a5bf87e46b3f58fef8a4ee069ea8a2",
+    "Specialization/Status/Specialization_P0_Status.md": "02241911eb0d7db76660b55220b3a3940bf3411208e9bca6e915f18f0024fbd2",
     "Specialization/Status/Validation/Results/Specialization_B087_U1_User_Pass.md": "4689fac78a148916db9b15488cd20a0aa52033d9f453764d5e7feff80d996910",
     "Specialization/Status/Validation/Results/Specialization_B104_E2_Two_City_Pass.md": "c53c7df390079815966319a47513c00b2527e4a8dc67fdda3b8ee83e85170d08",
     "Specialization/Status/Validation/Results/Specialization_B105_E2_Event_Boundary.md": "57f99ed55556c1fb02964aed93e4112243f12e0f12e628da13eadb4887cd9d8b",
@@ -655,10 +655,10 @@
     "Specialization/Status/Validation/Results/Specialization_B251_Institution_UI.md": "9beb7cdd3bd6ebb9812c2d89e3678b798ece8e68bd97c896da723e8202384f76",
     "Specialization/Status/Validation/Results/Specialization_B267_Preplaytest_Diagnostics.md": "ff15124b7e1ba8a3ae03429e8dfba2b02877a5bcd7169782c2df32a9b81317ed",
     "Specialization/Status/Validation/Results/Specialization_V01_Playtest_Readiness_B266.md": "672667e6696684d62f4bd3e7c03ef18474e11fc59cbb5c2e4b5af831ddd8924f",
-    "Specialization/Workflow/Authority.json": "ce3b8aa938dfc95ff9e555a6eff2ba14bfca3661360191ef077e4bc4aba94e5d",
-    "Specialization/Workflow/P0-H.json": "f251f53829873bd2f8044434de07902bb59489386550f922f8adb42134ffab5c",
+    "Specialization/Workflow/Authority.json": "8ea01136431e9dd41f240edd03889ea54744aaafbcf4af41fba848575ec50fa1",
+    "Specialization/Workflow/P0-H.json": "e458fb9a3abf161522614ccac7059c23de42ecb9e7d2de2cb6863b035a44d5c5",
     "Specialization/Workflow/README.md": "d712ac877957a894bce6f3d5d8ea1105220b2b62470d0edeedb7ec754e1c6258",
-    "Specialization/Workflow/Runtime_Index.json": "7caa673c842588c523e4cfe621ae796e68990365200c8bca4c8845c547068e5b",
+    "Specialization/Workflow/Runtime_Index.json": "6fe4be39bdb15acb52dd096b0ac82a71e23618205246eb147717ec8608a87d69",
     "Specialization/Workflow/context.py": "0ffff9d641a35bb6012a9882dcc7f0482bb0f27e47590151d491e20a81770a08",
     "tools/build_raw_icons.py": "949ce17b8de6eedc9d99165d856668e69793dcfb48e70502b1b7c691164100ff",
     "tools/collect_expedition_trace.py": "3fc8cc637f201eeaf238624966d8e0fbdd75c4ab153754375577e764611c52e3",
@@ -982,9 +982,9 @@
     "Specialization/Design/Content/Culture_D0065.json": "ebec640a812d083db40140de042b47feb53677f2c91a20b93081705fe2efd86c",
     "Specialization/Design/Content/Commerce_D0066.json": "cd17730fce10ed995861afcff219772ee39bf836bbe948e4de3668e7d4ff71d3",
     "Specialization/Design/Content/Shared_D0067.json": "d0794ae3d58cce8174684952ac9b3e4578392e12c5fd452c63b5af7463f3276d",
-    "Mod/UI/ManagementCapacityPreview.xml": "bdc2b9a6f6e3e2e7a9f0fa07c2022034b8a76e57e255324607507003203ef317",
-    "Mod/UI/ManagementCapacityPreview.lua": "779364a28c5163340d3aa9182a721ee2a959cb78f2afe60ef821a9aedce97ae8",
-    "Mod/Text/ManagementCapacityPreview.sql": "dd0454d67964cccbd89cd03b0294f767bbf20fc01b93f5974f5009a26064ccf5",
-    "DevelopmentTests/test_management_capacity_preview.py": "4b8a6e55ea0a42525e4a5da936523ecb104bf8e756ba6537c4c73ca4018e1564"
+    "Mod/UI/ManagementCapacityPreview.xml": "ba63ff710a28a72e01ae0b5b92485b8d186417adb9cbd24b16479feaa43690a4",
+    "Mod/UI/ManagementCapacityPreview.lua": "34eef0475d8ceedbdc922044d509297bbc8c59d5626df6b661a2c73a137303f1",
+    "Mod/Text/ManagementCapacityPreview.sql": "bb1b36633287b2038c4ed7263bcf3961a4c39084a5d2090303dc6f5331117456",
+    "DevelopmentTests/test_management_capacity_preview.py": "ab18a0f1995b26c8ed87b5d8a8c22d1c492a26fccf300372fcf07b5b66c3ea72"
   }
 }

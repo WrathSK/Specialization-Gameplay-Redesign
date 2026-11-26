@@ -15,7 +15,7 @@
   </Container>
 
   <Container ID="Backdrop" Style="FullScreenVignetteConsumer" Hidden="1"/>
-  <Container ID="Window" Anchor="C,C" Size="1024,768" Hidden="1">
+  <Container ID="Window" Anchor="C,C" Size="parent,768" MinSize="1024,768" Hidden="1">
     <Container Style="ModalScreenWide"/>
     <Grid Offset="0,40" Size="parent,32" Texture="Governors_SubHeaderTile" SliceCorner="128,2" SliceTextureSize="0,40">
       <Label ID="Available" Anchor="L,C" Offset="28,0" Style="FontNormal16" Color="238,228,197,255"/>
@@ -23,8 +23,8 @@
       <Label ID="Total" Anchor="R,C" Offset="28,0" Style="FontNormal16" Color="238,228,197,255"/>
     </Grid>
 
-    <!-- One row per city: emblem card, then levels I-IV laid out like the governor promotion tree. -->
-    <ScrollPanel ID="CityScroll" Anchor="C,T" Offset="0,92" Size="1000,600" Vertical="1" AutoScrollBar="1">
+    <!-- One row per city: city card, then the four institution levels joined like a tree. Widths follow the screen in Lua. -->
+    <ScrollPanel ID="CityScroll" Anchor="C,T" Offset="0,92" Size="parent-24,600" Vertical="1" AutoScrollBar="1">
       <ScrollBar Anchor="R,C" AnchorSide="O,I" Offset="2,0" Size="8,parent" Style="ScrollVerticalBar"/>
       <Stack ID="Cities" Anchor="C,T" StackGrowth="Bottom" StackPadding="12"/>
     </ScrollPanel>
@@ -44,19 +44,20 @@
   </Container>
 
   <Instance Name="CapacityCityRow">
-    <Container ID="Root" Size="980,121">
-      <!-- Tree path segments sit behind the level slots. -->
-      <Image Anchor="L,C" Offset="398,0" Size="40,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
-      <Image Anchor="L,C" Offset="588,0" Size="40,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
-      <Image Anchor="L,C" Offset="778,0" Size="40,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
-      <Image Anchor="L,C" Offset="211,0" Size="40,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
+    <Container ID="Root" Size="1228,121">
+      <!-- Path segments fill only the gaps, so they never cross the card or a slot. -->
+      <Image ID="Path1" Anchor="L,C" Size="28,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
+      <Image ID="Path2" Anchor="L,C" Size="28,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
+      <Image ID="Path3" Anchor="L,C" Size="28,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
+      <Image ID="Path4" Anchor="L,C" Size="28,40" Texture="Controls_TreePathDashEW" Color="108,105,86,255"/>
 
-      <Grid Size="226,121" Texture="Governors_DataFrame" SliceCorner="10,10" SliceSize="8,8">
-        <Image ID="Emblem" Offset="8,8" Size="50,50"/>
-        <Label ID="Name" Offset="66,12" Style="FontFlair16" SmallCaps="20" SmallCapsType="EveryWord" FontStyle="Shadow" Color0="240,230,199,255" Color1="0,0,0,50" TruncateWidth="150" TruncatedTooltip="1"/>
-        <Label ID="Title" Offset="66,36" Style="FontNormal14" Color="220,205,173,255" TruncateWidth="150" TruncatedTooltip="1"/>
-        <Label ID="Status" Anchor="C,T" Offset="0,64" Style="FontNormal12" Color="200,200,200,255" TruncateWidth="210" TruncatedTooltip="1"/>
-        <Container Anchor="C,B" Offset="0,6" Size="130,34" ToolTip="LOC_SPC_CAP_AMOUNT_HINT">
+      <Grid ID="Card" Size="300,121" Texture="Governors_DataFrame" SliceCorner="10,10" SliceSize="8,8">
+        <Image ID="Emblem" Offset="10,10" Size="50,50"/>
+        <Label ID="Name" Offset="70,12" Style="FontFlair16" SmallCaps="20" SmallCapsType="EveryWord" FontStyle="Shadow" Color0="240,230,199,255" Color1="0,0,0,50" TruncateWidth="88" TruncatedTooltip="1"/>
+        <Label ID="Title" Offset="70,38" Style="FontNormal14" Color="220,205,173,255"/>
+        <Label ID="Levels" Offset="12,70" Style="FontNormal14" Color="220,205,173,255"/>
+        <Label ID="Status" Offset="12,92" Style="FontNormal12" Color="200,200,200,255"/>
+        <Container Anchor="R,T" Offset="8,10" Size="130,34" ToolTip="LOC_SPC_CAP_AMOUNT_HINT">
           <Grid Anchor="C,C" Texture="Controls_WindowLight" SliceTextureSize="34,34" SliceCorner="17,17" Size="parent-30,34">
             <Grid Anchor="C,C" Texture="Controls_TextArea" SliceTextureSize="22,22" SliceCorner="11,20" Size="parent-20,24">
               <Label ID="Points" Anchor="C,C" Style="FontNormalBold16" FontStyle="Stroke"/>
@@ -67,15 +68,24 @@
         </Container>
       </Grid>
 
-      <Stack ID="Levels" Offset="236,0" StackGrowth="Right" StackPadding="16"/>
+      <Container ID="Slots" Size="parent,121"/>
     </Container>
   </Instance>
 
-  <!-- Display-only slot using the governor promotion button states. -->
+  <!-- Display-only institution slot using the governor promotion button states. -->
   <Instance Name="CapacityLevelSlot">
-    <GridButton ID="Slot" Size="174,121" Texture="Governors_Promotion_Button" Padding="0,0" StateOffsetIncrement="0,121" SliceCorner="90,42" SliceTextureSize="174,121">
-      <Label ID="LevelName" Offset="10,10" Style="FontFlair14" SmallCaps="16" SmallCapsType="FirstWord" FontStyle="Shadow" Color0="245,245,245,255" Color1="0,0,0,70"/>
-      <Label ID="LevelState" Offset="10,36" Style="FontNormal12" FontStyle="Shadow" Color0="240,240,240,255" Color1="0,0,0,150" WrapWidth="152"/>
+    <GridButton ID="Slot" Size="204,121" Texture="Governors_Promotion_Button" Padding="0,0" StateOffsetIncrement="0,121" SliceCorner="90,42" SliceTextureSize="174,121">
+      <Image ID="InstitutionIcon" Offset="8,6" Size="32,32"/>
+      <Label ID="InstitutionName" Offset="44,14" Style="FontFlair14" FontStyle="Shadow" Color0="245,245,245,255" Color1="0,0,0,70" TruncateWidth="90" TruncatedTooltip="1"/>
+      <Label ID="Arrival" Anchor="R,T" Offset="12,15" Style="FontNormal12" FontStyle="Shadow" Color0="240,240,240,255" Color1="0,0,0,150"/>
+      <Stack ID="Abilities" Offset="12,46" StackGrowth="Bottom" StackPadding="2"/>
     </GridButton>
+  </Instance>
+
+  <Instance Name="CapacityAbility">
+    <Container ID="Line" Size="180,18">
+      <Label ID="AbilityName" Anchor="L,C" Style="FontNormal12" FontStyle="Shadow" Color0="235,235,235,255" Color1="0,0,0,150" TruncateWidth="110" TruncatedTooltip="1"/>
+      <Label ID="AbilityState" Anchor="R,C" Style="FontNormal12" FontStyle="Shadow" Color0="200,200,200,255" Color1="0,0,0,150"/>
+    </Container>
   </Instance>
 </Context>

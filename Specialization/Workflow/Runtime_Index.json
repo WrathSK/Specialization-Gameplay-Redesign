@@ -624,9 +624,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "24e5369c9570cc87c4ef424ed7ce27ddd89b22352b5ee74064b939b6d1dcd2a7",
+      "sha256": "25fc2e5af9065155b3a36746a4fae9cd2f330bafd6a904f249882dd265313cb1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B542 capacity window content redesign or build identity; S1149."
+      "provenance": "B543 capacity institution slots or build identity; S1151."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -743,9 +743,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9d0c0982a862213ff7c1b6d1c82c27e655e81f6c80101e635df16e21d65853fb",
+      "sha256": "dba73e83032c2fac2377a5fcb09908f8e95ae846467034aded73f3d3ff8145e2",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B542 capacity window content redesign or build identity; S1149."
+      "provenance": "B543 capacity institution slots or build identity; S1151."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1602,22 +1602,22 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/UI/ManagementCapacityPreview.xml": {
-      "sha256": "bdc2b9a6f6e3e2e7a9f0fa07c2022034b8a76e57e255324607507003203ef317",
+      "sha256": "ba63ff710a28a72e01ae0b5b92485b8d186417adb9cbd24b16479feaa43690a4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B542 capacity window content redesign or build identity; S1149."
+      "provenance": "B543 capacity institution slots or build identity; S1151."
     },
     "Mod/UI/ManagementCapacityPreview.lua": {
-      "sha256": "779364a28c5163340d3aa9182a721ee2a959cb78f2afe60ef821a9aedce97ae8",
+      "sha256": "34eef0475d8ceedbdc922044d509297bbc8c59d5626df6b661a2c73a137303f1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B542 capacity window content redesign or build identity; S1149."
+      "provenance": "B543 capacity institution slots or build identity; S1151."
     },
     "Mod/Text/ManagementCapacityPreview.sql": {
-      "sha256": "dd0454d67964cccbd89cd03b0294f767bbf20fc01b93f5974f5009a26064ccf5",
+      "sha256": "bb1b36633287b2038c4ed7263bcf3961a4c39084a5d2090303dc6f5331117456",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B542 capacity window content redesign or build identity; S1149."
+      "provenance": "B543 capacity institution slots or build identity; S1151."
     }
   },
-  "source_review": "S1149 scoped Lua 5.1 capacity window states, allocation and packaging checks; native result pending.",
-  "source_runtime": "B542.569 / modinfo569 develop, 301 files.",
-  "tested_source_snapshot_sha256": "583110ca68d43c23e4cf3a4448a7113555f6885c736bf59cfa6fe7135337e367"
+  "source_review": "S1151 scoped Lua 5.1 institution slots, ability states, layout and packaging checks; native result pending.",
+  "source_runtime": "B543.570 / modinfo570 develop, 301 files.",
+  "tested_source_snapshot_sha256": "aad55d6633a40cbd3380cf7df1dcdb8762b503985f7dc50232dae69ede717f90"
 }
