@@ -11,9 +11,8 @@ function M.Start(P,shared)
  local data={ready=false,changes=0};shared.ResearchTraditionEffects=data
  local pending={};local busy=false;local definitions
  local ownedIndex={};local markHealth;local writeGuard
- local strictCarrierReference=store.UsesNewAuthority==true
  local health=SPCRuntimeWork.NativeHealth(P,shared,data,function(id)return ownedIndex[id]==true end,function(scope)markHealth(scope)end,function()
-  if strictCarrierReference then assert(writeGuard,'TRADITION_WRITE_WITNESS_UNAVAILABLE');writeGuard()end
+  assert(writeGuard,'TRADITION_WRITE_WITNESS_UNAVAILABLE');writeGuard()
  end)
  -- Fixed presentation-only slots; never effect/save authority or native-object storage.
  local records,byID,ownerGeneration={},{},{};local count=0;local generation=0;local sequence=0;local publicationDepth=0
@@ -105,7 +104,7 @@ function M.Start(P,shared)
  local function desired(pid,c,frame)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'TRADITION_OWNER_UNKNOWN')
   local f
-  if frame and strictCarrierReference then
+  if frame then
    local facts=shared.EffectiveFacts;local reader=assert(facts.ReadWithCarrierReference,'TRADITION_WRITE_READER_UNAVAILABLE')
    local witness;f,witness=reader(pid,c)
    local stamp=assert(store.CarrierReferenceStamp,'TRADITION_WRITE_STAMP_UNAVAILABLE')

@@ -157,56 +157,46 @@ local function CreateProgressionRecord(P,shared,storage)
   end
   return true
  end
- local function source(c)
-  local s={ref=ref(c),values={}}
-  for _,n in ipairs({'TOKEN','JOURNAL','FLOW','INVEST','TEMPLATES'}) do s.values[n]=c:GetProperty(M.Keys[n])end
-  s.ledger=Game:GetProperty('SPC_DEV_BINDING_B013_P'..s.ref.owner)
-  return cp(s)
- end
  -- Masking an unavailable ability must not hide this original base invariant.
  local function unassignedTemplates(r)
-  if (r.schema==2 or r.schema==3)and r.progression=='UNASSIGNED'then
+  if r.progression=='UNASSIGNED'then
    assert(r.templates==nil,'STORE_UNASSIGNED')
   end
  end
  local function validate(r)
-  assert(type(r)=='table' and (r.schema==1 or r.schema==2 or r.schema==3) and (r.stage=='PREPARED' or r.stage=='ACTIVE' or r.stage=='HELD_TRANSFER')
+  assert(type(r)=='table' and (r.schema==2 or r.schema==3) and (r.stage=='ACTIVE' or r.stage=='HELD_TRANSFER')
    and type(r.revision)=='number' and r.revision>=1 and r.revision%1==0,'STORE_SCHEMA')
   assert(type(r.origin)=='table' and type(r.base)=='table','STORE_SCOPE')
-  if r.schema==1 then
-   assert(kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')
+  if r.schema==2 then
+  local f=r.founding
+  assert(type(f)=='table' and f.evidence=='FOUND_CITY+Initialized' and same(f.reference,r.origin)
+   and type(f.unitID)=='number' and f.unitID>=0 and f.unitID%1==0 and type(f.reason)=='number'
+   and f.reason==f.reason and math.abs(f.reason)<math.huge and f.turn==r.base.foundationTurn,'STORE_FOUNDATION')
   else
-   if r.schema==2 then
-   local f=r.founding
-   assert(type(f)=='table' and f.evidence=='FOUND_CITY+Initialized' and same(f.reference,r.origin)
-    and type(f.unitID)=='number' and f.unitID>=0 and f.unitID%1==0 and type(f.reason)=='number'
-    and f.reason==f.reason and math.abs(f.reason)<math.huge and f.turn==r.base.foundationTurn,'STORE_FOUNDATION')
-   else
-    local f=r.acquisition
-    assert(type(f)=='table' and (f.evidence==conquestEvidence or peacefulEvidence[f.evidence]) and same(f.reference,r.origin)
-     and type(f.oldOwner)=='number' and f.oldOwner>=0 and f.oldOwner%1==0 and f.oldOwner~=r.origin.owner
-     and f.turn==r.base.foundationTurn and type(f.legacySet)=='table','STORE_ACQUISITION')
-    local c,a,i,t=f.conquered,f.added,f.initialized,f.transferred
-    assert(type(a)=='number' and type(i)=='number' and type(t)=='number'
-     and a>=1 and a%1==0 and i%1==0 and t%1==0 and a<i and i<t,'STORE_ACQUISITION_ORDER')
-    if f.evidence==conquestEvidence then
-     assert(type(c)=='number' and c>=1 and c%1==0 and c<a,'STORE_ACQUISITION_ORDER')
-    else assert(c==nil,'STORE_ACQUISITION_ORDER') end
-    local n=0;for k,v in pairs(f.legacySet)do assert(kinds[k] and v==true,'STORE_LEGACY_SET');n=n+1 end
-    assert(f.mode==(n>0 and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'),'STORE_ACQUISITION_MODE')
-    if f.mode=='LEGACY_CLAIM' and r.progression=='SPECIALIZED' then
-     local a=r.claim
-     assert(type(a)=='table' and a.version==1 and a.kind==r.base.specialization and f.legacySet[a.kind]
-      and a.project=='PROJECT_SPC_CLAIM_'..a.kind and a.token==r.base.token and same(a.reference,r.origin)
-      and a.turn==r.base.first.turn and a.turn>=f.turn,'CLAIM_RECEIPT_INVALID')
-    else assert(r.claim==nil,'CLAIM_UNEXPECTED_RECEIPT')end
-   end
-   assert(r.stage~='PREPARED' and (r.completionError==nil or type(r.completionError)=='string'),'STORE_FRESH_STAGE')
-   if r.progression=='UNASSIGNED' then
-    assert(r.base.specialization=='NONE' and r.base.potential==0 and r.base.first==nil
-     and r.investment==nil and r.templates==nil and r.currentFirst==nil,'STORE_UNASSIGNED')
-   else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
+   local f=r.acquisition
+   assert(type(f)=='table' and (f.evidence==conquestEvidence or peacefulEvidence[f.evidence]) and same(f.reference,r.origin)
+    and type(f.oldOwner)=='number' and f.oldOwner>=0 and f.oldOwner%1==0 and f.oldOwner~=r.origin.owner
+    and f.turn==r.base.foundationTurn and type(f.legacySet)=='table','STORE_ACQUISITION')
+   local c,a,i,t=f.conquered,f.added,f.initialized,f.transferred
+   assert(type(a)=='number' and type(i)=='number' and type(t)=='number'
+    and a>=1 and a%1==0 and i%1==0 and t%1==0 and a<i and i<t,'STORE_ACQUISITION_ORDER')
+   if f.evidence==conquestEvidence then
+    assert(type(c)=='number' and c>=1 and c%1==0 and c<a,'STORE_ACQUISITION_ORDER')
+   else assert(c==nil,'STORE_ACQUISITION_ORDER') end
+   local n=0;for k,v in pairs(f.legacySet)do assert(kinds[k] and v==true,'STORE_LEGACY_SET');n=n+1 end
+   assert(f.mode==(n>0 and 'LEGACY_CLAIM' or 'FIRST_COMPLETION'),'STORE_ACQUISITION_MODE')
+   if f.mode=='LEGACY_CLAIM' and r.progression=='SPECIALIZED' then
+    local a=r.claim
+    assert(type(a)=='table' and a.version==1 and a.kind==r.base.specialization and f.legacySet[a.kind]
+     and a.project=='PROJECT_SPC_CLAIM_'..a.kind and a.token==r.base.token and same(a.reference,r.origin)
+     and a.turn==r.base.first.turn and a.turn>=f.turn,'CLAIM_RECEIPT_INVALID')
+   else assert(r.claim==nil,'CLAIM_UNEXPECTED_RECEIPT')end
   end
+  assert(r.completionError==nil or type(r.completionError)=='string','STORE_FRESH_STAGE')
+  if r.progression=='UNASSIGNED' then
+   assert(r.base.specialization=='NONE' and r.base.potential==0 and r.base.first==nil
+    and r.investment==nil and r.templates==nil and r.currentFirst==nil,'STORE_UNASSIGNED')
+  else assert(r.progression=='SPECIALIZED' and kinds[r.base.specialization] and r.base.potential==1,'STORE_SCOPE')end
   if r.restructuring then R.Validate(r.restructuring,r)end
   if r.deferredLifecycle~=nil then Deferred.Validate(r.deferredLifecycle,r)end
   SPCStoreSubrecords.Validate(r,'PROFESSION',same)
@@ -241,7 +231,6 @@ local function CreateProgressionRecord(P,shared,storage)
     and r.loss.target.x==r.origin.x and r.loss.target.y==r.origin.y,'STORE_LOSS_EVIDENCE')
   end
   assert(r.referenceInvalidated==nil or r.referenceInvalidated==true,'STORE_REFERENCE_INVALIDATION')
-  assert(r.stage~='PREPARED' or type(r.source)=='table','STORE_PREPARED_SOURCE')
  end
  -- Called by every old writer before entering player-wide error/repair handling.
  function d.Owns(c)
@@ -955,30 +944,9 @@ local function CreateProgressionRecord(P,shared,storage)
   publishFact(shared,c,'CLAIM_COMMITTED',n)
   return true
  end
- local function activate(c)
-  assert(root.stage=='PREPARED' and same(source(c),root.source),'IMPORT_SOURCE_CHANGED')
-  assert(P.IsTestPlayer(root.origin.owner),'IMPORT_PLAYER_CHANGED')
-  local n=cp(root);n.stage='ACTIVE';n.source=nil;n.revision=n.revision+1;save(n)
- end
- function d.Import(pid,c)
-  assert(not busy,'IMPORT_BUSY');busy=true
-  local ok,err=pcall(function()
-   assert(ready and not fault and c and P.IsTestPlayer(pid) and c:GetOwner()==pid,'SELECT_OWN_CITY')
-   if root then assert(same(ref(c),root.current or root.origin) and root.stage=='ACTIVE','ONE_CITY_ONLY_OR_HELD');return end
-   local s=source(c);assert(M.Preview(s).state=='LOCAL_CANDIDATE','IMPORT_LEGACY_INCOMPLETE')
-   assert(kinds[s.values.JOURNAL.specialization],'FOUR_PROFESSIONS_ONLY')
-   local f=shared.EffectiveFacts.Read(pid,c);assert(not f.investmentPending,'IMPORT_PENDING')
-   save({schema=1,stage='PREPARED',revision=1,origin=cp(s.ref),base=cp(s.values.JOURNAL),
-    investment=cp(s.values.INVEST),binding=cp(s.ledger),templates=cp(s.values.TEMPLATES),templatesCaptured=true,source=s})
-   activate(c)
-  end)
-  busy=false
-  if not ok then return '进度迁移暂停：'..tostring(err)..'\n未回退旧账本；请保留测试档。'end
-  return d.Describe(pid,c)
- end
  function d.Describe(pid,c)
   if not ready or fault then return '进度保存暂停：'..tostring(fault or '尚未就绪')..'\n不会使用旧记录补写。'end
-  if not root then return '尚未迁移。请选择完整的己方四专业城市，右键“迁移进度”。\n先保留独立的迁移前存档；本批只支持一城同Owner测试。'end
+  if not root then return '城市登记尚未完成；等候落城或交割确认。'end
   if root.origin.owner~=pid then return '本记录不属于当前玩家。'end
   if root.stage~='ACTIVE' then return '永久进度保留，能力休眠；退出：'..d.exitStatus..(next(d.exitErrors) and '（暂停模块：'..(function()local t={};for n in pairs(d.exitErrors)do t[#t+1]=n end;table.sort(t);return table.concat(t,'、')end)()..'）' or '')..'\n恢复：'..((d.observation or ''):match('RETURN_[A-Z_]+') or '等待匹配夺回事件')..'；未确认时勿投资。'end
   c=c or CityManager.GetCityAt(root.origin.x,root.origin.y)
@@ -1021,23 +989,17 @@ local function CreateProgressionRecord(P,shared,storage)
  -- Existing observations only: no revalidation or repair during presentation.
  local describeProgress=d.Describe
  function d.Describe(pid,c)
-  local text=describeProgress(pid,c);local protected,recovered={},{}
+  local text=describeProgress(pid,c);local protected={}
   local names={expeditionInsights='考察见闻',researchTradition='学术传统',dialogue='时代对话',engineering='工程研习',capital='资本投资',development='发展投资',claimTimer='认领计时',commerce='商业化',templateLifecycle='工业模板'}
   for _,key in ipairs(isolationKeys)do if isolated[key]then
    protected[#protected+1]=names[key]..(isolated[key].status=='CHECK_UNKNOWN'and '（暂时无法验证）'or '')
   end end
   if partialReputation then protected[#protected+1]='商业信誉'..(partialReputation.status=='CHECK_UNKNOWN'and '（暂时无法验证）'or '')end
-  for _,change in ipairs(d.subrecordRecovery and d.subrecordRecovery.fields or {})do
-   local name=names[change.key]or change.field
-   local found=false;for _,old in ipairs(recovered)do if old==name then found=true end end
-   if not found then recovered[#recovered+1]=name end
-  end
   local deferred={}
   for _,key in ipairs(isolationKeys)do if root and root.deferredLifecycle and root.deferredLifecycle.entries[key]then deferred[#deferred+1]=names[key]end end
   if #deferred>0 then text=text..'\n易主处理待恢复：'..table.concat(deferred,'、')..'。保留已确认边界和原记录；等待可靠加载事实，不按回合重试。'end
   if d.deferredRecovery then text=text..'\n已恢复遗漏的易主处理；历史保留，未重放金币或完成操作。'end
   if #protected>0 then text=text..'\n记录不可用（已保护）：'..table.concat(protected,'、')..'。原记录完整保留；未隔离能力独立核验，不据此清零或重复结算。'end
-  if #recovered>0 then text=text..'\n已验证修复：'..table.concat(recovered,'、')..'。仅恢复已被保存凭据证明的元数据；未重放完成或金币操作。'end
   return text
  end
  -- On-demand evidence only. No state writes, refresh, requests or effect application.
@@ -1179,15 +1141,10 @@ local function CreateProgressionRecord(P,shared,storage)
    root=storage.Read()
    if root then
     local valid,why=pcall(validate,root)
-    if not valid or SPCStoreSubrecords.NeedsTemplateMetadata(root)or SPCStoreSubrecords.NeedsCompletedClaimCleanup(root)then
-     -- First construct redundant known markers without publishing them. Only
-     -- independently valid owners may commit those markers after the full proof.
-     local candidate,changes=SPCStoreSubrecords.KnownCandidate(root,cp)
-     local templateCandidate,templateFields=SPCStoreSubrecords.TemplateMetadataCandidate(candidate or root,cp)
-     if templateCandidate then candidate=templateCandidate end
-     local claimCandidate,claimFields=SPCStoreSubrecords.CompletedClaimCandidate(candidate or root,cp)
-     if claimCandidate then candidate=claimCandidate end
-     local checked=cp(candidate or root);unassignedTemplates(checked);local failures={};local reputationFailure
+    if not valid then
+     -- Isolate only subrecords that fail their own check; the parent must stay valid.
+     -- Same-build saves only: no rebuild of shapes no current writer produces (B547).
+     local checked=cp(root);unassignedTemplates(checked);local failures={};local reputationFailure
      for _,key in ipairs(isolationKeys)do
       local check=SPCStoreSubrecords.CheckOne(key,checked,same)
       if check.status=='CHECK_FAILED'or check.status=='CHECK_UNKNOWN'then
@@ -1205,27 +1162,6 @@ local function CreateProgressionRecord(P,shared,storage)
      end
      local parentOK=pcall(validate,checked);assert(parentOK,why)
      isolated,partialReputation=pendingProtection(root,failures,reputationFailure) -- observations, never irrecoverability.
-     local repaired,fields;local templateApplied,claimApplied=false,false
-     for _,change in ipairs(changes or {})do if not isolated[change.key]and not(change.key=='commerce'and partialReputation)then
-      repaired=repaired or cp(root);fields=fields or {}
-      repaired[change.field]=true;fields[#fields+1]=change
-     end end
-     if templateFields and not isolated.templateLifecycle then
-      templateApplied=true
-      repaired=repaired or cp(root);fields=fields or {}
-      repaired.templatesCaptured=templateCandidate.templatesCaptured;repaired.templateLifecycle=cp(templateCandidate.templateLifecycle)
-      for _,field in ipairs(templateFields)do fields[#fields+1]=field end
-     end
-     if claimFields and not isolated.claimTimer then
-      repaired=repaired or cp(root);fields=fields or {};repaired.claimTimer=nil;claimApplied=true
-      for _,field in ipairs(claimFields)do fields[#fields+1]=field end
-     end
-     if repaired then
-      repaired.revision=root.revision+1
-      assert(repaired.revision>root.revision,'SUBRECORD_RECOVERY_REVISION_UNAVAILABLE')
-      save(repaired) -- complete remaining-parent validation, exact native CAS/readback
-      d.subrecordRecovery={kind=claimApplied and(templateApplied and 'PROVEN_SUBRECORD_REBUILT'or'COMPLETED_CLAIM_TIMER_CLEARED')or templateApplied and 'PROVEN_METADATA_REBUILT'or'KNOWN_FLAGS_REBUILT',fields=fields,revision=repaired.revision}
-     end
     end
    end
    if root and root.deferredLifecycle then isolated,partialReputation=pendingProtection(root,isolated,partialReputation)end
@@ -1236,7 +1172,7 @@ local function CreateProgressionRecord(P,shared,storage)
  end
  function d.Ready()return ready and not fault end
  function d.Status()return cp(d and {exitStatus=d.exitStatus,exitErrors=d.exitErrors,observation=d.observation,
-  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordRecovery=d.subrecordRecovery,subrecordIsolation=isolated,reputationIsolation=partialReputation,deferredRecovery=d.deferredRecovery,deferredRecoveryErrors=d.deferredRecoveryErrors,deferredRecoveryError=d.deferredRecoveryError})end
+  returnRejection=d.returnRejection,returnCandidate=d.returnCandidate,returnErrors=d.returnErrors,lastTransfer=d.lastTransfer,subrecordIsolation=isolated,reputationIsolation=partialReputation,deferredRecovery=d.deferredRecovery,deferredRecoveryErrors=d.deferredRecoveryErrors,deferredRecoveryError=d.deferredRecoveryError})end
  restore() -- before Binding/Journal/Flow/Investment register load callbacks
  -- No absence/failed getter is confirmation. A matched native ownership event is required.
  function d.IsExitTarget(c,loss)
@@ -1485,10 +1421,9 @@ local function CreateProgressionRecord(P,shared,storage)
    local current=ref(c)
    if type(current.owner)~='number' or current.owner<0 or type(current.cityID)~='number' then d.observation='UNKNOWN_OWNER';return end
    if recapture(c,current,newOwner,newID,oldOwner,transferType) then return
-   elseif same(current,root.origin) and root.stage=='PREPARED' then activate(c)
    elseif not root.loss and current.owner~=root.origin.owner and oldOwner==root.origin.owner
     and newOwner==current.owner and newID==current.cityID then
-    local n=cp(root);n.stage='HELD_TRANSFER';n.source=nil;if not isolated.claimTimer then n.claimTimer=nil end;n.revision=n.revision+1
+    local n=cp(root);n.stage='HELD_TRANSFER';if not isolated.claimTimer then n.claimTimer=nil end;n.revision=n.revision+1
     if n.restructuring and (n.restructuring.phase=='REALLOCATING' or n.restructuring.phase=='CONSUMING')then n.restructuring=R.Discard(n.restructuring)end
     if not isolated.engineering and n.engineering then n.engineering=SPCEngineeringStudyModel.Cancel(n.engineering,'EST_OWNER_CHANGED')end
     if not isolated.dialogue and n.dialogue then n.dialogue=SPCDialogueProjectModel.Cancel(n.dialogue,'易主取消未完成对话；已成功历史保留')end
@@ -1551,11 +1486,11 @@ local function CreateProgressionRecord(P,shared,storage)
  return d
 end
 
--- Production new-game authority. Historical adapter is explicit and test-only; no Claim.
-function SPCCityProgressionStore.Start(P,shared,legacyTest)
+-- Production new-game authority. Current-build new games and same-build saves only.
+function SPCCityProgressionStore.Start(P,shared)
  local M=SPCCityIdentityRead;local cp=M.Copy;local KEY=SPCCityProgressionStore.KEY
- local store={UsesNewAuthority=not legacyTest};shared.CityProgressionStore=store
- local envelope,raw,fault,writing;local workers={};local exits,returns={},{}
+ local store={};shared.CityProgressionStore=store
+ local envelope,fault,writing;local workers={};local exits,returns={},{}
  -- A terminal first-selection fault is session-local, not a saved recovery log.
  -- It never changes another city's record or disables established ability reads.
  local completionSourceFailure;local completionErrorPrints=0
@@ -1573,7 +1508,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    pcall(print,'[SPC][STORE_COMPLETION_ERROR] owner='..tostring(pid)..' city='..tostring(id)..' scope=CITY reason='..reason)
   end
  end
- local modern=not legacyTest;local index,positions,capacity;local initialized=false;local freshHistoryStart=false
+ local index,positions,capacity;local initialized=false;local freshHistoryStart=false
  local INDEX=SPCCityProgressionStore.INDEX;local PREFIX=SPCCityProgressionStore.RECORD
  local initializeNew
  -- Session-only reservations for held/incomplete records. The committed envelope
@@ -1625,31 +1560,15 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   end
  end
  local function check()assert(not fault,fault or 'STORE_COLLECTION_HELD')end
- local function count()if modern and index then return index.counter end;local n=0;for _ in pairs(envelope.records)do n=n+1 end;return n end
+ local function count()return index and index.counter or 0 end
  function store.RecordCount()return count()end
- local function validateCollection(v)
-  assert(type(v)=='table' and v.schema==2 and type(v.records)=='table' and type(v.revision)=='number'
-   and v.revision>=0 and v.revision%1==0,'STORE_COLLECTION_SCHEMA')
-  local positions,references={},{};local n=0
-  for token,r in pairs(v.records)do
-   n=n+1;assert(n<=2,'TWO_CITY_TEST_LIMIT')
-   assert(type(token)=='string' and type(r)=='table' and type(r.base)=='table' and token==r.base.token
-    and type(r.origin)=='table' and type(r.origin.x)=='number' and type(r.origin.y)=='number','STORE_RECORD_KEY')
-   local position=r.origin.x..':'..r.origin.y
-   assert(not positions[position],'STORE_LOCATION_COLLISION');positions[position]=true
-   local current=r.loss and r.loss.target or r.current or r.origin
-   assert(type(current)=='table' and type(current.owner)=='number' and type(current.cityID)=='number','STORE_CURRENT_REFERENCE')
-   local reference=current.owner..':'..current.cityID
-   assert(not references[reference],'STORE_REFERENCE_COLLISION');references[reference]=true
-  end
- end
  local function make(token,admitting)
   local storage={}
   storage.Check=check
   storage.CanExit=function()return not fault and not writing end -- pure collection barrier
   function storage.Read()
    check()
-   if modern and not admitting then
+   if not admitting then
     assert(not (reservations[token] and reservations[token].unknown),'STORE_REFERENCE_UNKNOWN')
     assert(envelope.records[token],'REGISTRATION_INCOMPLETE')
    end
@@ -1658,45 +1577,32 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   function storage.Write(old,value,observeFailure)
    check();assert(not writing,'STORE_COLLECTION_BUSY');assert(same(envelope.records[token],old),'STORE_STALE')
    assert(value.base.token==token,'STORE_TOKEN_CHANGED')
-   if modern then
-    local key=PREFIX..token;local before=envelope.records[token]
-    local readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
-    if not readOK or not same(observed,before) then
-     if observeFailure then pcall(observeFailure,'PREWRITE',readOK,observed,before,'NOT_CALLED',false)end
-     protectFailed(token,before,value,readOK,observed)
-     error('STORE_RECORD_STALE')
-    end
-    local current=assert(referenceKey(value),'STORE_CURRENT_REFERENCE')
-    -- Full worker validation and old-value checks still run. Only unchanged
-    -- committed endpoints skip the cross-record uniqueness walk.
-    if current~=referenceKey(before) then checkReference(token,current)end
-    writing=true
-    -- Even a throwing setter may have applied. Read once while the lock is held.
-    local result=SPCPropertyCell.WriteReadback(function()P.SetProperty(Game,key,cp(value))end,
-     function()return cp(Game:GetProperty(key))end)
-    local ok,err=result.writeReturned,result.writeResult
-    readOK,observed=result.readReturned,result.observed
-    local confirmed=ok and readOK and same(observed,value)
-    if not confirmed then
-     -- Diagnostics use the already obtained readback. Observer failure cannot alter guards.
-     if observeFailure then pcall(observeFailure,'POSTWRITE',readOK,observed,value,ok and 'RETURNED' or 'THREW',readOK and same(observed,value))end
-     protectFailed(token,before,value,readOK,observed)
-    end
-    writing=false
-    assert(confirmed,not ok and err or 'STORE_WRITE_UNCONFIRMED')
-    envelope.records[token]=cp(value);reservations[token]=nil;return
+   local key=PREFIX..token;local before=envelope.records[token]
+   local readOK,observed=pcall(function()return cp(Game:GetProperty(key))end)
+   if not readOK or not same(observed,before) then
+    if observeFailure then pcall(observeFailure,'PREWRITE',readOK,observed,before,'NOT_CALLED',false)end
+    protectFailed(token,before,value,readOK,observed)
+    error('STORE_RECORD_STALE')
    end
-   local nextValue=cp(envelope);nextValue.records[token]=cp(value);nextValue.revision=nextValue.revision+1
-   validateCollection(nextValue)
-   assert(same(Game:GetProperty(KEY),raw),'STORE_COLLECTION_STALE')
-   writing=true;envelope=nextValue -- old-writer guards see the new record before engine callbacks
-   local ok,err=pcall(function()
-    P.SetProperty(Game,KEY,cp(nextValue))
-    assert(same(Game:GetProperty(KEY),nextValue),'STORE_WRITE_UNCONFIRMED')
-   end)
+   local current=assert(referenceKey(value),'STORE_CURRENT_REFERENCE')
+   -- Full worker validation and old-value checks still run. Only unchanged
+   -- committed endpoints skip the cross-record uniqueness walk.
+   if current~=referenceKey(before) then checkReference(token,current)end
+   writing=true
+   -- Even a throwing setter may have applied. Read once while the lock is held.
+   local result=SPCPropertyCell.WriteReadback(function()P.SetProperty(Game,key,cp(value))end,
+    function()return cp(Game:GetProperty(key))end)
+   local ok,err=result.writeReturned,result.writeResult
+   readOK,observed=result.readReturned,result.observed
+   local confirmed=ok and readOK and same(observed,value)
+   if not confirmed then
+    -- Diagnostics use the already obtained readback. Observer failure cannot alter guards.
+    if observeFailure then pcall(observeFailure,'POSTWRITE',readOK,observed,value,ok and 'RETURNED' or 'THREW',readOK and same(observed,value))end
+    protectFailed(token,before,value,readOK,observed)
+   end
    writing=false
-   if not ok then fault=tostring(err);error(fault)end
-   raw=cp(nextValue)
+   assert(confirmed,not ok and err or 'STORE_WRITE_UNCONFIRMED')
+   envelope.records[token]=cp(value);reservations[token]=nil
   end
   local w=CreateProgressionRecord(P,shared,storage)
   workers[token]=w
@@ -1743,58 +1649,40 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   end
   initialized=true
  end
- if modern then
-  local ok,err=pcall(function()
-   local width,height=Map.GetGridSize();assert(int(width) and width>0 and int(height) and height>0,'MAP_SIZE_UNAVAILABLE')
-   capacity=width*height;assert(capacity<1000000000,'MAP_SIZE_INVALID')
-   envelope={records={}};positions={}
-   local v=Game:GetProperty(INDEX)
-   if v~=nil then loadIndex(v)
-   elseif Game:GetProperty(KEY)~=nil then error('OLD_SAVE_UNSUPPORTED_START_NEW_GAME')end
-  end)
-  if not ok then fault=tostring(err)end
-  initializeNew=function()
-   if fault or initialized then return end
-   local ok,err=pcall(function()
-    -- Supported games enable the Mod from creation. No mid-game/old-save adoption.
-    -- Existing index loads above; absent index requires the pristine start state below.
-    assert(Game.GetCurrentGameTurn()==GameConfiguration.GetStartTurn(),'NOT_NEW_GAME_START')
-    local humans=0
-    for pid,player in pairs(Players)do
-     assert(Game:GetProperty('SPC_DEV_BINDING_B013_P'..pid)==nil,'OLD_BINDING_SAVE_UNSUPPORTED')
-     if P.IsTestPlayer(pid)then
-      humans=humans+1
-      for _ in player:GetCities():Members()do error('EXISTING_CITY_SAVE_UNSUPPORTED')end
-     end
-    end
-    assert(humans==1,'LOCAL_HUMAN_UNCONFIRMED')
-    assert(Game:GetProperty(INDEX)==nil and Game:GetProperty(KEY)==nil,'SAVE_AUTHORITY_CHANGED')
-    local value={schema=3,counter=0,entries={}}
-    P.SetProperty(Game,INDEX,value);assert(same(Game:GetProperty(INDEX),value),'INDEX_WRITE_UNCONFIRMED')
-    loadIndex(value);freshHistoryStart=true
-   end)
-   if not ok then fault=tostring(err)end
-  end
- else
  local ok,err=pcall(function()
-  raw=cp(Game:GetProperty(KEY))
-  if raw==nil then envelope={schema=2,revision=0,records={}}
-  elseif type(raw)=='table' and raw.schema==1 then
-   assert(raw.base and type(raw.base.token)=='string','STORE_LEGACY_KEY')
-   -- Lossless read adapter; promote the whole value at the next actual write.
-   envelope={schema=2,revision=0,records={[raw.base.token]=cp(raw)}}
-  else envelope=cp(raw)end
-  validateCollection(envelope)
-  for token in pairs(envelope.records)do local w=make(token);assert(w.Ready(),'STORE_RECORD_INVALID')end
+  local width,height=Map.GetGridSize();assert(int(width) and width>0 and int(height) and height>0,'MAP_SIZE_UNAVAILABLE')
+  capacity=width*height;assert(capacity<1000000000,'MAP_SIZE_INVALID')
+  envelope={records={}};positions={}
+  local v=Game:GetProperty(INDEX)
+  if v~=nil then loadIndex(v)
+  elseif Game:GetProperty(KEY)~=nil then error('OLD_SAVE_UNSUPPORTED_START_NEW_GAME')end
  end)
  if not ok then fault=tostring(err)end
+ initializeNew=function()
+  if fault or initialized then return end
+  local ok,err=pcall(function()
+   -- Supported games enable the Mod from creation. No mid-game/old-save adoption.
+   -- Existing index loads above; absent index requires the pristine start state below.
+   assert(Game.GetCurrentGameTurn()==GameConfiguration.GetStartTurn(),'NOT_NEW_GAME_START')
+   local humans=0
+   for pid,player in pairs(Players)do
+    assert(Game:GetProperty('SPC_DEV_BINDING_B013_P'..pid)==nil,'OLD_BINDING_SAVE_UNSUPPORTED')
+    if P.IsTestPlayer(pid)then
+     humans=humans+1
+     for _ in player:GetCities():Members()do error('EXISTING_CITY_SAVE_UNSUPPORTED')end
+    end
+   end
+   assert(humans==1,'LOCAL_HUMAN_UNCONFIRMED')
+   assert(Game:GetProperty(INDEX)==nil and Game:GetProperty(KEY)==nil,'SAVE_AUTHORITY_CHANGED')
+   local value={schema=3,counter=0,entries={}}
+   P.SetProperty(Game,INDEX,value);assert(same(Game:GetProperty(INDEX),value),'INDEX_WRITE_UNCONFIRMED')
+   loadIndex(value);freshHistoryStart=true
+  end)
+  if not ok then fault=tostring(err)end
  end
  local function find(c)
   check();if not c then return nil end
-  if modern then local token=positions[c:GetX()..':'..c:GetY()];return token and workers[token]end
-  local found
-  for _,w in pairs(workers)do if w.Owns(c)then assert(not found,'STORE_ROUTE_AMBIGUOUS');found=w end end
-  return found
+  local token=positions[c:GetX()..':'..c:GetY()];return token and workers[token]
  end
  local function requireCity(c)return assert(find(c),'CITY_NOT_REGISTERED')end
  function store.Owns(c)
@@ -1811,26 +1699,15 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.ReferenceToken(c)
   check();assert(not writing,'STORE_COLLECTION_BUSY')
   local x,y=c:GetX(),c:GetY()
-  if modern then
-   assert(initialized and positions,'STORE_REFERENCE_NOT_READY')
-   return positions[x..':'..y]
-  end
-  -- Frozen two-record legacy test adapter, not the modern runtime route.
-  for token,row in pairs(envelope.records)do if row.origin.x==x and row.origin.y==y then return token end end
+  assert(initialized and positions,'STORE_REFERENCE_NOT_READY')
+  return positions[x..':'..y]
  end
  -- Existing position/worker indexes only; no native getter, storage.Check, fact read or scan.
  local function trainingWorker(pid,id,x,y)
   if not(int(pid)and int(id)and int(x)and int(y))then return nil,'INVALID_REFERENCE'end
   if fault then return nil,'COLLECTION_FAILED'end
-  if modern and not initialized then return nil,'COLLECTION_NOT_READY'end
-  local token
-  if modern then token=positions and positions[tostring(x)..':'..tostring(y)]
-  else
-   -- Explicit frozen two-record adapter; no production fallback enumeration.
-   for name,r in pairs(envelope.records)do local a=r.current or r.origin
-    if a and a.x==x and a.y==y then token=name;break end
-   end
-  end
+  if not initialized then return nil,'COLLECTION_NOT_READY'end
+  local token=positions and positions[tostring(x)..':'..tostring(y)]
   local w=token and workers[token]
   return w,w and nil or 'UNREGISTERED'
  end
@@ -1859,7 +1736,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  function store.IndustryHistoryStamp(c)return requireCity(c).IndustryHistoryStamp(c)end
  function store.HistoryStartStatus()
   if fault then return 'HELD' end
-  if not modern or not initialized then return 'WAITING' end
+  if not initialized then return 'WAITING' end
   return freshHistoryStart and 'FRESH' or 'EXISTING'
  end
  function store.RestructuringExit(c)return requireCity(c).RestructuringExit(c)end
@@ -1983,39 +1860,19 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   if fault or completionSourceFailure then return store.FailureReport() end
   if not c then return '请选择一座城市；不会默认读取另一城。'end
   local w=find(c)
-  if not w and modern then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n建城后等候落城确认；接手外城后等候交割与原有专业记录核对。'end
-  if not w then return '所选城市未登记；仍使用旧保存路径。右键迁移进度可登记完整的己方专业城。\n本批最多显式登记两城；先保留转换前存档。'end
-  return w.Describe(pid,c)..w.TimingDescribe()..'\n已登记：'..count()..(modern and ' | 所选城 ' or '/2 | 所选城 ')..c:GetOwner()..'/'..c:GetID()
+  if not w then return '所选城市尚无已确认的新局记录；不会读取旧账本或自动认领。\n建城后等候落城确认；接手外城后等候交割与原有专业记录核对。'end
+  return w.Describe(pid,c)..w.TimingDescribe()..'\n已登记：'..count()..' | 所选城 '..c:GetOwner()..'/'..c:GetID()
  end
  function store.NativeDescribe(pid,c)
   if fault or completionSourceFailure or not c then return store.Describe(pid,c)end
   local w=find(c);if not w then return store.Describe(pid,c)end
-  return w.NativeDescribe(pid)..w.TimingDescribe()..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()..(modern and '' or '/2')
- end
- function store.Import(pid,c)
-  if modern then return '本版本只支持新测试局；旧进度迁移入口已关闭。请左键查看当前进度。'end
-  local ok,out=pcall(function()
-   check();assert(not writing and c and P.IsTestPlayer(pid) and c:GetOwner()==pid,'SELECT_OWN_CITY')
-   local w=find(c)
-   if not w then
-    assert(count()<2,'TWO_CITY_TEST_LIMIT')
-    local token=c:GetProperty(M.Keys.TOKEN)
-    assert(type(token)=='string' and not workers[token] and not envelope.records[token],'IMPORT_TOKEN_COLLISION')
-    w=make(token)
-   end
-   local result=w.Import(pid,c)
-   -- A rejected pre-write import must not consume a slot or retain a phantom worker.
-   for token,v in pairs(workers)do if v==w and not envelope.records[token] and not fault then workers[token]=nil end end
-   return result
-  end)
-  if not ok then return '进度迁移暂停：'..tostring(out)..'；保留测试档。'end
-  return out
+  return w.NativeDescribe(pid)..w.TimingDescribe()..'\n所选城 '..c:GetOwner()..'/'..c:GetID()..' | 已登记 '..count()
  end
  -- At most four scalar candidates and eight ordered completion notifications each.
  -- No Publish/Playback/timer gate, no unit lookup, no load-time district inference.
  local pending={};local eventSerial=0;local freshReady=false;local freshOverflow=false;local hooks={}
  function store.FreshReady()return freshReady end
- local LIMIT,COMPLETIONS=modern and (capacity or 0) or 4,8
+ local LIMIT,COMPLETIONS=capacity or 0,8
  local function integer(v)return type(v)=='number' and v>=0 and v<1000000000 and v%1==0 end
  local foundReason=P.Field(EventSubTypes,'FOUND_CITY')
  if type(foundReason)~='number' or foundReason~=foundReason or math.abs(foundReason)==math.huge then foundReason=nil end
@@ -2024,12 +1881,6 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  local function legacyPresent(c)
   for _,key in pairs(M.Keys)do if c:GetProperty(key)~=nil then return true end end
   return false
- end
- function store.BlocksLegacy(c)
-  if modern then return true end -- no legacy writer, even for unsupported/unregistered cities
-  if store.Owns(c)then return true end
-  if not c then return false end
-  return at(c:GetX(),c:GetY())~=nil or (freshOverflow and P.IsTestPlayer(c:GetOwner()) and not legacyPresent(c))
  end
  function store.CanAllocateFoundation(c)
   local q=at(c:GetX(),c:GetY())
@@ -2048,7 +1899,6 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   -- Retained historical locations, including HELD records, never enroll again.
   if c and (store.Owns(c) or legacyPresent(c)) then return end
   for _,r in pairs(envelope.records)do if r.origin.x==x and r.origin.y==y then return end end
-  if not modern and count()>=2 then return end -- historical test adapter only
   if #pending>=LIMIT then freshOverflow=true;return end
   q={reference={owner=owner,cityID=id,x=x,y=y},turn=Game.GetCurrentGameTurn(),completions={}}
   pending[#pending+1]=q
@@ -2123,7 +1973,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
   elseif not q.initialized or not q.found then return end
   q.committing=true
   local ok,err=pcall(function()
-   check();assert(modern or count()<2,'TWO_CITY_TEST_LIMIT')
+   check()
    assert(hooks.CityInitialized and hooks.OnDistrictConstructed and hooks.LoadScreenClose,'FOUNDATION_HOOK_UNAVAILABLE')
    if not acquired then assert(foundReason~=nil and hooks.UnitActivate,'FOUNDATION_HOOK_UNAVAILABLE')end
    assert(q.turn==Game.GetCurrentGameTurn(),'FOUNDATION_CROSS_TURN')
@@ -2132,7 +1982,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    assert(not store.Owns(c) and not legacyPresent(c),'FOUNDATION_EXISTING_HISTORY')
    local acquisition
    if acquired then
-    assert(modern and hooks.CityAddedToMap and hooks.CityTransfered,'ACQUISITION_HOOK_UNAVAILABLE')
+    assert(hooks.CityAddedToMap and hooks.CityTransfered,'ACQUISITION_HOOK_UNAVAILABLE')
     assert(not q.found and q.added and q.initSequence and q.added<q.initSequence and q.initSequence<q.transferred,'ACQUISITION_ORDER')
     if q.conquest then
      assert(hooks.CityConquered and q.conquest.sequence<q.added,'ACQUISITION_ORDER')
@@ -2171,33 +2021,28 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    end
    q.stage='城市登记写入'
    local token,ledger
-   if modern then
-    assert(initialized and not writing,'NEW_SAVE_NOT_READY')
-    local a=q.reference
-    -- Reject known unsafe admission before allocating index/token state; the
-    -- eventual record write checks again across any intervening engine callbacks.
-    checkReference(nil,referenceKey({origin=a}))
-    local nextIndex=copyIndex(index);local serial=nextIndex.counter+1
-    assert(serial<=capacity,'MAP_REGISTRATION_LIMIT')
-    token='DEV-B013-P'..a.owner..'-'..serial
-    assert(Game:GetProperty(PREFIX..token)==nil,'FOUNDATION_ORPHAN_RECORD')
-    nextIndex.counter=serial;nextIndex.entries[token]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial}
-    assert(same(Game:GetProperty(INDEX),index),'INDEX_STALE')
-    writing=true
-    local good,err=pcall(function()
-     P.SetProperty(Game,INDEX,nextIndex);assert(same(Game:GetProperty(INDEX),nextIndex),'INDEX_WRITE_UNCONFIRMED')
-    end)
-    writing=false
-    if not good then fault=tostring(err);error(fault)end
-    index=nextIndex;positions[a.x..':'..a.y]=token
-    reservations[token]={reference=referenceKey({origin=a})}
-    assert(same(reference(c),a) and c:GetProperty(M.Keys.TOKEN)==nil,'FOUNDATION_REFERENCE_CHANGED')
-    P.SetProperty(c,M.Keys.TOKEN,token);assert(c:GetProperty(M.Keys.TOKEN)==token,'CITY_WRITE_UNCONFIRMED')
-    ledger={schema=2,owner=a.owner,counter=serial,records={[tostring(a.cityID)]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial,uid=token,state='CONFIRMED'}}}
-   else
-    local binding=assert(shared.BindingProbe,'FOUNDATION_BINDING_NOT_READY')
-    token,ledger=binding.AllocateFoundation(c)
-   end
+   assert(initialized and not writing,'NEW_SAVE_NOT_READY')
+   local a=q.reference
+   -- Reject known unsafe admission before allocating index/token state; the
+   -- eventual record write checks again across any intervening engine callbacks.
+   checkReference(nil,referenceKey({origin=a}))
+   local nextIndex=copyIndex(index);local serial=nextIndex.counter+1
+   assert(serial<=capacity,'MAP_REGISTRATION_LIMIT')
+   token='DEV-B013-P'..a.owner..'-'..serial
+   assert(Game:GetProperty(PREFIX..token)==nil,'FOUNDATION_ORPHAN_RECORD')
+   nextIndex.counter=serial;nextIndex.entries[token]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial}
+   assert(same(Game:GetProperty(INDEX),index),'INDEX_STALE')
+   writing=true
+   local good,err=pcall(function()
+    P.SetProperty(Game,INDEX,nextIndex);assert(same(Game:GetProperty(INDEX),nextIndex),'INDEX_WRITE_UNCONFIRMED')
+   end)
+   writing=false
+   if not good then fault=tostring(err);error(fault)end
+   index=nextIndex;positions[a.x..':'..a.y]=token
+   reservations[token]={reference=referenceKey({origin=a})}
+   assert(same(reference(c),a) and c:GetProperty(M.Keys.TOKEN)==nil,'FOUNDATION_REFERENCE_CHANGED')
+   P.SetProperty(c,M.Keys.TOKEN,token);assert(c:GetProperty(M.Keys.TOKEN)==token,'CITY_WRITE_UNCONFIRMED')
+   ledger={schema=2,owner=a.owner,counter=serial,records={[tostring(a.cityID)]={owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,serial=serial,uid=token,state='CONFIRMED'}}}
    assert(not workers[token] and not envelope.records[token],'FOUNDATION_TOKEN_COLLISION')
    assert(not q.error,q.error)
    local w=make(token,true)
@@ -2314,11 +2159,10 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
    end
   end)
  end
- freshHook(Events,'LoadScreenClose',function()if modern then initializeNew()end;freshReady=not fault and (not modern or initialized)end)
+ freshHook(Events,'LoadScreenClose',function()initializeNew();freshReady=not fault and initialized end)
  freshHook(GameEvents,'CityBuilt',function(...)spatial('CityBuilt',...)end)
  freshHook(Events,'CityAddedToMap',function(...)spatial('CityAddedToMap',...)end)
  freshHook(GameEvents,'CityConquered',function(owner,oldOwner,id,x,y)
-  if not modern then return end
   local q=candidate(owner,id,x,y);if not q then return end
   if not integer(oldOwner) or oldOwner==owner then q.error='ACQUISITION_OWNER_INVALID';return end
   if q.conquest then
@@ -2330,7 +2174,7 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  freshHook(GameEvents,'OnDistrictConstructed',constructed)
  freshHook(Events,'CityTransfered',function(owner,id,oldOwner,reason)
   if #pending==0 then return end
-  if modern and freshReady and P.IsTestPlayer(owner) then
+  if freshReady and P.IsTestPlayer(owner) then
    -- The old and new cities can have different IDs. Select by the event's new
    -- endpoint, then cross-check against the earlier Added/Initialized location.
    local ok,current=pcall(function()
@@ -2398,5 +2242,3 @@ function SPCCityProgressionStore.Start(P,shared,legacyTest)
  listen(GameEvents,'CityConquered');listen(GameEvents,'CityBuilt')
 end
 
--- Explicit historical test adapter, never selected by Gameplay or a UI action.
-function SPCCityProgressionStore.StartLegacyTest(P,shared)return SPCCityProgressionStore.Start(P,shared,true)end

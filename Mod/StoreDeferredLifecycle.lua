@@ -21,7 +21,7 @@ local function sameRef(a,b)
 end
 local function refCopy(r)return {owner=r.owner,cityID=r.cityID,x=r.x,y=r.y}end
 local function parent(r)
- assert(plain(r)and(r.schema==1 or r.schema==2 or r.schema==3)and plain(r.base)
+ assert(plain(r)and(r.schema==2 or r.schema==3)and plain(r.base)
   and type(r.base.token)=='string'and #r.base.token>0 and #r.base.token<=256
   and int(r.ownerChanges)and r.ownerChanges>0,'DEFERRED_PARENT_INVALID')
  reference(r.origin)

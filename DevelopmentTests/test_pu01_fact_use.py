@@ -86,6 +86,7 @@ def fixture():
       state=SPCCommerceModel.Select(SPCCommerceModel.New(0),'DISTRICT_CAMPUS',true)
       local store={}
       store.Owns=function(city)return city==c end
+      store.Base=shared.CityFlowProbe.SupportFacts -- B547: foundation facts come from the Store only
       store.FactStamp=function(pid,city)return city.token..':'..city.revision end
       store.Investment=function(pid,city)return city.ledger end
       store.HistoricalReference=function(city)return {owner=city.owner,cityID=city.id,token=city.token,x=city.x,y=city.y}end

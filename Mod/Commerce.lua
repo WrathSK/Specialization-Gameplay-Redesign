@@ -304,13 +304,8 @@ function M.Start(P,shared)
   local k=key(pid,c:GetID())
   if batch.identities[k]~=nil then return batch.identities[k]end
   local ok,kind=pcall(function()
-   local owns=store.Owns(c);assert(type(owns)=='boolean','COMMERCE_SOURCE_IDENTITY_UNKNOWN')
-   if not owns then
-    -- Modern Store not-yet-admitted is UNKNOWN, not a confirmed identity exit.
-    -- Only the existing explicit legacy exclusion can prove a non-source.
-    assert(store.BlocksLegacy and store.BlocksLegacy(c)==false,'COMMERCE_SOURCE_UNADMITTED')
-    return 'NONE'
-   end
+   -- A not-yet-admitted city is UNKNOWN, not a confirmed identity exit.
+   assert(store.Owns(c),'COMMERCE_SOURCE_UNADMITTED')
    local f=store.Base(pid,c)
    assert(f.owner==pid and f.cityID==c:GetID() and type(f.token)=='string'
     and type(f.specialization)=='string','COMMERCE_SOURCE_IDENTITY_UNKNOWN')

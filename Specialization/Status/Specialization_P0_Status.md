@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1158
-Implementation Build: develop B546.573 / modinfo573. Installed temporary B546.573 / modinfo573. Stable B528.555 / modinfo555.
+Status Revision: S1159
+Implementation Build: develop B547.574 / modinfo574. Installed temporary B546.573 / modinfo573. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,45 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B546.573 / modinfo573 [契约审计第 1 批：被吞掉的错误可见](#contract-audit-batch-1-visible-errors--s1157)。本机[已临时安装 B546.573](#contract-audit-batch-1-installed--s1158)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B547.574 / modinfo574 [契约审计第 2 批：旧兼容退役](#contract-audit-batch-2-legacy-compatibility-retired--s1159)。本机[已临时安装 B546.573](#contract-audit-batch-1-installed--s1158)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B544 实机：负责人接受激活状态颜色与窗口宽度，要求标题改用城市面板的带底色等级徽章，并指出部分标题偏上。B545 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 契约审计后续批次（内部断言、删除死检查、去掉自产数据复查、旧兼容退役）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | 临时安装 B547.574 后做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续批次（内部断言、删除死检查与假存储夹具回退、去掉自产数据复查）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Contract audit batch 2: legacy compatibility retired — S1159
+
+Owner 2026-11-26 批准第 2 批计划，并同意 CA-A05 一起退役。依据是 2026-11-25 的决定：发布前不做任何旧版本或旧存档兼容。
+
+B547.574 实施内容（旧代码保留在 Git 历史）：
+
+- **CA-A01 城市进度存储**：删除 `StartLegacyTest` 双记录测试模式及全部 `legacyTest`/`modern` 分支、`UsesNewAuthority`、双城上限、旧版描述文本；删除 schema 1 / PREPARED 记录形状、旧进度导入（`Import`）、`BlocksLegacy` 和 `BindingProbe` 分配分支。生产入口只有 `Start(P,shared)`。
+- **CA-D13 投资动作**：删除城市属性上的第二套投资账本、按玩家分桶和走不到的写入通知；账本只认存储。启动恢复只扫描已登记城市，避免对登记中的城市误报。
+- **CA-B01 有效事实**：删除 `CityFlowProbe` 分支和属性账本回退，读取前断言城市归存储管理。
+- **CA-C06 网络输入**：删除“未跟踪城市”分支。
+- **连带**：商业来源判定对未登记城市直接给 `COMMERCE_SOURCE_UNADMITTED`；标准化模板账本只走存储；学术传统效果始终使用严格载体引用；ReadFailure 名单去掉两个已不存在的模块名。`CityReference` 与 `RuntimeWork` 只删掉 `UsesNewAuthority` 断言，给假存储夹具用的回退留到“存在性检查”批次。
+- **CA-A06（schema 1 部分）**：延迟生命周期父记录不再接受 schema 1。
+- **CA-A08**：区域采样直接调用 `FindID` 与 `Map.GetAdjacentPlot`，不再回退全量重扫。
+- **CA-A05**：删除读档时的三个重建器（已知标记、模板元数据、已完成认领计时器）及其报告文本。子记录异常时的隔离（SAFE-004）保留。Architecture 已注明 SAFE-004 的重建在同版本下没有可作用的形状。
+
+测试夹具迁移（只改夹具，不改断言）：`test_store_write_boundaries` 共享存储夹具不再启动已退役探针；`test_pu01_fact_use`、`test_pu04_negative`、`test_refactor_s5b`、`test_refactor_s6b`、`test_refactor_s6c`、`test_refactor_s6f` 的假存储补上 `Base`/`Investment`；`test_investment_update_propagation` 增加存储接口替身；`test_arch_v2_c2` 的模拟对象补上 `FindID` 与 `GetAdjacentPlot`。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：
+
+- 新增 `DevelopmentTests/test_legacy_compat_retirement.py`，6 项通过；第 1 批专项 8 项仍通过。
+- `CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-402fcacd37924724b7ef12ea8d74ac18/closure.json`，SHA256 `cc9a29a29cb842e1b019f2b94e79200042dfccb4dbb0c5b2f03a234e10ea84df`，已测源码快照 `2e70ef4280e3bb9605924f1be10d472e5f97150931c932a38b03b9fff15e5ead`。
+- 175 份 Lua 编译、26 份 XML 解析、304 个包文件引用检查通过。
+- 与 HEAD 全量逐模块对比（492 个测试模块）。初跑有差异的 116 个模块在两侧使用同一固定数据库配置后重跑：60 个与 HEAD 一致，其余经夹具迁移后剩下的新增失败用例均为以下几类，按 DevelopmentTests README 保留历史阶段原断言，登记为“已被 B547 取代”：
+  - 专测已退役路径或字段：A05 已知标记与模板元数据重建（s8b1、s8b9 及包含它们的 s8/s9 累积套件、pu06b、pu09、s8a 的模板隔离字段）、`UsesNewAuthority` 断言（s7f、s8c1、o7 四个退役测试共用的冷加载夹具）、无存储旧流程（s5b、s6b 各 1 项）、`BlocksLegacy` 排除（s9e6）、无 `Map` 的采样器（s9e2 1 项）。
+  - 用冻结旧版本源码重放（git 基线的存储/模块配当前子记录模块）：s9g3、s9f4、pu06a、b245、b398 的基线反例。
+  - 夹具仍以 `CityFlowProbe` 供给事实：culture_meaning_probe 1 项。
+
+实机：`USER_GAME_TEST_REQUIRED`。新游戏和同版本读档的行为应不变；旧版本存档不支持，读到会直接报错。建议一次短测：建一座城、投资一次、存档后读档，确认采集日志里没有 `[SPC][ERR]`。
 
 ### Contract audit batch 1 installed — S1158
 

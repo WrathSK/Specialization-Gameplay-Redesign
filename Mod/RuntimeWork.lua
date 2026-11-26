@@ -308,7 +308,6 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
    return true -- only the aggregate owner may acknowledge the whole Store exit
   end
   if not(store and type(store.ExitCompleted)=='function')then
-   assert(not(store and store.UsesNewAuthority==true),'RUNTIME_EXIT_ACK_UNAVAILABLE')
    return true -- isolated pre-Store fixtures only, not current Gameplay
   end
   assert(store.ExitCompleted(e.name,c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)==true,'RUNTIME_EXIT_ACK_UNCONFIRMED')

@@ -26,8 +26,8 @@ districts={};function district(id,cid,kind,prod)
 end
 district(11,1,'DISTRICT_CAMPUS',100);district(12,2,'DISTRICT_INDUSTRIAL_ZONE',7);district(13,1,'DISTRICT_THEATER',6)
 Players={[0]={GetCities=function() return {Members=function() return pairs(cities) end,FindID=function(_,id) return cities[id] end} end,
- GetDistricts=function() return {Members=function() return pairs(districts) end} end}}
-Map={GetPlot=function(x,y) return {GetAdjacencyYield=function() if unavailable then error('NATIVE_NOT_READY') end;return districts[x].base end} end}
+ GetDistricts=function() return {Members=function() return pairs(districts) end,FindID=function(_,id) return districts[id] end} end}}
+Map={GetAdjacentPlot=function() return nil end,GetPlot=function(x,y) return {GetAdjacencyYield=function() if unavailable then error('NATIVE_NOT_READY') end;return districts[x].base end} end}
 shared={Version=P.VERSION,EffectiveFacts={Read=function(pid,c) if factUnknown then error('FACT_UNAVAILABLE') end;return facts[c.id] end},NetworkBridge={players={[0]={validity='VERIFIED'}},RecipientSources=function(pid,c)
  if networkUnknown then error('NETWORK_UNAVAILABLE') end;return c.id==1 and (networkOff and {} or {2}) or {}
 end}};ExposedMembers.SPC_P0=shared

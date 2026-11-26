@@ -1,7 +1,6 @@
 -- B233: retained building knowledge plus typed District experience. No new effects.
-SPCStandardization={KEY='SPC_STANDARDIZATION_LEDGER_V1'}
+SPCStandardization={}
 function SPCStandardization.Start(P,shared)
- local KEY=SPCStandardization.KEY
  local data={ready=false,busy=false,errors={},writes=0,scans=0,pending={},hooks={},last={},warnings={}};shared.Standardization=data
  local function clone(t) if type(t)~='table' then return t end;local o={};for k,v in pairs(t) do o[k]=clone(v) end;return o end
  local function same(a,b)
@@ -38,15 +37,11 @@ function SPCStandardization.Start(P,shared)
   trace.Record(stage,{owner=c:GetOwner(),city=c:GetID(),templateCount=buildings,districtTemplateCount=districts,
    historyRevision=v and v.revision or 0,readStatus=v and v.districts and v.districts.coverage or 'UNAVAILABLE',reason=reason or 'OK'})
  end
- local function read(c)
-  local store=shared.CityProgressionStore
-  if store and (store.UsesNewAuthority or store.Owns(c))then return store.ReadTemplates(c)end
-  return c:GetProperty(KEY)
- end
+ -- The Store is the only template ledger authority (City Property ledger retired B547).
+ local function read(c)return shared.CityProgressionStore.ReadTemplates(c)end
  local function write(c,old,nextValue)
   assert(same(read(c),old),'STD_CONCURRENT_CHANGE')
-  local store=shared.CityProgressionStore
-  if store and (store.UsesNewAuthority or store.Owns(c))then store.WriteTemplates(c,old,nextValue)else P.SetProperty(c,KEY,nextValue)end
+  shared.CityProgressionStore.WriteTemplates(c,old,nextValue)
   assert(same(read(c),nextValue),'STD_WRITE_UNCONFIRMED')
   data.writes=data.writes+1
   if not same(old,nextValue) then

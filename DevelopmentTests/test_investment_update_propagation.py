@@ -73,6 +73,14 @@ shared.CityFlowProbe={SupportFacts=function(pid,c)
  return {owner=c.owner,cityID=c.id,token=c.token,specialization=c.identity,potential=c.identity=='NONE'and 0 or 1,
   first=cp(c.first or {districtID=c.ds[1].id,type=GameInfo.Districts[c.ds[1].type].DistrictType})}
 end}
+-- B547: the Store is the only facts/ledger authority. This double keeps the
+-- fixture's City Property ledger behind the Store interface.
+shared.CityProgressionStore={Owns=function()return true end,
+ Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,
+ Investment=function(pid,c)return c:GetProperty(KEY)end,
+ WriteInvestment=function(pid,c,old,nextValue)P.SetProperty(c,KEY,cp(nextValue))end,
+ FactStamp=function()return nil end,
+ RegisterExit=function()end,RegisterReturn=function()end}
 Players[0].GetCities=function()return {
  Members=function()members=members+1;return pairs(cities)end,
  FindID=function(_,id)finds=finds+1;return cities[id]end}end

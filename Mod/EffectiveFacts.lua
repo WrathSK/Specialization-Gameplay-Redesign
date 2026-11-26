@@ -1,7 +1,6 @@
 -- B032: native read-only investment overlay. No Property writes or unit actions.
 SPCEffectiveFacts={}
 function SPCEffectiveFacts.Start(P,shared)
- local KEY='SPC_DEV_INVESTMENT_LEDGER_V1'
  local kinds={RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}
  local function clone(v) if type(v)~='table' then return v end;local r={};for k,x in pairs(v) do r[k]=clone(x) end;return r end
  local function same(a,b)
@@ -59,10 +58,7 @@ function SPCEffectiveFacts.Start(P,shared)
   return finish(result)
  end
  local function stamp(pid,city)
-  local store=shared.CityProgressionStore
-  -- The isolated legacy Flow authority has different recovery guards; do not cache it.
-  if not (store and store.FactStamp)then return nil end
-  local value=store.FactStamp(pid,city);if value==nil then return nil end
+  local value=shared.CityProgressionStore.FactStamp(pid,city);if value==nil then return nil end
   return table.concat({city:GetOwner(),city:GetID(),city:GetX(),city:GetY(),Game.GetCurrentGameTurn(),value},':')
  end
  local function gate(city)return {P.GovernorGate(city)}end
@@ -102,18 +98,11 @@ function SPCEffectiveFacts.Start(P,shared)
  end
  local function capture(pid,city) P.Count('facts');
   assert(P.IsTestPlayer(pid) and city:GetOwner()==pid,'EFFECTIVE_OWNER_CHANGED')
-  local foundationStore=shared.CityProgressionStore
-  local f,referenceWitness
-  if foundationStore and foundationStore.UsesNewAuthority then
-   assert(foundationStore.Owns(city),'FOUNDATION_EVIDENCE_PENDING')
-   f,referenceWitness=foundationStore.Base(pid,city)
-  else
-   f,referenceWitness=shared.CityFlowProbe.SupportFacts(pid,city)
-  end
-  assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
   local store=shared.CityProgressionStore
-  local ledger
-  if store and store.Owns(city) then ledger=store.Investment(pid,city) else ledger=city:GetProperty(KEY) end
+  assert(store.Owns(city),'FOUNDATION_EVIDENCE_PENDING')
+  local f,referenceWitness=store.Base(pid,city)
+  assert(f.owner==pid and f.cityID==city:GetID() and type(f.token)=='string','EFFECTIVE_FOUNDATION_IDENTITY')
+  local ledger=store.Investment(pid,city)
   local n=0
   if f.specialization=='NONE' then
    assert(ledger==nil and (f.potential==0 or f.restructuring and (f.progression=='REALLOCATING' or f.progression=='CONSUMING') and f.potential>=1 and f.potential<=3),'UNASSIGNED_INVESTMENT_CONFLICT')

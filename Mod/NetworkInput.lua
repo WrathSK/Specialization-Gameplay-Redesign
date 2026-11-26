@@ -83,20 +83,11 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
     if read and type(base)=='table' and base.owner==pid and base.cityID==id and kinds[base.specialization] then identity=base.specialization;baseFacts=base end
    end
    if old and (identity and identity~=old.specialization or ok and type(f)=='table' and f.token and f.token~=old.token) then old=nil end
-   local untracked=false
-   if not ok then
-    local read,excluded=pcall(function()
-     return not (shared.CityProgressionStore and shared.CityProgressionStore.BlocksLegacy(c))
-      and shared.CityFlowProbe and shared.CityFlowProbe.ready and c:GetProperty('SPC_DEV_CITY_FLOW_B020')==nil
-    end)
-    untracked=read and excluded==true
-   end
    local partial=ok and type(f)=='table' and f or baseFacts or {}
-   if not untracked and (not identity or identity~='NONE' and not level(partial.potential))then
+   if not identity or identity~='NONE' and not level(partial.potential)then
     unresolved=unresolved or {};unresolved[id]=identity or 'UNKNOWN'
    end
-   if untracked then f={specialization='NONE',potential=0,active=0}
-   elseif old and old.provenance~='UNKNOWN' then
+   if old and old.provenance~='UNKNOWN' then
     local partial=ok and type(f)=='table' and f or {}
     f={specialization=identity or old.specialization,potential=level(partial.potential) and partial.potential or old.potential,
      active=level(partial.active) and partial.active or old.active,token=partial.token or old.token,

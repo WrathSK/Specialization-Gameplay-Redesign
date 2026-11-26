@@ -143,9 +143,7 @@ function L.Sampler(P,industry,encode,limit)
  end
  function s.Pending()return full or next(work)~=nil end
  local function observe(pid,key,old)
-  local districts=Players[pid]:GetDistricts()
-  if type(districts.FindID)~='function'then return nil end -- old compatibility adapter
-  local d=assert(districts:FindID(old.id),'SAMPLE_TRACKED_DISTRICT_UNKNOWN')
+  local d=assert(Players[pid]:GetDistricts():FindID(old.id),'SAMPLE_TRACKED_DISTRICT_UNKNOWN')
   local c=assert(d:GetCity(),'SAMPLE_CITY_UNAVAILABLE');local row=assert(P.Info('Districts',d:GetType()),'SAMPLE_TYPE_UNAVAILABLE')
   assert(c:GetOwner()==pid and c:GetID()==old.cityID and d:GetID()==old.id and d:IsComplete()==true,'SAMPLE_TRACKED_REFERENCE_CHANGED')
   local ref,x,y=locatedReference(c,d,row)
@@ -153,7 +151,6 @@ function L.Sampler(P,industry,encode,limit)
   return {cityID=old.cityID,id=old.id,type=old.type,reference=ref,x=x,y=y,district=d,city=c}
  end
  local function geometry(values)
-  if not Map or type(Map.GetAdjacentPlot)~='function'then return nil end
   local map={}
   local function add(x,y,key)
    assert(coordinate(x,y),'SAMPLE_GEOMETRY_UNKNOWN');local k=at(x,y);map[k]=map[k]or {};map[k][key]=true
@@ -176,9 +173,7 @@ function L.Sampler(P,industry,encode,limit)
    else
     live={}
     for key in pairs(todo)do
-     local old=assert(rows[key],'SAMPLE_TRACKED_ROW_UNKNOWN');local r=observe(pid,key,old)
-     if not r then live=L.Live(P,pid,industry);all=true;break end
-     live[key]=r
+     live[key]=observe(pid,key,assert(rows[key],'SAMPLE_TRACKED_ROW_UNKNOWN'))
     end
    end
    local nextRows={};if not all and rows then for key,r in pairs(rows)do nextRows[key]=r end end

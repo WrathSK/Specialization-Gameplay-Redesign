@@ -16,8 +16,8 @@ from retired_crew_sources import B516, RETIRED_CITY_FILES, source as archived_so
 
 R = Path(__file__).resolve().parents[1]
 BASELINE = "cdd3ceb8b401c5cbe4d58cbbdbc7998b1edddeb7"
-MODULES = ["CityIdentityRead", "CityProgressionStore", "BindingProbe",
-           "CityJournalProbe", "FreshBindingHook", "CityFlowProbe", "EffectiveFacts", "InvestmentAction"]
+# B547 retired the legacy Store adapter; the fixture starts only current modules.
+MODULES = ["CityIdentityRead", "CityProgressionStore", "EffectiveFacts", "InvestmentAction"]
 
 
 def instrument_store(source):
@@ -57,7 +57,9 @@ end
     lua.execute("M=SPCCityIdentityRead\n" + e1[e1.index("function fixture()"):e1.index("function expect(")])
     e2 = (R / "DevelopmentTests/test_p0_e2.py").read_text()
     base = e2[e2.index("local function event()"):e2.index("for _,kind in ipairs({'RESEARCH'")]
-    base = base.replace("SPCCityProgressionStore.StartLegacyTest(P,shared)", "SPCCityProgressionStore.Start(P,shared)")
+    base = base.replace("SPCCityProgressionStore.StartLegacyTest(P,shared);SPCBindingProbe.Start(P,shared);SPCCityJournalProbe.Start(P,shared)\n SPCCityFlowProbe.Start(P,shared);",
+                        "SPCCityProgressionStore.Start(P,shared);")
+    assert "SPCCityFlowProbe" not in base, "retired probe start changed"
     base = base.replace("CityRoleFacts=function(c)return {owner=c:GetOwner(),cityID=c:GetID(),governorGateStatus='KNOWN',governorLevelCeiling=governor}end,", "GovernorGate=function(c)return c:GetOwner(),c:GetID(),'KNOWN',governor end,")
     b108 = (R / "DevelopmentTests/test_b108_e2_multicity.py").read_text()
     helpers = b108[b108.index("local INDEX=SPCCityProgressionStore.INDEX"):b108.index("-- Scale and write locality")]

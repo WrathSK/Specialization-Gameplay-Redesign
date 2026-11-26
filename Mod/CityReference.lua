@@ -19,7 +19,6 @@ function R.Read(shared,c)
   assert(r.x~=nil,'CITY_REFERENCE_LOCATION_UNKNOWN')
   r.token=store.ReferenceToken(c);r.source='STORE'
  else
-  assert(not(store and store.UsesNewAuthority==true),'CITY_REFERENCE_STORE_UNAVAILABLE')
   r.token=c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')or nil;r.source='LEGACY_NATIVE'
  end
  assert(r.token==nil or(type(r.token)=='string'and #r.token>0),'CITY_REFERENCE_TOKEN_UNKNOWN')

@@ -17,6 +17,7 @@ def commerce():
        local f=old(pid,c);f.potential=f.specialization=='NONE'and 0 or 1;f.active=nil;f.activeStatus=nil;return f
       end}
       shared.CityProgressionStore.FactStamp=function(pid,c)return c.token..':'..tostring(c.active)end
+      shared.CityProgressionStore.Base=shared.CityFlowProbe.SupportFacts -- B547: Store-only foundation facts
       shared.CityProgressionStore.Investment=function(pid,c)assert(pid==c:GetOwner());return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end
       P.GovernorGate=function(c)return c.owner,c.id,c.active and 'KNOWN' or 'UNKNOWN',c.active end
       for _,c in pairs(cities)do

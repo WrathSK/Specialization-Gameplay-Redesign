@@ -26,7 +26,7 @@ def synthetic():
      function c:GetProperty()return nil end;cities[id]=c;return c
     end
     c=add(1);reads=0;bad=false
-    shared.CityProgressionStore={FactStamp=function(pid,c)assert(not bad,'AUTHORITY_UNKNOWN');return c.token..':'..c.revision end,Owns=function()return false end}
+    shared.CityProgressionStore={FactStamp=function(pid,c)assert(not bad,'AUTHORITY_UNKNOWN');return c.token..':'..c.revision end,Owns=function()return true end,Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,Investment=function(pid,c)return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end}
     shared.CityFlowProbe={SupportFacts=function(pid,c)reads=reads+1;return {owner=pid,cityID=c.id,token=c.token,specialization='NONE',potential=0}end}
     SPCEffectiveFacts.Start(P,shared);f=shared.EffectiveFacts
     """);return c

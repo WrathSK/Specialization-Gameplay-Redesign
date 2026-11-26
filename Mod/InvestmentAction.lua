@@ -2,7 +2,7 @@ include('UnitSiteFacts')
 -- B033 bounded test-civ investment. One Gameplay request owns the entire debit.
 SPCInvestmentAction={}
 function SPCInvestmentAction.Start(P,shared)
- local KEY='SPC_DEV_INVESTMENT_LEDGER_V1';local UNIT_KEY='SPC_DEV_INVESTMENT_UNIT'
+ local UNIT_KEY='SPC_DEV_INVESTMENT_UNIT'
  local plans,busy,halted={},{},{}
  local function cp(v) if type(v)~='table' then return v end;local c={};for k,x in pairs(v) do c[k]=cp(x) end;return c end
  local function same(a,b)
@@ -10,10 +10,7 @@ function SPCInvestmentAction.Start(P,shared)
   for k,v in pairs(a) do if not same(v,b[k]) then return false end end
   for k in pairs(b) do if a[k]==nil then return false end end;return true
  end
- local function hk(pid,c)
-  if shared.CityProgressionStore and shared.CityProgressionStore.Owns(c) then return tostring(pid)..':'..tostring(c:GetID()) end
-  return pid -- unmigrated cities retain the legacy player bucket
- end
+ local function hk(pid,c)return tostring(pid)..':'..tostring(c:GetID())end
  local function anchor(f) return {owner=f.owner,cityID=f.cityID,token=f.token,first=cp(f.first),specialization=f.specialization} end
  local function facts(pid,c)
   assert(P.IsTestPlayer(pid) and c:GetOwner()==pid,'OWNER_CHANGED')
@@ -41,18 +38,13 @@ function SPCInvestmentAction.Start(P,shared)
   else assert(u:GetX()==c:GetX() and u:GetY()==c:GetY(),'MOVE_SETTLER_TO_CITY_CENTER') end
   return u
  end
- local function ledgerRead(pid,c)
-  local store=shared.CityProgressionStore
-  if store and store.Owns(c) then return store.Investment(pid,c) end
-  return c:GetProperty(KEY)
- end
+ -- The Store is the only investment ledger authority (legacy City Property ledger retired B547).
+ local function ledgerRead(pid,c)return shared.CityProgressionStore.Investment(pid,c)end
  local function write(pid,c,old,nextValue)
   assert(not halted[hk(pid,c)],'REENTRANT_HELD');facts(pid,c)
   assert(same(ledgerRead(pid,c),old),'STALE_LEDGER')
-  local store=shared.CityProgressionStore
-  if store and store.Owns(c) then store.WriteInvestment(pid,c,old,nextValue) else P.SetProperty(c,KEY,cp(nextValue)) end
+  shared.CityProgressionStore.WriteInvestment(pid,c,old,nextValue)
   assert(not halted[hk(pid,c)] and same(ledgerRead(pid,c),nextValue),'LEDGER_WRITE_UNCONFIRMED')
-  if not (store and store.Owns(c)) and shared.OnPermanentCityWrite then shared.OnPermanentCityWrite(c,'InvestmentAction.lua') end
   facts(pid,c) -- same native reader used by Lv1/network validates each state
  end
  local function finish(pid,c,ledger,onCandidate)
@@ -178,13 +170,13 @@ function SPCInvestmentAction.Start(P,shared)
   for pid,player in pairs(Players) do
    if P.IsTestPlayer(pid) then
     for _,c in player:GetCities():Members() do P.Count('city_scan');
-     local ok,err=pcall(function()
-      local ledger=ledgerRead(pid,c)
-      if type(ledger)=='table' and ledger.pending then facts(pid,c);finish(pid,c,ledger) end
-     end)
-     if not ok then
-      if not (shared.CityProgressionStore and shared.CityProgressionStore.Owns(c)) then halted[hk(pid,c)]=true end
-      print('[SPC][B033][RECOVERY_HELD] '..tostring(err))
+     -- Only registered cities carry a ledger; a pending registration has nothing to recover.
+     if shared.CityProgressionStore.Owns(c) then
+      local ok,err=pcall(function()
+       local ledger=ledgerRead(pid,c)
+       if type(ledger)=='table' and ledger.pending then facts(pid,c);finish(pid,c,ledger) end
+      end)
+      if not ok then print('[SPC][B033][RECOVERY_HELD] '..tostring(err))end
      end
     end
    end

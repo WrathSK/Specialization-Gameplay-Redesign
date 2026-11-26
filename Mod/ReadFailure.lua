@@ -10,7 +10,7 @@ function M.Classify(value,phase)
   or s:find('attempt to',1,true) and 'LUA_TYPE' or 'READ_ERROR'
  local file,line=s:match('([%w_]+%.lua):(%d+):')
  local allowed={CultureNetwork=true,NetworkBridge=true,NetworkInput=true,CurrentSpecializationFacts=true,
-  CityProgressionStore=true,EffectiveFacts=true,CityFlowProbe=true,BindingProbe=true,PropertyCell=true,StoreSubrecords=true,Gameplay=true,CityPotential=true}
+  CityProgressionStore=true,EffectiveFacts=true,PropertyCell=true,StoreSubrecords=true,Gameplay=true,CityPotential=true}
  if not file or not allowed[file:gsub('%.lua$','')]then file='UNKNOWN'end
  line=tonumber(line or s:match(':(%d+):'))
  local symbol=s:match("attempt to call %w+ '([%w_]+)' %(a nil value%)")

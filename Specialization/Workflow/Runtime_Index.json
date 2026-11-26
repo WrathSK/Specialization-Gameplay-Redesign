@@ -77,9 +77,9 @@
       "provenance": "B233 authorized IND-1: supported-player Wonder events; lawful Industry-entry current-Wonder N union without E credit; typed District knowledge and structural/effect separation. Direct dependency/failure review and targeted local checks complete; native pending. No foreign completion tracking or new Industry effects."
     },
     "Mod/CityProgressionStore.lua": {
-      "sha256": "a924d5f62dc34a4256da1351be7f47c0d1f570519807ec5602e6eb435b614a2d",
+      "sha256": "03b118f5d1fc0e1ad82a209d7aedff50c60a8be0ae7179998f57725dee4baca9",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B546 contract audit batch 1 (visible errors, reply format checks removed) or build identity; S1157."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/ClaimProjects.lua": {
       "sha256": "84f28fdc61391fe9aaafdc60a78a3b476428f7c2fef39a8d8e9df75f16355608",
@@ -87,9 +87,9 @@
       "provenance": "S0890/B411.438:2project marker owners separate UNKNOWN/confirmed-negative/positive,era output validated;20new/92localPASS.Governor algorithm unchanged.Probe/modinfo labels only.No native/deploy."
     },
     "Mod/Commerce.lua": {
-      "sha256": "62d98773e0df8c60de08e15f8393a60c47360d318ef8db0a575974d40a7aeae8",
+      "sha256": "875d761d3c98b52cc241ff957f4560816a0530867d5ec0de9b42be00b8a3fb65",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B546 contract audit batch 1 (visible errors, reply format checks removed) or build identity; S1157."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/CommerceCalculation.lua": {
       "sha256": "5218cf1acca0282405fd7f0360b4a3c7def0aa26fee3e2d33ac8b62b29dda25f",
@@ -472,9 +472,9 @@
       "provenance": "B421.448 / S0915 committed D and strict-use protection at the current queue and receipt bounds."
     },
     "Mod/EffectiveFacts.lua": {
-      "sha256": "4a78761041d58a794cc85862576ed0f5260ddbce1116c1cc0189b64b8e748bcd",
+      "sha256": "44e3a7e993b4f0fe6fc93f26745a8a189902355db95a53cc7af9bf100d9a8e28",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1073 reads the current foundation and carrier reference directly from the existing Store. Local replay covers two populated cold records and the real Gameplay root with CityFlowProbe absent."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/EngineeringStudyModel.lua": {
       "sha256": "2a4ee2568ba5eb3c4db5412c9545a71bbe41bd2ab5cc5a53cd5b9ecdc7dae479",
@@ -573,9 +573,9 @@
       "provenance": "S1053/B492.519 institution level label localization and exact rendering comparison."
     },
     "Mod/InvestmentAction.lua": {
-      "sha256": "c172e8793367032401f886b511bf9c0523e34ded1a1cccfa8921b9c5d60b3cb6",
+      "sha256": "34f5d1edec987fb0ce624750fe760d5cf1426067e9fef72893aadfed4854339b",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B313.340 Read current unit sites through proven city scope; local/static evidence only; no deployment/native PASS.",
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B313_Refactor_S6i.md"
     },
     "Mod/LevelBannerState.lua": {
@@ -604,9 +604,9 @@
       "provenance": "S1134 B534. Load both shared coefficients without the retired rows."
     },
     "Mod/NetworkInput.lua": {
-      "sha256": "02edcb9580787040c730da13acd726d855f0efcf20527fdc9bd558209ab4b6fc",
+      "sha256": "f6140eaac440c61bd58e0b396e6209986ca61f02e07a698ebb8406642c9d16be",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S1135 B535. Same city-reference encoding for a live city or the verified original endpoint."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/NetworkSender.lua": {
       "sha256": "7c8cd5237215aeb09345e9ac15b7356b83b3389d68f9957df36d8ead1a201675",
@@ -624,9 +624,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "1dcc9dac25a632d710364bca68e119c0aee688888fed0b06f1da776fb58a3b15",
+      "sha256": "97a5895e916a9315c5ccefe2d281d466e786533f732be58cbbd7731a0020fcbd",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B546 contract audit batch 1 (visible errors, reply format checks removed) or build identity; S1157."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -692,9 +692,9 @@
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B380_Refactor_S9e7.md"
     },
     "Mod/ResearchTraditionEffects.lua": {
-      "sha256": "f065b58ed977f23cb4ee6366f03a2c688906923c43937f5ca4fccba14006ce72",
+      "sha256": "39da838d02d65793fddacff15755e5edccee8ac057fb73640e25dacc11b9a211",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0917 B423.450 verifies the actual Research Tradition fact takeover and its existing projection cadence."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/Restructuring.lua": {
       "sha256": "aaab730648e4bac5277292b7a7ed06cc4929f9f42e26c42b714ef5be6e41956e",
@@ -717,14 +717,14 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "6d64f9098e4c3e205be1d919749aab88a88108dc4674c59a8a61ae5273b95971",
+      "sha256": "fc0953c353a13834c8ec30e1548cdcfb666dc6aeb8b98cba44ca5ee7b3b65b1b",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0922 B428.455 verifies five independent local Culture takeover paths and their existing effect order."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/SampleLifecycle.lua": {
-      "sha256": "d44bd8da571a920444e833966662e906e9b56663689051b2c13df430e812a3ab",
+      "sha256": "5acddc1b6b6a89a4eb463d0bdfdd6e7cf55b334bf72ae50ce17aade18f0bd6bf",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B374.401 Reuse native base Production across the two scoped UI producers; local/static evidence only; no deployment/native PASS.",
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B374_Refactor_S9e2b.md"
     },
     "Mod/ShadowRouteState.lua": {
@@ -743,14 +743,14 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9cd1367cbbd67a0fe12c838f88f1415c011c300950cfe076fce7245e5069e391",
+      "sha256": "28a4d1f55b2d12d9c17c07e8afcaef3dc876b938011cf15eedf5e6029d8fdf89",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B546 contract audit batch 1 (visible errors, reply format checks removed) or build identity; S1157."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/Standardization.lua": {
-      "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
+      "sha256": "64ccdd41f0649f753f95f44a71366b744165c6306aabb1aa640faabf0fbafc0c",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B348.375 Isolate template family and preserve independent Industry history recovery; local/static evidence only; no deployment/native PASS.",
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B348_Refactor_S8b8.md"
     },
     "Mod/StandardizationCatalog.lua": {
@@ -1432,15 +1432,15 @@
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md"
     },
     "Mod/CityReference.lua": {
-      "sha256": "f62f4a3ca528294865111a46718380a0e5d9403fe4d0fd113378ec13ad435924",
+      "sha256": "7c0e87fdd84376f1bde7bcbd823096ecdadc7512db34a4f8abdedfe326bfdfa9",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B331.358 Store-owned scalar city references; local/static evidence only; no deployment/native PASS.",
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md"
     },
     "Mod/StoreSubrecords.lua": {
-      "sha256": "9bfdd490878f6fedaa69f6d729bf8d109b82738f79e4033f56d210fb89e6a53f",
+      "sha256": "48e168d37183fa52b1f7247d47e24f9bbfa5faacd8a8502664588ce7bad440a6",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B382.409 Distinguish unknown subrecord checks and reconcile saved Development owner epochs; local/static evidence only; no deployment/native PASS.",
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B382_Refactor_S9e9.md"
     },
     "Mod/LegacyCleanupCatalog.lua": {
@@ -1472,9 +1472,9 @@
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B363_Refactor_S9c6a.md"
     },
     "Mod/StoreDeferredLifecycle.lua": {
-      "sha256": "6c0184656cbffedc80aec1e21a188e846ce79cdd92e3b2052fec3fa20945936c",
+      "sha256": "7edf5a8675635b7b43d637dc32ab01a0798a052a99d9c091b17e1f8e77b466ac",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B385.412 Prove fixed lifecycle delegates and independent reputation scope; local/static evidence only; no deployment/native PASS.",
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B385_Refactor_S9f2.md"
     },
     "Mod/StoreLifecycleRecovery.lua": {
@@ -1587,9 +1587,9 @@
       "provenance": "S0959 B448 production GC and heap trust separated from optional counters."
     },
     "Mod/ReadFailure.lua": {
-      "sha256": "be804d102e5a3db0c15cb8400159c848e99180d750cc47527bc00b857b1a0cb9",
+      "sha256": "9e62b2e995f37825013fe1daa25efb0aee2d306d733e57533d5bc789222108ba",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0965 B451 independent failure classification and optional network trace."
+      "provenance": "B547 contract audit batch 2 (legacy compatibility retired) or build identity; S1159."
     },
     "Mod/Text/PackageText.xml": {
       "sha256": "e3a7382e108cebb352c4d6daea57ec825eae516c0a05ccc4a0864d3b622708e1",
@@ -1639,5 +1639,5 @@
   },
   "source_review": "S1153 scoped Lua 5.1 capacity states, sizing, atlas and packaging checks; native result pending.",
   "source_runtime": "B544.571 / modinfo571 develop, 302 files.",
-  "tested_source_snapshot_sha256": "80a2be80f9771046ef691a5c1dbce3807cc1165711c60a0b0a999f7f701cabd1"
+  "tested_source_snapshot_sha256": "2e70ef4280e3bb9605924f1be10d472e5f97150931c932a38b03b9fff15e5ead"
 }

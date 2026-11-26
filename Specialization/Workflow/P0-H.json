@@ -11,8 +11,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1158",
-    "runtime": "B546.573 / modinfo573",
+    "status": "S1159",
+    "runtime": "B547.574 / modinfo574",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -60,7 +60,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B546.573 / modinfo573 source records swallowed errors in shared.ErrorLog with an isolated UI probe and removes reply format re-validation. B545.572 remains installed.",
+      "source": "B547.574 / modinfo574 source retires legacy compatibility: the Store two-record adapter, schema-1/PREPARED and Import, City Property ledgers, CityFlowProbe routes and subrecord rebuild candidates. B546.573 remains installed.",
       "installed": "B546.573 / modinfo573 temporary, 305/305 MATCH at d46d6b2fb3adbbd99852d5156bd3e4cd54f71acfe62710710f6b83a5ab52aaaa. Receipt B546.573-43120e1-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,7 +105,7 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-1-visible-errors--s1157",
+      "report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-2-legacy-compatibility-retired--s1159",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",

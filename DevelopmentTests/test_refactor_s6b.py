@@ -22,7 +22,7 @@ def real_writers():
     shared.CityFlowProbe={SupportFacts=function(pid,city)
      local v=native(pid,city);v.potential=1;v.active=nil;v.activeStatus=nil;return v
     end}
-    shared.CityProgressionStore={Owns=function()return false end,FactStamp=function(pid,city)return city.token..':'..tostring(city.active)end}
+    shared.CityProgressionStore={Owns=function()return true end,Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,Investment=function(pid,c)return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end,FactStamp=function(pid,city)return city.token..':'..tostring(city.active)end}
     P.GovernorGate=function(city)return city.owner,city.id,city.active and 'KNOWN' or 'UNKNOWN',city.active end
     for _,city in pairs(cities)do
      local get=city.GetProperty
