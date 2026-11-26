@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1143
-Implementation Build: develop B539.566 / modinfo566. Installed temporary B538.565 / modinfo565. Stable B528.555 / modinfo555.
+Status Revision: S1144
+Implementation Build: develop B539.566 / modinfo566. Installed temporary B539.566 / modinfo566. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,10 +13,10 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B539.566 / modinfo566 [修正面板开启路径](#management-capacity-preview-panel-opening--s1143)。本机仍是[原 B538.565 临时包](#management-capacity-preview-installed--s1142)。main 稳定包为 B528.555。 |
+| Source and installation | Develop B539.566 / modinfo566 [修正面板开启路径](#management-capacity-preview-panel-opening--s1143)。本机[已临时安装 B539.566](#management-capacity-click-preview-installed--s1144)。main 稳定包为 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B538 实机确认顶栏和下排按钮可见，点击未打开面板。B539 的父界面可见性修正通过本地模拟，实机点击待验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B539 临时换包核验后，用专业化测试文明点击下排按钮，查看侧栏能否开启、关闭和再次开启。 |
+| Next action | 用专业化测试文明点击下排按钮，查看侧栏能否开启、关闭和再次开启。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
@@ -24,6 +24,9 @@ Use [Authority](../Workflow/Authority.json) for the active task and version poin
 
 ## Recent checkpoints
 
+### Management capacity click preview installed — S1144
+
+B539.566 / modinfo566 temporary, 301/301 MATCH at 2d03822eee842e8f5051ecc91e6d98b640c8661430f3be6389345c4629fd068b. Receipt B539.566-9de3f36-playtest.json DEVELOP_ACTIVE. B528.555 backup verified. 安装来源 9de3f36cc3b24b57fdd264b218a3aca32ec9e72a。游戏内点击待复验。
 ### Management capacity preview panel opening — S1143
 
 B538 实机显示两处入口，点击下排按钮时没有面板。原回调只显示子窗口，挂载时也没有显式显示其原 UI 上下文。B539 挂载和打开时均显式显示该上下文，关闭通过子窗口完成。Lua 5.1 夹具以隐藏父界面复现，覆盖点击及重复开启。实机显示待复验。
