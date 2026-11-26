@@ -17,6 +17,7 @@ local function event()
 end
 Events = {LoadGameViewStateDone=event(), LoadScreenClose=event()}
 Mouse = {eLClick=1}
+KeyEvents={KeyUp=2}; Keys={VK_ESCAPE=27}; PopupPriority={Low=1}
 Locale = {Lookup=function(tag, ...) return tag .. table.concat({...}, "/") end}
 eligible = true
 PlayerConfigurations = {[0]={
@@ -53,9 +54,12 @@ function control:CalculateSize() end
 function control:GetSizeX() return 200+#self.children*56 end
 function control:SetSizeX(value) self.width=value end
 Controls = {}
-for _,id in ipairs({"Window","Readout","HUDCount","Parking","OpenButton","LaunchItem","Cities",
+for _,id in ipairs({"Window","Backdrop","ScreenAnimIn","Readout","HUDCount","Parking","OpenButton","LaunchItem","Cities",
                     "Close","Confirm","Undo","Available","Total"}) do Controls[id]=widget() end
 Controls.Window:SetHide(true)
+Controls.Backdrop:SetHide(true)
+function Controls.ScreenAnimIn:SetToBeginning() self.reset=true end
+function Controls.ScreenAnimIn:Play() assert(self.reset); self.played=true end
 top, trade, envoy, launch, otherButton, backing, tile = widget(),widget(),widget(),widget(),widget(),widget(),widget()
 trade:ChangeParent(top); envoy:ChangeParent(top); otherButton:ChangeParent(launch)
 Controls.Readout:ChangeParent(Controls.Parking); Controls.LaunchItem:ChangeParent(Controls.Parking)
@@ -63,7 +67,22 @@ hosts = {["/InGame/TopPanel/StaticInfoStack"]=top, ["/InGame/TopPanel/TradeRoute
          ["/InGame/LaunchBar/ButtonStack"]=launch, ["/InGame/LaunchBar/LaunchBacking"]=backing,
          ["/InGame/LaunchBar/LaunchBackingTile"]=tile}
 LuaEvents = {LaunchBar_Resize=function(width) assert(backing.width==width+116 and tile.width==width-20) end}
+local screens=widget()
+hosts["/InGame/Screens"]=screens
+UIManager={queue=nil}
+function UIManager:IsInPopupQueue(context) return self.queue==context end
+function UIManager:QueuePopup(context,priority,parameters)
+  assert(self.queue==nil and context.parent==screens and priority==PopupPriority.Low)
+  assert(parameters.RenderAtCurrentParent and parameters.InputAtCurrentParent and parameters.AlwaysVisibleInQueue)
+  self.queue=context
+end
+function UIManager:DequeuePopup(context)
+  assert(self.queue==context)
+  self.queue=nil
+end
 ContextPtr = {hidden=true, SetHide=function(self, hidden) self.hidden=hidden end,
+  ChangeParent=function(self,parent) self.parent=parent end,
+  SetInputHandler=function(self,f,modal) assert(modal);self.input=f end,
   LookUpControl=function(self,path) return hosts[path] end,
   SetInitHandler=function(self,fn) self.init=fn end, SetShutdown=function(self,fn) self.stop=fn end}
 rows = {}
@@ -91,7 +110,12 @@ class CapacityPreview(unittest.TestCase):
           assert(not ContextPtr.hidden, "visible HUD siblings do not imply a visible panel context")
           ContextPtr.hidden=true
           Controls.OpenButton.click(); assert(not ContextPtr.hidden and not Controls.Window:IsHidden())
-          Controls.OpenButton.click(); assert(Controls.Window:IsHidden())
+          assert(UIManager.queue==ContextPtr and not Controls.Backdrop:IsHidden() and Controls.ScreenAnimIn.played)
+          local esc={GetMessageType=function() return KeyEvents.KeyUp end,GetKey=function() return Keys.VK_ESCAPE end}
+          assert(ContextPtr.input(esc) and UIManager.queue==nil and Controls.Window:IsHidden() and Controls.Backdrop:IsHidden())
+          assert(not ContextPtr.input(esc))
+          Controls.OpenButton.click(); assert(UIManager.queue==ContextPtr)
+          Controls.OpenButton.click(); assert(UIManager.queue==nil and Controls.Window:IsHidden())
           ContextPtr.stop()
           assert(#top.children==2 and top.children[2]==envoy and #launch.children==1)
           assert(not Events.LoadGameViewStateDone.fire and not Events.LoadScreenClose.fire)
@@ -126,6 +150,8 @@ class CapacityPreview(unittest.TestCase):
         import re
         xml = PANEL.with_suffix(".xml")
         tree = ET.parse(xml)
+        self.assertEqual(tree.find(".//Grid[@ID='Window']").get("Anchor"), "C,C")
+        self.assertEqual(tree.find(".//Container[@ID='Backdrop']").get("Style"), "FullScreenVignetteConsumer")
         hud = tree.find(".//Grid[@ID='Readout']")
         self.assertIsNotNone(hud)
         self.assertFalse(any("Button" in node.tag for node in hud.iter()))

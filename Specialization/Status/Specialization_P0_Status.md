@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1144
-Implementation Build: develop B539.566 / modinfo566. Installed temporary B539.566 / modinfo566. Stable B528.555 / modinfo555.
+Status Revision: S1145
+Implementation Build: develop B540.567 / modinfo567. Installed temporary B539.566 / modinfo566. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B539.566 / modinfo566 [修正面板开启路径](#management-capacity-preview-panel-opening--s1143)。本机[已临时安装 B539.566](#management-capacity-click-preview-installed--s1144)。main 稳定包为 B528.555。 |
+| Source and installation | Develop B540.567 / modinfo567 [改用主界面层](#management-capacity-preview-screen-layer--s1145)。本机仍为 B539.566 临时包，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
-| Validation | B538 实机确认顶栏和下排按钮可见，点击未打开面板。B539 的父界面可见性修正通过本地模拟，实机点击待验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 用专业化测试文明点击下排按钮，查看侧栏能否开启、关闭和再次开启。 |
+| Validation | B539 实机确认下排按钮可打开预览、顶栏随试调变化。B540 主界面层通过本地模拟，实机层级与输入待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
+| Next action | B540 临时安装核验后，查看居中主窗口、地图暗幕、关闭与重开。布局使用固定示例到位点数。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Management capacity preview screen layer — S1145
+
+B539 实机确认开启面板和顶栏试调更新。用户以总督和世界气候页说明目标层级。B540 将预览挂至原生 Screens 父节点，使用与总督页相同的弹窗队列参数及原生暗幕，内容居中并支持 Esc 和关闭按钮。试调使用独立示例数据，真实回合推进属后续容量实施。四项专项 Lua 5.1 检查通过，含挂载、队列、暗幕、关闭重开、示例数据与包引用。原生层级待复验。
 
 ### Management capacity click preview installed — S1144
 

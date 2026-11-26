@@ -14,7 +14,8 @@
     </Container>
   </Container>
 
-  <Grid ID="Window" Anchor="R,T" Offset="8,82" Size="432,442" Style="WindowFillHUD" Hidden="1" ConsumeMouse="1">
+  <Container ID="Backdrop" Style="FullScreenVignetteConsumer" Hidden="1"/>
+  <Grid ID="Window" Anchor="C,C" Size="640,442" Style="WindowFillHUD" Hidden="1" ConsumeMouse="1">
     <Grid Size="parent,55" Texture="Controls_TitleBarDark" SliceCorner="21,17" SliceTextureSize="42,34">
       <Label Anchor="C,C" Style="FontFlair24" String="LOC_SPC_CAP_TITLE"/>
       <Button ID="Close" Anchor="R,C" Offset="9,0" Style="CloseButtonSmall"/>
@@ -27,11 +28,11 @@
     <Label Anchor="R,T" Offset="28,122" Style="FontNormal14" String="LOC_SPC_CAP_POINTS_COLUMN"/>
     <Stack ID="Cities" Offset="10,146" Size="parent-20,auto" StackGrowth="Bottom" StackPadding="3"/>
     <Label Anchor="C,B" Offset="0,57" Style="FontNormal14" String="LOC_SPC_CAP_PREVIEW_NOTE"/>
-    <GridButton ID="Undo" Anchor="L,B" Offset="14,12" Size="194,35">
+    <GridButton ID="Undo" Anchor="L,B" Offset="14,12" Size="228,35">
       <GridData Style="ButtonLightWeightGrid"/>
       <Label Anchor="C,C" Style="FontFlair16" String="LOC_SPC_CAP_UNDO"/>
     </GridButton>
-    <GridButton ID="Confirm" Anchor="R,B" Offset="14,12" Size="194,35">
+    <GridButton ID="Confirm" Anchor="R,B" Offset="14,12" Size="228,35">
       <GridData Style="ButtonLightWeightGrid"/>
       <Label Anchor="C,C" Style="FontFlair16" String="LOC_SPC_CAP_CONFIRM"/>
     </GridButton>

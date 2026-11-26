@@ -44,8 +44,28 @@ local function discard()
 end
 
 local function closePanel()
+  if UIManager:IsInPopupQueue(ContextPtr) then
+    UIManager:DequeuePopup(ContextPtr)
+  end
+  Controls.Backdrop:SetHide(true)
   Controls.Window:SetHide(true)
   discard()
+end
+
+local function openPanel()
+  local screens = ContextPtr:LookUpControl("/InGame/Screens")
+  if not screens then return end
+  ContextPtr:ChangeParent(screens)
+  ContextPtr:SetHide(false)
+  Controls.Backdrop:SetHide(false)
+  Controls.Window:SetHide(false)
+  UIManager:QueuePopup(ContextPtr, PopupPriority.Low, {
+    RenderAtCurrentParent=true,
+    InputAtCurrentParent=true,
+    AlwaysVisibleInQueue=true,
+  })
+  Controls.ScreenAnimIn:SetToBeginning()
+  Controls.ScreenAnimIn:Play()
 end
 
 local function adjust(sample, delta)
@@ -97,7 +117,7 @@ local function detach()
     resizeLaunch(launchStack)
     launchStack = nil
   end
-  Controls.Window:SetHide(true)
+  closePanel()
 end
 
 local function attach()
@@ -135,13 +155,16 @@ end
 
 buildRows()
 Controls.OpenButton:RegisterCallback(Mouse.eLClick, function()
-  if Controls.Window:IsHidden() then
-    ContextPtr:SetHide(false)
-    Controls.Window:SetHide(false)
-  else
-    closePanel()
-  end
+  if UIManager:IsInPopupQueue(ContextPtr) then closePanel() else openPanel() end
 end)
+ContextPtr:SetInputHandler(function(input)
+  if UIManager:IsInPopupQueue(ContextPtr) and input:GetMessageType()==KeyEvents.KeyUp
+      and input:GetKey()==Keys.VK_ESCAPE then
+    closePanel()
+    return true
+  end
+  return false
+end, true)
 Controls.Close:RegisterCallback(Mouse.eLClick, closePanel)
 Controls.Undo:RegisterCallback(Mouse.eLClick, discard)
 Controls.Confirm:RegisterCallback(Mouse.eLClick, function()
