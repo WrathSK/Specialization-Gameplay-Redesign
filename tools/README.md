@@ -39,7 +39,7 @@ The tool only switches stable→develop. Each new develop build is therefore two
 3. **Activate develop.** Run `activate` with a **new** receipt named `<Bnew.vnew>-<sha7>-playtest.json` on clean committed develop, passing `--expected-source <check-only source_hash> --expected-runtime <stable_hash>`.
 4. **Verify.** Run `deploy.py --config <main checkout local/config.json>` (read-only). It must report `identical: true` and 219 files, with no `.specialization-deploy-pending.json`. Then record the version, source commit, receipt and MATCH in Status, Authority, Runtime_Index and the result.
 
-The config lives in the main checkout's ignored `local/config.json` (the develop worktree has none). Under zsh, unquoted variables do not word-split: pass hashes literally, or drive loops from Python.
+The deployment config lives in the main checkout's ignored `local/config.json`; the develop worktree's own ignored config only names the test database, so always pass `--config <main checkout>/local/config.json`. Under zsh, unquoted variables do not word-split: pass hashes literally, or drive loops from Python.
 
 ## External runtime monitor (no deployment)
 
