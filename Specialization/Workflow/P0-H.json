@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1159",
+    "status": "S1160",
     "runtime": "B547.574 / modinfo574",
     "military": "D0037",
     "harbor": "D0037",
@@ -61,7 +61,7 @@
   "result": {
     "runtime_identity": {
       "source": "B547.574 / modinfo574 source retires legacy compatibility: the Store two-record adapter, schema-1/PREPARED and Import, City Property ledgers, CityFlowProbe routes and subrecord rebuild candidates. B546.573 remains installed.",
-      "installed": "B546.573 / modinfo573 temporary, 305/305 MATCH at d46d6b2fb3adbbd99852d5156bd3e4cd54f71acfe62710710f6b83a5ab52aaaa. Receipt B546.573-43120e1-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
+      "installed": "B547.574 / modinfo574 temporary, 305/305 MATCH at baae506a3539c9a2cc104c77d9d64f4c813a30a98e1fd962287c4b714cd7df54. Receipt B547.574-fde6902-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
@@ -110,7 +110,7 @@
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
       "native_validation": "USER_GAME_TEST_REQUIRED",
-      "deployment": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-1-installed--s1158"
+      "deployment": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-2-installed--s1160"
     }
   }
 }
