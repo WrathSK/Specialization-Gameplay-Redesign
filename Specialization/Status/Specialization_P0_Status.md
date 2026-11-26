@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1163
-Implementation Build: develop B549.576 / modinfo576. Installed temporary B548.575 / modinfo575. Stable B528.555 / modinfo555.
+Status Revision: S1164
+Implementation Build: develop B549.576 / modinfo576. Installed temporary B549.576 / modinfo576. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B549.576 / modinfo576 [契约审计第 4 批：删除死检查](#contract-audit-batch-4-dead-checks-removed--s1163)（第 2、3 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)、[S1161](#contract-audit-batch-3-internal-asserts--s1161)）。本机[已临时安装 B548.575](#contract-audit-batch-3-installed--s1162)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B549.576 / modinfo576 [契约审计第 4 批：删除死检查](#contract-audit-batch-4-dead-checks-removed--s1163)（第 2、3 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)、[S1161](#contract-audit-batch-3-internal-asserts--s1161)）。本机[已临时安装 B549.576](#contract-audit-batch-4-installed--s1164)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B544 实机：负责人接受激活状态颜色与窗口宽度，要求标题改用城市面板的带底色等级徽章，并指出部分标题偏上。B545 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B548.575 已临时安装（含第 2、3 批），做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续：去掉自产数据复查（第 5 批）、夹具替身迁移（收掉 S1163 保留的四处回退）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | B549.576 已临时安装（含第 2–4 批），做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续：去掉自产数据复查（第 5 批）、夹具替身迁移（收掉 S1163 保留的四处回退）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Contract audit batch 4 installed — S1164
+
+B549.576 / modinfo576 temporary, 305/305 MATCH at 91c748df944791c9cb8c7d5452bfde119b4ef640ad3c2a71b0a88a506d82cea3. Receipt B549.576-3a272e7-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified. 安装源码 3a272e7f5aa1e40f2d3f6308fc73b39eea3fa743。先按 B548 回执还原 B528.555 原包，再安装 B549；包文件仍为 305 个，12 个已退役开发版路径按既有清单移除，事务标记已清除。玩法不变；B547 起的短测仍待做（`USER_GAME_TEST_REQUIRED`）。
 
 ### Contract audit batch 4: dead checks removed — S1163
 
