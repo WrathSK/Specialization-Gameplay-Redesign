@@ -16,6 +16,8 @@ local function same(a,b)
 end
 local function bool(v,code) assert(type(v)=='boolean',code);return v end
 -- Pure calculation consumes a complete native sample and reviewed catalog only.
+-- The capture below already checked every boolean and only visits catalogue
+-- buildings, so a missing entry here is a bug, not an unreviewed building.
 function M.Calculate(catalog,raw,detail)
  detail=detail~=false
  local out={districts={},domains={},catalogRevision=catalog.revision}
@@ -26,13 +28,11 @@ function M.Calculate(catalog,raw,detail)
   assert(not seen[d.id],'DC_DUPLICATE_DISTRICT');seen[d.id]=true
   local domain=catalog.Domain(d.type)
   local r={id=d.id,type=d.type,plot=d.plot,domain=domain,baseDistrict=catalog.District and catalog.District(d.type) or domain,complete=d.complete,pillaged=d.pillaged,buildings={},uncapped=0}
-  bool(d.complete,'DC_COMPLETION_UNKNOWN');bool(d.pillaged,'DC_DISTRICT_PILLAGE_UNKNOWN')
   for _,b in ipairs(d.buildings) do
-   local c=catalog.buildings[b.index] or {type=tostring(b.index),reason='UNREVIEWED_BUILDING'}
+   local c=assert(catalog.buildings[b.index],'DC_CATALOG_ENTRY_MISSING')
    local v={type=c.type,name=detail and c.name or nil,tier=c.tier,tierSource=detail and c.tierSource or nil,ordinary=c.ordinary==true,
     complete=b.complete,pillaged=b.pillaged,contribution=0,reason=c.reason,
     ordinaryReason=c.ordinaryReason,ordinaryDistrict=c.ordinaryDistrict,depthEligible=c.depthEligible~=false}
-   bool(b.complete,'DC_BUILDING_COMPLETION_UNKNOWN');bool(b.pillaged,'DC_BUILDING_PILLAGE_UNKNOWN')
    if not b.complete then v.reason='UNDER_CONSTRUCTION'
    elseif not c.ordinary or c.depthEligible==false then -- preserve classification
    elseif not domain then v.reason='DOMAIN_UNMAPPED'
@@ -65,15 +65,13 @@ function M.Calculate(catalog,raw,detail)
   -- These small native observations belong to the same confirmed capture;
   -- names/reasons/excluded display rows are materialized only on explicit Read.
   for _,b in ipairs(raw.observations or {}) do
-   local entry=catalog.buildings[b.index]
+   local entry=assert(catalog.buildings[b.index],'DC_CATALOG_ENTRY_MISSING')
    out.excluded[#out.excluded+1]={type=entry.type,reason=entry.reason or 'UNREVIEWED_BUILDING',
     contribution=0,pillaged=b.pillaged,plot=b.plot}
   end
   if raw.queued then
    out.excluded[#out.excluded+1]={type=raw.queued,reason='UNDER_CONSTRUCTION',contribution=0,pillaged=false}
   end
-  -- Existing pure callers/fixtures may supply already-described unplaced rows.
-  for _,b in ipairs(raw.unplaced or {}) do out.excluded[#out.excluded+1]=clone(b) end
  end
  return out
 end
@@ -129,7 +127,7 @@ function M.Start(P,shared)
     seen[index]=true
     local location=buildings:GetBuildingLocation(index)
     local located=type(location)=='number' and location>=0
-    assert(located or not (entry and entry.ordinary),'DC_BUILDING_LOCATION_UNAVAILABLE')
+    assert(located or not entry.ordinary,'DC_BUILDING_LOCATION_UNAVAILABLE')
     local pillaged=bool(buildings:IsPillaged(index),'DC_BUILDING_PILLAGE_UNKNOWN')
     local rec=located and byPlot[location]
     if rec then
@@ -137,7 +135,7 @@ function M.Start(P,shared)
     else
      -- Wonders/internal objects can live off district plots. Never drop a known
      -- ordinary building silently: that would publish an incomplete D as zero.
-     assert(not (entry and entry.ordinary),'DC_ORDINARY_LOCATION_UNRESOLVED')
+     assert(not entry.ordinary,'DC_ORDINARY_LOCATION_UNRESOLVED')
      raw.observations=raw.observations or {}
      raw.observations[#raw.observations+1]={index=index,pillaged=pillaged,plot=location}
     end

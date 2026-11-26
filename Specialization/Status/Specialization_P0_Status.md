@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1160
-Implementation Build: develop B547.574 / modinfo574. Installed temporary B547.574 / modinfo574. Stable B528.555 / modinfo555.
+Status Revision: S1161
+Implementation Build: develop B548.575 / modinfo575. Installed temporary B547.574 / modinfo574. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,37 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B547.574 / modinfo574 [契约审计第 2 批：旧兼容退役](#contract-audit-batch-2-legacy-compatibility-retired--s1159)。本机[已临时安装 B547.574](#contract-audit-batch-2-installed--s1160)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B548.575 / modinfo575 [契约审计第 3 批：内部断言](#contract-audit-batch-3-internal-asserts--s1161)（第 2 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)）。本机[已临时安装 B547.574](#contract-audit-batch-2-installed--s1160)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B544 实机：负责人接受激活状态颜色与窗口宽度，要求标题改用城市面板的带底色等级徽章，并指出部分标题偏上。B545 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B547.574 已临时安装，做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续批次（内部断言、删除死检查与假存储夹具回退、去掉自产数据复查）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | B547.574 已临时安装，做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续批次（删除死检查与假存储夹具回退、去掉自产数据复查）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Contract audit batch 3: internal asserts — S1161
+
+Owner 2026-11-26 批准第 3 批计划。B548.575 实施内容：
+
+- **CA-B03 有效事实**：总督状态为“已确认”时，城市与 1–4 级上限是 `Probe.GovernorGate` 的约定，违约就报错（`GOVERNOR_GATE_CONTRACT`）；状态不是已确认时仍记为 `UNKNOWN_GOVERNOR`。
+- **CA-B05 事实传播绑定**：目标模块启动失败或不存在时仍然跳过；模块存在但缺少声明的方法时报错（`FACT_BINDING_METHOD_MISSING`），错误进入现有绑定错误记录。网络桥直接调用 `RoleFactsChanged`，不再依次尝试三个名字。
+- **CA-B06 事实用途投影**：保留未就绪、ACTIVE 未知、投资挂起、深度错误（未审核等级）这些真实“未知”；身份、ACTIVE、深度值、锚点字段形状不对时报错（`FACT_USE_*_CONTRACT`）。
+- **CA-B08 反向依赖索引**：非法城市编号、来源或参数直接报错；只有超出容量才关闭索引，调用方按原设计回退全量重算。
+- **CA-B10 区域完整度**：计算时目录查不到建筑改为断言（`DC_CATALOG_ENTRY_MISSING`）；采集时已检查过的布尔值不再在计算里复查；只给夹具用的 `unplaced` 输入删除。
+
+测试夹具（只改夹具，不改断言）：共享存储夹具的总督替身改为与真实 Probe 相同的约定（只有 1–4 才回报已确认）；`test_refactor_s5propagation` 的网络桥替身改名为 `RoleFactsChanged`；`test_shared_d_fact_read` 的纯计算用例改用真实的场外建筑观察输入。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：
+
+- 新增 `DevelopmentTests/test_contract_batch3_asserts.py`，6 项通过；第 1、2 批专项 14 项仍通过。
+- `CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-77537c85130949d299860b4b276cafd6/closure.json`，SHA256 `53e4dfe084f84b20f47321af6a9817ff6986b12871d0dc4df66413726339c5c8`，已测源码快照 `3bdc25cded9e23b838265dc3c816c46348e99ce56d07564d7b7e0d77e33bc2cf`。
+- 175 份 Lua 编译、26 份 XML 解析、304 个包文件引用检查通过。
+- 与 HEAD 全量逐模块对比（493 个测试模块，两侧同一固定数据库配置）：夹具修正后，只剩 5 个用例新增失败，均为本批有意改变的行为，按 DevelopmentTests README 保留原断言并登记为“已被 B548 取代”：`test_refactor_s6d` 与 `test_refactor_s6g` 各 2 项（断言非法输入会关闭索引），`test_pu01_fact_use` 1 项（人为把深度值改成 NaN 来模拟“未知”）。
+
+实机：正常情况下行为不变，无需专门测试；日常游戏顺带观察采集日志有无新的 `[SPC][ERR]` 或绑定错误。B547 短测仍待做（`USER_GAME_TEST_REQUIRED`）。
 
 ### Contract audit batch 2 installed — S1160
 

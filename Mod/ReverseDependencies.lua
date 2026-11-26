@@ -7,8 +7,10 @@ function SPCReverseDependencies.New(targetLimit,edgeLimit)
  local function id(v)return type(v)=='number'and v>=0 and v<2147483648 and v%1==0 end
  local function key(owner,city)return owner..':'..city end
  local function disable(reason)unavailable=reason;return false,reason end
+ -- Callers pass ids from our own records: bad input is a bug and throws. Only
+ -- capacity disables the index (callers then recompute fully, by design).
  function d.Remove(owner,target)
-  if not(id(owner)and id(target))then return disable('DEPENDENCY_INDEX_SCOPE')end
+  assert(id(owner)and id(target),'DEPENDENCY_INDEX_SCOPE')
   local k=key(owner,target);local old=targets[k]
   if not old then return true end
   for source in pairs(old.sources)do
@@ -19,12 +21,12 @@ function SPCReverseDependencies.New(targetLimit,edgeLimit)
  end
  function d.Replace(owner,target,sources)
   if unavailable then return false,unavailable end
-  if not(id(owner)and id(target))then return disable('DEPENDENCY_INDEX_SCOPE')end
-  if type(sources)~='table'or getmetatable(sources)~=nil then return disable('DEPENDENCY_INDEX_INPUT')end
+  assert(id(owner)and id(target),'DEPENDENCY_INDEX_SCOPE')
+  assert(type(sources)=='table','DEPENDENCY_INDEX_INPUT')
   -- Values may be false references, empty sets or UNKNOWN provenance. Keys own edges.
   local nextSources={};local count=0
   for source in pairs(sources)do
-   if not id(source)then return disable('DEPENDENCY_INDEX_SOURCE')end
+   assert(id(source),'DEPENDENCY_INDEX_SOURCE')
    count=count+1;if count>edgeLimit then return disable('DEPENDENCY_INDEX_CAPACITY')end
    nextSources[source]=true
   end
@@ -40,7 +42,7 @@ function SPCReverseDependencies.New(targetLimit,edgeLimit)
  end
  function d.Dependents(owner,source)
   if unavailable then return nil,unavailable end
-  if not(id(owner)and id(source))then return nil,'DEPENDENCY_INDEX_SCOPE'end
+  assert(id(owner)and id(source),'DEPENDENCY_INDEX_SCOPE')
   local out={};for target in pairs(reverse[key(owner,source)]or {})do out[target]=true end;return out
  end
  function d.Stats()return {targets=targetCount,edges=edgeCount,unavailable=unavailable,targetLimit=targetLimit,edgeLimit=edgeLimit}end

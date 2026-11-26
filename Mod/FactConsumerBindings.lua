@@ -18,8 +18,7 @@ function SPCFactConsumerBindings.New(shared)
   local value=target('NetworkBridge');local revision=shared.FactChanges.flushRevision
   if value and networkDrains[e.player]~=revision then
    networkDrains[e.player]=revision
-   local refresh=value.RoleFactsChanged or value.RefreshFacts or value.Refresh
-   refresh(e.player)
+   value.RoleFactsChanged(e.player)
   end
  end,{kinds=role,phase=0})
  local declarations={
@@ -152,10 +151,13 @@ function SPCFactConsumerBindings.New(shared)
  end
  local function invoke(row,q,covered)
   local value=target(row.target);local fn=value and value[row.ordered or row.method]
-  if type(fn)~='function'then
+  if not value then
+   -- A failed or skipped start is a real absence; an ordered receipt stays held.
    if row.ordered then complete(covered,false);error('FACT_BINDING_TARGET_UNAVAILABLE',0)end
    return
   end
+  -- A started owner always defines its declared method; a missing one is a bug.
+  if type(fn)~='function'then complete(covered or {},false);error('FACT_BINDING_METHOD_MISSING '..row.target,0)end
   local failure
   -- C2 producer gets only real declared input causes, never a global write pulse
   -- or its own sample reply. This is a scalar wake, not an extra fact read.

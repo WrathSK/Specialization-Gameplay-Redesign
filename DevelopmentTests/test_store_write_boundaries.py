@@ -60,7 +60,7 @@ end
     base = base.replace("SPCCityProgressionStore.StartLegacyTest(P,shared);SPCBindingProbe.Start(P,shared);SPCCityJournalProbe.Start(P,shared)\n SPCCityFlowProbe.Start(P,shared);",
                         "SPCCityProgressionStore.Start(P,shared);")
     assert "SPCCityFlowProbe" not in base, "retired probe start changed"
-    base = base.replace("CityRoleFacts=function(c)return {owner=c:GetOwner(),cityID=c:GetID(),governorGateStatus='KNOWN',governorLevelCeiling=governor}end,", "GovernorGate=function(c)return c:GetOwner(),c:GetID(),'KNOWN',governor end,")
+    base = base.replace("CityRoleFacts=function(c)return {owner=c:GetOwner(),cityID=c:GetID(),governorGateStatus='KNOWN',governorLevelCeiling=governor}end,", "GovernorGate=function(c)if governor==1 or governor==2 or governor==3 or governor==4 then return c:GetOwner(),c:GetID(),'KNOWN',governor end;return c:GetOwner(),c:GetID(),'UNKNOWN',nil end,")  # B548: same KNOWN-only-with-1..4 contract as Probe.GovernorGate
     b108 = (R / "DevelopmentTests/test_b108_e2_multicity.py").read_text()
     helpers = b108[b108.index("local INDEX=SPCCityProgressionStore.INDEX"):b108.index("-- Scale and write locality")]
     # Counters and private storage captures are reset at a simulated VM boot.

@@ -14,26 +14,31 @@ function M.Number(read,integer,maximum,reason)
  if not ok or not finite(value)or integer and value%1~=0 or maximum and value>maximum then return unknown(reason)end
  return confirmed(value) -- confirmed zero is a value, never missing input
 end
+-- Inputs come from our own producers (EffectiveFacts, DistrictCompleteness). Their
+-- real UNKNOWN states stay UNKNOWN; a shape violation is a bug and throws.
+local function integer(n)return finite(n)and n%1==0 end
 function M.Qualification(f,identity,minimum)
- if type(f)~='table'or type(f.specialization)~='string'then return unknown('IDENTITY_UNAVAILABLE')end
+ assert(type(f)=='table'and type(f.specialization)=='string','FACT_USE_IDENTITY_CONTRACT')
  if f.specialization~=identity then return absent('IDENTITY_REQUIRED')end
- if f.activeStatus~='KNOWN'or f.investmentPending or not finite(f.active)or f.active%1~=0 or f.active>4 then return unknown('ACTIVE_UNAVAILABLE')end
+ if f.activeStatus~='KNOWN'or f.investmentPending then return unknown('ACTIVE_UNAVAILABLE')end
+ assert(integer(f.active)and f.active<=4,'FACT_USE_ACTIVE_CONTRACT')
  if f.active<minimum then return absent('ACTIVE_REQUIRED')end
  return confirmed(f.active)
 end
 function M.Depth(snapshot,domain)
- if not ready(snapshot)or type(snapshot.value.domains)~='table'then return unknown('DISTRICT_FACTS_UNAVAILABLE')end
- local row=snapshot.value.domains[domain]
+ if not ready(snapshot)then return unknown('DISTRICT_FACTS_UNAVAILABLE')end
+ local row=assert(snapshot.value.domains,'FACT_USE_DEPTH_CONTRACT')[domain]
  if row==nil then return absent('LOCAL_DISTRICT_REQUIRED')end
- if type(row)~='table'or not finite(row.value)or row.value%1~=0 then return unknown('DISTRICT_DEPTH_UNAVAILABLE')end
+ if row.depthError then return unknown('DISTRICT_DEPTH_UNAVAILABLE')end -- Tier rule: an unreviewed tier is unknown
+ assert(integer(row.value),'FACT_USE_DEPTH_CONTRACT')
  return confirmed(row.value)
 end
 function M.Anchor(snapshot,first)
- if not ready(snapshot)or type(snapshot.value.districts)~='table'or type(first)~='table'then return unknown('ANCHOR_UNAVAILABLE')end
- for _,row in ipairs(snapshot.value.districts)do
+ assert(type(first)=='table','FACT_USE_ANCHOR_CONTRACT')
+ if not ready(snapshot)then return unknown('ANCHOR_UNAVAILABLE')end
+ for _,row in ipairs(assert(snapshot.value.districts,'FACT_USE_ANCHOR_CONTRACT'))do
   if row.id==first.districtID and row.type==first.type then
-   if type(row.complete)~='boolean'or type(row.pillaged)~='boolean'or not finite(row.id)or row.id%1~=0
-    or not finite(row.plot)or row.plot%1~=0 then return unknown('ANCHOR_UNAVAILABLE')end
+   assert(type(row.complete)=='boolean'and type(row.pillaged)=='boolean'and integer(row.id)and integer(row.plot),'FACT_USE_ANCHOR_CONTRACT')
    return confirmed({id=row.id,type=row.type,plot=row.plot,complete=row.complete,pillaged=row.pillaged})
   end
  end

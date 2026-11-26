@@ -138,6 +138,7 @@ Observation (no class): `CapitalInvestment.lua:358-359` and `DevelopmentInvestme
 - **CA-A01 and CA-D13: retire them.** This covers the legacy test adapter, schema-1 support and the second ledger path. Under the no-compatibility rule, CA-A05, the schema-1 parts of CA-A06 and CA-A08 join the same retirement batch.
 - **Batch 1 is authorised and implemented as B546.573:** CA-A02, CA-C01, CA-D07 and CA-C05, plus the isolated `UI/ErrorProbe` printer and the `[SPC][ERR]` collector allowlist. See the Status checkpoint S1157.
 - **Batch 2 (legacy compatibility retirement) is authorised, with CA-A05, and implemented as B547.574 (2026-11-26).** It covers CA-A01, CA-D13, CA-B01, CA-C06, CA-A05, the schema-1 part of CA-A06 and CA-A08, plus the consumers of `UsesNewAuthority` (Standardization template ledger, ResearchTraditionEffects strict carrier reference) and Commerce's `BlocksLegacy` source check. Subrecord isolation (SAFE-004) stays. The stub-store fallbacks in `CityReference.Read` and `RuntimeWork` acknowledge are left for the presence-check batch, because many fixtures use stores without those methods; only their `UsesNewAuthority` asserts went. See the Status checkpoint S1159.
+- **Batch 3 (internal asserts) is authorised and implemented as B548.575 (2026-11-26):** CA-B03, CA-B05, CA-B06, CA-B08 and CA-B10. Real UNKNOWN states stay UNKNOWN; shape violations from our own producers throw inside existing read-side protection. See the Status checkpoint S1161.
 
 ## Coverage
 

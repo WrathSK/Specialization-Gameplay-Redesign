@@ -136,8 +136,9 @@ function SPCEffectiveFacts.Start(P,shared)
   if f.specialization=='NONE' then out.active=0
   elseif out.potential>1 then
    local gateOwner,gateCityID,gateStatus,ceiling=P.GovernorGate(city)
-   if gateOwner==pid and gateCityID==f.cityID and gateStatus=='KNOWN'
-    and type(ceiling)=='number' and ceiling%1==0 and ceiling>=1 and ceiling<=4 then
+   if gateStatus=='KNOWN' then
+    -- Probe.GovernorGate returns KNOWN only with this city and a 1..4 ceiling.
+    assert(gateOwner==pid and gateCityID==f.cityID and (ceiling==1 or ceiling==2 or ceiling==3 or ceiling==4),'GOVERNOR_GATE_CONTRACT')
     out.active=math.min(out.potential,ceiling)
    else out.active=nil;out.activeStatus='UNKNOWN_GOVERNOR' end
   end

@@ -313,7 +313,7 @@ return before,encode(modelPlans(v)),encode(compact(v))
         lua.execute(r'''
 local raw={districts={{id=11,type='DISTRICT_CAMPUS',plot=d.plot,complete=true,pillaged=false,
  buildings={{index=GameInfo.Buildings.BUILDING_LIBRARY.Index,complete=true,pillaged=false}}}},
- unplaced={{type='BUILDING_WONDER',reason='WONDER',contribution=0,pillaged=false,plot=999}}}
+ observations={{index=GameInfo.Buildings.BUILDING_WONDER.Index,pillaged=false,plot=999}}} -- B548: the retired unplaced input becomes a real off-district observation
 local full=SPCDistrictCompleteness.Calculate(cat,raw)
 local normal=SPCDistrictCompleteness.Calculate(cat,raw,false)
 assert(full.excluded[1].reason=='WONDER'and full.districts[1].buildings[1].name=='BUILDING_LIBRARY')
