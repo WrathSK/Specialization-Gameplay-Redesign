@@ -23,4 +23,6 @@ Parked by the Owner on 2026-11-21. Develop B529.556 (`e2ae2ae4`) implements firs
 
 **Management capacity window (专业管理容量) — appearance frozen at B545, polish before release.** On 2026-11-25 the Owner accepted the active colour and window width and closed this UI round after the B545 fixes. Further appearance work waits for a pre-release polish pass unless the Owner reports a major problem. The window is still a display-only preview with example data; connecting it to real capacity is separate work. In that pass, also re-check title centring across UI scales, how readable the dark-state notes are, and retire the unused B544 `SPC_Institutions_24.dds` atlas, which B545 replaced with the coloured `SPC_Level_Icons_24.dds`.
 
+**Optional, not scheduled: city-card emblem.** The city card currently shows the native district icon (Campus, Theater Square and so on). Possible alternatives are the emblem from the city banner, or the ordinary profession level badge for the city's current level. Recorded on 2026-11-25 as an option for the polish pass. Nothing has changed yet.
+
 [历史全文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Playtest_Backlog.md)
