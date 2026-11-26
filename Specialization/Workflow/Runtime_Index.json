@@ -303,9 +303,9 @@
       "provenance": "B076 unchanged inherited inventory"
     },
     "Mod/Data/Icons.sql": {
-      "sha256": "5967ea3bc1d30b28c9cada129202c6b5f845e2145e61f15c98c0072661e98798",
+      "sha256": "93f183f556583d46f47473d830f47cc18afe812335368c3572e25728338af387",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
+      "provenance": "B544 capacity states, title sizing and 24px institution atlas or build identity; S1153."
     },
     "Mod/Data/Identity.sql": {
       "sha256": "c8f22b04d2ab9eb8594ace4c30d8187e64a79675013ae76c59801a099b639342",
@@ -624,9 +624,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "25fc2e5af9065155b3a36746a4fae9cd2f330bafd6a904f249882dd265313cb1",
+      "sha256": "80326095274af73392f209432c9288fe0c0b0651391845936353fbe72efe7435",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B543 capacity institution slots or build identity; S1151."
+      "provenance": "B544 capacity states, title sizing and 24px institution atlas or build identity; S1153."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -743,9 +743,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "dba73e83032c2fac2377a5fcb09908f8e95ae846467034aded73f3d3ff8145e2",
+      "sha256": "5ea02bc67c8e3cc2b144581e8c917a30d21daf81900e9b419b254e19eec2d15f",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B543 capacity institution slots or build identity; S1151."
+      "provenance": "B544 capacity states, title sizing and 24px institution atlas or build identity; S1153."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1602,22 +1602,27 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/UI/ManagementCapacityPreview.xml": {
-      "sha256": "ba63ff710a28a72e01ae0b5b92485b8d186417adb9cbd24b16479feaa43690a4",
+      "sha256": "cc93b03a7d58466c95ee3ebeacd86dcb7d2cb10fbadb729abc7e8260d1f66eb0",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B543 capacity institution slots or build identity; S1151."
+      "provenance": "B544 capacity states, title sizing and 24px institution atlas or build identity; S1153."
     },
     "Mod/UI/ManagementCapacityPreview.lua": {
-      "sha256": "34eef0475d8ceedbdc922044d509297bbc8c59d5626df6b661a2c73a137303f1",
+      "sha256": "fac746ee28d554f52e8a8e1815dbb00024dfdbbc3adf28f962295c8bdbcba412",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B543 capacity institution slots or build identity; S1151."
+      "provenance": "B544 capacity states, title sizing and 24px institution atlas or build identity; S1153."
     },
     "Mod/Text/ManagementCapacityPreview.sql": {
-      "sha256": "bb1b36633287b2038c4ed7263bcf3961a4c39084a5d2090303dc6f5331117456",
+      "sha256": "2f9db00c1d83b2360126878f3daa1ab66ee938b09390e418c4855ad3f51f5d14",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B543 capacity institution slots or build identity; S1151."
+      "provenance": "B544 capacity states, title sizing and 24px institution atlas or build identity; S1153."
+    },
+    "Mod/Textures/SPC_Institutions_24.dds": {
+      "sha256": "8cba53829ee7265d85fd9da83ed65b0df1af5aaba4af77d908235c8a040d4a93",
+      "review_source": "Art/Institutions/README.md",
+      "provenance": "B544 24px institution atlas derived per cell from the reviewed 64px atlas; Owner-approved one-time binary publication; S1153."
     }
   },
-  "source_review": "S1151 scoped Lua 5.1 institution slots, ability states, layout and packaging checks; native result pending.",
-  "source_runtime": "B543.570 / modinfo570 develop, 301 files.",
-  "tested_source_snapshot_sha256": "aad55d6633a40cbd3380cf7df1dcdb8762b503985f7dc50232dae69ede717f90"
+  "source_review": "S1153 scoped Lua 5.1 capacity states, sizing, atlas and packaging checks; native result pending.",
+  "source_runtime": "B544.571 / modinfo571 develop, 302 files.",
+  "tested_source_snapshot_sha256": "e267a101e922518cdbf05666bf9cce91987b94e88c5f48e517eae8b87d55674a"
 }

@@ -86,6 +86,7 @@ INSERT OR REPLACE INTO IconDefinitions(Name,Atlas,"Index")
  FROM IconDefinitions WHERE Name='ICON_UNIT_GREAT_MERCHANT' OR Name GLOB 'ICON_UNIT_GREAT_MERCHANT_*';
 
 -- B251 user-supplied institution artwork; row order R/C/I/Commerce, stages I-IV.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTIONS',24,4,4,'SPC_Institutions_24.dds');
 INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTIONS',32,4,4,'SPC_Institutions_32.dds');
 INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_INSTITUTIONS',64,4,4,'SPC_Institutions_64.dds');
 INSERT INTO IconDefinitions(Name,Atlas,"Index") VALUES ('ICON_SPC_INSTITUTION_RESEARCH_1','ICON_ATLAS_SPC_INSTITUTIONS',0);

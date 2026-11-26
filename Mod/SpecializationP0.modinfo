@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="570">
+<Mod id="df9efdad-dd48-40a7-b868-87f0617bc16d" version="571">
   <Properties>
     <Name>LOC_SPC_MOD_TITLE</Name>
     <Description>LOC_SPC_MOD_DESCRIPTION</Description>
@@ -280,6 +280,7 @@
       <File>Textures/SPC_Institutions_32.dds</File>
       <File>Textures/SPC_Institution_Backdrops_32.dds</File>
       <File>Textures/SPC_Institutions_64.dds</File>
+      <File>Textures/SPC_Institutions_24.dds</File>
       <File>Textures/SPC_Institution_Backdrops_64.dds</File>
       <File>Textures/SPC_Raw_Icons_20.dds</File>
       <File>Textures/SPC_Raw_Icons_22.dds</File>
@@ -738,6 +739,7 @@
     <File>Textures/SPC_Institutions_32.dds</File>
     <File>Textures/SPC_Institution_Backdrops_32.dds</File>
     <File>Textures/SPC_Institutions_64.dds</File>
+    <File>Textures/SPC_Institutions_24.dds</File>
     <File>Textures/SPC_Institution_Backdrops_64.dds</File>
     <File>Data/TestAmerica.sql</File>
     <File>Config/TestAmerica.sql</File>

@@ -60,3 +60,7 @@ The existing approved B254 SVGs produce an additional58px-cell atlas for the58-u
 ## B259 measured map size
 
 Additional49px cell/control atlas derived from the same approved B254 artwork.4x4 cells,196x196 BGRA8, no mipmaps;153792 bytes. SHA256 `f4f3e925dd3f1d58027fdbd792099f64a7000a16c23b8fed859078ed6db3bcb6`. Reviewed decode matches raw pixels. User approved this exact blob for a one-time publication exception; old assets remain unchanged. [Measurement](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B259_Measured_UI.md).
+
+## B544 capacity title size
+
+Additional 24px atlas for the 24-unit institution icon in the capacity window's level-slot title band, which is about 26 units tall. Each 64px cell of the reviewed B251 `SPC_Institutions_64.dds` is resized separately to 24px with Lanczos, so neighbouring cells do not bleed, and stored as lossless BGRA8 without mipmaps: 4x4 cells, 96x96, 36992 bytes, SHA256 `8cba53829ee7265d85fd9da83ed65b0df1af5aaba4af77d908235c8a040d4a93`. Decoded pixels match the raster exactly. The 32px and 64px files are unchanged. On 2026-11-25 the Owner approved this exact blob for a one-time binary publication in its own commit.

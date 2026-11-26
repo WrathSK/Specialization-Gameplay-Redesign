@@ -23,8 +23,9 @@ local emblems = {
   RESEARCH="ICON_DISTRICT_CAMPUS", CULTURE="ICON_DISTRICT_THEATER",
   COMMERCE="ICON_DISTRICT_COMMERCIAL_HUB", INDUSTRY="ICON_DISTRICT_INDUSTRIAL_ZONE",
 }
--- Governor promotion button visual states: 0 open, 3 unavailable, 4 earned, 5 selected.
-local VIS_OPEN, VIS_LOCKED, VIS_EARNED, VIS_SELECTED = 0, 3, 4, 5
+-- Governor promotion button visual states. Natively 0, 4 and 5 all read as gold and only 3 is dark,
+-- so gold is kept for active levels and everything else is dark with text explaining why.
+local VIS_DARK, VIS_EARNED = 3, 4
 local ABILITY_COLOR = {ACTIVE="[COLOR:ResGoldLabelCS]", INACTIVE="", UNBUILT=""}
 
 -- Ability names are the headings inside each institution's help text ("Name:" then a line break),
@@ -39,21 +40,22 @@ local function abilityNames(help)
 end
 
 -- Potential is shown to the player as "institution established"; arrived capacity as "active".
+-- Returns the slot visual, ability state, title note and whether the slot is furthest from active.
 local function levelState(sample, level)
   local built = level <= sample.potential
-  local active = built and level <= sample.arrived
-  local arrival = ""
-  if level <= sample.arrived and level > sample.draft then
-    arrival = Locale.Lookup("LOC_SPC_CAP_WITHDRAW")
-  elseif level > sample.arrived and level <= sample.draft then
-    arrival = Locale.Lookup("LOC_SPC_CAP_ARRIVES", level - sample.arrived)
+  local arrived = level <= sample.arrived
+  local allocated = level <= sample.draft
+  local active = built and arrived
+  local note = ""
+  if arrived and not allocated then
+    note = Locale.Lookup("LOC_SPC_CAP_WITHDRAW")
+  elseif allocated and not arrived then
+    note = Locale.Lookup("LOC_SPC_CAP_ARRIVES", level - sample.arrived)
+  elseif arrived and not built then
+    note = Locale.Lookup("LOC_SPC_CAP_ARRIVED")
   end
-  local visual
-  if active then visual = VIS_EARNED
-  elseif level > sample.arrived and level <= sample.draft then visual = VIS_SELECTED
-  elseif built then visual = VIS_OPEN
-  else visual = VIS_LOCKED end
-  return visual, (active and "ACTIVE") or (built and "INACTIVE") or "UNBUILT", arrival
+  local state = (active and "ACTIVE") or (built and "INACTIVE") or "UNBUILT"
+  return active and VIS_EARNED or VIS_DARK, state, note, not built and not allocated and not arrived
 end
 
 local function status(sample)
@@ -69,13 +71,14 @@ local function render()
   for i, sample in ipairs(examples) do
     local row = rows[i]
     for level, slot in ipairs(row.slots) do
-      local visual, state, arrival = levelState(sample, level)
+      local visual, state, arrival, remote = levelState(sample, level)
       slot.Slot:SetDisabled(true)
       slot.Slot:SetVisState(visual)
+      slot.Fade:SetHide(not remote)
       slot.InstitutionIcon:SetAlpha(state == "UNBUILT" and 0.45 or 1)
       slot.Arrival:SetText(arrival)
       -- Leave the right side of the title for the arrival note.
-      local room = row.slotWidth - 56
+      local room = row.slotWidth - 52
       if arrival ~= "" then room = room - slot.Arrival:GetSizeX() - 8 end
       slot.InstitutionName:SetTruncateWidth(room)
       slot.InstitutionName:SetText(slot.name)
@@ -101,13 +104,16 @@ end
 -- Vanilla slot width is 204 and the card 300 on screens of 1280 or wider; narrower screens
 -- shrink both down to the slot texture's 174 minimum so four levels still fit beside the card.
 local function layout()
-  local width = Controls.Window:GetSizeX()
+  local width = UIManager:GetScreenSizeVal()
   local wide = width >= 1280
   local gap, card = wide and 28 or 20, wide and 300 or 240
   local slotWidth = math.max(174, math.min(204, math.floor((width - 48 - card - 4 * gap) / 4)))
+  -- The window hugs the rows instead of spanning the screen.
+  local rowWidth = card + 4 * (gap + slotWidth)
+  Controls.Window:SetSizeX(math.min(width, math.max(1024, rowWidth + 64)))
   for _, row in ipairs(rows) do
     row.slotWidth = slotWidth
-    row.Root:SetSizeX(card + 4 * (gap + slotWidth))
+    row.Root:SetSizeX(rowWidth)
     row.Card:SetSizeX(card)
     for level, slot in ipairs(row.slots) do
       local x = card + level * gap + (level - 1) * slotWidth
@@ -177,7 +183,7 @@ local function buildRows()
       ContextPtr:BuildInstanceForControl("CapacityLevelSlot", slot, row.Slots)
       local key = "LOC_SPC_" .. sample.profession .. "_INSTITUTION_" .. level
       local help = Locale.Lookup(key .. "_HELP")
-      slot.InstitutionIcon:SetIcon("ICON_SPC_INSTITUTION_" .. sample.profession .. "_" .. level, 32)
+      slot.InstitutionIcon:SetIcon("ICON_SPC_INSTITUTION_" .. sample.profession .. "_" .. level, 24)
       slot.name = Locale.Lookup(key)
       slot.Slot:SetToolTipString(Locale.Lookup(key) .. "[NEWLINE][NEWLINE]" .. help:gsub("@SPC_METRIC@", ""))
       for _, name in ipairs(abilityNames(help)) do

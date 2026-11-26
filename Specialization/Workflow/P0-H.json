@@ -11,8 +11,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1152",
-    "runtime": "B543.570 / modinfo570",
+    "status": "S1153",
+    "runtime": "B544.571 / modinfo571",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -60,7 +60,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B543.570 / modinfo570 source shows institution titles, ability states and screen-width layout. B542.569 remains installed.",
+      "source": "B544.571 / modinfo571 source keeps gold for active levels, centers 24px institution titles and fits the window to its rows. B543.570 remains installed.",
       "installed": "B543.570 / modinfo570 temporary, 301/301 MATCH at 1fc9908a589cdd642c1d084dedd7af037d80d380ec6dc1c0100fef0b08ac258a. Receipt B543.570-15bf669-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,7 +105,7 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-institution-slots--s1151",
+      "report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-gold-means-active--s1153",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",

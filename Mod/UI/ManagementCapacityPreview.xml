@@ -75,10 +75,15 @@
   <!-- Display-only institution slot using the governor promotion button states. -->
   <Instance Name="CapacityLevelSlot">
     <GridButton ID="Slot" Size="204,121" Texture="Governors_Promotion_Button" Padding="0,0" StateOffsetIncrement="0,121" SliceCorner="90,42" SliceTextureSize="174,121">
-      <Image ID="InstitutionIcon" Offset="8,6" Size="32,32"/>
-      <Label ID="InstitutionName" Offset="44,14" Style="FontFlair14" FontStyle="Shadow" Color0="245,245,245,255" Color1="0,0,0,70" TruncateWidth="90" TruncatedTooltip="1"/>
-      <Label ID="Arrival" Anchor="R,T" Offset="12,15" Style="FontNormal12" FontStyle="Shadow" Color0="240,240,240,255" Color1="0,0,0,150"/>
-      <Stack ID="Abilities" Offset="12,46" StackGrowth="Bottom" StackPadding="2"/>
+      <!-- Title band of the promotion texture spans about y=3..29; children center on it. -->
+      <Container Offset="0,3" Size="parent,26">
+        <Image ID="InstitutionIcon" Anchor="L,C" Offset="10,0" Size="24,24"/>
+        <Label ID="InstitutionName" Anchor="L,C" Offset="40,0" Style="FontFlair14" FontStyle="Shadow" Color0="245,245,245,255" Color1="0,0,0,70" TruncateWidth="90" TruncatedTooltip="1"/>
+        <Label ID="Arrival" Anchor="R,C" Offset="12,0" Style="FontNormal12" FontStyle="Shadow" Color0="240,240,240,255" Color1="0,0,0,150"/>
+      </Container>
+      <Stack ID="Abilities" Offset="12,44" StackGrowth="Bottom" StackPadding="2"/>
+      <!-- Same dimming the Governor screen uses for unappointed governors. -->
+      <Box ID="Fade" Size="parent,parent" Color="0,0,0,90" Hidden="1"/>
     </GridButton>
   </Instance>
 

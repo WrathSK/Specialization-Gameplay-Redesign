@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1152
-Implementation Build: develop B543.570 / modinfo570. Installed temporary B543.570 / modinfo570. Stable B528.555 / modinfo555.
+Status Revision: S1153
+Implementation Build: develop B544.571 / modinfo571. Installed temporary B543.570 / modinfo570. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,26 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B543.570 / modinfo570 [改为机构格](#management-capacity-institution-slots--s1151)。本机[已临时安装 B543.570](#management-capacity-institution-slots-installed--s1152)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B544.571 / modinfo571 [金色只表示已激活](#management-capacity-gold-means-active--s1153)。本机仍为 B543.570 临时包，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
-| Validation | B542 实机确认调配行为正常，负责人提出连接线、城市卡拥挤和等级格内容等外观意见。B543 已按意见修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 检查连接线、城市卡、机构标题与到位回合、能力状态及窄屏排版。布局使用固定示例到位点数。 |
+| Validation | B543 实机显示机构格可用；负责人指出图标越线、标题偏下、容量到位但未建立不清楚、窗口过宽。B544 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
+| Next action | B544 临时安装核验后，检查标题带图标与文字居中、四种等级外观、窗口宽度。布局使用固定示例到位点数。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Management capacity gold means active — S1153
+
+B542 与 B543 实机截图已归档至 `local/legacy-workspace/Specialization/Status/Validation/Evidence/B542_Capacity_Governor_Tree_20261125/` 和 `B543_Capacity_Institution_Slots_20261125/`，移动前后 SHA256 一致（`b81bea71…`、`10e0589c…`），各附 manifest。截图显示晋升格的普通、获得、选中三种状态在原生渲染中都是金色，只有不可取得是深色。
+
+Owner 2026-11-25 指出 B543 的问题：机构图标越过标题带分隔线，标题文字没有垂直居中，“容量已到位但机构未建立”不清楚，选中状态让未建立的待到位等级也呈金色，窗口左右空白过多。Owner 同意 B544 的方案：金色只表示已激活，其余等级一律深色，标题右侧注明“[回合图标] N 回合”“容量已到位”或“确认后撤回”，能力列写已激活、未激活或未建立；机构未建立且未分配的等级另加总督界面未任命时用的暗化遮罩。标题放进 26 单位高的居中容器，机构图标改用 24 像素。窗口宽度贴合行宽加 64（最小 1024，不超过屏宽）。
+
+Owner 同时批准新增一张图集 `Mod/Textures/SPC_Institutions_24.dds`：由已审核的 64 像素机构图集逐格缩放（Lanczos），无损 BGRA8，96x96，36992 字节，SHA256 `8cba53829ee7265d85fd9da83ed65b0df1af5aaba4af77d908235c8a040d4a93`。该文件按一次性二进制发布例外单独提交，32 和 64 像素图集不变，记录见 [机构美术说明](../../Art/Institutions/README.md#b544-capacity-title-size)。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：专项 5 项及 B251 机构图集 19 项通过；`CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-e16e80a913224c328c6d43222f08f9b0/closure.json`，SHA256 `eddf19622eb54c8cf2b79537db2b172d5a109243122a0e0d7340bf464a52cf2b`，已测源码快照 `e267a101e922518cdbf05666bf9cce91987b94e88c5f48e517eae8b87d55674a`。174 份 Lua 编译、25 份 XML 解析、301 个包文件引用检查通过。
 
 ### Management capacity institution slots installed — S1152
 

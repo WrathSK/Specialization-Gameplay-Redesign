@@ -65,7 +65,7 @@ Controls = {}
 for _,id in ipairs({"Window","Backdrop","ScreenAnimIn","Readout","HUDCount","Parking","OpenButton","LaunchItem","Cities",
                     "CityScroll","ModalBG","ModalScreenTitle","ModalScreenClose","YieldsContainer","Confirm","Undo","Available","Total"}) do Controls[id]=widget() end
 Controls.Window:SetHide(true)
-Controls.Window.fixedWidth=1512
+screenWidth=1512
 Controls.Backdrop:SetHide(true)
 function Controls.ScreenAnimIn:SetToBeginning() self.reset=true end
 function Controls.ScreenAnimIn:Play() assert(self.reset); self.played=true end
@@ -79,6 +79,7 @@ LuaEvents = {LaunchBar_Resize=function(width) assert(backing.width==width+116 an
 local screens=widget()
 hosts["/InGame/Screens"]=screens
 UIManager={queue=nil}
+function UIManager:GetScreenSizeVal() return screenWidth, 900 end
 function UIManager:IsInPopupQueue(context) return self.queue==context end
 function UIManager:QueuePopup(context,priority,parameters)
   assert(self.queue==nil and context.parent==screens and priority==PopupPriority.Low)
@@ -103,7 +104,7 @@ function ContextPtr:BuildInstanceForControl(name, row, parent)
   end
   if name=="CapacityLevelSlot" then
     assert(parent==rows.building.Slots)
-    for _,id in ipairs({"Slot","InstitutionIcon","InstitutionName","Arrival","Abilities"}) do row[id]=widget() end
+    for _,id in ipairs({"Slot","InstitutionIcon","InstitutionName","Arrival","Abilities","Fade"}) do row[id]=widget() end
     rows.slot=row
     return
   end
@@ -121,7 +122,7 @@ function slots(row)
     local state=slot.abilities[1].AbilityState.text
     for _,ability in ipairs(slot.abilities) do assert(ability.AbilityState.text==state) end
     state=state:gsub("%[COLOR:ResGoldLabelCS%]",""):gsub("%[ENDCOLOR%]",""):gsub("LOC_SPC_CAP_ABILITY_","")
-    out[i]=slot.Slot.vis..":"..state..":"..slot.Arrival.text
+    out[i]=slot.Slot.vis..":"..state..":"..slot.Arrival.text..(slot.Fade:IsHidden() and "" or ":fade")
   end
   return table.concat(out,",")
 end
@@ -172,19 +173,20 @@ class CapacityPreview(unittest.TestCase):
           assert(rows[1].Title.text=="LOC_SPC_CAP_CITY_TITLELOC_SPC_LEVEL_RESEARCH")
           local s3=rows[1].slots[3]
           assert(s3.InstitutionIcon.icon=="ICON_SPC_INSTITUTION_RESEARCH_3" and s3.InstitutionName.text=="学术联合会")
-          assert(s3.InstitutionName.truncate==204-56-6*#s3.Arrival.text-8 and rows[1].slots[1].InstitutionName.truncate==204-56)
+          assert(s3.InstitutionIcon.iconSize==24)
+          assert(s3.InstitutionName.truncate==204-52-6*#s3.Arrival.text-8 and rows[1].slots[1].InstitutionName.truncate==204-52)
           assert(#s3.abilities==2 and s3.abilities[1].AbilityName.text=="跨学科研究" and s3.abilities[2].AbilityName.text=="学以致用")
           assert(not s3.Slot.tooltip:find("@SPC_METRIC@",1,true) and s3.Slot.tooltip:find("学术联合会",1,true)==1)
           local counts={}
           for _,row in ipairs(rows) do for _,slot in ipairs(row.slots) do counts[#counts+1]=#slot.abilities end end
           assert(table.concat(counts,"")=="1123112311231123", table.concat(counts,""))
           -- Washington: institution I established, 2 points arrived, 3 allocated.
-          assert(slots(rows[1])=="4:ACTIVE:,3:UNBUILT:,5:UNBUILT:LOC_SPC_CAP_ARRIVES1,3:UNBUILT:", slots(rows[1]))
+          assert(slots(rows[1])=="4:ACTIVE:,3:UNBUILT:LOC_SPC_CAP_ARRIVED,3:UNBUILT:LOC_SPC_CAP_ARRIVES1,3:UNBUILT::fade", slots(rows[1]))
           assert(rows[1].slots[2].InstitutionIcon.alpha<1 and rows[1].slots[1].InstitutionIcon.alpha==1)
           assert(rows[1].Levels.text=="LOC_SPC_CAP_CITY_LEVELS1/1" and rows[1].Status.text=="LOC_SPC_CAP_STATUS_GROWING")
           assert(rows[1].Points.text=="3 / 4")
           -- Boston: three institutions, one point arrived.
-          assert(slots(rows[2])=="4:ACTIVE:,0:INACTIVE:,0:INACTIVE:,3:UNBUILT:", slots(rows[2]))
+          assert(slots(rows[2])=="4:ACTIVE:,3:INACTIVE:,3:INACTIVE:,3:UNBUILT::fade", slots(rows[2]))
           assert(rows[4].Status.text=="LOC_SPC_CAP_STATUS_IDLE" and rows[4].Minus.disabled)
           assert(rows[2].Status.text=="LOC_SPC_CAP_STATUS_SETTLED")
           rows[1].Plus.click(); assert(rows[1].Points.text=="4 / 4" and rows[1].Plus.disabled)
@@ -193,14 +195,14 @@ class CapacityPreview(unittest.TestCase):
           assert(Controls.HUDCount.text=="6/10" and Controls.Available.text=="LOC_SPC_CAP_FREE3")
           Controls.Undo.click(); assert(rows[1].Points.text=="3 / 4")
           for i=1,4 do rows[4].Plus.click() end
-          assert(slots(rows[4])=="5:INACTIVE:LOC_SPC_CAP_ARRIVES1,5:INACTIVE:LOC_SPC_CAP_ARRIVES2,"..
-            "5:INACTIVE:LOC_SPC_CAP_ARRIVES3,5:INACTIVE:LOC_SPC_CAP_ARRIVES4", slots(rows[4]))
+          assert(slots(rows[4])=="3:INACTIVE:LOC_SPC_CAP_ARRIVES1,3:INACTIVE:LOC_SPC_CAP_ARRIVES2,"..
+            "3:INACTIVE:LOC_SPC_CAP_ARRIVES3,3:INACTIVE:LOC_SPC_CAP_ARRIVES4", slots(rows[4]))
           assert(Controls.Available.text=="LOC_SPC_CAP_FREE0" and rows[2].Plus.disabled)
           Controls.Confirm.click(); assert(Controls.HUDCount.text=="10/10" and Controls.Confirm.disabled)
           assert(rows[4].Status.text=="LOC_SPC_CAP_STATUS_GROWING")
           -- New York: three institutions, two points arrived; withdraw one.
           rows[3].Minus.click()
-          assert(slots(rows[3])=="4:ACTIVE:,4:ACTIVE:LOC_SPC_CAP_WITHDRAW,0:INACTIVE:,3:UNBUILT:", slots(rows[3]))
+          assert(slots(rows[3])=="4:ACTIVE:,4:ACTIVE:LOC_SPC_CAP_WITHDRAW,3:INACTIVE:,3:UNBUILT::fade", slots(rows[3]))
           Controls.ModalScreenClose.click(); Controls.OpenButton.click()
           assert(rows[3].Points.text=="2 / 4" and Controls.HUDCount.text=="10/10")
         """)
@@ -221,9 +223,10 @@ class CapacityPreview(unittest.TestCase):
             end
           end
           check(300,28,204)
-          Controls.ModalScreenClose.click(); Controls.Window.fixedWidth=1024; Controls.OpenButton.click()
+          assert(Controls.Window.width==1228+64, "window hugs the rows")
+          Controls.ModalScreenClose.click(); screenWidth=1024; Controls.OpenButton.click()
           check(240,20,174)
-          assert(rows[1].Root.width<=1024-8)
+          assert(rows[1].Root.width<=1024-8 and Controls.Window.width==1024)
         """)
 
     def test_scope_and_late_hud_container(self):
