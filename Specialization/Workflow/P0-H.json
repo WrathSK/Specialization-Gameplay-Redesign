@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1151",
+    "status": "S1152",
     "runtime": "B543.570 / modinfo570",
     "military": "D0037",
     "harbor": "D0037",
@@ -61,7 +61,7 @@
   "result": {
     "runtime_identity": {
       "source": "B543.570 / modinfo570 source shows institution titles, ability states and screen-width layout. B542.569 remains installed.",
-      "installed": "B542.569 / modinfo569 temporary, 301/301 MATCH at 2a39b1b9fda847af7f3547ac831e2985b97763f5dbf7d8233e11e26a91d3a6fb. Receipt B542.569-dd37d33-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
+      "installed": "B543.570 / modinfo570 temporary, 301/301 MATCH at 1fc9908a589cdd642c1d084dedd7af037d80d380ec6dc1c0100fef0b08ac258a. Receipt B543.570-15bf669-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
@@ -110,7 +110,7 @@
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
       "native_validation": "USER_GAME_TEST_REQUIRED",
-      "deployment": "Specialization/Status/Specialization_P0_Status.md#management-capacity-governor-tree-installed--s1150"
+      "deployment": "Specialization/Status/Specialization_P0_Status.md#management-capacity-institution-slots-installed--s1152"
     }
   }
 }
