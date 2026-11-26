@@ -3,13 +3,13 @@ include('DevelopmentInvestmentModel')
 include('DevelopmentInvestmentCatalog')
 include('DevelopmentInvestmentTargets')
 include('CommerceModel')
-local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+include('ExpeditionTrainingDiagnostics')
 SPCDevelopmentInvestment={ACCESS='BUILDING_SPC_DEVELOPMENT_ACCESS'}
 function SPCDevelopmentInvestment.Start(P,shared)
  local M=SPCDevelopmentInvestmentModel;local cp,same=M.Copy,M.Same
  local store=assert(shared.CityProgressionStore,'DEVELOPMENT_STORE_REQUIRED')
  local d={views={},revision=0};shared.DevelopmentInvestment=d
- local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'DEVELOPMENT')
+ local trace=SPCSafeCallbacks.OpenTrace(SPCExpeditionTrainingDiagnostics,P,'DEVELOPMENT')
  local function emit(stage,v)if trace then pcall(trace,stage,v)end end
  -- Designed reasons pass through; an uncoded error keeps its raw text in the error log.
  local function code(e)
@@ -86,7 +86,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
  end
  function d.AcceptFact(event)
   local registry=shared.FactChanges
-  if not registry or type(event)~='table' or type(event.player)~='number'then return false end
+  if type(event.player)~='number'then return false end
   local receipt=registry.Receipt(event,'REGISTERED')
   local accepted,status=d.Audit({player=event.player})
   if accepted==true then return receipt end
@@ -255,8 +255,7 @@ function SPCDevelopmentInvestment.Start(P,shared)
   v.canSign=v.used<v.workers;v.reason=v.canSign and 'DEVELOPMENT_READY' or 'DEVELOPMENT_CAPACITY_FULL'
   return v,old
   end
-  if shared.EffectiveFacts.Inspect then return shared.EffectiveFacts.Inspect(pid,c,project)end
-  return project(shared.EffectiveFacts.Read(pid,c),function(_,read)return read()end)
+  return shared.EffectiveFacts.Inspect(pid,c,project)
  end
  local function nativeTarget(pid,c)
   local reader=assert(ExposedMembers.SPC_DevelopmentRead,'DEVELOPMENT_PRICE_READER_UNAVAILABLE')
@@ -433,6 +432,6 @@ function SPCDevelopmentInvestment.Start(P,shared)
   d.Mark(loss.origin.owner)
  end)
  store.RegisterReturn('DevelopmentInvestment',function(pid,c)d.SourceChanged(pid,c:GetID())end)
- if shared.FactChanges then shared.FactChanges.RegisterConsumer('DevelopmentInvestment',function(e)d.SourceChanged(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DEVELOPMENT_RECOVERY'}})end
+ shared.FactChanges.RegisterConsumer('DevelopmentInvestment',function(e)d.SourceChanged(e.player,e.city)end,{kinds={'IDENTITY','POTENTIAL','ACTIVE','HISTORY'},topics={'DEVELOPMENT_RECOVERY'}})
  return d
 end

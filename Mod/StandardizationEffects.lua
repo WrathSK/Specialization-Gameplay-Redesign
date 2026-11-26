@@ -322,7 +322,7 @@ function SPCStandardizationEffects.Start(P,shared)
  end
  local function audit(scope,taking)
   local store=shared.CityProgressionStore
-  if store and store.HistoryStartStatus and store.HistoryStartStatus()=='WAITING'then return false end
+  if store.HistoryStartStatus()=='WAITING'then return false end
   if d.busy then
    if taking then return false end
    if scope and scope.changed then for cid in pairs(scope.changed)do mark(scope.player,cid)end
@@ -478,14 +478,12 @@ function SPCStandardizationEffects.Start(P,shared)
  end)
  -- Store confirmed loss owns destination reference proof; no guessed coordinates.
  local store=shared.CityProgressionStore
- if store then
-  store.RegisterExit('StandardizationEffects',function(c,loss)
-   validate();cleaned[key(c:GetOwner(),c:GetID())]=nil;retire(c);local ids={};for _,r in ipairs(definitions)do ids[#ids+1]=r.id end
-   store.RemoveOwned(c,loss,ids)
-   d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;dependents.Remove(loss.origin.owner,loss.origin.cityID);d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
-   cleaned[key(loss.origin.owner,loss.origin.cityID)]=nil
-   mark(loss.origin.owner,loss.origin.cityID);mark(c:GetOwner(),c:GetID())
-  end)
+ store.RegisterExit('StandardizationEffects',function(c,loss)
+  validate();cleaned[key(c:GetOwner(),c:GetID())]=nil;retire(c);local ids={};for _,r in ipairs(definitions)do ids[#ids+1]=r.id end
+  store.RemoveOwned(c,loss,ids)
+  d.records[key(loss.origin.owner,loss.origin.cityID)]=nil;dependents.Remove(loss.origin.owner,loss.origin.cityID);d.errors[key(loss.origin.owner,loss.origin.cityID)]=nil
+  cleaned[key(loss.origin.owner,loss.origin.cityID)]=nil
+  mark(loss.origin.owner,loss.origin.cityID);mark(c:GetOwner(),c:GetID())
+ end)
   store.RegisterReturn('StandardizationEffects',function(pid,c)mark(pid,c:GetID())end)
- end
 end

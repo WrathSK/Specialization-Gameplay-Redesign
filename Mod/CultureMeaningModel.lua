@@ -80,13 +80,6 @@ end
 for _,y in ipairs({'PRODUCTION','FOOD','FAITH'})do for bit=0,M.ProbeBits[y]-1 do
  M.Owned[#M.Owned+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit
 end end
-local function bitParts(y,amount)
- assert(y~='CULTURE','ME_CULTURE_DEFERRED')
- local bits=assert(M.ProbeBits[y],'ME_PROBE_YIELD');local n=amount*M.ProbeScale[y]
- assert(integer(n) and n<2^bits,'ME_ENCODING_RANGE')
- local out={};for bit=0,bits-1 do if n%2==1 then out[#out+1]='BUILDING_SPC_MEANING_PROBE_'..y..'_'..bit end;n=math.floor(n/2)end
- return out
-end
 -- Fixed B160 controls retain the exact old pieces as negative evidence.
 -- Production's model projection uses one FINAL per-work value, never these bits.
 M.DiagnosticSingle3={name='BUILDING_SPC_MEANING_PROBE_PRODUCTION_SINGLE3',amount=3}
@@ -109,16 +102,10 @@ for _,y in ipairs(M.WriteYields)do if y~='PRODUCTION' then
   if y=='CULTURE' then M.CarrierDistrict[part.name]='DISTRICT_THEATER' end
  end
 end end
-function M.Parts(y,amount,variant)
+function M.Parts(y,amount)
  assert(not M.CultureDeferred or y~='CULTURE' or amount==0,'ME_CULTURE_DEFERRED')
- assert(variant==nil or variant=='SPLIT','ME_VARIANT_DEFERRED')
  local limit=assert(M.FinalLimits[y],'ME_PROBE_YIELD')
  assert(integer(amount) and amount<=limit,'ME_ENCODING_RANGE')
  return amount==0 and {} or {M.FinalValues[y][amount].name}
 end
 M.DiagnosticExpected={BASELINE=0,SINGLE1=1,CLEAR1=0,SINGLE2=2,PAIR12=3,REMAIN2=2,SINGLE3=3,OFF=0}
-function M.DiagnosticParts(stage)
- local amount=assert(M.DiagnosticExpected[stage],'ME_DIAGNOSTIC_STAGE')
- if stage=='SINGLE3' then return {M.DiagnosticSingle3.name}end
- return bitParts('PRODUCTION',amount)
-end

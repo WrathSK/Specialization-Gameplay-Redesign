@@ -144,11 +144,9 @@ function SPCRestructuring.Start(P,shared)
   if d.ready then return true end
   local status
   local ok,seed=pcall(function()
-   assert(type(store.HistoryStartStatus)=='function','REST_STORE_UNAVAILABLE')
    status=store.HistoryStartStatus()
    if status=='WAITING' or status=='HELD'then return false end
    assert(status=='FRESH' or status=='EXISTING','REST_STORE_STATUS_UNKNOWN')
-   assert(shared.EffectiveFacts and type(shared.EffectiveFacts.Read)=='function','REST_FACTS_UNAVAILABLE')
    for _,name in ipairs({S.ACCESS,S.DISRUPTION})do assert(P.Info('Buildings',name),'REST_MARKER_MISSING')end
    local found=false;local cities={}
    -- One supported-player snapshot per Gameplay context, not a polling scan.

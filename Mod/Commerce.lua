@@ -4,7 +4,7 @@ include('CommerceModel')
 include('CommerceCalculation')
 include('FactUse')
 include('NetworkInput')
-local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+include('ExpeditionTrainingDiagnostics')
 -- B240: one current-effect owner. No timer, persisted derived output, generic
 -- output-revision subscription, or second route authority.
 SPCCommerce={Owned={'BUILDING_SPC_COMMERCIALIZATION_ACCESS'}}
@@ -20,10 +20,10 @@ function M.Start(P,shared)
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
  local ownNames={};for _,id in ipairs(M.Owned)do ownNames[id]=true end
- local logger=traceLoaded and SPCExpeditionTrainingDiagnostics
+ local logger=SPCExpeditionTrainingDiagnostics
  local trace=SPCSafeCallbacks.OpenTrace(logger,P,'COMMERCE')
  local function key(pid,id)return pid..':'..id end
- local function generation(pid,id)return shared.FactChanges and shared.FactChanges.Generation(pid,'COMMERCE',id) or 0 end
+ local function generation(pid,id)return shared.FactChanges.Generation(pid,'COMMERCE',id)end
  local function sourcesCurrent(pid,v)
   for source,epoch in pairs(v.sourceGenerations or {})do if epoch~=generation(pid,source)then return false end end
   return true
@@ -32,8 +32,8 @@ function M.Start(P,shared)
   local v=views[key(pid,id)]
   if not v or v.stage~='READY' or (v.factGeneration or 0)~=generation(pid)then return false end
   local bridge=shared.NetworkBridge
-  if bridge and bridge.ProofRevision and (v.networkProofRevision or 0)~=bridge.ProofRevision(pid)then return false end
-  if bridge and bridge.TransactionCurrent and not bridge.TransactionCurrent(pid)then return false end
+  if (v.networkProofRevision or 0)~=bridge.ProofRevision(pid)then return false end
+  if not bridge.TransactionCurrent(pid)then return false end
   return sourcesCurrent(pid,v)
  end
  local function city(pid,id)local p=Players[pid];return p and p:GetCities() and p:GetCities():FindID(id)end
@@ -242,16 +242,14 @@ function M.Start(P,shared)
   -- Keep the old HELD diagnostic facts only after the full EF read is certified.
   -- No convergence withdrawal or carrier write is permitted in this projection.
   local function project(f,workers)return f,pcall(localInputs,f,workers)end
-  local f,ok,out
-  if shared.EffectiveFacts.Inspect then f,ok,out=shared.EffectiveFacts.Inspect(pid,c,project)
-  else f,ok,out=project(shared.EffectiveFacts.Read(pid,c),function(_,read)return read()end)end
+  local f,ok,out=shared.EffectiveFacts.Inspect(pid,c,project)
   batch.facts[key(pid,id)]=f
   if not ok then error(out,0)end
   if out.unavailable or not out.localReady then return out end
   out.localReady=nil;local v=out.v
   for _,index in ipairs(legacy)do assert(not present(c,index),'COMMERCE_LEGACY_REMAINS')end
   local bridge=shared.NetworkBridge
-  local network=(bridge.CurrentEffectPartners or bridge.CurrentDomesticPartners)(pid,c)
+  local network=bridge.CurrentEffectPartners(pid,c)
   if network.validity~='VERIFIED' then
    local previous=views[key(pid,id)];local retained=samples[key(pid,id)]
    if not (previous and retained and retained.reference==v.reference and retained.token==v.token)then
@@ -434,7 +432,6 @@ function M.Start(P,shared)
  end
  function d.AcceptFact(event,proofStatus)
   local registry=shared.FactChanges
-  if not registry or type(event)~='table' then return false end
   local network=event.kinds and event.kinds.NETWORK
   if type(event.player)~='number'and (event.player~=nil or event.city~=nil or network)then return false end
   local receipt=registry.Receipt(event,'REGISTERED')
@@ -485,7 +482,7 @@ function M.Start(P,shared)
      end
     end
     readVersion=facts.Version and facts.Version()
-    for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1]);sampledProofs[pair[1]]=shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(pair[1])or 0 end
+    for _,pair in pairs(ids)do sampledGenerations[pair[1]]=generation(pair[1]);sampledProofs[pair[1]]=shared.NetworkBridge.ProofRevision(pair[1])end
    for k,pair in pairs(ids)do
     local pid,id=pair[1],pair[2];local c=city(pid,id)
     if c and c:GetOwner()==pid then
@@ -509,13 +506,13 @@ function M.Start(P,shared)
     if not good then hold(x,views[key(x.pid,x.id)],code(err))end
    end
    end
-   if facts.WithPhase then facts.WithPhase('COMMERCE_INPUTS',collect)else collect()end
+   facts.WithPhase('COMMERCE_INPUTS',collect)
    local writeDuringRead=facts.Version and facts.Version()~=readVersion
    -- D0055 inputs exclude Gold. Apply only differences; unchanged reads never
    -- dismantle effects or write to a remote source merely to sample its yield.
    for k,x in pairs(plans)do
     local stale=writeDuringRead or sampledGenerations[x.pid]~=generation(x.pid)
-     or sampledProofs[x.pid]~=(shared.NetworkBridge.ProofRevision and shared.NetworkBridge.ProofRevision(x.pid)or 0)
+     or sampledProofs[x.pid]~=shared.NetworkBridge.ProofRevision(x.pid)
     for sid in pairs(x.sources or {[x.id]=true})do
      local before=batch.epochs and batch.epochs[key(x.pid,sid)]
      if before~=nil and before~=generation(x.pid,sid)then stale=true end

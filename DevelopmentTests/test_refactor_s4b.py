@@ -37,6 +37,8 @@ def standard(ready=True,cold=False):
       knowledge={};studies={};for id in pairs(cities)do knowledge[id]={learned={},districts={learned={}}};studies[id]=0 end
       shared.Standardization={ReadKnowledge=function(pid,c)if knowledge[c.id]==false then error('STD_HISTORY_UNAVAILABLE')end;return knowledge[c.id]end}
       shared.CityProgressionStore.EngineeringState=function(pid,c)return {token=c.token,value={L=studies[c.id]}}end
+      -- B549: StandardizationEffects calls this directly; the real Store always defines it.
+      shared.CityProgressionStore.HistoryStartStatus=shared.CityProgressionStore.HistoryStartStatus or function()return 'EXISTING'end
       function learn(id)knowledge[id].learned.BUILDING_GRANARY={district='DISTRICT_CITY_CENTER',tier=1}end
       cities[3].kind='INDUSTRY';cities[3].potential=4;cities[3].active=4
       cities[5].active=4;studies[3]=1;studies[5]=2;learn(3);learn(5)

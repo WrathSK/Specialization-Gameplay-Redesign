@@ -1,6 +1,6 @@
 -- Scalar locator only, never proof of specialization, ACTIVE or transaction access.
--- Current Gameplay uses the Store index token. Raw City Properties are confined
--- to isolated legacy profiles without the modern Store reference API.
+-- Current Gameplay uses the Store index token. The second arm serves only fixture
+-- store doubles without ReferenceToken; retiring it needs those doubles migrated.
 SPCCityReference={}
 local R=SPCCityReference
 local function integer(v)return type(v)=='number'and v>=0 and v<1000000000 and v%1==0 end

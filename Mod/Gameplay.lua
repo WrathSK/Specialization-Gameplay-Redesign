@@ -624,10 +624,10 @@ composition.Run('FactChanges',{}, {'FactChanges'},function()
    local flushed=changes.Flush()
    if shared.FactBindings then shared.FactBindings.Flush()end
    local network=shared.NetworkBridge
-   if flushed and network and type(network.ResumeProofRegistration)=='function'then network.ResumeProofRegistration(changes)end
+   if flushed and network then network.ResumeProofRegistration(changes)end
   end
   local facts=shared.EffectiveFacts
-  local ok,err=pcall(function()if facts and facts.WithPhase then facts.WithPhase('FACT_PROPAGATION',run)else run()end end)
+  local ok,err=pcall(function()if facts then facts.WithPhase('FACT_PROPAGATION',run)else run()end end)
   draining=false
   if not ok then local safe,text=pcall(tostring,err);shared.FactPropagationError=safe and text:sub(1,180) or 'FACT_PROPAGATION_FAILED'end
  end

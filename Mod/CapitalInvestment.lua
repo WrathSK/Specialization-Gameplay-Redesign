@@ -2,7 +2,7 @@ include('SafeCallbacks')
 include('CapitalInvestmentModel')
 include('CapitalInvestmentDiagnostics')
 include('CommerceModel')
-local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+include('ExpeditionTrainingDiagnostics')
 SPCCapitalInvestment={ACCESS='BUILDING_SPC_CAPITAL_ACCESS'}
 function SPCCapitalInvestment.Start(P,shared)
  local M=SPCCapitalInvestmentModel;local cp=M.Copy;local same=M.Same
@@ -11,7 +11,7 @@ function SPCCapitalInvestment.Start(P,shared)
  local busy=false;local dirty={};local known={};local quotes={};local sequence=0
  ExposedMembers.SPC_CapitalEpoch=(ExposedMembers.SPC_CapitalEpoch or 0)+1
  local epoch=ExposedMembers.SPC_CapitalEpoch
- local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'CAPITAL')
+ local trace=SPCSafeCallbacks.OpenTrace(SPCExpeditionTrainingDiagnostics,P,'CAPITAL')
  local function emit(stage,v)if trace then pcall(trace,stage,v)end end
  local D=SPCCapitalInvestmentDiagnostics
  local function code(err)return D.Error(err).errorCode end
@@ -124,7 +124,7 @@ function SPCCapitalInvestment.Start(P,shared)
  end
  function d.AcceptFact(event)
   local registry=shared.FactChanges
-  if not registry or type(event)~='table' or event.player==nil and event.city~=nil then return false end
+  if event.player==nil and event.city~=nil then return false end
   local receipt=registry.Receipt(event,'REGISTERED')
   local accepted,reason=d.Mark(event.player,event.city)
   if accepted==true then return receipt end
@@ -170,8 +170,8 @@ function SPCCapitalInvestment.Start(P,shared)
    end
   end
   local standard,why=SPCCommerceModel.IsStandardSpeed();assert(standard,why or 'CAPITAL_STANDARD_SPEED_ONLY')
-  local cv=shared.Commerce and shared.Commerce.views[key(pid,c:GetID())]
-  assert(cv and cv.token==r.token and cv.stage=='READY' and (not shared.Commerce.TransactionCurrent or shared.Commerce.TransactionCurrent(pid,c:GetID())),'CAPITAL_COMMERCE_PENDING')
+  local cv=shared.Commerce.views[key(pid,c:GetID())]
+  assert(cv and cv.token==r.token and cv.stage=='READY' and shared.Commerce.TransactionCurrent(pid,c:GetID()),'CAPITAL_COMMERCE_PENDING')
   if withQuotes==false then
    -- Automatic entry/contract refresh never speculates about sources or prices.
    v.canSign=false;v.quoteStale=true;v.reason='CAPITAL_QUOTE_STALE'
@@ -355,7 +355,7 @@ function SPCCapitalInvestment.Start(P,shared)
   for pid,changes in pairs(todo)do
    local ids={}
    for _,v in pairs(known)do if v[1]==pid and (changes.all or changes[v[2]])then ids[v[2]]=true end end
-   for k,v in pairs(shared.Commerce and shared.Commerce.views or {})do
+   for k,v in pairs(shared.Commerce.views)do
     if v.identity=='COMMERCE' and (changes.all or changes[tonumber(k:match(':(%d+)$'))])then ids[tonumber(k:match(':(%d+)$'))]=true end
    end
    for id in pairs(ids)do

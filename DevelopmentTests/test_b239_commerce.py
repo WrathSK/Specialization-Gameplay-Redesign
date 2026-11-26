@@ -107,6 +107,7 @@ def fixture(attach=True, *, effect_source=None):
     ''')
     lua.execute((MOD/'Commerce.lua').read_text() if effect_source is None else effect_source)
     lua.execute('''
+      if not shared.FactChanges then include('FactChanges');SPCFactChanges.New(shared)end -- B549: Commerce depends on it (via the Store)
       SPCCommerce.Start(P,shared);com=shared.Commerce
       com.Audit()
       function view(cid)return com.views['0:'..cid]end

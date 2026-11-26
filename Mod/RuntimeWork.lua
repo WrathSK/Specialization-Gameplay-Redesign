@@ -1,8 +1,10 @@
 include('CityReference')
+if not SPCRuntimeComposition then include('RuntimeComposition')end -- declared use of Native(); Gameplay loads it first
 -- D2: ephemeral batch indexes, never persisted or shared across writes/batches.
 SPCRuntimeWork={}
 function SPCRuntimeWork.New(P,shared)
  local b={};local byPlayer,live={}, {}
+ -- Kept: dozens of Read-only EffectiveFacts fixture doubles reach this path (CA-C04 follow-up).
  local effective=shared.EffectiveFacts;local scoped=effective.NewReader and effective.NewReader();local read=scoped or effective.Read
  function b.Facts(pid,c)
   -- Every lookup revalidates the shared phase's authority/governor/write witness.
@@ -119,11 +121,11 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
    if not eligible then return taking and status=='INELIGIBLE' or false end
   end
   if data.busy then
-   if P.Count then P.Count('busy_skip')end
+   P.Count('busy_skip')
    if not taking then mark(scope)end
    return false
   end
-  data.busy=true;if P.Observe then pcall(P.Observe,'audit',label)end
+  data.busy=true;pcall(P.Observe,'audit',label)
   local ok,why=pcall(run,scope,taking);data.busy=false
   local safe,text=pcall(tostring,why)
   data.auditError=not ok and (safe and text:sub(1,180) or 'RUNTIME_AUDIT_FAILED') or nil
@@ -196,9 +198,8 @@ function SPCRuntimeWork.InvestmentCity(P,shared,scope,batch,taking)
 end
 -- Fixed scalar attribution only. No native lookup, retained scope or event history.
 function SPCRuntimeWork.NoteScope(P,source,scope)
- if not P.Count then return end
- local native=SPCRuntimeComposition and SPCRuntimeComposition.Native(source) or source
- P.Count('scope_dispatch');P.Count(native==(SPCRuntimeComposition and SPCRuntimeComposition.Native(GameEvents) or GameEvents) and 'scope_gameevents' or 'scope_events')
+ local native=SPCRuntimeComposition.Native(source)
+ P.Count('scope_dispatch');P.Count(native==SPCRuntimeComposition.Native(GameEvents) and 'scope_gameevents' or 'scope_events')
  local kind=type(scope)=='table' and (scope.transfer and 'transfer' or scope.plot and 'plot' or scope.city~=nil and 'city' or scope.player~=nil and 'player')
  P.Count(kind and ('scope_'..kind) or 'scope_fallback')
  if not kind then P.Count('scope_unknown_signature')elseif kind=='player'then P.Count('scope_player_signature')end
@@ -211,17 +212,17 @@ function SPCRuntimeWork.Hook(P,source,name,fn)
    local y,building,owner=...
    local row=P.Info('Buildings',building)
    if row and type(row.BuildingType)=='string' and row.BuildingType:match('^BUILDING_SPC_') then return end
-   if P.Observe then P.Observe('dispatch',name) end
+   P.Observe('dispatch',name)
    local scope={player=type(owner)=='number' and owner or nil};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
   end
   if name=='PlayerTurnActivated' then
    if type(pid)~='number' then return end
    local turn=Game.GetCurrentGameTurn();if lastTurn[pid]==turn then return end
-   lastTurn[pid]=turn;if P.Observe then P.Observe('dispatch',name) end;local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
+   lastTurn[pid]=turn;P.Observe('dispatch',name);local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return
   end
   -- Civ VI native city/worker/governor events start with player ID. Events with
   -- plot-first or transfer signatures intentionally retain a full safety scope.
-  if P.Observe then P.Observe('dispatch',name) end
+  P.Observe('dispatch',name)
   if name:match('^Governor') or name=='CityWorkerChanged' or name=='CityFocusChanged'
    or name=='CityPopulationChanged' then local scope={player=pid};SPCRuntimeWork.NoteScope(P,source,scope);fn(scope);return end
   SPCRuntimeWork.NoteScope(P,source,nil);fn()
@@ -298,17 +299,13 @@ function SPCRuntimeWork.NewTargets(P,shared,visit,onError)
   return k
  end
  local function acknowledge(e,c)
-  if not e.name then return true end -- explicit standalone/legacy helper use
+  if not e.name then return true end -- unnamed exits: the normal path for owners that need no Store acknowledgement
   local store=shared.CityProgressionStore
   if e.completion then
-   assert(store and type(store.IsExitCurrent)=='function','RUNTIME_EXIT_CURRENT_UNAVAILABLE')
    local current=function()return t.exits[key(e.ref)]==e end
    assert(store.IsExitCurrent(e.name,c,e.loss,e.ticket,current)==true,'RUNTIME_EXIT_CURRENT_UNCONFIRMED')
    assert(e.completion(c,e.loss,e.ticket,current)==true,'RUNTIME_EXIT_GROUP_UNCONFIRMED')
    return true -- only the aggregate owner may acknowledge the whole Store exit
-  end
-  if not(store and type(store.ExitCompleted)=='function')then
-   return true -- isolated pre-Store fixtures only, not current Gameplay
   end
   assert(store.ExitCompleted(e.name,c,e.loss,e.ticket,function()return t.exits[key(e.ref)]==e end)==true,'RUNTIME_EXIT_ACK_UNCONFIRMED')
   return true
@@ -505,13 +502,13 @@ end
 
 function SPCRuntimeWork.TargetHook(P,source,name,fn)
  local e=P.Field(source,name);if not e or not e.Add then return end
- local function native(v)return SPCRuntimeComposition and SPCRuntimeComposition.Native(v) or v end
+ local function native(v)return SPCRuntimeComposition.Native(v)end
  local gameplay=native(source)==native(GameEvents)
  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
  local function scope(pid,cid)
   return {player=valid(pid) and pid or nil,city=valid(pid) and valid(cid) and cid or nil}
  end
- local function scoped(value)if P.Observe then pcall(P.Observe,'dispatch',name)end;pcall(SPCRuntimeWork.NoteScope,P,source,value);return fn(value)end
+ local function scoped(value)pcall(P.Observe,'dispatch',name);pcall(SPCRuntimeWork.NoteScope,P,source,value);return fn(value)end
  if gameplay then
   if name=='BuildingConstructed' or name=='BuildingPillageStateChanged' or name=='CityBuilt'then
    e.Add(function(pid,cid)scoped(scope(pid,cid))end)

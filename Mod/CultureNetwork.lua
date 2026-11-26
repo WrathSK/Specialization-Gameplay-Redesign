@@ -5,7 +5,7 @@ include('ReverseDependencies')
 include('ReadFailure')
 include('SafeCallbacks')
 local classifyFailure=SPCReadFailure.Classify
-local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+include('ExpeditionTrainingDiagnostics')
 -- B226: current network projection only. Store owns history; Bridge owns topology;
 -- native district workers own the yield count. No received history or timer.
 SPCCultureNetwork={Bits=8,Owned={},Districts={RESEARCH='DISTRICT_CAMPUS',CULTURE='DISTRICT_THEATER',INDUSTRY='DISTRICT_INDUSTRIAL_ZONE',COMMERCE='DISTRICT_COMMERCIAL_HUB'}}
@@ -44,7 +44,7 @@ function M.Start(P,shared)
  local definitions,dirty,sourceSamples,sourceCounts={},{},{},{};local initialized=false
  local ownedIndex={}
  local carrierHealth=SPCRuntimeWork.NativeHealth(P,shared,d,function(id)return ownedIndex[id]==true end,function(scope)d.Mark(scope.player,scope.city)end)
- local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'CULTURE_NETWORK')
+ local trace=SPCSafeCallbacks.OpenTrace(SPCExpeditionTrainingDiagnostics,P,'CULTURE_NETWORK')
  local lastWait;local lastHealth;local observe
  local function health(pid,reason,failure)
   if not trace then return end
@@ -193,7 +193,7 @@ function M.Start(P,shared)
   -- The current Bridge already owns a follow-up for its own pending proof.
   batch.proofPending=bridge.ready and input.revalidation=='NEEDS_REVALIDATION'
   local current=bridge.CurrentCultureBatch(pid,batch.selection)
-  assert(current.input.validity=='VERIFIED' and (current.input.effectAvailability=='AVAILABLE' or current.input.effectAvailability==nil and current.input.availability=='AVAILABLE' or current.input.continuityOnly),'CN_NETWORK_PENDING')
+  assert(current.input.validity=='VERIFIED' and (current.input.effectAvailability=='AVAILABLE' or current.input.continuityOnly),'CN_NETWORK_PENDING')
   batch.network=current;return current
  end
  local function plan(batch,pid,c,old)

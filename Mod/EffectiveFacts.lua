@@ -16,7 +16,6 @@ function SPCEffectiveFacts.Start(P,shared)
   if not result[1]then error(result[2],0)end
   return unpack(result,2,result.n)
  end
- local function scopeID(n)return type(n)=='number'and n>=0 and n<2147483648 and n%1==0 end
  function data.Version()return generation end
  function data.DistrictWriteVersion(pid,cid)
   if writes>0 then
@@ -30,8 +29,8 @@ function SPCEffectiveFacts.Start(P,shared)
   generation=generation+1;if phase then phase.values={};phase.count=0;phase.workers={};phase.workerCount=0;phase.anchors={};phase.anchorCount=0 end
   local dc=shared.DistrictCompleteness
   if scope and dc==scope.provider then
-   local ok=pcall(dc.FenceCarrierWrite,scope.owner,scope.city)
-   if ok then return true end
+   dc.FenceCarrierWrite(scope.owner,scope.city) -- asserts its own scope before any native write
+   return true
   end
   districtGeneration=districtGeneration+1
   return false
@@ -40,7 +39,7 @@ function SPCEffectiveFacts.Start(P,shared)
  function data.BeginWrite(_,carrier)
   local dc=shared.DistrictCompleteness
   local scope=false
-  if carrier and dc and dc.FenceCarrierWrite and scopeID(carrier.owner) and scopeID(carrier.city)then
+  if carrier and dc then
    scope={owner=carrier.owner,city=carrier.city,provider=dc}
   end
   writes=writes+1;local ticket={};tickets[ticket]=false
@@ -152,7 +151,6 @@ function SPCEffectiveFacts.Start(P,shared)
   if not project then return clone(value),referenceWitness end
   local window=phase;local version=generation;local changes=shared.FactChanges
   local function epochs()
-   if not(changes and changes.Generation)then return nil,nil end
    return changes.Generation(value.owner,'COMMERCE'),changes.Generation(value.owner,'COMMERCE',value.cityID)
   end
   local ownerEpoch,cityEpoch=epochs();local active=true
@@ -167,7 +165,7 @@ function SPCEffectiveFacts.Start(P,shared)
    local id,kind,plot=anchor.id,anchor.type,anchor.plot
    assert(type(id)=='number'and id>=0 and id%1==0 and type(kind)=='string'and type(plot)=='number'and plot>=0 and plot%1==0,'WORKER_ANCHOR_INVALID')
    -- Legacy/no-phase/unconfirmed identity retains the original fresh path.
-   if not(window and parent and changes and changes.Generation)or writes>0 then return readNative()end
+   if not(window and parent)or writes>0 then return readNative()end
    assert(unchanged(),'WORKER_FACTS_CHANGED_DURING_READ')
    window.workers=window.workers or {};window.workerCount=window.workerCount or 0
    local key=tostring(value.owner)..':'..tostring(value.cityID)..':'..tostring(plot)
@@ -192,7 +190,7 @@ function SPCEffectiveFacts.Start(P,shared)
   local function anchor(first,readNative,geometry)
    assert(active and type(readNative)=='function','ANCHOR_READER_EXPIRED')
    assert(type(first)=='table'and type(first.districtID)=='number'and first.districtID>=0 and first.districtID%1==0 and type(first.type)=='string','ANCHOR_REFERENCE_INVALID')
-   if not(window and parent and changes and changes.Generation)or writes>0 then return readNative()end
+   if not(window and parent)or writes>0 then return readNative()end
    assert(unchanged(),'ANCHOR_FACTS_CHANGED_DURING_READ')
    window.anchors=window.anchors or {};window.anchorCount=window.anchorCount or 0
    local key=tostring(value.owner)..':'..tostring(value.cityID)..':'..tostring(geometry==true)

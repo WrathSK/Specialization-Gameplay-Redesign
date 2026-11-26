@@ -57,7 +57,8 @@ shared.NetworkBridge={CurrentCapitalSources=function(pid,c,kind)
 end}
 shared.DistrictCompleteness={ReadFacts=function()return {validity='VERIFIED',availability='READY',value={domains={DISTRICT_CAMPUS={value=3}}}}end}
 function C.service()
- shared.Commerce={views={[source:GetOwner()..':'..source:GetID()]=commerce(source),[other:GetOwner()..':'..other:GetID()]=commerce(other)}}
+ shared.Commerce={views={[source:GetOwner()..':'..source:GetID()]=commerce(source),[other:GetOwner()..':'..other:GetID()]=commerce(other)},
+  TransactionCurrent=function()return true end} -- B549: the real Commerce always defines it
  SPCCapitalInvestment.Start(P,shared);cap=shared.CapitalInvestment
  cap.Refresh(0,source:GetID());cap.Refresh(0,other:GetID())
 end

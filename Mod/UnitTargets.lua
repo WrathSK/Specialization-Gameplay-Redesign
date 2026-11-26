@@ -91,7 +91,7 @@ function SPCUnitTargets.Start(P,shared)
   local ok,c,known=pcall(function()
    assert(P.IsTestPlayer(pid),'TEST_PLAYER_REQUIRED')
    local u=Players[pid]:GetUnits():FindID(params.UnitID);assert(u and u:GetOwner()==pid,'UNIT_MISSING')
-   if SPCUnitSiteFacts then return SPCUnitSiteFacts.CityAt(P,pid,u)end
+   return SPCUnitSiteFacts.CityAt(P,pid,u)
   end)
   -- A failed/unavailable hint keeps the original complete discovery. It never
   -- guesses a city or treats UNKNOWN as a confirmed empty target set.

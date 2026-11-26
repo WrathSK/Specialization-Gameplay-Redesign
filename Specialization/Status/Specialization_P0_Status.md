@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1162
-Implementation Build: develop B548.575 / modinfo575. Installed temporary B548.575 / modinfo575. Stable B528.555 / modinfo555.
+Status Revision: S1163
+Implementation Build: develop B549.576 / modinfo576. Installed temporary B548.575 / modinfo575. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,45 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B548.575 / modinfo575 [契约审计第 3 批：内部断言](#contract-audit-batch-3-internal-asserts--s1161)（第 2 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)）。本机[已临时安装 B548.575](#contract-audit-batch-3-installed--s1162)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B549.576 / modinfo576 [契约审计第 4 批：删除死检查](#contract-audit-batch-4-dead-checks-removed--s1163)（第 2、3 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)、[S1161](#contract-audit-batch-3-internal-asserts--s1161)）。本机[已临时安装 B548.575](#contract-audit-batch-3-installed--s1162)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B544 实机：负责人接受激活状态颜色与窗口宽度，要求标题改用城市面板的带底色等级徽章，并指出部分标题偏上。B545 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B548.575 已临时安装（含第 2、3 批），做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续批次（删除死检查与假存储夹具回退、去掉自产数据复查）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | B548.575 已临时安装（含第 2、3 批），做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续：去掉自产数据复查（第 5 批）、夹具替身迁移（收掉 S1163 保留的四处回退）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Contract audit batch 4: dead checks removed — S1163
+
+Owner 2026-11-26 批准第 4 批计划，含 CA-D14。原则：启动失败的模块不导出 `shared.X`，声明依赖它的模块会被跳过，所以对已声明依赖、已 include 模块和必有方法的存在性检查永远不会失败，予以删除；对非声明依赖的检查是真实的可用性判断，保留（例如 GreatWorkFacts 对存储、DevelopmentInvestment 对商业）。
+
+B549.576 实施内容：
+
+- **CA-D05**：商业、资本投资、发展投资、施工队、行业历史、投资动作、标准化、标准化效果、文化启发、考察训练、资产重组中约 25 处对已声明依赖的检查改为直接调用；`if shared.FactChanges then 注册` 不再悄悄跳过注册。
+- **CA-D01**：投资动作、单位动作、单位目标去掉 “UnitSiteFacts 不存在” 分支；引擎读取失败时的全量扫描保留。
+- **CA-D04、D12、B02、B09（部分）、A04**：Gameplay 接线直接调用导出方法；GreatWorkFacts 不再关闭不可能存在的旧实例；有效事实去掉事实世代和写入栅栏周围的冗余检查；存储的 `publishFact` 去掉走不到的回退记录，登记时不再重新校验内存索引。
+- **CA-A06（部分）**：延迟生命周期恢复不再断言存储必定 include 的模型。重复 `Validate` 未改。
+- **CA-C04（部分）**：运行工作去掉 `P.Count`/`P.Observe`/`SPCRuntimeComposition` 存在判断和“存储前夹具”退出确认分支，并显式 include `RuntimeComposition`；“legacy” 注释改正。
+- **CA-D06、D09、D03、C03、D11、D14**：商业/发展投资直接用 `Inspect` 和 `CurrentEffectPartners`；文化网络去掉永不成立的兼容条件；三个投资界面适配器要求观察者；文化意义模型删除 `bitParts`、`DiagnosticParts` 和无用参数；五个模块直接 include 训练诊断；考察训练删除读取前后的模块/方法替换检查。
+
+**保留（代码中已注明，留作“夹具替身迁移”后续项）**：`CityReference.Read` 的无存储分支、运行工作的 `NewReader`/`Inspect` 回退——几十个夹具替身没有 `ReferenceToken` 或只定义 `Read`；CA-B07 与区域完整度的 `facts.Version` 回退——当前玩法用例 `test_shared_d_fact_read` 用冻结的旧版有效事实重放。
+
+测试夹具（只改夹具，不改断言）：共享存储夹具启动 `FactChanges`；商业、资本、组合、标准化、文化网络夹具的替身补上真实模块必有的方法（`WithPhase`/`Inspect`/`NewReader`、`TransactionCurrent`、`ProofRevision`、`HistoryStartStatus`）；`test_pu04_negative`、`test_b239_commerce` 在启动前创建 `FactChanges`；`test_refactor_s5d4c5` 一个用例补上空存储。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：
+
+- 新增 `DevelopmentTests/test_dead_checks_retirement.py`，5 项通过；前三批专项 20 项仍通过。
+- `CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-74f5df76b4ed431fae5c2d5214a21096/closure.json`，SHA256 `709cfbea6a909bd1215542ceaa158099db0be4935473e46546252e04d6b63055`，已测源码快照 `e3c71d7b0b3d0c4085192e9f042c88006ff18f3a5cca6ffa0e2aa2cbedabe744`。
+- 175 份 Lua 编译、26 份 XML 解析、304 个包文件引用检查通过。
+- 与 HEAD 全量逐模块对比（494 个测试模块，两侧同一固定数据库配置）：438 个一致。夹具修正后剩下的新增失败用例（去重约 22 个，另有 s8/s9 累积套件重复计入）均属以下几类，按 DevelopmentTests README 保留原断言并登记为“已被 B549 取代”：
+  - 夹具替身缺少生产必有的方法：`P.Count`/`P.Observe`（文化启发/意义探针、attribution、s5d4c2 的跨城转移用例）、`ExitCompleted`（s7a6、s8c4、s8c5c 的 B339 用例）。并入夹具替身迁移后续项。
+  - 专测本批删除的路径：训练诊断文件缺失（o7 商业/网络追踪 4 项）、同一会话重启 GreatWorkFacts（great_work_notifications、p0_k）、无观察者构造界面适配器（b239/b241/b246 界面与 s9a2）、读取中替换方法（s9d1b 1 项）。
+  - 用历史探针源码重放诊断阶段（culture_meaning_diagnostic 等，调用已删的 `DiagnosticParts`）。
+
+实机：正常情况下行为不变，无需专门测试；B547 起的短测仍待做（`USER_GAME_TEST_REQUIRED`）。
 
 ### Contract audit batch 3 installed — S1162
 

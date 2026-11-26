@@ -46,6 +46,7 @@ def cross():
          return {schema=1,revision=4,anchor={owner=c.owner,cityID=c.id,token=c.token,first=f.first,specialization=f.specialization},investments={a='a',b='b',c='c'}}
         end end
         """)
+        if not l.eval('shared.FactChanges'):l.globals().include('FactChanges');l.execute('SPCFactChanges.New(shared)')  # B549: EffectiveFacts starts after FactChanges
         l.globals().include('EffectiveFacts');l.execute("SPCEffectiveFacts.Start(P,shared);f=shared.EffectiveFacts;d.Audit({player=0,city=1});assert(d.plans[0][1] and not d.errors[0][1]);function value()local n=0;for bit=0,15 do if cities[1].built['BUILDING_SPC_RESEARCH_CROSS_POS_'..bit]then n=n+2^bit end end;return n end;assert(value()>0)")
         return l
 

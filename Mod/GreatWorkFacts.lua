@@ -52,7 +52,6 @@ function F.Collector(P)
  end
 end
 function F.Start(P,shared)
- if shared.GreatWorkFacts and shared.GreatWorkFacts.Shutdown then shared.GreatWorkFacts.Shutdown()end
  local catalog=SPCGreatWorkCatalog.Build(P)
  -- Engine contexts use this existing monotonic session namespace pattern.
  ExposedMembers.SPC_GreatWorkEpoch=(ExposedMembers.SPC_GreatWorkEpoch or 0)+1
@@ -392,7 +391,7 @@ function F.StartDialogueTransport(P,shared)
  SPCLegacyCleanup.InstallDialogueLoad(P,d,#levels)
  local owned={};for n=2,#levels do owned['BUILDING_SPC_B059_D'..n]=true end
  for _,v in ipairs({25,50,100,200})do owned['BUILDING_SPC_B059_TEST'..v]=true end
- function d.IsOwnedCarrier(name)return owned[name]==true or shared.DialogueEffects and shared.DialogueEffects.IsOwnedCarrier and shared.DialogueEffects.IsOwnedCarrier(name)==true end
+ function d.IsOwnedCarrier(name)return owned[name]==true or shared.DialogueEffects and shared.DialogueEffects.IsOwnedCarrier(name)==true end
  -- One current accepted-pair receipt per supported player, never a history.
  -- Only the actual request handler calls this after both receivers return true.
  function d.ConfirmSamplePair(pid,packet)
@@ -436,7 +435,7 @@ function F.StartDialogueTransport(P,shared)
   return ok -- Accepted collection, independent of legacy projection success.
  end
  function d.Describe(pid,c)
-  return shared.DialogueEffects and shared.DialogueEffects.Describe and shared.DialogueEffects.Describe(pid,c) or '时代对话收益未就绪'
+  return shared.DialogueEffects and shared.DialogueEffects.Describe(pid,c) or '时代对话收益未就绪'
  end
  local transfer=P.Field(Events,'CityTransfered')
  if transfer and transfer.Add then transfer.Add(function()

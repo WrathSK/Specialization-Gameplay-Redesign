@@ -7,8 +7,8 @@ function SPCCurrentSpecializationFacts.Read(P,shared,pid,city)
   activeStatus=f.activeStatus,token=f.token,first=f.first and SPCDistrictCompleteness.Clone(f.first)}
 end
 
--- Optional read-only projection shares the real EffectiveFacts guard; legacy
--- profiles retain their original direct reads and independent policy checks.
+-- Read-only projection shares the real EffectiveFacts guard. The no-Inspect arm
+-- serves only the frozen-baseline replay in test_shared_d_fact_read (CurrentGameplay).
 function SPCCurrentSpecializationFacts.Inspect(P,shared,pid,city,project,negativeAnchor)
  local service=shared.EffectiveFacts
  if not service.Inspect then local function fresh(_,read)return read()end;return project(SPCCurrentSpecializationFacts.Read(P,shared,pid,city),fresh,fresh)end

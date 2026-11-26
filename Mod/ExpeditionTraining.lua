@@ -85,27 +85,21 @@ function SPCExpeditionTraining.Start(P,shared)
   return value
  end
  local function integer(v)return type(v)=='number'and v==v and v>=0 and v<1000000000 and v%1==0 end
+ -- Same-turn input stamps only. Module tables and methods are not swapped at
+ -- runtime, so there is no identity re-check between reads (CA-D14, B549).
  local function syncInputs(pid,id,c)
-  local store=shared.CityProgressionStore;local gate=shared.ExpeditionGate;local facts=shared.EffectiveFacts
-  local read=store and store.TrainingInputStamp;local capacity=T.CapacityInputStamp
-  if shared.ExpeditionTraining~=d or not gate or gate.Training~=T or type(read)~='function'or type(capacity)~='function'or not c then return nil end
-  local a={store=store,gate=gate,facts=facts,read=read,capacity=capacity,owner=pid,cityID=c:GetID(),x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn()}
+  if not c then return nil end
+  local a={owner=pid,cityID=c:GetID(),x=c:GetX(),y=c:GetY(),turn=Game.GetCurrentGameTurn()}
   if a.cityID~=id or not(integer(a.cityID)and integer(a.x)and integer(a.y)and integer(a.turn))then return nil end
-  a.before,a.core=read(pid,id,a.x,a.y);a.capacityInput=capacity(pid);a.factsRead=facts and facts.Read;a.available=T.Available;a.gateRead=T.Read
+  a.before,a.core=shared.CityProgressionStore.TrainingInputStamp(pid,id,a.x,a.y);a.capacityInput=T.CapacityInputStamp(pid)
   if type(a.before)~='string'or type(a.core)~='string'or type(a.capacityInput)~='string'then return nil end
   return a
- end
- local function sameInputs(a)
-  return a and shared.ExpeditionTraining==d and shared.CityProgressionStore==a.store and a.store.TrainingInputStamp==a.read
-   and shared.EffectiveFacts==a.facts and a.facts and a.facts.Read==a.factsRead and shared.ExpeditionGate==a.gate
-   and a.gate.Training==T and T.CapacityInputStamp==a.capacity and T.Available==a.available and T.Read==a.gateRead
  end
  local function coveredInputs(a)
   if not a or not a.after then return nil end
   local turn=Game.GetCurrentGameTurn() -- last native boundary, followed only by pure source/input checks
-  if not sameInputs(a)then return nil end
-  local capacity=a.capacity(a.owner);local post,core=a.read(a.owner,a.cityID,a.x,a.y)
-  if not sameInputs(a)or type(post)~='string'or type(core)~='string'or core~=a.core or post~=a.after
+  local capacity=T.CapacityInputStamp(a.owner);local post,core=shared.CityProgressionStore.TrainingInputStamp(a.owner,a.cityID,a.x,a.y)
+  if type(post)~='string'or type(core)~='string'or core~=a.core or post~=a.after
    or capacity~=a.capacityInput or turn~=a.turn then return nil end
   return {version=1,owner=a.owner,cityID=a.cityID,x=a.x,y=a.y,turn=a.turn,storeInput=post,capacityInput=a.capacityInput}
  end
@@ -157,8 +151,8 @@ function SPCExpeditionTraining.Start(P,shared)
     local sample={owner=pid,city=p.CityID,requestKey=p.Token}
     local sampled,a=pcall(syncInputs,pid,p.CityID,c);if sampled then inputObservation=a end
     local valid=pcall(eligible,pid,c,sample)
-    if sameInputs(inputObservation)then
-     local good,stamp,core=pcall(inputObservation.read,pid,p.CityID,inputObservation.x,inputObservation.y)
+    if inputObservation then
+     local good,stamp,core=pcall(shared.CityProgressionStore.TrainingInputStamp,pid,p.CityID,inputObservation.x,inputObservation.y)
      if good and core==inputObservation.core then inputObservation.after=stamp end
     end
     local allowed=valid and T.Available(pid)
@@ -357,7 +351,7 @@ function SPCExpeditionTraining.Start(P,shared)
   if diag then pcall(diag.Record,'LOAD_RECOVERY_RETURNED')end
  end)
  hook('CityTransfered',function()current(false)end)
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss,ticket)
+ shared.CityProgressionStore.RegisterExit('ExpeditionTraining',function(c,loss,ticket)
   local pid=loss.origin.owner
   local ok,value=run(pid,function()
    local s=T.Read(pid);assert(not s.blocked,'TRAINING_STATE_UNAVAILABLE')
@@ -401,5 +395,5 @@ function SPCExpeditionTraining.Start(P,shared)
    return true
   end,function()return false end) -- an unrelated saved team is never held by this cleanup's failure
   return ok==true and value==true
- end)end
+ end)
 end

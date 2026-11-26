@@ -6,7 +6,7 @@ include("NetworkInput")
 include('ReadFailure')
 include('SafeCallbacks')
 local classifyFailure=SPCReadFailure.Classify
-local traceLoaded=pcall(include,'ExpeditionTrainingDiagnostics')
+include('ExpeditionTrainingDiagnostics')
 SPCNetworkBridge={}
 function SPCNetworkBridge.Start(P,shared)
  local d={ready=false,players={},proofRevisions={}};shared.NetworkBridge=d
@@ -56,7 +56,7 @@ function SPCNetworkBridge.Start(P,shared)
  local derive
  local inputProviders={} -- one call-local service identity/turn witness per accepted owner input
  local views={} -- private, at most one view per player; never keyed by historical versions
- local logger=traceLoaded and SPCExpeditionTrainingDiagnostics
+ local logger=SPCExpeditionTrainingDiagnostics
  local reportTrace=SPCSafeCallbacks.OpenTrace(logger,P,'NETWORK_REPORT')
  local stateTrace=SPCSafeCallbacks.OpenTrace(logger,P,'NETWORK_STATE')
  local function state(stage,pid,b,reason,packet)

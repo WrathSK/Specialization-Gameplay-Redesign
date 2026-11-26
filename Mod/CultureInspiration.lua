@@ -247,13 +247,11 @@ function SPCCultureInspiration.Start(P,shared)
   assert(not failure and d.ready and not d.error and not d.auditError,'INSP_COLLECTION_DELIVERY_PENDING')
  end)
  local store=shared.CityProgressionStore
- if store then
-  store.RegisterExit('CultureInspiration',function(c,loss)
-   assert(store.IsExitTarget(c,loss),'INSP_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
-   withdrawLegacy(c)
-   for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil;pendingCleanup[k]=nil end end
-  end)
-  store.RegisterReturn('CultureInspiration',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)
- end
+ store.RegisterExit('CultureInspiration',function(c,loss)
+  assert(store.IsExitTarget(c,loss),'INSP_EXIT_UNCONFIRMED');store.RemoveOwned(c,loss,M.Owned)
+  withdrawLegacy(c)
+  for k,p in pairs(d.records)do if p.owner==loss.origin.owner and p.x==c:GetX() and p.y==c:GetY()then d.records[k]=nil;d.errors[k]=nil;pendingCleanup[k]=nil end end
+ end)
+ store.RegisterReturn('CultureInspiration',function(pid,c)d.MarkAudit({player=pid,city=c:GetID()})end)
  return d
 end

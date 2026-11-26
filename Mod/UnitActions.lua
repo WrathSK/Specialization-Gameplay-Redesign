@@ -21,11 +21,9 @@ function SPCUnitActions.Start(P,shared)
    view.x=u:GetX();view.y=u:GetY()
    if kind=='UNIT_SETTLER' then
     -- Locate the district before checking the cap, to give a specific cap tooltip.
-    local city,known
-    if SPCUnitSiteFacts then
-     local ok;ok,city,known=pcall(SPCUnitSiteFacts.DistrictCity,P,pid,u)
-     if not ok then city=nil;known=false end
-    end
+    -- A failed engine-reading hint falls back to the complete scan below.
+    local ok,city,known=pcall(SPCUnitSiteFacts.DistrictCity,P,pid,u)
+    if not ok then city=nil;known=false end
     if not known then for _,d in Players[pid]:GetDistricts():Members()do P.Count('district_scan')
      local c=d:GetCity()
      if c and c:GetOwner()==pid and d:GetX()==u:GetX() and d:GetY()==u:GetY() then city=c;break end

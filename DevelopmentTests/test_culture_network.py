@@ -3,6 +3,7 @@ from pathlib import Path
 import ast,subprocess,sqlite3,unittest,importlib.util,xml.etree.ElementTree as ET
 from lupa.lua55 import LuaRuntime
 from retired_crew_sources import B523, B533, boost_history, package, source as retired_source
+from refactor_harness import EF_DOUBLE_METHODS
 R=Path(__file__).resolve().parents[1];M=R/'Mod'
 def literal(file,name):
  t=ast.parse((R/'DevelopmentTests'/file).read_text())
@@ -85,7 +86,7 @@ function nativeTotal(c)return amount(c)*c.workers end
 function fire(name,...)Events[name].Fire(...)end
 '''
 def fixture(ready=True):
- l=LuaRuntime(unpack_returned_tuples=True);l.execute(BASE);l.execute(ADAPT)
+ l=LuaRuntime(unpack_returned_tuples=True);l.execute(BASE);l.execute(ADAPT);l.execute(EF_DOUBLE_METHODS)
  l.globals().include=lambda name:l.execute((M/(name+'.lua')).read_text())
  l.execute((M/'NetworkBridge.lua').read_text());l.execute('SPCNetworkBridge.Start(P,shared);net=shared.NetworkBridge;net.ready=true;cities[4].active=4')
  l.execute((M/'CultureNetwork.lua').read_text());l.execute('SPCCultureNetwork.Start(P,shared);cn=shared.CultureNetwork')

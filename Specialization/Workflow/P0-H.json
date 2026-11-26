@@ -11,8 +11,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1162",
-    "runtime": "B548.575 / modinfo575",
+    "status": "S1163",
+    "runtime": "B549.576 / modinfo576",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -60,7 +60,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B548.575 / modinfo575 source asserts internal contracts at five seams (governor gate, fact bindings, fact use, reverse dependency index, district catalogue); real UNKNOWN stays UNKNOWN. B547.574 remains installed.",
+      "source": "B549.576 / modinfo576 source removes presence checks on declared dependencies, included modules and always-defined methods; four fixture-only arms kept for a fixture-double follow-up. B548.575 remains installed.",
       "installed": "B548.575 / modinfo575 temporary, 305/305 MATCH at ff70ebe4b8e9dd1a7190b3b83d7fb54150067e8c90e3b144ac664e3cda91a837. Receipt B548.575-940dec6-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,7 +105,7 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-3-internal-asserts--s1161",
+      "report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-4-dead-checks-removed--s1163",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",

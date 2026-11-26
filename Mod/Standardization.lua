@@ -261,9 +261,9 @@ function SPCStandardization.Start(P,shared)
   log('INDUSTRY_TEMPLATES_REPORT',c,nil,reason)
   return '模板读取未完成：'..reason
  end
- if shared.CityProgressionStore then shared.CityProgressionStore.RegisterReturn('Standardization',function(pid,c)
+ shared.CityProgressionStore.RegisterReturn('Standardization',function(pid,c)
   data.pending[key(pid,c:GetID())]=nil;queueReconcile(pid,c:GetID()) -- callback precedes return commit; no reads/writes here
- end)end
+ end)
  local function hook(src,n,fn)
   local ev=P.Field(src,n);if ev and ev.Add then ev.Add(fn);data.hooks[n]=true end
  end

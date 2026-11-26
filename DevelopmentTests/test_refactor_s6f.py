@@ -85,6 +85,9 @@ def combined():
       P.Family=function(id)return families[id]end
       for _,c in ipairs({source,research,other})do function c:GetYield(y)return y=='SCIENCE'and 100 or 0 end end
       shared.NetworkBridge.CurrentEffectPartners=function()return {validity='VERIFIED',partners={},references={}}end
+      -- B549: Commerce calls these directly; the real bridge always defines them.
+      shared.NetworkBridge.ProofRevision=shared.NetworkBridge.ProofRevision or function()return 0 end
+      shared.NetworkBridge.TransactionCurrent=shared.NetworkBridge.TransactionCurrent or function()return true end
       -- Native write doubles retain the same Begin/End fence as production Probe.
       local create,remove=P.CreateBuilding,P.RemoveBuilding
       local function write(fn,...)local t=f.BeginWrite();local ok,v=pcall(fn,...);f.EndWrite(t);assert(ok,v);return v end

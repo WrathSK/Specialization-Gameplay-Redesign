@@ -27,15 +27,15 @@ local function peacefulReason(P,value)
   if P.Field(CityTransferTypes,name)==value then return evidence end
  end
 end
+-- Every caller passes the committed record; FactChanges starts before the Store.
 local function publishFact(shared,c,cause,r,investment,topic)
- if not shared.FactChanges then return end -- isolated legacy import/tests have no automatic consumers
  local ok,err=pcall(function()
-  local a=r and (r.current or r.origin) or {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}
+  local a=r.current or r.origin
   local kinds=topic and {'HISTORY'} or {'IDENTITY','POTENTIAL','ACTIVE'}
   shared.FactChanges.InvalidateCommitted(a.owner,a.cityID,kinds,topic)
   shared.FactChanges.Emit({owner=a.owner,cityID=a.cityID,
-   reference=table.concat({a.owner,a.cityID,a.x,a.y,r and r.base.token or ''},':'),
-   revision=r and r.revision,cause=cause,kinds=kinds,topic=topic,
+   reference=table.concat({a.owner,a.cityID,a.x,a.y,r.base.token},':'),
+   revision=r.revision,cause=cause,kinds=kinds,topic=topic,
    investment=type(investment)=='function' and investment(a) or investment})
  end)
  if not ok then shared.PermanentWriteObserverError=tostring(err);SPCSafeCallbacks.Record(shared,'Store:fact-publish',err)end
@@ -2026,7 +2026,7 @@ function SPCCityProgressionStore.Start(P,shared)
    -- Reject known unsafe admission before allocating index/token state; the
    -- eventual record write checks again across any intervening engine callbacks.
    checkReference(nil,referenceKey({origin=a}))
-   local nextIndex=copyIndex(index);local serial=nextIndex.counter+1
+   local nextIndex=cp(index);local serial=nextIndex.counter+1 -- index was validated when loaded
    assert(serial<=capacity,'MAP_REGISTRATION_LIMIT')
    token='DEV-B013-P'..a.owner..'-'..serial
    assert(Game:GetProperty(PREFIX..token)==nil,'FOUNDATION_ORPHAN_RECORD')

@@ -222,3 +222,16 @@ def separate_legacy_event_namespaces(source):
     assert source.count('GameEvents=Events')==1,'FIXTURE_NAMESPACE_PROFILE_CHANGED'
     RUN.setdefault('fixture_profiles',{})['separate_legacy_event_namespaces']='Replace historical alias with distinct GameEvents callback storage; no assertion/runtime-source changes.'
     return source.replace('GameEvents=Events',"GameEvents=setmetatable({},{__index=function(t,k)local e={Add=function(f)local key='GameEvents.'..k;hooks[key]=hooks[key]or{};table.insert(hooks[key],f)end};rawset(t,k,e);return e end})")
+
+
+# B549: production no longer falls back when EffectiveFacts lacks WithPhase,
+# Inspect or NewReader. Fixture doubles that only define Read get the same
+# pass-through behaviour the removed fallbacks had. Assertions are unchanged.
+EF_DOUBLE_METHODS = r"""
+do local ef=shared.EffectiveFacts
+ local function fresh(_,read)return read()end
+ ef.WithPhase=ef.WithPhase or function(_,fn,...)return fn(...)end
+ ef.Inspect=ef.Inspect or function(pid,c,project)return project(ef.Read(pid,c),fresh,fresh)end
+ ef.NewReader=ef.NewReader or function()return function(pid,c,project)if project then return ef.Inspect(pid,c,project)end;return ef.Read(pid,c)end end
+end
+"""
