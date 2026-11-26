@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1155
-Implementation Build: develop B545.572 / modinfo572. Installed temporary B544.571 / modinfo571. Stable B528.555 / modinfo555.
+Status Revision: S1156
+Implementation Build: develop B545.572 / modinfo572. Installed temporary B545.572 / modinfo572. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B545.572 / modinfo572 [改用带底色的等级徽章并校正标题](#management-capacity-title-badges--s1155)。本机仍为 [B544.571 临时包](#management-capacity-gold-means-active-installed--s1154)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B545.572 / modinfo572 [改用带底色的等级徽章并校正标题](#management-capacity-title-badges--s1155)。本机[已临时安装 B545.572](#management-capacity-title-badges-installed--s1156)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B544 实机：负责人接受激活状态颜色与窗口宽度，要求标题改用城市面板的带底色等级徽章，并指出部分标题偏上。B545 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B545 临时安装核验后，检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | 检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Management capacity title badges installed — S1156
+
+B545.572 / modinfo572 temporary, 303/303 MATCH at 60ba588e917acda985fbe0c5658b3f9e3c4a8d4e35c06767d2620d6c49ddd89b. Receipt B545.572-03cc09c-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified. 安装源码 03cc09c25109068395008110dcbb28ff033430c2。先按 B544 回执还原 B528.555 原包，再安装 B545；新增 24 像素等级徽章图集使包文件增至 303 个，12 个已退役开发版路径按既有清单移除，事务标记已清除。实机外观待复验。
 
 ### Management capacity title badges — S1155
 
