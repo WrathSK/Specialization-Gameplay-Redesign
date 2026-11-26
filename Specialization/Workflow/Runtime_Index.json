@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "runtime_commit": "9de3f36cc3b24b57fdd264b218a3aca32ec9e72a",
-  "runtime": "B539.566 / modinfo566 temporary, 301/301 MATCH at 2d03822eee842e8f5051ecc91e6d98b640c8661430f3be6389345c4629fd068b. Receipt B539.566-9de3f36-playtest.json DEVELOP_ACTIVE. B528.555 backup verified.",
+  "runtime_commit": "adc6b64637821f39feeb8f4c141681e236b27028",
+  "runtime": "B540.567 / modinfo567 temporary, 301/301 MATCH at 172264a4985511cdfc4746dcc5ac662579f3cb8ca4bc66852c5ee7d51fcc20c5. Receipt B540.567-adc6b64-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
   "historical_inventory": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/28e257c4598ff1169444a13d1482acef40c6991c/Specialization/Architecture/v2/D0032_Runtime_Inventory.json",
   "role": "Canonical Mod source review hashes; runtime/runtime_commit identify last verified deployed package, separately confirmed by receipt. No new full audit.",
   "files": {
