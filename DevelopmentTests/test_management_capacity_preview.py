@@ -44,6 +44,7 @@ function control:ChangeParent(parent)
   self.parent=parent
   table.insert(parent.children,self)
 end
+function control:SetTexture(value) self.texture=value end
 function control:SetText(value) self.text=value end
 function control:SetIcon(value,size) self.icon=value; self.iconSize=size end
 function control:SetHide(value) self.hidden=value end
@@ -55,7 +56,7 @@ function control:GetSizeX() return 200+#self.children*56 end
 function control:SetSizeX(value) self.width=value end
 Controls = {}
 for _,id in ipairs({"Window","Backdrop","ScreenAnimIn","Readout","HUDCount","Parking","OpenButton","LaunchItem","Cities",
-                    "Close","Confirm","Undo","Available","Total"}) do Controls[id]=widget() end
+                    "ModalBG","ModalScreenTitle","ModalScreenClose","YieldsContainer","Confirm","Undo","Available","Total"}) do Controls[id]=widget() end
 Controls.Window:SetHide(true)
 Controls.Backdrop:SetHide(true)
 function Controls.ScreenAnimIn:SetToBeginning() self.reset=true end
@@ -132,7 +133,7 @@ class CapacityPreview(unittest.TestCase):
           assert(Controls.Available.text=="LOC_SPC_CAP_FREE0" and rows[2].Plus.disabled)
           Controls.Confirm.click(); assert(Controls.HUDCount.text=="10/10" and Controls.Confirm.disabled)
           assert(rows[4].Detail.text=="LOC_SPC_CAP_DETAIL0/4/0")
-          rows[1].Minus.click(); Controls.Close.click(); Controls.OpenButton.click()
+          rows[1].Minus.click(); Controls.ModalScreenClose.click(); Controls.OpenButton.click()
           assert(rows[1].Points.text=="3" and Controls.HUDCount.text=="10/10")
         """)
 
@@ -150,7 +151,14 @@ class CapacityPreview(unittest.TestCase):
         import re
         xml = PANEL.with_suffix(".xml")
         tree = ET.parse(xml)
-        self.assertEqual(tree.find(".//Grid[@ID='Window']").get("Anchor"), "C,C")
+        window = tree.find(".//Container[@ID='Window']")
+        self.assertEqual(window.get("Anchor"), "C,C")
+        self.assertEqual(window.get("Size"), "1024,768")
+        self.assertIsNotNone(window.find("./Container[@Style='ModalScreenWide']"))
+        self.lua.execute("""
+          assert(Controls.ModalBG.texture=="Governors_BackgroundTile_ScreenFill")
+          assert(Controls.ModalScreenTitle.text=="LOC_SPC_CAP_TITLE" and Controls.YieldsContainer:IsHidden())
+        """)
         self.assertEqual(tree.find(".//Container[@ID='Backdrop']").get("Style"), "FullScreenVignetteConsumer")
         hud = tree.find(".//Grid[@ID='Readout']")
         self.assertIsNotNone(hud)

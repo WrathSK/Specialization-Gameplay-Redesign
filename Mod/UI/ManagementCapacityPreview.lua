@@ -153,6 +153,9 @@ local function attach()
   end
 end
 
+Controls.ModalBG:SetTexture("Governors_BackgroundTile_ScreenFill")
+Controls.ModalScreenTitle:SetText(Locale.Lookup("LOC_SPC_CAP_TITLE"))
+Controls.YieldsContainer:SetHide(true)
 buildRows()
 Controls.OpenButton:RegisterCallback(Mouse.eLClick, function()
   if UIManager:IsInPopupQueue(ContextPtr) then closePanel() else openPanel() end
@@ -165,7 +168,7 @@ ContextPtr:SetInputHandler(function(input)
   end
   return false
 end, true)
-Controls.Close:RegisterCallback(Mouse.eLClick, closePanel)
+Controls.ModalScreenClose:RegisterCallback(Mouse.eLClick, closePanel)
 Controls.Undo:RegisterCallback(Mouse.eLClick, discard)
 Controls.Confirm:RegisterCallback(Mouse.eLClick, function()
   for _, sample in ipairs(examples) do
