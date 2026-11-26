@@ -242,8 +242,9 @@ local function request(playerID,params)
       y=ok and f.presentationY or nil,error=not ok and tostring(f) or nil}
     shared.CityPresentationView=view -- legacy/DEV mirror, not the typed consumer's reply
     if replies then
-      local good,accepted=false,false
-      if shared.PlayerActionReplies==service and service.Presentations==replies then good,accepted=pcall(replies.PublishPresentation,playerID,params,view)end
+      local good,accepted,why=false,false,'REPLY_SERVICE_CHANGED'
+      if shared.PlayerActionReplies==service and service.Presentations==replies then good,accepted,why=pcall(replies.PublishPresentation,playerID,params,view)end
+      if not(good and accepted==true)then SPCSafeCallbacks.Record(shared,'Reply:city-presentation',good and why or accepted)end
       shared.ObserverErrors=shared.ObserverErrors or {}
       shared.ObserverErrors['city-presentation-reply']=not(good and accepted==true)and 'PLAYER_PRESENTATION_REPLY_UNAVAILABLE'or nil
       if not(good and accepted==true)and shared.PlayerActionReplies==service and service.Presentations==replies then pcall(replies.FailPresentation,playerID,params)end
@@ -461,9 +462,10 @@ local function request(playerID,params)
       end
       local view=shared.UnitActions.ReadView(playerID,params.UnitID,params.Token)
       if replies then
-        local ok,accepted=false,false
-        if shared.PlayerActionReplies==service and service.Views==replies then ok,accepted=pcall(replies.PublishView,playerID,params,view)end
+        local ok,accepted,why=false,false,'REPLY_SERVICE_CHANGED'
+        if shared.PlayerActionReplies==service and service.Views==replies then ok,accepted,why=pcall(replies.PublishView,playerID,params,view)end
         shared.ObserverErrors=shared.ObserverErrors or {}
+        if not(ok and accepted==true)then SPCSafeCallbacks.Record(shared,'Reply:unit-view',ok and why or accepted)end
         shared.ObserverErrors['unit-view-reply']=not(ok and accepted==true)and 'PLAYER_VIEW_REPLY_UNAVAILABLE'or nil
         if not(ok and accepted==true)and shared.PlayerActionReplies==service and service.Views==replies then pcall(replies.FailView,playerID,params)end
       end
@@ -479,8 +481,9 @@ local function request(playerID,params)
     end
     local text,result,outcome=shared.UnitActions.Run(playerID,params)
     if replies then
-      local ok,accepted=false,false
-      if shared.PlayerActionReplies==replies then ok,accepted=pcall(replies.Publish,playerID,params,text,outcome)end
+      local ok,accepted,why=false,false,'REPLY_SERVICE_CHANGED'
+      if shared.PlayerActionReplies==replies then ok,accepted,why=pcall(replies.Publish,playerID,params,text,outcome)end
+      if not(ok and accepted==true)then SPCSafeCallbacks.Record(shared,'Reply:unit-action',ok and why or accepted)end
       shared.ObserverErrors=shared.ObserverErrors or {}
       shared.ObserverErrors['unit-action-reply']=not(ok and accepted==true)and 'PLAYER_REPLY_UNAVAILABLE'or nil
     else
@@ -498,9 +501,10 @@ local function request(playerID,params)
       end
       local targets=shared.UnitTargets.Refresh(playerID,params)
       if replies then
-        local ok,accepted=false,false
-        if shared.PlayerActionReplies==service and service.Targets==replies then ok,accepted=pcall(replies.PublishTargets,playerID,params,targets)end
+        local ok,accepted,why=false,false,'REPLY_SERVICE_CHANGED'
+        if shared.PlayerActionReplies==service and service.Targets==replies then ok,accepted,why=pcall(replies.PublishTargets,playerID,params,targets)end
         shared.ObserverErrors=shared.ObserverErrors or {}
+        if not(ok and accepted==true)then SPCSafeCallbacks.Record(shared,'Reply:unit-target',ok and why or accepted)end
         shared.ObserverErrors['unit-target-reply']=not(ok and accepted==true)and 'PLAYER_TARGET_REPLY_UNAVAILABLE'or nil
         if not(ok and accepted==true)and shared.PlayerActionReplies==service and service.Targets==replies then pcall(replies.FailTargets,playerID,params)end
       end

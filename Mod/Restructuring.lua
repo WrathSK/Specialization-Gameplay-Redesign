@@ -12,7 +12,13 @@ function SPCRestructuring.Start(P,shared)
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function ref(c)return {owner=c:GetOwner(),cityID=c:GetID(),x=c:GetX(),y=c:GetY()}end
  local function carrierStamp(a,token)return store.CarrierReferenceStamp(a.owner,a.cityID,a.x,a.y,token)end
- local function code(e)return tostring(e):match('(REST_[A-Z_]+)') or tostring(e):match('([A-Z][A-Z_]+)') or 'REST_READ_FAILED'end
+ -- Designed reasons pass through (own REST_ codes or another module's PREFIX_CODE);
+ -- an uncoded error keeps its raw text in the error log.
+ local function code(e)
+  local c=tostring(e):match('(REST_[A-Z_]+)') or tostring(e):match('([A-Z][A-Z0-9]*_[A-Z0-9_]+)')
+  if not c then SPCSafeCallbacks.Record(shared,'Restructuring',e)end
+  return c or 'REST_READ_FAILED'
+ end
  local function log(stage,pid,c,s,reason)
   if trace then trace.Record(stage,{owner=pid,city=c and c:GetID(),phase=s and s.phase,
    teamKey=s and s.team and s.team.uid,taskStart=s and s.started,taskDue=s and s.started and s.started+5,

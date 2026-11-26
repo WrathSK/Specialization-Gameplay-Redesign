@@ -11,6 +11,7 @@ if not SPCDevelopmentInvestmentModel then include('DevelopmentInvestmentModel') 
 if not SPCStoreSubrecords then include('StoreSubrecords')end
 if not SPCStoreDeferredLifecycle then include('StoreDeferredLifecycle')end
 if not SPCStoreLifecycleRecovery then include('StoreLifecycleRecovery')end
+if not SPCSafeCallbacks then include('SafeCallbacks')end
 -- E2: bounded explicit city collection with isolated B103 lifecycle per record.
 SPCCityProgressionStore={KEY='SPC_CITY_PROGRESSION_E2_V1',INDEX='SPC_PROGRESSION_INDEX_V3',RECORD='SPC_PROGRESSION_CITY_V3_'}
 local conquestEvidence='CONQUEST+Initialized+Transfer'
@@ -37,7 +38,7 @@ local function publishFact(shared,c,cause,r,investment,topic)
    revision=r and r.revision,cause=cause,kinds=kinds,topic=topic,
    investment=type(investment)=='function' and investment(a) or investment})
  end)
- if not ok then shared.PermanentWriteObserverError=tostring(err)end
+ if not ok then shared.PermanentWriteObserverError=tostring(err);SPCSafeCallbacks.Record(shared,'Store:fact-publish',err)end
 end
 -- Fixed pre-commit return duties; all unlisted marks run in the final phase.
 local returnPhase={DistrictCompleteness=1,NetworkBridge=1,GreatWorkFacts=1,
@@ -346,8 +347,9 @@ local function CreateProgressionRecord(P,shared,storage)
   pcall(function()
    local facts=shared.EffectiveFacts
    if facts and facts.NoteTrainingReference then
-    local good=pcall(facts.NoteTrainingReference,c,current,root.base.token)
+    local good,why=pcall(facts.NoteTrainingReference,c,current,root.base.token)
     if type(facts)=='table'then facts.trainingReferenceObservationError=not good and 'TRAINING_REFERENCE_NOTE_FAILED'or nil end
+    if not good then SPCSafeCallbacks.Record(shared,'Store:training-reference',why)end
    end
   end)
   assert(not root.referenceInvalidated,'PROGRESSION_REFERENCE_REMOVED')
@@ -586,7 +588,7 @@ local function CreateProgressionRecord(P,shared,storage)
     if skipped then noteTiming('commerce',r.commerce.reputation,value.reputation)end
     publishFact(shared,c,'REPUTATION_COMMITTED',n,nil,'COMMERCE')end
   end)
-  d.commerceError=not ok and tostring(err) or nil
+  if not ok then SPCSafeCallbacks.Record(shared,'Store:commerce-tick',err)end
  end
  -- B212: Expedition Insight history shares the record's commit/readback boundary.
  function d.ExpeditionInsights(pid,c)
@@ -628,7 +630,7 @@ local function CreateProgressionRecord(P,shared,storage)
     publishFact(shared,c,'TRADITION_COMMITTED',n,nil,'TRADITION')
    end
   end)
-  d.traditionError=not ok and tostring(err) or nil
+  if not ok then SPCSafeCallbacks.Record(shared,'Store:tradition-tick',err)end
  end
  -- Session-only transition assembly. Never reconstruct an incomplete chain at load.
  local function track(name,owner,id,x,y)

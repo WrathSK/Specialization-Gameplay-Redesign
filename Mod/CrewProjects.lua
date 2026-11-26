@@ -22,7 +22,12 @@ function SPCCrewProjects.Start(P,shared,readQueue)
  local function city(pid,id)return Players[pid] and Players[pid]:GetCities():FindID(id)end
  local function mark(pid,id)if P.IsTestPlayer(pid) and M.Int(id)then dirty[key(pid,id)]={pid,id}end end
  local function markPlayer(pid)if P.IsTestPlayer(pid)then for _,c in Players[pid]:GetCities():Members()do mark(pid,c:GetID())end end end
- local function code(e)return tostring(e):match('CREW_[A-Z_]+') or 'CREW_READ_UNAVAILABLE'end
+ -- Designed reasons pass through; an uncoded error keeps its raw text in the error log.
+ local function code(e)
+  local c=tostring(e):match('CREW_[A-Z_]+')
+  if not c then SPCSafeCallbacks.Record(shared,'Crew',e)end
+  return c or 'CREW_READ_UNAVAILABLE'
+ end
  local function observe(stage,pid,c,v)
   v=v or {};v.owner=pid;v.city=c and c:GetID();trace.Record(stage,v)
  end

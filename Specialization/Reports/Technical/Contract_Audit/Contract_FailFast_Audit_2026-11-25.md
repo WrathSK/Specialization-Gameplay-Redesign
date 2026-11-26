@@ -130,6 +130,14 @@ Observation (no class): `CapitalInvestment.lua:358-359` and `DevelopmentInvestme
 4. **Drop own-payload re-validation:** T3 (except CA-B03, which is in batch 2). Tests pin some guards (`test_refactor_s9a2.py:64`, `test_refactor_s9c*`); those assertions would be replaced, not weakened.
 5. **Owner decisions first:** legacy fixture retirement (CA-A01 with CA-D13, CA-B01, CA-C06); SAFE-004 under same-build (CA-A05); isolation remnants (CA-C07); dead NetworkBridge API (CA-C08); observer pcall layers (CA-B04); typed reply validation (CA-C05); module-swap checks (CA-D14); diagnostics as hard dependency (CA-D11); DistrictCompleteness failure policy (CA-D08).
 
+## Owner decisions (2026-11-25, after the report)
+
+- **Engineering policy.** Do not over-defend: a contract violation inside our own code should blow up, because it means there is a bug. Keep enough probes and error logs to find the root cause. Probes must stay isolated from production modules, so that deleting a probe has no effect on production. Production may at most record a failure it caught into a plain shared error log (`SPCSafeCallbacks.Record` → `shared.ErrorLog`), with no effect on control flow. Printing and collection live in a separate context.
+- **No compatibility before release.** No compatibility with old versions or old saves of any kind before release.
+- **CA-C05: option A.** Remove the reply format re-validation and keep only request identity and transport budgets.
+- **CA-A01 and CA-D13: retire them.** This covers the legacy test adapter, schema-1 support and the second ledger path. Under the no-compatibility rule, CA-A05, the schema-1 parts of CA-A06 and CA-A08 join the same retirement batch.
+- **Batch 1 is authorised and implemented as B546.573:** CA-A02, CA-C01, CA-D07 and CA-C05, plus the isolated `UI/ErrorProbe` printer and the `[SPC][ERR]` collector allowlist. See the Status checkpoint S1157.
+
 ## Coverage
 
 - **Groups A, B and C:** every assigned module read in full.

@@ -43,7 +43,12 @@ function M.Start(P,shared)
   for k,v in pairs(a)do if not same(v,b[k])then return false end end
   for k in pairs(b)do if a[k]==nil then return false end end;return true
  end
- local function code(e)return tostring(e):match('(COMMERCE_[A-Z0-9_]+)') or tostring(e):match('(NETWORK_[A-Z0-9_]+)') or 'COMMERCE_STATE_UNKNOWN'end
+ -- Designed reasons pass through; an uncoded error keeps its raw text in the error log.
+ local function code(e)
+  local c=tostring(e):match('(COMMERCE_[A-Z0-9_]+)') or tostring(e):match('(NETWORK_[A-Z0-9_]+)')
+  if not c then SPCSafeCallbacks.Record(shared,'Commerce',e)end
+  return c or 'COMMERCE_STATE_UNKNOWN'
+ end
  local function integer(n)return type(n)=='number' and n>=0 and n<math.huge and n%1==0 end
  local function isolated(pid)return shared.NetworkIsolation and shared.NetworkIsolation.Active(pid)==true end
  local function emit(stage,data)if trace then pcall(trace,stage,data)end end

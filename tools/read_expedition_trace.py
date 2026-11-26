@@ -33,6 +33,8 @@ HD_PATTERNS = (re.compile(r'\S{1,40} 人口变化 -?\d{1,6}$'), re.compile(r'中
 GATE_PREFIX = '[SPC][B212][GATE] '
 # Expedition Gate fixed-format action/task prints and explicitly requested Insight reports.
 GATE_PATTERN = re.compile(r'\[SPC\]\[B191\]\[N1_(?:SPY|SPY_ERROR|SPY_REQUEST|TASK|INSIGHT)\] [^\x00-\x1f]{1,400}$')
+# Production error log printed by the isolated UI/ErrorProbe context (Owner policy 2026-11-25).
+ERR_PATTERN = re.compile(r'\[SPC\]\[ERR\] seq=\d{1,9} label=[A-Za-z0-9:_-]{1,64} [^\x00-\x1f]{1,400}$')
 MAX_FRAMES = 16384
 PREFIX = '[SPC][B205][READ] '
 TRAIN_PREFIX = '[SPC][B205][TRAIN] '
@@ -211,6 +213,9 @@ def hd_line(line):
     match = GATE_PATTERN.search(line.rstrip())
     if match:
         return GATE_PREFIX + match.group(0)
+    match = ERR_PATTERN.search(line.rstrip())
+    if match:
+        return match.group(0)
     for pattern in HD_PATTERNS:
         match = pattern.search(line.rstrip())
         if match:

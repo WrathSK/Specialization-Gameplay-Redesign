@@ -80,6 +80,7 @@ class Session:
         self.hd = Counter()
         self.gate = Counter()
         self.gate_total = 0
+        self.errors = 0
         self.hd_total = 0
         self.hd_dropped = 0
         self.meta_counts = {}
@@ -269,6 +270,7 @@ class Session:
             lines.append('culture_diagnostic_points: ' + ', '.join('%s=%d' % kv for kv in self.culture_points.most_common(16)))
             lines.append('culture_diagnostic_scope: optional bounded observations; handler return is not committed acceptance; carrier plan is not measured final GPP')
         lines.append('gate_prints: %d' % self.gate_total)
+        lines.append('error_prints: %d' % self.errors)
         lines += ['gate: %s x%d' % kv for kv in sorted(self.gate.items())]
         lines += ['hd: %s x%d' % kv for kv in sorted(self.hd.items())]
         lines += ['alert: ' + text for text in self.alerts] or ['alerts: none']
@@ -315,6 +317,11 @@ def run(session, capture=reader.capture, clock=time.monotonic, sleep=time.sleep,
                     session.memory.write('gc_print', text=line)
                 elif line.startswith(reader.PREFIX + 'META '):
                     session.add_meta(line)
+                elif line.startswith('[SPC][ERR] '):
+                    session.errors += 1
+                    session.records.write(datetime.now(timezone.utc).strftime('%H:%M:%S') + ' err ' + line + '\n')
+                    session.records.flush()
+                    out(line)
                 elif line.startswith(reader.GATE_PREFIX):
                     shown = session.add_gate(line)
                     if shown:

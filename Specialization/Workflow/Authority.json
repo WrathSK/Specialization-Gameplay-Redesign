@@ -10,8 +10,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1156",
-    "runtime": "B545.572 / modinfo572",
+    "status": "S1157",
+    "runtime": "B546.573 / modinfo573",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "03cc09c25109068395008110dcbb28ff033430c2",
   "current_batch": "MANAGEMENT_CAPACITY_LAYOUT_AWAITING_VISUAL_REVIEW",
-  "next_batch": "Owner checks the installed coloured level badges and title centring; the window appearance then freezes until pre-release polish.",
+  "next_batch": "Install B546.573 temporarily. Then the Owner approves the next contract-audit batch (internal asserts, dead checks, own-payload re-validation, legacy retirement).",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B545.572 / modinfo572 temporary, 303/303 MATCH at 60ba588e917acda985fbe0c5658b3f9e3c4a8d4e35c06767d2620d6c49ddd89b. Receipt B545.572-03cc09c-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
   "stable": "main B528.555 / modinfo555 from PR #9 merge 0beca3138b58595bfa02749e4f5ba3662736b9e9. Previous stable B489.516 rollback verified.",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose is not current authority; current Spec/Status and task-specific Architecture govern. B069 investigation maps and B076 inventory/validation are retrieved through the fixed Historical index; current module review provenance remains in Runtime_Index.files.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1156 D0067 A0192. Capacity window title badges; native review pending.",
+  "context_review_status": "S1157 D0067 A0192. Contract audit batch 1: visible errors; no gameplay change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -60,7 +60,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-title-badges--s1155",
-  "source_status": "B545.572 / modinfo572 temporarily installed. Stable main B528.555.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-1-visible-errors--s1157",
+  "source_status": "B546.573 / modinfo573 source records swallowed errors in shared.ErrorLog with an isolated UI probe and removes reply format re-validation. B545.572 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published. 2026-11-18: Primary may classify and retire eligible tracked document families without a file-count approval gate; preserve actual current responsibilities, verified published originals and existing evidence/role boundaries. 2026-11-18 Owner resumed document maintenance after the S1105 safe checkpoint; continue the existing delegated criteria and decision boundaries. No runtime/deployment/main action. 2026-11-20 Owner accepted the city ownership rules and implementation sequence. Develop only; new permanent fields require separate approval."
 }

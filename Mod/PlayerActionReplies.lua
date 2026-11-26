@@ -32,42 +32,30 @@ function SPCPlayerActionReplies.New(epoch,version,scope)
   cursor=cursor%8+1;erase(cursor);slots[cursor]=row;index[k]=cursor;count=count+1
   return true
  end
+ -- Payloads come from our own Gameplay producers in the same package. Only the
+ -- request identity and the transport budgets are checked here (Owner 2026-11-25:
+ -- no format re-validation; a malformed payload is a producer bug and may throw).
  function d.Publish(pid,p,value,outcome)
   if scope~='UNIT_ACTION'then return false,'INVALID_SCOPE'end
   if not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
-  if type(value)~='string' or #value>200000 then return false,'INVALID_TEXT'end
+  if #value>200000 then return false,'TEXT_BUDGET'end
   local result
-  if outcome~=nil then
-   if type(outcome)~='table' or getmetatable(outcome)~=nil then return false,'INVALID_OUTCOME'end
-   result={}
-   for _,field in ipairs({'status','kind','phase'})do
-    local v=outcome[field]
-    if v~=nil and not text(v,128)then return false,'INVALID_OUTCOME'end
-    result[field]=v
-   end
-  end
+  if outcome~=nil then result={status=outcome.status,kind=outcome.kind,phase=outcome.phase}end
   return put(pid,p,{text=value,outcome=result})
  end
  function d.PublishView(pid,p,view)
   if scope~='UNIT_VIEW'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
-  if type(view)~='table'or getmetatable(view)~=nil or view.owner~=pid
-   or view.unitID~=p.UnitID or view.token~=p.Token
-   or type(view.legal)~='boolean'or type(view.prepared)~='boolean'then return false,'INVALID_VIEW'end
-  local out={legal=view.legal,prepared=view.prepared}
+  if view.owner~=pid or view.unitID~=p.UnitID or view.token~=p.Token then return false,'VIEW_IDENTITY_CHANGED'end
+  local out={legal=view.legal,prepared=view.prepared,targetName=view.targetName}
   for _,field in ipairs({'owner','unitID','turn','x','y','amount','progress','cost','baseInput','baseUnused','potential','nextPotential'})do
-   local v=view[field]
-   if v~=nil and(type(v)~='number'or v~=v or v<=-math.huge or v>=math.huge)then return false,'INVALID_VIEW_NUMBER'end
-   out[field]=v -- preserve original precision/range; this is no business policy
+   out[field]=view[field] -- preserve original precision/range; this is no business policy
   end
   for field,limit in pairs({token=256,planToken=256,reason=200000,specialization=128})do
    local v=view[field]
-   if v~=nil and(type(v)~='string'or #v>limit)then return false,'INVALID_VIEW_TEXT'end
+   if v~=nil and #v>limit then return false,'VIEW_TEXT_BUDGET'end
    out[field]=v
   end
-  local name=view.targetName
-  if name~=nil and not(type(name)=='string'and #name<=20000)
-   and not(type(name)=='number'and name==name and name>-math.huge and name<math.huge)then return false,'INVALID_VIEW_NAME'end
-  out.targetName=name
+  if type(view.targetName)=='string'and #view.targetName>20000 then return false,'VIEW_TEXT_BUDGET'end
   return put(pid,p,{view=out})
  end
  function d.FailView(pid,p)
@@ -77,43 +65,19 @@ function SPCPlayerActionReplies.New(epoch,version,scope)
  -- Transport budgets only; target discovery keeps its original native scope.
  function d.PublishTargets(pid,p,s)
   if scope~='UNIT_TARGETS'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
-  if type(s)~='table'or getmetatable(s)~=nil or s.owner~=pid or s.unitID~=p.UnitID
-   or s.token~=p.Token or s.version~=version then return false,'INVALID_TARGETS'end
-  local out={owner=pid,unitID=p.UnitID,token=p.Token,version=version,plots={},unknown={}}
-  for _,field in ipairs({'turn','x','y'})do
-   local v=s[field];if v~=nil and not integer(v)then return false,'INVALID_TARGET_STAMP'end;out[field]=v
+  if s.owner~=pid or s.unitID~=p.UnitID or s.token~=p.Token or s.version~=version then return false,'TARGETS_IDENTITY_CHANGED'end
+  local out={owner=pid,unitID=p.UnitID,token=p.Token,version=version,turn=s.turn,x=s.x,y=s.y,
+   error=s.error,mode=s.mode,plots={},unknown={}}
+  local budget=#(s.error or '')+#(s.mode or '')
+  if #(s.error or '')>20000 or #(s.mode or '')>128 then return false,'TARGET_TEXT_BUDGET'end
+  if #s.plots+#s.unknown>4096 then return false,'TARGET_ROWS_LIMIT'end
+  for i,row in ipairs(s.plots)do out.plots[i]={plot=row.plot}end
+  for i,row in ipairs(s.unknown)do
+   if #row.reason>20000 then return false,'TARGET_TEXT_BUDGET'end
+   budget=budget+#row.reason
+   out.unknown[i]={cityID=row.cityID,reason=row.reason}
   end
-  local budget=0;local rows=0
-  local function stringValue(v,limit)
-   if type(v)~='string'or #v>limit then return false end
-   budget=budget+#v;return budget<=262144
-  end
-  if s.error~=nil then
-   if not stringValue(s.error,20000)then return false,'INVALID_TARGET_ERROR'end;out.error=s.error
-  end
-  if s.mode~=nil then
-   if not stringValue(s.mode,128)then return false,'INVALID_TARGET_MODE'end;out.mode=s.mode
-  elseif s.error==nil then return false,'MISSING_TARGET_MODE'end
-  for _,field in ipairs({'plots','unknown'})do
-   local src=s[field]
-   if type(src)~='table'or getmetatable(src)~=nil or #src>4096 then return false,'INVALID_TARGET_ROWS'end
-   local n=0
-   for k in pairs(src)do
-    if not integer(k)or k<1 or k>#src then return false,'INVALID_TARGET_ARRAY'end;n=n+1
-   end
-   rows=rows+n;if n~=#src or rows>4096 then return false,'TARGET_ROWS_LIMIT'end
-   for i=1,n do
-    local row=src[i]
-    if type(row)~='table'or getmetatable(row)~=nil then return false,'INVALID_TARGET_ROW'end
-    if field=='plots'then
-     if not integer(row.plot)then return false,'INVALID_TARGET_PLOT'end
-     out.plots[i]={plot=row.plot}
-    else
-     if not integer(row.cityID)or not stringValue(row.reason,20000)then return false,'INVALID_TARGET_UNKNOWN'end
-     out.unknown[i]={cityID=row.cityID,reason=row.reason}
-    end
-   end
-  end
+  if budget>262144 then return false,'TARGET_TEXT_BUDGET'end
   return put(pid,p,{targets=out})
  end
  function d.FailTargets(pid,p)
@@ -122,45 +86,39 @@ function SPCPlayerActionReplies.New(epoch,version,scope)
  end
  function d.PublishPresentation(pid,p,s)
   if scope~='CITY_PRESENTATION'or not d.Accepts(pid,p)then return false,'STALE_OR_INVALID_REQUEST'end
-  if type(s)~='table'or getmetatable(s)~=nil or s.owner~=pid or s.cityID~=p.CityID
-   or s.token~=p.Token then return false,'INVALID_PRESENTATION'end
-  local ok,out=pcall(function()
-   local budget=0
-   local function copy(src,numbers,booleans,strings)
-    assert(type(src)=='table'and getmetatable(src)==nil,'PRESENTATION_TABLE')
-    local out={}
-    for _,k in ipairs(numbers or {})do
-     local v=src[k];assert(v==nil or(type(v)=='number'and v==v and v>-math.huge and v<math.huge),'PRESENTATION_NUMBER');out[k]=v
+  if s.owner~=pid or s.cityID~=p.CityID or s.token~=p.Token then return false,'PRESENTATION_IDENTITY_CHANGED'end
+  local budget,over=0,false
+  local function copy(src,fields,strings)
+   local out={}
+   for _,k in ipairs(fields)do out[k]=src[k]end
+   for k,limit in pairs(strings or {})do
+    local v=src[k]
+    if v~=nil then
+     budget=budget+#v
+     if #v>limit then over=true end
+     out[k]=v
     end
-    for _,k in ipairs(booleans or {})do
-     local v=src[k];assert(v==nil or type(v)=='boolean','PRESENTATION_BOOLEAN');out[k]=v
-    end
-    for k,limit in pairs(strings or {})do
-     local v=src[k]
-     if v~=nil then assert(type(v)=='string'and #v<=limit,'PRESENTATION_TEXT');budget=budget+#v;assert(budget<=32768,'PRESENTATION_TEXT_BUDGET');out[k]=v end
-    end
-    return out
-   end
-   local out=copy(s,{'owner','cityID','potential','investments','active','x','y'},nil,
-    {token=256,specialization=128,progression=128,activeStatus=128,error=20000})
-   if s.institutionArchive~=nil then out.institutionArchive=copy(s.institutionArchive,{'RESEARCH','CULTURE','COMMERCE','INDUSTRY'})end
-   local sum=s.institutionSummary
-   if sum~=nil then
-    local v=copy(sum,{'revision','dialogue','engineering','insights','buildingTemplates','districtTemplates'},
-     {'known','reputationKnown','traditionKnown','dialogueKnown','engineeringKnown','insightsKnown','templatesKnown'},{token=256})
-    if sum.reference~=nil then v.reference=copy(sum.reference,{'owner','cityID','x','y'})end
-    for _,k in ipairs({'tradition','reputation'})do
-     local t=sum[k]
-     if t==false then v[k]=false
-     elseif t~=nil then
-      v[k]=copy(t,k=='tradition'and {'age','cursor','percent','nextAge'}or {'age'},nil,{state=128})
-     end
-    end
-    out.institutionSummary=v
    end
    return out
-  end)
-  if not ok then return false,'INVALID_PRESENTATION_FIELDS'end
+  end
+  local out=copy(s,{'owner','cityID','potential','investments','active','x','y'},
+   {token=256,specialization=128,progression=128,activeStatus=128,error=20000})
+  if s.institutionArchive~=nil then out.institutionArchive=copy(s.institutionArchive,{'RESEARCH','CULTURE','COMMERCE','INDUSTRY'})end
+  local sum=s.institutionSummary
+  if sum~=nil then
+   local v=copy(sum,{'revision','dialogue','engineering','insights','buildingTemplates','districtTemplates',
+    'known','reputationKnown','traditionKnown','dialogueKnown','engineeringKnown','insightsKnown','templatesKnown'},{token=256})
+   if sum.reference~=nil then v.reference=copy(sum.reference,{'owner','cityID','x','y'})end
+   for _,k in ipairs({'tradition','reputation'})do
+    local t=sum[k]
+    if t==false then v[k]=false
+    elseif t~=nil then
+     v[k]=copy(t,k=='tradition'and {'age','cursor','percent','nextAge'}or {'age'},{state=128})
+    end
+   end
+   out.institutionSummary=v
+  end
+  if over or budget>32768 then return false,'PRESENTATION_TEXT_BUDGET'end
   return put(pid,p,{presentation=out})
  end
  function d.FailPresentation(pid,p)

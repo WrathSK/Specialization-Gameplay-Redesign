@@ -71,8 +71,9 @@ function M.ReputationInput(v,r,isolation,deferred)
   end
   return unknown(type(isolation.reason)=='string'and isolation.reason:sub(1,180)or nil)
  end
- local ok,why=pcall(M.ValidateReputation,t,r)
- if not ok then return unknown('COMMERCE_REPUTATION_VALIDATION_UNAVAILABLE')end
+ -- A non-isolated record passed Validate at load and before every save; a
+ -- failure here is a programming error and must surface, not read as UNKNOWN.
+ M.ValidateReputation(t,r)
  if not t then return {status='ABSENT',reason='COMMERCE_REPUTATION_NOT_ESTABLISHED'}end
  return {status='CONFIRMED',age=t.age,state=t.state,reason='COMMERCE_REPUTATION_CONFIRMED'}
 end

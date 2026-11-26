@@ -11,7 +11,12 @@ function SPCDevelopmentInvestment.Start(P,shared)
  local d={views={},revision=0};shared.DevelopmentInvestment=d
  local trace=SPCSafeCallbacks.OpenTrace(traceLoaded and SPCExpeditionTrainingDiagnostics,P,'DEVELOPMENT')
  local function emit(stage,v)if trace then pcall(trace,stage,v)end end
- local function code(e)return tostring(e):match('(DEVELOPMENT_[A-Z0-9_]+)') or tostring(e):match('(STORE_[A-Z0-9_]+)') or 'DEVELOPMENT_STATE_UNKNOWN'end
+ -- Designed reasons pass through; an uncoded error keeps its raw text in the error log.
+ local function code(e)
+  local c=tostring(e):match('(DEVELOPMENT_[A-Z0-9_]+)') or tostring(e):match('(STORE_[A-Z0-9_]+)')
+  if not c then SPCSafeCallbacks.Record(shared,'DevelopmentInvestment',e)end
+  return c or 'DEVELOPMENT_STATE_UNKNOWN'
+ end
  local function failure(e,pid,id,phase)
   local reason=code(e);emit('DEVELOPMENT_FAILURE',{owner=pid,city=id,phase=phase,reason=reason});return reason
  end

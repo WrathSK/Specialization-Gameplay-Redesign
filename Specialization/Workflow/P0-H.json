@@ -11,8 +11,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1156",
-    "runtime": "B545.572 / modinfo572",
+    "status": "S1157",
+    "runtime": "B546.573 / modinfo573",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -60,7 +60,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B545.572 / modinfo572 source uses the coloured 24px level badges and re-centres slot titles. B544.571 remains installed.",
+      "source": "B546.573 / modinfo573 source records swallowed errors in shared.ErrorLog with an isolated UI probe and removes reply format re-validation. B545.572 remains installed.",
       "installed": "B545.572 / modinfo572 temporary, 303/303 MATCH at 60ba588e917acda985fbe0c5658b3f9e3c4a8d4e35c06767d2620d6c49ddd89b. Receipt B545.572-03cc09c-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,7 +105,7 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-title-badges--s1155",
+      "report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-1-visible-errors--s1157",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",

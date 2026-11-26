@@ -1,4 +1,5 @@
 include('NetworkInput')
+if not SPCSafeCallbacks then include('SafeCallbacks')end
 include('ReverseDependencies')
 include('RuntimeWork')
 include('ExpeditionTrainingDiagnostics')
@@ -24,7 +25,12 @@ function SPCStandardizationEffects.Start(P,shared)
   local ok,reference=pcall(ref,c)
   return ok and reference==r.reference
  end
- local function code(s)return type(s)=='string' and (s:match('(STD_[A-Z_]+)') or s:match('(NETWORK_[A-Z_]+)') or s:match('(STORE_[A-Z_]+)') or s:match('(EST_[A-Z_]+)')) or 'STD_READ_PENDING'end
+ -- Designed reasons pass through; an uncoded error keeps its raw text in the error log.
+ local function code(s)
+  local c=type(s)=='string' and (s:match('(STD_[A-Z_]+)') or s:match('(NETWORK_[A-Z_]+)') or s:match('(STORE_[A-Z_]+)') or s:match('(EST_[A-Z_]+)'))
+  if not c then SPCSafeCallbacks.Record(shared,'Standardization',s)end
+  return c or 'STD_READ_PENDING'
+ end
  local function mark(pid,cid)
   if pid==nil then for owner in pairs(Players)do if P.IsTestPlayer(owner)then mark(owner,cid)end end;return end
   if not P.IsTestPlayer(pid)then return end
