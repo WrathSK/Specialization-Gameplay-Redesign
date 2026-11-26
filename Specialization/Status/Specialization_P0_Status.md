@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1153
-Implementation Build: develop B544.571 / modinfo571. Installed temporary B543.570 / modinfo570. Stable B528.555 / modinfo555.
+Status Revision: S1154
+Implementation Build: develop B544.571 / modinfo571. Installed temporary B544.571 / modinfo571. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B544.571 / modinfo571 [金色只表示已激活](#management-capacity-gold-means-active--s1153)。本机仍为 B543.570 临时包，main 稳定包是 B528.555。 |
+| Source and installation | Develop B544.571 / modinfo571 [金色只表示已激活](#management-capacity-gold-means-active--s1153)。本机[已临时安装 B544.571](#management-capacity-gold-means-active-installed--s1154)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B543 实机显示机构格可用；负责人指出图标越线、标题偏下、容量到位但未建立不清楚、窗口过宽。B544 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B544 临时安装核验后，检查标题带图标与文字居中、四种等级外观、窗口宽度。布局使用固定示例到位点数。 |
+| Next action | 检查标题带图标与文字居中、四种等级外观、窗口宽度。布局使用固定示例到位点数。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Management capacity gold means active installed — S1154
+
+B544.571 / modinfo571 temporary, 302/302 MATCH at 44a9f9e228ddb559c688bb4b3d70312e6317611043c855328c33bce8b8865eb7. Receipt B544.571-464efa5-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified. 安装源码 464efa5aa73eff56da7ee7e32a66f28a81738e03。先按 B543 回执还原 B528.555 原包，再安装 B544；新增 24 像素图集使包文件增至 302 个，12 个已退役开发版路径按既有清单移除，事务标记已清除。实机外观待复验。
 
 ### Management capacity gold means active — S1153
 
