@@ -105,6 +105,8 @@ local function attach()
     detach()
     return
   end
+  -- The reparented HUD controls can be visible before the panel context is shown.
+  ContextPtr:SetHide(false)
   if not topStack then
     topStack = ContextPtr:LookUpControl(topPath .. "StaticInfoStack")
     if topStack then
@@ -133,7 +135,12 @@ end
 
 buildRows()
 Controls.OpenButton:RegisterCallback(Mouse.eLClick, function()
-  if Controls.Window:IsHidden() then Controls.Window:SetHide(false) else closePanel() end
+  if Controls.Window:IsHidden() then
+    ContextPtr:SetHide(false)
+    Controls.Window:SetHide(false)
+  else
+    closePanel()
+  end
 end)
 Controls.Close:RegisterCallback(Mouse.eLClick, closePanel)
 Controls.Undo:RegisterCallback(Mouse.eLClick, discard)

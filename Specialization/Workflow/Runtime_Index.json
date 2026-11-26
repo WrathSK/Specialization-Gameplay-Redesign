@@ -624,9 +624,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "6658ee13229f30e7f7c95813439fdcb9e31c8ead72fa7baf415a8ab1093d0633",
+      "sha256": "b831b02773d5c5f62a391e055a8e079245110f30ee2e288e08bfa970763e3804",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B538 layout-only management HUD and sidebar, packaging or build identity; local checks in S1141."
+      "provenance": "B539 preview context visibility or build identity; S1143."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -743,9 +743,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "77f69ee9adf0268b160abb453318bc1044522a9c25bbd3879b52aaab427eec7e",
+      "sha256": "47ead5d9631c2dffa26ae4ced39efc883bb56ffe518c818aad9dcd56f2dc4473",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B538 layout-only management HUD and sidebar, packaging or build identity; local checks in S1141."
+      "provenance": "B539 preview context visibility or build identity; S1143."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1607,9 +1607,9 @@
       "provenance": "B538 layout-only management HUD and sidebar, packaging or build identity; local checks in S1141."
     },
     "Mod/UI/ManagementCapacityPreview.lua": {
-      "sha256": "4cdb5bcd449ddf2fa1d2f4bb6281a318e70831baca7f7adecdc8892cfd4b7e0f",
+      "sha256": "a9341fed23fbad1818430b6c86f1b839a137d55c8914546bf0599dd20ad91638",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B538 layout-only management HUD and sidebar, packaging or build identity; local checks in S1141."
+      "provenance": "B539 preview context visibility or build identity; S1143."
     },
     "Mod/Text/ManagementCapacityPreview.sql": {
       "sha256": "3723a89ba7377da9b570d08f1170834a4401191941a46775cda5a38e81a02c93",
@@ -1617,7 +1617,7 @@
       "provenance": "B538 layout-only management HUD and sidebar, packaging or build identity; local checks in S1141."
     }
   },
-  "source_review": "S1141 D0067 A0192. Layout-only HUD and allocation sidebar. Fixed local examples; native placement awaits Owner review.",
-  "source_runtime": "B538.565 / modinfo565 develop, 301 files.",
-  "tested_source_snapshot_sha256": "98671372481c0a1372c20b7ec0c49d77692fba03041c29ab26467314eb9a54f4"
+  "source_review": "S1143. Scoped Lua 5.1 preview parent-context visibility validation. Native click retest pending.",
+  "source_runtime": "B539.566 / modinfo566 develop, 301 files.",
+  "tested_source_snapshot_sha256": "3332479c5aa3303cff75020306619b3ff004b4086c18f7190ddae0cf6420af0e"
 }

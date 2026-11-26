@@ -63,7 +63,8 @@ hosts = {["/InGame/TopPanel/StaticInfoStack"]=top, ["/InGame/TopPanel/TradeRoute
          ["/InGame/LaunchBar/ButtonStack"]=launch, ["/InGame/LaunchBar/LaunchBacking"]=backing,
          ["/InGame/LaunchBar/LaunchBackingTile"]=tile}
 LuaEvents = {LaunchBar_Resize=function(width) assert(backing.width==width+116 and tile.width==width-20) end}
-ContextPtr = {LookUpControl=function(self,path) return hosts[path] end,
+ContextPtr = {hidden=true, SetHide=function(self, hidden) self.hidden=hidden end,
+  LookUpControl=function(self,path) return hosts[path] end,
   SetInitHandler=function(self,fn) self.init=fn end, SetShutdown=function(self,fn) self.stop=fn end}
 rows = {}
 function ContextPtr:BuildInstanceForControl(name, row, parent)
@@ -87,7 +88,9 @@ class CapacityPreview(unittest.TestCase):
           assert(#top.children==3 and top.children[1]==trade and top.children[2]==Controls.Readout and top.children[3]==envoy)
           assert(#launch.children==2 and launch.children[1]==otherButton and launch.children[2]==Controls.LaunchItem)
           assert(Controls.Window:IsHidden() and not Controls.Readout.click and Controls.HUDCount.text=="6/10")
-          Controls.OpenButton.click(); assert(not Controls.Window:IsHidden())
+          assert(not ContextPtr.hidden, "visible HUD siblings do not imply a visible panel context")
+          ContextPtr.hidden=true
+          Controls.OpenButton.click(); assert(not ContextPtr.hidden and not Controls.Window:IsHidden())
           Controls.OpenButton.click(); assert(Controls.Window:IsHidden())
           ContextPtr.stop()
           assert(#top.children==2 and top.children[2]==envoy and #launch.children==1)
