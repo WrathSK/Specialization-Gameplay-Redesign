@@ -624,9 +624,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "101cd00d3e3f01e3ab1cbc9af21ce8bb8275bd2106d30eb7adb5395f97d01b03",
+      "sha256": "24e5369c9570cc87c4ef424ed7ce27ddd89b22352b5ee74064b939b6d1dcd2a7",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B541 native modal styling or build identity; S1147."
+      "provenance": "B542 capacity window content redesign or build identity; S1149."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -743,9 +743,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "9bbdf681536d31c16c2675c279a22eed8822d92427a086e38e927288ba040663",
+      "sha256": "9d0c0982a862213ff7c1b6d1c82c27e655e81f6c80101e635df16e21d65853fb",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B541 native modal styling or build identity; S1147."
+      "provenance": "B542 capacity window content redesign or build identity; S1149."
     },
     "Mod/Standardization.lua": {
       "sha256": "05c656ef0d72e386ca5a0d0a360b058fe0a32ae9cf0e1be685e7615a0045116f",
@@ -1602,22 +1602,22 @@
       "provenance": "S1069/B508.535 Terra test scenario and mod listing bilingual names and descriptions. Top-level package text follows the installed official metadata layout."
     },
     "Mod/UI/ManagementCapacityPreview.xml": {
-      "sha256": "c7dc1fd0f88b40ba77c503402a0b729f21b46d0b9f23b6185145df8e486b3b99",
+      "sha256": "bdc2b9a6f6e3e2e7a9f0fa07c2022034b8a76e57e255324607507003203ef317",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B541 native modal styling or build identity; S1147."
+      "provenance": "B542 capacity window content redesign or build identity; S1149."
     },
     "Mod/UI/ManagementCapacityPreview.lua": {
-      "sha256": "08aac222e76dbfb0b0b361539bd5ed86e4064667d160fa5eca9d843aa51ffd67",
+      "sha256": "779364a28c5163340d3aa9182a721ee2a959cb78f2afe60ef821a9aedce97ae8",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B541 native modal styling or build identity; S1147."
+      "provenance": "B542 capacity window content redesign or build identity; S1149."
     },
     "Mod/Text/ManagementCapacityPreview.sql": {
-      "sha256": "3723a89ba7377da9b570d08f1170834a4401191941a46775cda5a38e81a02c93",
+      "sha256": "dd0454d67964cccbd89cd03b0294f767bbf20fc01b93f5974f5009a26064ccf5",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B538 layout-only management HUD and sidebar, packaging or build identity; local checks in S1141."
+      "provenance": "B542 capacity window content redesign or build identity; S1149."
     }
   },
-  "source_review": "S1147 scoped Lua 5.1 screen popup, preview interaction and packaging checks; native result pending.",
-  "source_runtime": "B541.568 / modinfo568 develop, 301 files.",
-  "tested_source_snapshot_sha256": "c8c508543880f72ad81e93c83518a4de40e88aefe4c0425599dbed1dd7713a86"
+  "source_review": "S1149 scoped Lua 5.1 capacity window states, allocation and packaging checks; native result pending.",
+  "source_runtime": "B542.569 / modinfo569 develop, 301 files.",
+  "tested_source_snapshot_sha256": "583110ca68d43c23e4cf3a4448a7113555f6885c736bf59cfa6fe7135337e367"
 }

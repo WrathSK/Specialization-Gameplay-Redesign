@@ -19,14 +19,52 @@ local function sum(field)
   return used
 end
 
+local emblems = {
+  RESEARCH="ICON_DISTRICT_CAMPUS", CULTURE="ICON_DISTRICT_THEATER",
+  COMMERCE="ICON_DISTRICT_COMMERCIAL_HUB", INDUSTRY="ICON_DISTRICT_INDUSTRIAL_ZONE",
+}
+-- Governor promotion button visual states: 0 open, 3 unavailable, 4 earned, 5 selected.
+local VIS_OPEN, VIS_LOCKED, VIS_EARNED, VIS_SELECTED = 0, 3, 4, 5
+
+-- Level state for one slot. Arrived capacity counts only up to the confirmed allocation.
+local function levelState(sample, level)
+  local reached = level <= sample.potential
+  if level <= sample.arrived then
+    if level > sample.draft then return VIS_OPEN, Locale.Lookup("LOC_SPC_CAP_STATE_WITHDRAW") end
+    if reached then return VIS_EARNED, Locale.Lookup("LOC_SPC_CAP_STATE_ACTIVE") end
+    return VIS_OPEN, Locale.Lookup("LOC_SPC_CAP_STATE_ARRIVED_LOCKED")
+  end
+  if level <= sample.draft then
+    local key = reached and "LOC_SPC_CAP_STATE_PENDING" or "LOC_SPC_CAP_STATE_PENDING_LOCKED"
+    return VIS_SELECTED, Locale.Lookup(key, level - sample.arrived)
+  end
+  if reached then return VIS_OPEN, Locale.Lookup("LOC_SPC_CAP_STATE_OPEN") end
+  return VIS_LOCKED, Locale.Lookup("LOC_SPC_CAP_STATE_LOCKED")
+end
+
+local function status(sample)
+  local active = math.min(sample.arrived, sample.potential)
+  local key
+  if sample.draft ~= sample.assigned then key = "LOC_SPC_CAP_STATUS_UNCONFIRMED"
+  elseif sample.assigned == 0 then key = "LOC_SPC_CAP_STATUS_IDLE"
+  elseif sample.arrived < sample.assigned then key = "LOC_SPC_CAP_STATUS_GROWING"
+  else key = "LOC_SPC_CAP_STATUS_SETTLED" end
+  return Locale.Lookup(key, active)
+end
+
 local function render()
   local free = total - sum("draft")
   local dirty = false
   for i, sample in ipairs(examples) do
     local row = rows[i]
-    local active = math.min(sample.arrived, sample.potential)
-    row.Detail:SetText(Locale.Lookup("LOC_SPC_CAP_DETAIL", active, sample.potential, sample.arrived))
-    row.Points:SetText(tostring(sample.draft))
+    for level, slot in ipairs(row.slots) do
+      local visual, text = levelState(sample, level)
+      slot.Slot:SetDisabled(true)
+      slot.Slot:SetVisState(visual)
+      slot.LevelState:SetText(text)
+    end
+    row.Status:SetText(status(sample))
+    row.Points:SetText(tostring(sample.draft) .. " / " .. tostring(perCity))
     row.Minus:SetDisabled(sample.draft == 0)
     row.Plus:SetDisabled(sample.draft >= perCity or free == 0)
     if sample.draft ~= sample.assigned then dirty = true end
@@ -77,16 +115,25 @@ end
 
 local function buildRows()
   for i, sample in ipairs(examples) do
-    local row = {}
+    local row = {slots={}}
     ContextPtr:BuildInstanceForControl("CapacityCityRow", row, Controls.Cities)
-    row.ProfessionIcon:SetIcon("ICON_SPC_INSTITUTION_" .. sample.profession .. "_BASE", 32)
-    row.Name:SetText(Locale.Lookup("LOC_SPC_CAP_CITY_NAME",
-      Locale.Lookup("LOC_CITY_NAME_" .. sample.city), Locale.Lookup("LOC_SPC_LEVEL_" .. sample.profession)))
+    row.Emblem:SetIcon(emblems[sample.profession], 50)
+    row.Name:SetText(Locale.Lookup("LOC_CITY_NAME_" .. sample.city))
+    row.Title:SetText(Locale.Lookup("LOC_SPC_CAP_CITY_TITLE",
+      Locale.Lookup("LOC_SPC_LEVEL_" .. sample.profession), sample.potential))
+    for level = 1, perCity do
+      local slot = {}
+      ContextPtr:BuildInstanceForControl("CapacityLevelSlot", slot, row.Levels)
+      slot.LevelName:SetText(Locale.Lookup("LOC_SPC_CAP_LEVEL_" .. level))
+      row.slots[level] = slot
+    end
+    row.Levels:CalculateSize()
     row.Minus:RegisterCallback(Mouse.eLClick, function() adjust(sample, -1) end)
     row.Plus:RegisterCallback(Mouse.eLClick, function() adjust(sample, 1) end)
     rows[i] = row
   end
   Controls.Cities:CalculateSize()
+  Controls.CityScroll:CalculateSize()
   discard()
 end
 

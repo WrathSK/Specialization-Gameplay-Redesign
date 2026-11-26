@@ -50,13 +50,14 @@ function control:SetIcon(value,size) self.icon=value; self.iconSize=size end
 function control:SetHide(value) self.hidden=value end
 function control:IsHidden() return self.hidden end
 function control:SetDisabled(value) self.disabled=value end
+function control:SetVisState(value) self.vis=value end
 function control:RegisterCallback(button, callback) assert(button==1); self.click=callback end
 function control:CalculateSize() end
 function control:GetSizeX() return 200+#self.children*56 end
 function control:SetSizeX(value) self.width=value end
 Controls = {}
 for _,id in ipairs({"Window","Backdrop","ScreenAnimIn","Readout","HUDCount","Parking","OpenButton","LaunchItem","Cities",
-                    "ModalBG","ModalScreenTitle","ModalScreenClose","YieldsContainer","Confirm","Undo","Available","Total"}) do Controls[id]=widget() end
+                    "CityScroll","ModalBG","ModalScreenTitle","ModalScreenClose","YieldsContainer","Confirm","Undo","Available","Total"}) do Controls[id]=widget() end
 Controls.Window:SetHide(true)
 Controls.Backdrop:SetHide(true)
 function Controls.ScreenAnimIn:SetToBeginning() self.reset=true end
@@ -88,9 +89,24 @@ ContextPtr = {hidden=true, SetHide=function(self, hidden) self.hidden=hidden end
   SetInitHandler=function(self,fn) self.init=fn end, SetShutdown=function(self,fn) self.stop=fn end}
 rows = {}
 function ContextPtr:BuildInstanceForControl(name, row, parent)
+  if name=="CapacityLevelSlot" then
+    assert(parent==rows.building.Levels)
+    for _,id in ipairs({"Slot","LevelName","LevelState"}) do row[id]=widget() end
+    return
+  end
   assert(name=="CapacityCityRow" and parent==Controls.Cities)
-  for _,id in ipairs({"ProfessionIcon","Name","Detail","Minus","Plus","Points"}) do row[id]=widget() end
+  for _,id in ipairs({"Emblem","Name","Title","Status","Levels","Minus","Plus","Points"}) do row[id]=widget() end
+  rows.building=row
   table.insert(rows,row)
+end
+-- Compact "vis:text" view of one city's four slots.
+function slots(row)
+  local out={}
+  for i,slot in ipairs(row.slots) do
+    assert(slot.Slot.disabled, "slots are display-only")
+    out[i]=slot.Slot.vis..":"..slot.LevelState.text
+  end
+  return table.concat(out,",")
 end
 """
 
@@ -125,16 +141,32 @@ class CapacityPreview(unittest.TestCase):
     def test_edits_only_change_examples_and_cancel_on_close(self):
         self.lua.execute("""
           Events.LoadGameViewStateDone.fire(); Controls.OpenButton.click()
-          assert(#rows==4 and rows[1].Detail.text=="LOC_SPC_CAP_DETAIL1/1/2" and Controls.Undo.disabled)
-          rows[1].Plus.click(); assert(rows[1].Points.text=="4" and rows[1].Plus.disabled)
+          assert(#rows==4 and #rows[1].slots==4 and Controls.Undo.disabled)
+          assert(rows[1].Emblem.icon=="ICON_DISTRICT_CAMPUS" and rows[4].Emblem.icon=="ICON_DISTRICT_INDUSTRIAL_ZONE")
+          assert(rows[1].Title.text=="LOC_SPC_CAP_CITY_TITLELOC_SPC_LEVEL_RESEARCH/1")
+          assert(rows[1].slots[3].LevelName.text=="LOC_SPC_CAP_LEVEL_3")
+          -- Washington: potential 1, 2 arrived, 3 allocated.
+          assert(slots(rows[1])=="4:LOC_SPC_CAP_STATE_ACTIVE,0:LOC_SPC_CAP_STATE_ARRIVED_LOCKED,"..
+            "5:LOC_SPC_CAP_STATE_PENDING_LOCKED1,3:LOC_SPC_CAP_STATE_LOCKED", slots(rows[1]))
+          assert(rows[1].Status.text=="LOC_SPC_CAP_STATUS_GROWING1" and rows[1].Points.text=="3 / 4")
+          assert(slots(rows[4])=="0:LOC_SPC_CAP_STATE_OPEN,0:LOC_SPC_CAP_STATE_OPEN,0:LOC_SPC_CAP_STATE_OPEN,0:LOC_SPC_CAP_STATE_OPEN")
+          assert(rows[4].Status.text=="LOC_SPC_CAP_STATUS_IDLE0" and rows[4].Minus.disabled)
+          assert(rows[2].Status.text=="LOC_SPC_CAP_STATUS_SETTLED1")
+          rows[1].Plus.click(); assert(rows[1].Points.text=="4 / 4" and rows[1].Plus.disabled)
+          assert(rows[1].slots[4].LevelState.text=="LOC_SPC_CAP_STATE_PENDING_LOCKED2")
+          assert(rows[1].Status.text=="LOC_SPC_CAP_STATUS_UNCONFIRMED1")
           assert(Controls.HUDCount.text=="6/10" and Controls.Available.text=="LOC_SPC_CAP_FREE3")
-          Controls.Undo.click(); assert(rows[1].Points.text=="3")
+          Controls.Undo.click(); assert(rows[1].Points.text=="3 / 4")
           for i=1,4 do rows[4].Plus.click() end
+          assert(rows[4].slots[2].LevelState.text=="LOC_SPC_CAP_STATE_PENDING2")
           assert(Controls.Available.text=="LOC_SPC_CAP_FREE0" and rows[2].Plus.disabled)
           Controls.Confirm.click(); assert(Controls.HUDCount.text=="10/10" and Controls.Confirm.disabled)
-          assert(rows[4].Detail.text=="LOC_SPC_CAP_DETAIL0/4/0")
-          rows[1].Minus.click(); Controls.ModalScreenClose.click(); Controls.OpenButton.click()
-          assert(rows[1].Points.text=="3" and Controls.HUDCount.text=="10/10")
+          assert(rows[4].Status.text=="LOC_SPC_CAP_STATUS_GROWING0")
+          rows[1].Minus.click(); rows[1].Minus.click()
+          assert(slots(rows[1])=="4:LOC_SPC_CAP_STATE_ACTIVE,0:LOC_SPC_CAP_STATE_WITHDRAW,"..
+            "3:LOC_SPC_CAP_STATE_LOCKED,3:LOC_SPC_CAP_STATE_LOCKED", slots(rows[1]))
+          Controls.ModalScreenClose.click(); Controls.OpenButton.click()
+          assert(rows[1].Points.text=="3 / 4" and Controls.HUDCount.text=="10/10")
         """)
 
     def test_scope_and_late_hud_container(self):
@@ -176,7 +208,9 @@ class CapacityPreview(unittest.TestCase):
         with sqlite3.connect(":memory:") as db:
             db.execute("create table LocalizedText(Language, Tag, Text, primary key(Language,Tag))")
             db.executescript((MOD / text_file).read_text())
-            tags = set(re.findall(r"LOC_SPC_CAP_[A-Z_]+", xml.read_text()+PANEL.with_suffix(".lua").read_text()))
+            tags = set(re.findall(r"LOC_SPC_CAP_[A-Z_]*[A-Z]", xml.read_text()+PANEL.with_suffix(".lua").read_text()))
+            tags.discard("LOC_SPC_CAP_LEVEL")
+            tags |= {f"LOC_SPC_CAP_LEVEL_{level}" for level in range(1, 5)}
             for language in ("zh_Hans_CN", "en_US"):
                 self.assertEqual(tags, {row[0] for row in db.execute(
                     "select Tag from LocalizedText where Language=? and length(Text)>0", (language,))})

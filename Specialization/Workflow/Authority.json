@@ -10,8 +10,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1148",
-    "runtime": "B541.568 / modinfo568",
+    "status": "S1149",
+    "runtime": "B542.569 / modinfo569",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "9c62772b3d96ee91d67d0e925cec625cdc0fb9c2",
   "current_batch": "MANAGEMENT_CAPACITY_LAYOUT_AWAITING_VISUAL_REVIEW",
-  "next_batch": "Owner checks the installed native screen placement, vignette and close/reopen.",
+  "next_batch": "Install B542.569 temporarily, then the Owner reviews the redesigned city rows, level slots, arrow allocation and footer.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B541.568 / modinfo568 temporary, 301/301 MATCH at 1ac8ff78dd2b0ee87f8fab59d31229bdb4c4aa45f64159bb29af60a7996b72b5. Receipt B541.568-9c62772-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
   "stable": "main B528.555 / modinfo555 from PR #9 merge 0beca3138b58595bfa02749e4f5ba3662736b9e9. Previous stable B489.516 rollback verified.",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose is not current authority; current Spec/Status and task-specific Architecture govern. B069 investigation maps and B076 inventory/validation are retrieved through the fixed Historical index; current module review provenance remains in Runtime_Index.files.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1148 D0067 A0192. Preview screen layering; native review pending.",
+  "context_review_status": "S1149 D0067 A0192. Capacity window content redesign; native review pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -60,7 +60,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-preview-screen-layer--s1147",
-  "source_status": "B541.568 / modinfo568 temporarily installed. Stable main B528.555.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#management-capacity-governor-tree-layout--s1149",
+  "source_status": "B542.569 / modinfo569 source redesigns the capacity window as city rows with Governor promotion-style level slots. B541.568 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published. 2026-11-18: Primary may classify and retire eligible tracked document families without a file-count approval gate; preserve actual current responsibilities, verified published originals and existing evidence/role boundaries. 2026-11-18 Owner resumed document maintenance after the S1105 safe checkpoint; continue the existing delegated criteria and decision boundaries. No runtime/deployment/main action. 2026-11-20 Owner accepted the city ownership rules and implementation sequence. Develop only; new permanent fields require separate approval."
 }

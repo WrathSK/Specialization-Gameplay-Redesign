@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1148
-Implementation Build: develop B541.568 / modinfo568. Installed temporary B541.568 / modinfo568. Stable B528.555 / modinfo555.
+Status Revision: S1149
+Implementation Build: develop B542.569 / modinfo569. Installed temporary B541.568 / modinfo568. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,22 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B541.568 / modinfo568 [改用主界面层](#management-capacity-preview-screen-layer--s1147)。本机[已临时安装 B541.568](#management-capacity-native-screen-installed--s1148)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B542.569 / modinfo569 [重做窗口中部](#management-capacity-governor-tree-layout--s1149)。本机仍为 B541.568 临时包，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
-| Validation | B540 实机确认主界面层级正确。B541 复用统一窗口外框和总督底纹，原生样式待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 对照蓝标题栏、金边和总督页底纹，检查样式及关闭重开。布局使用固定示例到位点数。 |
+| Validation | B541 实机确认窗口层级、暗幕和底纹可用，负责人否决原中部设计。B542 按原版界面重做中部，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
+| Next action | B542 临时安装核验后，检查城市行、四级等级格、箭头调配和底部按钮。布局使用固定示例到位点数。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Management capacity Governor tree layout — S1149
+
+Owner 2026-11-25 确认 B541 的层级和底纹正确，要求重做中部并参考市政树、科技树和总督界面。B542 每座城市占一行：左侧城市卡显示区域图标、城名、专业与潜力、当前启用等级，以及外交交易界面的左右箭头调配框（0～4 点）。右侧一至四级用总督晋升格表现，按科技树虚线相连。四种外观分别对应已启用（晋升完成）、已分配待到位（选中并显示到位回合）、未分配，以及潜力未达且未分配（不可取得）。容量到位但潜力不足的等级和确认后撤回的等级另有文字说明。底栏改用总督详情页的装饰与原版主按钮、确认按钮。仍是界面内示例数据，不接入回合或保存。
+
+本地验证（`LOCAL_SIMULATION_PASS`）使用 Python 3.14、Lupa 2.8 的 Lua 5.1。专项 4 项通过，覆盖四种等级状态、到位回合、撤回、潜力未达、额度上限、撤销、确认与关闭复原。`run_refactor.py --stage CurrentGameplay` 使用固定 HD 数据库（SHA256 前缀 d483b5f2）42 项通过，记录 `local/refactor/CurrentGameplay-a9cefce854c44dad87aa4eba8f1de79d/closure.json`，SHA256 `16745ed2ab8a4d749c789e56dd0e9148dbff4b742babfb0c9ce27b28962f2674`，已测源码快照 `583110ca68d43c23e4cf3a4448a7113555f6885c736bf59cfa6fe7135337e367`。174 份 Lua 编译、25 份 XML 解析、300 个包文件引用检查通过。原版贴图状态与排版只能实机确认。
 
 ### Management capacity native screen installed — S1148
 
