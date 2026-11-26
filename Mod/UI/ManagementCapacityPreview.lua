@@ -75,6 +75,7 @@ local function render()
       slot.Slot:SetDisabled(true)
       slot.Slot:SetVisState(visual)
       slot.Fade:SetHide(not remote)
+      slot.Header:SetOffsetY(visual == VIS_EARNED and 4 or 3)
       slot.InstitutionIcon:SetAlpha(state == "UNBUILT" and 0.45 or 1)
       slot.Arrival:SetText(arrival)
       -- Leave the right side of the title for the arrival note.
@@ -183,7 +184,7 @@ local function buildRows()
       ContextPtr:BuildInstanceForControl("CapacityLevelSlot", slot, row.Slots)
       local key = "LOC_SPC_" .. sample.profession .. "_INSTITUTION_" .. level
       local help = Locale.Lookup(key .. "_HELP")
-      slot.InstitutionIcon:SetIcon("ICON_SPC_INSTITUTION_" .. sample.profession .. "_" .. level, 24)
+      slot.InstitutionIcon:SetIcon("ICON_SPC_LEVEL_" .. sample.profession .. "_" .. level, 24)
       slot.name = Locale.Lookup(key)
       slot.Slot:SetToolTipString(Locale.Lookup(key) .. "[NEWLINE][NEWLINE]" .. help:gsub("@SPC_METRIC@", ""))
       for _, name in ipairs(abilityNames(help)) do

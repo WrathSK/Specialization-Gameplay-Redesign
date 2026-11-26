@@ -139,3 +139,6 @@ INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename
 
 -- B259 screenshot-calibrated map cell.
 INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',49,4,4,'SPC_Level_Icons_49.dds');
+
+-- B545 capacity-window title band: the same badges at 24px.
+INSERT INTO IconTextureAtlases(Name,IconSize,IconsPerRow,IconsPerColumn,Filename) VALUES ('ICON_ATLAS_SPC_LEVELS',24,4,4,'SPC_Level_Icons_24.dds');

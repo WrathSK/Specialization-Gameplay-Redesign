@@ -64,3 +64,7 @@ Additional49px cell/control atlas derived from the same approved B254 artwork.4x
 ## B544 capacity title size
 
 Additional 24px atlas for the 24-unit institution icon in the capacity window's level-slot title band, which is about 26 units tall. Each 64px cell of the reviewed B251 `SPC_Institutions_64.dds` is resized separately to 24px with Lanczos, so neighbouring cells do not bleed, and stored as lossless BGRA8 without mipmaps: 4x4 cells, 96x96, 36992 bytes, SHA256 `8cba53829ee7265d85fd9da83ed65b0df1af5aaba4af77d908235c8a040d4a93`. Decoded pixels match the raster exactly. The 32px and 64px files are unchanged. On 2026-11-25 the Owner approved this exact blob for a one-time binary publication in its own commit.
+
+## B545 capacity title badges
+
+The Owner asked the capacity window to reuse the profession-coloured B254 level badges shown in the city panel. B545 adds a 24px cell of the same badges. Each 64px cell of the reviewed `SPC_Level_Icons_64.dds` is resized separately to 24px with premultiplied-alpha Lanczos and stored as lossless BGRA8 without mipmaps: 4x4 cells, 96x96, 36992 bytes, SHA256 `f6ce8291cff46e88b3e227bf534a18d43d39a11cb5b926384fd7b16f6f524158`. Decoded pixels match the raster exactly. Existing level atlases are unchanged. The B544 `SPC_Institutions_24.dds` is no longer used by the window; its retirement waits for the pre-release polish pass. On 2026-11-25 the Owner approved this exact blob for a one-time binary publication in its own commit.

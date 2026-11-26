@@ -55,6 +55,7 @@ function control:SetDisabled(value) self.disabled=value end
 function control:SetVisState(value) self.vis=value end
 function control:SetAlpha(value) self.alpha=value end
 function control:SetOffsetX(value) self.x=value end
+function control:SetOffsetY(value) self.y=value end
 function control:SetTruncateWidth(value) self.truncate=value end
 function control:SetToolTipString(value) self.tooltip=value end
 function control:RegisterCallback(button, callback) assert(button==1); self.click=callback end
@@ -104,7 +105,7 @@ function ContextPtr:BuildInstanceForControl(name, row, parent)
   end
   if name=="CapacityLevelSlot" then
     assert(parent==rows.building.Slots)
-    for _,id in ipairs({"Slot","InstitutionIcon","InstitutionName","Arrival","Abilities","Fade"}) do row[id]=widget() end
+    for _,id in ipairs({"Slot","Header","InstitutionIcon","InstitutionName","Arrival","Abilities","Fade"}) do row[id]=widget() end
     rows.slot=row
     return
   end
@@ -172,8 +173,10 @@ class CapacityPreview(unittest.TestCase):
           assert(rows[1].Emblem.icon=="ICON_DISTRICT_CAMPUS" and rows[4].Emblem.icon=="ICON_DISTRICT_INDUSTRIAL_ZONE")
           assert(rows[1].Title.text=="LOC_SPC_CAP_CITY_TITLELOC_SPC_LEVEL_RESEARCH")
           local s3=rows[1].slots[3]
-          assert(s3.InstitutionIcon.icon=="ICON_SPC_INSTITUTION_RESEARCH_3" and s3.InstitutionName.text=="学术联合会")
+          assert(s3.InstitutionIcon.icon=="ICON_SPC_LEVEL_RESEARCH_3" and s3.InstitutionName.text=="学术联合会")
           assert(s3.InstitutionIcon.iconSize==24)
+          -- The gold rim of an active slot pushes its title band down by one unit.
+          assert(rows[1].slots[1].Header.y==4 and s3.Header.y==3)
           assert(s3.InstitutionName.truncate==204-52-6*#s3.Arrival.text-8 and rows[1].slots[1].InstitutionName.truncate==204-52)
           assert(#s3.abilities==2 and s3.abilities[1].AbilityName.text=="跨学科研究" and s3.abilities[2].AbilityName.text=="学以致用")
           assert(not s3.Slot.tooltip:find("@SPC_METRIC@",1,true) and s3.Slot.tooltip:find("学术联合会",1,true)==1)

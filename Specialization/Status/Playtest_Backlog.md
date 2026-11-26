@@ -19,4 +19,8 @@ Parked by the Owner on 2026-11-21. Develop B529.556 (`e2ae2ae4`) implements firs
 - **Return through another owner — storage decision pending.** After player → A → B and a reload, the city record still identifies A while the handback comes from B. Resume by verifying that the intermediate transfer can be attributed to the same city. Keeping the last verified foreign owner and city ID separately from the first loss receipt requires Owner approval. The field has not been added.
 - **Razing and refoundation — native evidence pending.** Resume when a completed permanent destruction can be tied to the old city and a separate founding to the new city on that tile. A single removal also occurs during ordinary handover. The old record still reserves the site.
 
+## Pre-release polish
+
+**Management capacity window (专业管理容量) — appearance frozen at B545, polish before release.** On 2026-11-25 the Owner accepted the active colour and window width and closed this UI round after the B545 fixes. Further appearance work waits for a pre-release polish pass unless the Owner reports a major problem. The window is still a display-only preview with example data; connecting it to real capacity is separate work. In that pass, also re-check title centring across UI scales, how readable the dark-state notes are, and retire the unused B544 `SPC_Institutions_24.dds` atlas, which B545 replaced with the coloured `SPC_Level_Icons_24.dds`.
+
 [历史全文](https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Playtest_Backlog.md)
