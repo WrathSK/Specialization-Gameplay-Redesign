@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1170
-Implementation Build: develop B552.579 / modinfo579. Installed temporary B551.578 / modinfo578. Stable B528.555 / modinfo555.
+Status Revision: S1171
+Implementation Build: develop B552.579 / modinfo579. Installed temporary B552.579 / modinfo579. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,20 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B552.579 / modinfo579 [诊断显示路径退役](#diagnostic-display-path-retired--s1170)（夹具替身迁移见 [S1168](#fixture-double-migration--s1168)，契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B551.578](#fixture-double-migration-installed--s1169)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B552.579 / modinfo579 [诊断显示路径退役](#diagnostic-display-path-retired--s1170)（夹具替身迁移见 [S1168](#fixture-double-migration--s1168)，契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B552.579](#diagnostic-display-path-installed--s1171)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B550.577 实机短测通过（[S1167](#contract-audit-batches-2-5-native-smoke--s1167)）：建城、投资、存档读档后专业与潜力一致，采集日志无 `[SPC][ERR]`。容量窗口徽章与标题仍待复验；考察团归档沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 临时安装 B552.579 后做一次短测：点“对话项目”，报告末尾不再出现旧的巨作实验段、正文不变；点“意义延展”，报告正常显示。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | B552.579 已临时安装，待 Owner 短测：点“对话项目”，报告末尾不再出现旧的巨作实验段、正文不变；点“意义延展”，报告正常显示。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Diagnostic display path installed — S1171
+
+B552.579 / modinfo579 temporary, 304/304 MATCH at 46ba9592ebe939750f81c95f999f22ecab78c64985f1d543dad6895c98d299a7. Receipt B552.579-629fe91-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified. 安装源码 629fe914575621e5a900781a9155e3d7d15bfc85。先按 B551 回执还原 B528.555 原包，再安装 B552；已退役开发版路径按既有清单移除，另加 `UI/BoostGreatWorkRead.lua`，包文件由 305 个变为 304 个，事务标记已清除。实机短测待 Owner（`USER_GAME_TEST_REQUIRED`）。
 
 ### Diagnostic display path retired — S1170
 

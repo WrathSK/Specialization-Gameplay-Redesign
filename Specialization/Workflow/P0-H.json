@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1170",
+    "status": "S1171",
     "runtime": "B552.579 / modinfo579",
     "military": "D0037",
     "harbor": "D0037",
@@ -61,7 +61,7 @@
   "result": {
     "runtime_identity": {
       "source": "B552.579 / modinfo579 source retires the UI diagnostic display path (UI/BoostGreatWorkRead), its hidden panel controls and the Gameplay L2 meaning-probe request block. B551.578 remains installed.",
-      "installed": "B551.578 / modinfo578 temporary, 305/305 MATCH at 013122c5e94392e69d2255e93cca8725cd9db1257dba20c412075dc52cbfc242. Receipt B551.578-033dee3-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
+      "installed": "B552.579 / modinfo579 temporary, 304/304 MATCH at 46ba9592ebe939750f81c95f999f22ecab78c64985f1d543dad6895c98d299a7. Receipt B552.579-629fe91-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
@@ -110,7 +110,7 @@
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
       "native_validation": "USER_GAME_TEST_PASS (S1167 short smoke scope)",
-      "deployment": "Specialization/Status/Specialization_P0_Status.md#fixture-double-migration-installed--s1169"
+      "deployment": "Specialization/Status/Specialization_P0_Status.md#diagnostic-display-path-installed--s1171"
     }
   }
 }

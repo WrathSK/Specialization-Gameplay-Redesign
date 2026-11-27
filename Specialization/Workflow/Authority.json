@@ -10,7 +10,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1170",
+    "status": "S1171",
     "runtime": "B552.579 / modinfo579",
     "military": "D0037",
     "harbor": "D0037",
@@ -34,18 +34,18 @@
   "acceptance": "Specialization/Design/Design_ChangeLog.md",
   "content_index": "Specialization/Design/Content/README.md",
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
-  "runtime_commit": "033dee36064bde67857ae8283409e7f9c477b2b5",
+  "runtime_commit": "629fe914575621e5a900781a9155e3d7d15bfc85",
   "current_batch": "MANAGEMENT_CAPACITY_LAYOUT_AWAITING_VISUAL_REVIEW",
-  "next_batch": "Install B552.579 temporarily and run one short native smoke: the Dialogue Project report no longer ends with the old Great Work experiment block, and the Culture Meaning report still shows.",
+  "next_batch": "Owner short native smoke on B552.579: the Dialogue Project report no longer ends with the old Great Work experiment block, and the Culture Meaning report still shows.",
   "manifest": "Specialization/Workflow/P0-H.json",
-  "live": "B551.578 / modinfo578 temporary, 305/305 MATCH at 013122c5e94392e69d2255e93cca8725cd9db1257dba20c412075dc52cbfc242. Receipt B551.578-033dee3-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
+  "live": "B552.579 / modinfo579 temporary, 304/304 MATCH at 46ba9592ebe939750f81c95f999f22ecab78c64985f1d543dad6895c98d299a7. Receipt B552.579-629fe91-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
   "stable": "main B528.555 / modinfo555 from PR #9 merge 0beca3138b58595bfa02749e4f5ba3662736b9e9. Previous stable B489.516 rollback verified.",
   "historical_only": [
     "Specialization/Design/Revisions/"
   ],
   "stale_navigation": "Historical version/build prose is not current authority; current Spec/Status and task-specific Architecture govern. B069 investigation maps and B076 inventory/validation are retrieved through the fixed Historical index; current module review provenance remains in Runtime_Index.files.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1170 D0067 A0192. Diagnostic display path retired; Dialogue Project report loses the unrelated Great Work experiment tail.",
+  "context_review_status": "S1171 D0067 A0192. Diagnostic display path retired and installed; native smoke pending.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -61,6 +61,6 @@
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
   "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#diagnostic-display-path-retired--s1170",
-  "source_status": "B552.579 / modinfo579 source retires the UI diagnostic display path (UI/BoostGreatWorkRead), its hidden panel controls and the Gameplay L2 meaning-probe request block. B551.578 remains installed.",
+  "source_status": "B552.579 / modinfo579 temporarily installed. Stable main B528.555.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published. 2026-11-18: Primary may classify and retire eligible tracked document families without a file-count approval gate; preserve actual current responsibilities, verified published originals and existing evidence/role boundaries. 2026-11-18 Owner resumed document maintenance after the S1105 safe checkpoint; continue the existing delegated criteria and decision boundaries. No runtime/deployment/main action. 2026-11-20 Owner accepted the city ownership rules and implementation sequence. Develop only; new permanent fields require separate approval."
 }
