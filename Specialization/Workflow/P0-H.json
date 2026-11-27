@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1168",
+    "status": "S1169",
     "runtime": "B551.578 / modinfo578",
     "military": "D0037",
     "harbor": "D0037",
@@ -61,7 +61,7 @@
   "result": {
     "runtime_identity": {
       "source": "B551.578 / modinfo578 source removes the four fixture-only arms kept in B549; fixture doubles provide the real methods. B550.577 remains installed.",
-      "installed": "B550.577 / modinfo577 temporary, 305/305 MATCH at 8f4c1479ba839275cdb4f3812e2f25ae31b1e252f1ec1656166d6c3c876124c1. Receipt B550.577-78fa192-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
+      "installed": "B551.578 / modinfo578 temporary, 305/305 MATCH at 013122c5e94392e69d2255e93cca8725cd9db1257dba20c412075dc52cbfc242. Receipt B551.578-033dee3-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
     "engineering_closeout": {
@@ -110,7 +110,7 @@
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
       "native_validation": "USER_GAME_TEST_PASS (S1167 short smoke scope)",
-      "deployment": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-5-installed--s1166"
+      "deployment": "Specialization/Status/Specialization_P0_Status.md#fixture-double-migration-installed--s1169"
     }
   }
 }

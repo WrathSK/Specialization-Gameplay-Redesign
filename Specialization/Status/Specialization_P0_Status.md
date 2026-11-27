@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1168
-Implementation Build: develop B551.578 / modinfo578. Installed temporary B550.577 / modinfo577. Stable B528.555 / modinfo555.
+Status Revision: S1169
+Implementation Build: develop B551.578 / modinfo578. Installed temporary B551.578 / modinfo578. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,7 +13,7 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B551.578 / modinfo578 [夹具替身迁移](#fixture-double-migration--s1168)（契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B550.577](#contract-audit-batch-5-installed--s1166)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B551.578 / modinfo578 [夹具替身迁移](#fixture-double-migration--s1168)（契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B551.578](#fixture-double-migration-installed--s1169)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B550.577 实机短测通过（[S1167](#contract-audit-batches-2-5-native-smoke--s1167)）：建城、投资、存档读档后专业与潜力一致，采集日志无 `[SPC][ERR]`。容量窗口徽章与标题仍待复验；考察团归档沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
 | Next action | 契约审计后续：诊断显示路径（`UI/BoostGreatWorkRead`）去留待 Owner 决定。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
@@ -23,6 +23,10 @@ Use [Authority](../Workflow/Authority.json) for the active task and version poin
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Fixture-double migration installed — S1169
+
+B551.578 / modinfo578 temporary, 305/305 MATCH at 013122c5e94392e69d2255e93cca8725cd9db1257dba20c412075dc52cbfc242. Receipt B551.578-033dee3-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified. 安装源码 033dee36064bde67857ae8283409e7f9c477b2b5。先按 B550 回执还原 B528.555 原包，再安装 B551；包文件仍为 305 个，12 个已退役开发版路径按既有清单移除，事务标记已清除。生产行为不变，无需实机测试。
 
 ### Fixture-double migration — S1168
 
