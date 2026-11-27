@@ -10,7 +10,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1166",
+    "status": "S1167",
     "runtime": "B550.577 / modinfo577",
     "military": "D0037",
     "harbor": "D0037",
@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "78fa192c390a8c52cd70749c8959f352f81916b2",
   "current_batch": "MANAGEMENT_CAPACITY_LAYOUT_AWAITING_VISUAL_REVIEW",
-  "next_batch": "On installed B550.577 the Owner runs the pending short native smoke (found, invest, save/load, no [SPC][ERR]) and decides the fixture-double migration and the diagnostic display path.",
+  "next_batch": "The Owner decides the next step: fixture-double migration (four kept fixture-only arms) or the diagnostic display path decision.",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B550.577 / modinfo577 temporary, 305/305 MATCH at 8f4c1479ba839275cdb4f3812e2f25ae31b1e252f1ec1656166d6c3c876124c1. Receipt B550.577-78fa192-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
   "stable": "main B528.555 / modinfo555 from PR #9 merge 0beca3138b58595bfa02749e4f5ba3662736b9e9. Previous stable B489.516 rollback verified.",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose is not current authority; current Spec/Status and task-specific Architecture govern. B069 investigation maps and B076 inventory/validation are retrieved through the fixed Historical index; current module review provenance remains in Runtime_Index.files.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1166 D0067 A0192. Contract audit batch 5 installed; no gameplay change.",
+  "context_review_status": "S1167 D0067 A0192. Contract audit batches 2-5 native smoke passed on B550.577.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",

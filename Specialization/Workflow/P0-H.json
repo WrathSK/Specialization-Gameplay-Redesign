@@ -11,7 +11,7 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1166",
+    "status": "S1167",
     "runtime": "B550.577 / modinfo577",
     "military": "D0037",
     "harbor": "D0037",
@@ -109,7 +109,7 @@
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",
-      "native_validation": "USER_GAME_TEST_REQUIRED",
+      "native_validation": "USER_GAME_TEST_PASS (S1167 short smoke scope)",
       "deployment": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-5-installed--s1166"
     }
   }
