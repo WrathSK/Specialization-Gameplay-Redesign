@@ -31,17 +31,6 @@ class StartupCleanupTests(unittest.TestCase):
    function hasOld(c)local n=0;for id in pairs(c.present)do local row=GameInfo.Buildings[id];if row and gwa.IsOwnedCarrier(row.BuildingType)then n=n+1 end end;return n>0 end
   """)
   return lua
- def test_fresh_missing_load_read_is_readonly_then_background_sample_cleans(self):
-  lua=self.runtime(real=True);lua.execute(r"""
-   seedValue(a,5);local token=a.token;local before=writes
-   local v=finalRequest('CULTURE_MEANING_READ','before-ready')
-   assert(v.mode=='OFF' and v.remainingOwned==1 and v.cleanupStatus=='PENDING' and writes==before and not probe.ready)
-   sampleRequest(1)
-   assert(probe.ready and probe.cleanupStatus=='CONFIRMED' and probe.mode=='OFF');emptyMeaning(a)
-   assert(shared.GreatWorkFacts.ack==1 and dialogue.seq[0]==1 and dialogue.samples[0] and gwa.samples[0])
-   assert(hasOld(a) and hasOld(b) and a.token==token)
-   before=writes;sampleRequest(2);assert(writes==before and probe.cleanupPasses==1)
-  """)
  def test_each_legacy_writer_gates_before_positive_projection(self):
   for writer in ('dialogue','gwa'):
    with self.subTest(writer=writer):

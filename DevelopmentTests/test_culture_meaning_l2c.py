@@ -203,39 +203,6 @@ class L2CTests(unittest.TestCase):
    self.assertEqual(categories,{'GREATWORKOBJECT_'+category for category in CATEGORIES})
   self.assertEqual(count,189)
 
- def test_zero_culture_three_state_flow_and_disabled_configuration(self):
-  lua=self.runtime();legacy.bind_actual_request(lua)
-  lua.execute(r"""
-   fiveDepthFixture(a)
-   local other=snapshotBuildings(b);local percent100=0;local hold=dialogue.HoldMeaningProbe
-   dialogue.HoldMeaningProbe=function(pid,c,percent)if percent==100 then percent100=percent100+1 end;return hold(pid,c,percent)end
-   local function request(action,token)
-    meaningRequest(0,{Action=action,CityID=1,Token=token})
-    assert(shared.LastToken==token and shared.CultureMeaningView.token==token)
-    return shared.CultureMeaningView
-   end
-   local before=writes;local off=request('CULTURE_MEANING_CONFIG','off-blocked')
-   assert(off.error:find('ME_VARIANT_DEFERRED') and writes==before and probe.mode=='OFF')
-   request('CULTURE_MEANING_ADVANCE','baseline')
-   assert(probe.mode=='BASELINE' and next(exactMeaning(a))==nil)
-   local v=request('CULTURE_MEANING_ADVANCE','active')
-   assert(v.mode=='ACTIVE' and not v.error and v.dialoguePercent==0 and v.configuredCulture==0)
-   for field,value in pairs({science=3,production=4,gold=8,food=3,faith=3})do assert(v[field]==value,field)end
-   for field,value in pairs({configuredScience=3,configuredProduction=4,configuredGold=8,configuredFood=3,configuredFaith=3})do assert(v[field]==value,field)end
-   for name in pairs(exactMeaning(a))do assert(not name:find('_CULTURE_',1,true))end
-   local before=writes;request('CULTURE_MEANING_ADVANCE','active');assert(writes==before and probe.mode=='ACTIVE')
-   request('CULTURE_MEANING_READ','read');assert(writes==before and probe.mode=='ACTIVE')
-   v=request('CULTURE_MEANING_CONFIG','blocked');assert(v.error:find('ME_VARIANT_DEFERRED') and writes==before and probe.mode=='ACTIVE')
-   v=request('CULTURE_MEANING_END','end')
-   assert(v.mode=='OFF' and not v.error and next(exactMeaning(a))==nil and old(a,'SCIENCE'))
-   assert(dialogue.meaningOverride==nil and not gwa.IsMeaningHeld(0,a) and percent100==0)
-   assertBuildingsSame(b,other)
-   before=writes;request('CULTURE_MEANING_END','end');assert(writes==before)
-   request('CULTURE_MEANING_END','off');assert(writes==before)
-   request('CULTURE_MEANING_ADVANCE','baseline2');request('CULTURE_MEANING_ADVANCE','active2')
-   request('CULTURE_MEANING_ADVANCE','advance-end');assert(probe.mode=='OFF' and next(exactMeaning(a))==nil)
-  """)
-
  def test_real_same_turn_building_pillage_active_and_works_changes(self):
   lua=self.runtime();lua.execute(r"""
    local other=snapshotBuildings(b);begin()
@@ -404,84 +371,6 @@ class L2CTests(unittest.TestCase):
    assert(writes==before and readerModifierCalls==0 and probe.mode=='ACTIVE');assertBuildingsSame(b,other)
   """)
 
- def test_reader_reports_real_mismatch_and_explicit_refresh_after_delayed_native(self):
-  lua=self.reader_runtime();lua.execute(r"""
-   readerBegin();local before=writes;readerStale=true
-   local report=readerRead(false)
-   assert(report:find('科研｜每件 +3／本城 +3｜实测差值 +0.00｜当前原生 2.00',1,true))
-   assert(not report:find('PASS',1,true))
-   readerStale=false;readerOffsets.GOLD=-2
-   report=readerRead(false)
-   assert(report:find('金币｜每件 +8／本城 +8｜实测差值 +6.00｜当前原生 10.00',1,true))
-   assert(report:find('科研｜每件 +3／本城 +3｜实测差值 +3.00',1,true))
-   assert(writes==before and readerModifierCalls==0)
-  """)
-
- def test_reader_nil_nan_inf_fail_and_release_successful_baseline(self):
-  for bad in ('nil','nan','inf'):
-   with self.subTest(bad=bad):
-    lua=self.reader_runtime();lua.globals().readerBadCase=bad;lua.execute(r"""
-     readerBegin();local before=writes;readerBad=readerBadCase
-     local report=readerRead(false)
-     assert(report:find('ME_UI_NATIVE_YIELD_UNKNOWN',1,true) and report:find('不记录成功基线',1,true))
-     assert(not report:find('实测差值 +0.00',1,true))
-     readerBad=nil;report=readerRead(false)
-     assert(report:find('差值未确认',1,true) and report:find('当前原生 5.00',1,true))
-     assert(writes==before and readerModifierCalls==0)
-    """)
-
- def test_reader_current_facts_invalidate_comparison_but_preserve_finite_absolute_read(self):
-  changes=(
-   'readerPopulation=readerPopulation+1',
-   'readerPopulation=0/0',
-   'readerThemed=true',
-   'readerMove=true',
-   "readerOverrides.stamp='CHANGED_DEPTH'",
-   'readerOverrides.currentActive=3',
-   "readerOverrides.currentActiveStatus='UNKNOWN_GOVERNOR'",
-   'readerOverrides.currentPotential=3',
-   'turn=turn+1;collection();probe.Audit()',
-  )
-  for change in changes:
-   with self.subTest(change=change):
-    lua=self.reader_runtime();lua.execute('readerBegin();'+change);lua.execute(r"""
-     local before=writes;local report=readerRead(false)
-     assert(report:find('差值未确认',1,true) and report:find('实测差值 未确认',1,true))
-     assert(report:find('当前原生 5.00',1,true) and not report:find('实测差值 +0.00',1,true))
-     assert(writes==before and readerModifierCalls==0)
-    """)
-
- def test_reader_new_turn_pending_pair_is_not_a_zero_or_successful_baseline(self):
-  lua=self.reader_runtime();lua.execute(r"""
-   readerBegin();turn=turn+1
-   local before=writes;local calls=readerNativeCalls;local report=readerRead(false)
-   assert(report:find('ME_UI_CONFIGURATION_PENDING',1,true) and report:find('不记录成功基线',1,true))
-   assert(not report:find('实测差值 +0.00',1,true) and readerNativeCalls==calls and writes==before)
-   collection();probe.Audit();before=writes;report=readerRead(false)
-   assert(report:find('实测差值 未确认',1,true) and report:find('当前原生 5.00',1,true) and writes==before)
-  """)
-
- def test_reader_count_definition_slots_theme_reference_guards(self):
-  changes=(
-   ('a.workCount=2','ME_UI_WORK_COUNT_MISMATCH'),
-   ('readerThemed=nil','ME_UI_THEME_UNKNOWN'),
-   ("a.GetBuildings().GetGreatWorkTypeFromIndex=function()return 'UNKNOWN_DEFINITION'end",'ME_UI_WORK_DEFINITION_UNKNOWN'),
-   ('a.GetBuildings().GetNumGreatWorkSlots=function()return math.huge end','ME_UI_SLOTS_UNKNOWN'),
-   ("readerOverrides.reference='WRONG_REFERENCE'",'ME_UI_REFERENCE_CHANGED'),
-  )
-  for change,code in changes:
-   with self.subTest(code=code):
-    lua=self.reader_runtime();lua.execute('readerBegin();'+change)
-    # The fake GetBuildings recreates its function fields each call; persist
-    # targeted method replacements by wrapping the existing getter.
-    if code in ('ME_UI_WORK_DEFINITION_UNKNOWN','ME_UI_SLOTS_UNKNOWN'):
-     method='GetGreatWorkTypeFromIndex' if code=='ME_UI_WORK_DEFINITION_UNKNOWN' else 'GetNumGreatWorkSlots'
-     body="return 'UNKNOWN_DEFINITION'" if code=='ME_UI_WORK_DEFINITION_UNKNOWN' else 'return math.huge'
-     lua.execute(f'local get=a.GetBuildings;a.GetBuildings=function(c)local b=get(c);b.{method}=function(){body} end;return b end')
-    before=lua.globals().writes;report=lua.globals().readerRead(False)
-    self.assertIn(code,report);self.assertNotIn('实测差值 +0.00',report)
-    self.assertEqual(lua.globals().writes,before)
-
  def test_reader_off_clear_and_cold_cleanup_never_replay_previous_baseline(self):
   lua=self.reader_runtime();lua.execute(r"""
    local before=writes;assert(readerRead(false):find('测试已关闭',1,true));assert(writes==before)
@@ -532,8 +421,6 @@ class L2CTests(unittest.TestCase):
  # Reviewed direct regressions, no four-state/native-reader/Culture candidate cases.
  test_k_pair_cold_request = legacy.MeaningProbeTests.test_real_sample_request_cold_c00_uses_both_receivers
  test_k_new_facts_not_old_dialogue = legacy.MeaningProbeTests.test_real_sample_callback_does_not_mix_new_facts_with_old_dialogue
- test_k_rejected_receiver_not_pair = legacy.MeaningProbeTests.test_real_sample_one_receiver_rejection_does_not_confirm_pair
- test_k_duplicate_sequence = legacy.MeaningProbeTests.test_real_sample_duplicate_sequence_does_not_reinterpret_changed_payload
  test_k_next_turn_recovers_same_phase = legacy.MeaningProbeTests.test_real_sample_next_turn_waits_for_current_pair_then_recovers_same_phase
  test_old_withdrawal_failure = legacy.MeaningProbeTests.test_old_withdrawal_failure_does_not_enable_new
  test_ingress_rejects_foreign_and_invalid_token = legacy.MeaningProbeTests.test_actual_request_invalid_or_foreign_ingress_does_not_run_probe

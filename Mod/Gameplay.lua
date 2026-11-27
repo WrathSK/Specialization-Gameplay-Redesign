@@ -279,69 +279,17 @@ local function request(playerID,params)
     shared.Snapshot=ok and out or Locale.Lookup('LOC_SPC_INSPIRATION_PENDING')
     shared.LastToken=params.Token;return
   end
-  if shared.CultureMeaning and type(params.Action)=='string' and params.Action:find('^CULTURE_MEANING_') then
-    shared.CultureMeaningView=nil -- No test baseline or stale native view in normal mode.
+  if type(params.Action)=='string' and params.Action:find('^CULTURE_MEANING_') then
     local ok,out=pcall(function()
       local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
       assert(c:GetOwner()==playerID,'ME_OWNER_UNKNOWN')
-      local report=shared.CultureMeaning.Describe(playerID,c) -- Read-only; old controls cannot write.
+      local report=assert(shared.CultureMeaning,'ME_MODULE_NOT_READY').Describe(playerID,c) -- Read-only; old controls cannot write.
       if params.Action~='CULTURE_MEANING_READ' and params.Action~='CULTURE_MEANING_STATUS' then
         report=report..'\n实验开关已停用；此请求不会启用、撤销或替换正常收益。'
       end
       return report
     end)
     shared.Snapshot=ok and out or '意义延展：当前城市暂不可读。';shared.LastToken=params.Token;return
-  end
-  if params.Action=='CULTURE_MEANING_GATE_ADVANCE' or params.Action=='CULTURE_MEANING_ADVANCE' or params.Action=='CULTURE_MEANING_READ' or params.Action=='CULTURE_MEANING_CONFIG' or params.Action=='CULTURE_MEANING_END' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ' then
-    -- One request-local read model; a failed request must not reuse a prior UI view.
-    shared.CultureMeaningView=nil
-    local at='CITY';local actionError;local actionStage
-    local function detail(why)
-      local text=tostring(why):gsub('[%c]',' ');local code=text:match('(ME_[A-Z_]+)')
-      if not code then return text:sub(1,120)end
-      local reason=text:match(code..': ([A-Z_]+)');return code..(reason and (' / '..reason) or '')
-    end
-    local ok,out=pcall(function()
-      local c=assert(Players[playerID]:GetCities():FindID(params.CityID),'ME_CITY_UNKNOWN')
-      assert(c:GetOwner()==playerID,'ME_OWNER_UNKNOWN')
-      at='MODULE';local probe=assert(shared.CultureMeaningProbe,'ME_MODULE_NOT_READY')
-      if params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' then
-        at='DIAGNOSTIC_ADVANCE';assert(type(probe.DiagnosticAdvance)=='function','ME_ACTION_NOT_READY')
-        local changed,why=pcall(probe.DiagnosticAdvance,playerID,c,params.Token)
-        if not changed then actionError=detail(why)end
-      elseif params.Action=='CULTURE_MEANING_GATE_ADVANCE' then
-        at='GATE_ADVANCE';assert(type(probe.GateAdvance)=='function','ME_ACTION_NOT_READY')
-        local changed,why=pcall(probe.GateAdvance,playerID,c,params.Token)
-        if not changed then actionError=detail(why)end
-      elseif params.Action=='CULTURE_MEANING_ADVANCE' then
-        at='ADVANCE';assert(type(probe.Advance)=='function','ME_ACTION_NOT_READY')
-        local changed,why=pcall(probe.Advance,playerID,c,params.Token)
-        if not changed then actionError=detail(why)end
-      elseif params.Action=='CULTURE_MEANING_END' then
-        at='END';assert(type(probe.End)=='function','ME_ACTION_NOT_READY')
-        local changed,why=pcall(probe.End,playerID,c,params.Token)
-        if not changed then actionError=detail(why)end
-      elseif params.Action=='CULTURE_MEANING_CONFIG' then
-        at='CONFIG';assert(type(probe.CycleVariant)=='function','ME_ACTION_NOT_READY')
-        local changed,why=pcall(probe.CycleVariant,playerID,c,params.Token)
-        if not changed then actionError=detail(why)end
-      end
-      actionStage=at
-      at='VIEW';assert(type(probe.View)=='function','ME_VIEW_NOT_READY')
-      local diagnostic=params.Action=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE' or params.Action=='CULTURE_MEANING_DIAGNOSTIC_READ'
-      local view=probe.View(playerID,c,diagnostic)
-      assert(type(view)=='table' and view.owner==playerID and view.cityID==params.CityID,'ME_VIEW_INVALID')
-      -- These errors belong only to this disposable view, not the probe's state.
-      view.error=view.error or actionError or view.configurationError
-      at='DESCRIBE';assert(type(probe.Describe)=='function','ME_DESCRIBE_NOT_READY')
-      local report=probe.Describe(playerID,c,view);assert(type(report)=='string','ME_REPORT_INVALID')
-      if actionError then report=report..'\n操作未完成 ['..tostring(actionStage or at)..']：'..actionError end
-      if view.configurationError then report=report..'\n配置读取未完成 [VIEW]：'..detail(view.configurationError)end
-      view.token=params.Token;shared.CultureMeaningView=view
-      return report
-    end)
-    shared.Snapshot=ok and out or ('意义延展验证未完成 ['..at..']：'..detail(out)..(actionError and ('\n操作未完成 ['..tostring(actionStage or at)..']：'..actionError) or ''))
-    shared.LastToken=params.Token;return
   end
   if params.Action=='CULTURE_AESTHETIC_READ' or params.Action=='CULTURE_AESTHETIC_DETAIL' then
     local ok,out=pcall(function()
@@ -381,11 +329,7 @@ local function request(playerID,params)
       end
     end
     if factsOK and factsAccepted==true and ok and accepted==true then
-      local paired,confirmed=pcall(shared.Dialogue.ConfirmSamplePair,playerID,params)
-      if paired and confirmed==true and shared.CultureMeaningProbe then
-        local notified,why=pcall(shared.CultureMeaningProbe.CollectionConfirmed,playerID,params)
-        if not notified then shared.CultureMeaningProbe.error='ME_COLLECTION_UPDATE_FAILED: '..tostring(why):sub(1,180)end
-      end
+      pcall(shared.Dialogue.ConfirmSamplePair,playerID,params)
     end
     return
   end
@@ -415,15 +359,6 @@ local function request(playerID,params)
     end)
     shared.Snapshot=ok and out or ('商业化暂不可用：'..(tostring(out):match('COM_[A-Z_]+') or 'COM_STATE_UNKNOWN'))
     shared.LastToken=params.Token;return
-  end
-  if params.Action=='GW_READ' or params.Action=='GW_BASELINE' then
-    if not P.IsTestPlayer(playerID) then return end
-    local c=Players[playerID]:GetCities():FindID(params.CityID);if not c then return end
-    shared.Snapshot=shared.Dialogue.Describe(playerID,c);shared.LastToken=params.Token;return
-  end
-  if params.Action=='BOOST_READ' or params.Action=='BOOST_BASELINE' then
-    if not P.IsTestPlayer(playerID) then return end
-    shared.Snapshot='科研专业仍参与商路连接。v0.1 暂缓科研网络鼓舞效果。';shared.LastToken=params.Token;return
   end
   if params.Action=='DISCOUNT_READ' then
     if not P.IsTestPlayer(playerID) then return end

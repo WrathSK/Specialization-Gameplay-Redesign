@@ -1,4 +1,3 @@
-include("BoostGreatWorkRead")
 include("Probe")
 include("RuntimeGC")
 include("GPPReadout")
@@ -21,8 +20,6 @@ local function trace(s)
   status(P.VERSION.." | "..s)
 end
 local pendingAction
-local meaningReadReference
-local meaningResponseToken,meaningResponseText,meaningResponseReference,meaningResponseTurn
 local function displayResponse()
   local data=ExposedMembers.SPC_P0 or {}
   if pendingToken and data.Version==P.VERSION and data.LastToken==pendingToken then
@@ -56,41 +53,7 @@ local function displayResponse()
       else report='Lv4读取未完成：城市或请求已变化。' end
       localReport=report;print('[SPC][B049][COPY] '..report)
     end
-    if pendingAction=='BOOST_READ' or pendingAction=='BOOST_BASELINE' then
-      report=report..'\n'..SPCBoostGreatWorkRead.Boost(P,pendingAction=='BOOST_BASELINE');localReport=report
-    elseif pendingAction and pendingAction:find('^CULTURE_MEANING_') then
-      local v=data.CultureMeaningView
-      local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
-      if c and v and v.token==pendingToken then
-        local ref=SPCNetworkInput.Reference(c);local turn=Game.GetCurrentGameTurn()
-        local selected=UI.GetHeadSelectedCity()
-        local selectedMatch=not (v.diagnostic or v.productionOnly or v.finalValues) or selected and selected:GetOwner()==c:GetOwner() and SPCNetworkInput.Reference(selected)==ref
-        if meaningResponseToken~=pendingToken and selectedMatch then
-          if v.diagnostic then
-            meaningResponseText=SPCBoostGreatWorkRead.ProductionDiagnostic(P,c,v,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_ADVANCE',pendingToken,meaningReadReference,pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ')
-          else
-            meaningResponseText=SPCBoostGreatWorkRead.Meaning(P,c,v,pendingAction=='CULTURE_MEANING_ADVANCE' or pendingAction=='CULTURE_MEANING_GATE_ADVANCE')
-            if (v.productionOnly or v.finalValues) and pendingAction=='CULTURE_MEANING_READ' then
-              local detail=SPCBoostGreatWorkRead.Modifiers(P,c,v,pendingToken,meaningReadReference)
-              meaningResponseText=meaningResponseText..'\n'..(v.finalValues and SPCBoostGreatWorkRead.ModifierSummary(pendingToken) or detail)
-            end
-          end
-          meaningResponseToken=pendingToken;meaningResponseReference=ref;meaningResponseTurn=turn
-        end
-        if selectedMatch and ref==meaningResponseReference and ref==v.reference and turn==meaningResponseTurn then
-          report=report..'\n'..meaningResponseText
-        else
-          SPCBoostGreatWorkRead.ClearMeaningRead();SPCBoostGreatWorkRead.ClearModifierRead()
-          meaningResponseToken=pendingToken;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil -- Consume stale token; never replay or rescan it.
-          report=report..'\n本次原生报告已过期；重新右键读取，不复用旧差值。'
-        end
-      end
-      localReport=report
-    elseif pendingAction and (pendingAction:find('^GW_') or pendingAction:find('^DIALOGUE_')) then
-      local c=Players[Game.GetLocalPlayer()]:GetCities():FindID(pageCity)
-      if c then report=report..'\n'..SPCBoostGreatWorkRead.Works(P,c,pendingAction=='GW_BASELINE') end
-      localReport=report
-    end
+    if pendingAction and (pendingAction:find('^CULTURE_MEANING_') or pendingAction:find('^DIALOGUE_')) then localReport=report end
     readings[(pendingAction and pendingAction:find('^CULTURE_MEANING_')) and 'CULTURE_MEANING' or (pendingAction and pendingAction:find('^MEMORY_GC_')) and 'MEMORY_GC' or ((pendingAction or "READ")..":"..tostring(pageCity)..":"..tostring(page))]=report
     status(P.VERSION.." | ACK | "..report:gsub("\n","[NEWLINE]"))
     return true
@@ -116,10 +79,6 @@ local function waitForResponse()
   end)
 end
 request=function(action,advance)
-  meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
-  SPCBoostGreatWorkRead.ClearModifierRead()
-  meaningReadReference=nil
-  if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then readings.CULTURE_MEANING=nil;localReport=nil end
   ContextPtr:ClearUpdate()
   local playerID=Game.GetLocalPlayer()
   local eligible,reason=P.IsTestPlayer(playerID)
@@ -142,7 +101,6 @@ request=function(action,advance)
   ExposedMembers.SPC_P0_UISequence=(ExposedMembers.SPC_P0_UISequence or 0)+1
   pendingToken=P.VERSION..":"..tostring(Game.GetCurrentGameTurn())..":"..tostring(ExposedMembers.SPC_P0_UISequence)
   pendingAction=action
-  if action=='CULTURE_MEANING_READ' or action=='CULTURE_MEANING_DIAGNOSTIC_READ' then meaningReadReference=SPCNetworkInput.Reference(city)end
   trace("BEFORE_DISPATCH "..action.." city="..tostring(city and city:GetID()))
   local packet={OnStart="SPC_P0_Request",Action=action,Token=pendingToken,CityID=city and city:GetID(),Page=page,UnitID=investmentUnitID,PlanToken=investmentPlanToken}
   local ok,err=pcall(UI.RequestPlayerOperation,playerID,PlayerOperations.EXECUTE_SCRIPT,packet)
@@ -150,13 +108,6 @@ request=function(action,advance)
   if ok then waitForResponse() end
 end
 local function copy()
-  if (pendingAction=='CULTURE_MEANING_READ' or pendingAction=='CULTURE_MEANING_DIAGNOSTIC_READ') then
-    if displayResponse() and localReport then
-      print('[SPC][MEANING_READ] '..P.VERSION..'\n'..localReport..'\n'..(SPCBoostGreatWorkRead.ModifierDetails(pendingToken) or ''))
-      status('本次诊断报告已写入Lua.log；也可直接截图。')
-    else status('尚无本次意义延展回复；请稍后重新右键读取。')end
-    return
-  end
   local lines={'SPC_DIAGNOSTIC_REPORT_BEGIN',P.VERSION,'turn='..Game.GetCurrentGameTurn()}
   local c=UI.GetHeadSelectedCity();local u=UI.GetHeadSelectedUnit()
   lines[#lines+1]='city='..tostring(c and c:GetID())..' unit='..tostring(u and u:GetID())
@@ -202,20 +153,17 @@ end
 local function cancelMeaningReply()
   if pendingAction and pendingAction:match('^CULTURE_MEANING_') then
     ContextPtr:ClearUpdate();pendingToken=nil;pendingAction=nil;localReport=nil
-    readings.CULTURE_MEANING=nil;meaningReadReference=nil
+    readings.CULTURE_MEANING=nil
   end
 end
 local function showRoot()
   cancelMeaningReply()
-  SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
-  meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
   local enabled=P.IsTestPlayer(Game.GetLocalPlayer())
   ContextPtr:SetHide(not enabled);placeEntry();Controls.OpenButton:SetHide(not enabled)
 end
 local function closeWindow()
-  Controls.Window:SetHide(true);SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead()
-  meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil
-  cancelMeaningReply() -- A late ACK cannot recreate a released diagnostic baseline.
+  Controls.Window:SetHide(true)
+  cancelMeaningReply()
 end
 local function initialize()
   -- Explicit labels bypass GridButton style-owned text rendering.
@@ -248,8 +196,6 @@ local function initialize()
   Controls.NetworkButton:SetToolTipString('网络概况')
   Controls.CarrierStepButtonCaption:SetText('网络来源 / 接收')
   Controls.CarrierStepButton:SetToolTipString('只读公共网络来源、中心、本城接收和商路方向；再次点击翻页。关键记录写入有界日志。')
-  Controls.BoostReadButtonCaption:SetText('尤里卡 / 鼓舞')
-  Controls.BoostReadButton:SetToolTipString('尤里卡 / 鼓舞')
   Controls.CommerceREADButtonCaption:SetText(Locale.Lookup('LOC_SPC_COMMERCE_TITLE'))
   Controls.CommerceREADButton:SetToolTipString(Locale.Lookup('LOC_SPC_COMMERCE_OPEN_HELP'))
   Controls.TemplatesButtonCaption:SetText(Locale.Lookup('LOC_SPC_INDUSTRY_HISTORY_BUTTON'))
@@ -296,9 +242,6 @@ local function initialize()
   Controls.NetworkButton:SetToolTipString('只读公共网络商路与拓扑，并单独显示文化收益状态；文化模块失败仍可查看。右键查看来源，明细按钮翻页。')
   Controls.Lv4PercentButton:RegisterCallback(Mouse.eLClick,function() request("LV4_PERCENT_READ") end)
   Controls.ResearchReadButton:RegisterCallback(Mouse.eLClick,function() request("RESEARCH_READ") end)
-  Controls.BoostReadButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_READ') end)
-  Controls.BoostBaseButton:RegisterCallback(Mouse.eLClick,function() request('BOOST_BASELINE') end)
-  Controls.GWBaselineButton:RegisterCallback(Mouse.eLClick,function() request('GW_BASELINE') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eLClick,function() request('INSPIRE_STATUS') end)
   Controls.MeaningConfigButton:RegisterCallback(Mouse.eRClick,function() request('INSPIRE_DETAIL') end)
   Controls.MeaningProbeButton:RegisterCallback(Mouse.eLClick,function() request('CULTURE_MEANING_STATUS') end)
@@ -376,4 +319,4 @@ end
 ContextPtr:SetInitHandler(initialize)
 Events.LoadScreenClose.Add(showRoot)
 Events.SystemUpdateUI.Add(placeEntry)
-ContextPtr:SetShutdown(function() SPCBoostGreatWorkRead.ClearModifierRead();SPCBoostGreatWorkRead.ClearMeaningRead();meaningResponseToken=nil;meaningResponseText=nil;meaningResponseReference=nil;meaningResponseTurn=nil;if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)
+ContextPtr:SetShutdown(function() if projectReadPulse then Events.GameCoreEventPublishComplete.Remove(projectReadPulse) end;Controls.OpenButton:SetHide(true);Events.SystemUpdateUI.Remove(placeEntry);ContextPtr:ClearUpdate();Events.LoadScreenClose.Remove(showRoot) end)

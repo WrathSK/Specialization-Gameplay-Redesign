@@ -72,9 +72,6 @@ class Retirement(TestCase):
                   local done=nativeReads
                   close.Fire();turn.Fire(0);assert(nativeReads==done and boostReads==0)
                   assert(localPresent[boostID] and localPresent[monumentID] and foreignPresent[monumentID])
-                  for _,action in ipairs({'BOOST_READ','BOOST_BASELINE'})do
-                    assert(request(action,action):find('科研网络鼓舞',1,true) and ExposedMembers.SPC_P0.LastToken==action)
-                  end
                   assert(propertyWrites==0 and #changes==2)
                 """, first_event)
                 self.assertEqual(ctx.load_counts['missing'] + ctx.load_counts['failed'], 0)

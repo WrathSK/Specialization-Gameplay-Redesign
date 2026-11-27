@@ -10,7 +10,6 @@ import xml.etree.ElementTree as ET
 import test_culture_meaning_probe as legacy
 import test_culture_meaning_l2c as l2c
 import test_culture_meaning_single_value as single
-import test_modifier_read as modifier
 R=Path(__file__).resolve().parents[1]
 LIMITS={'SCIENCE':5,'PRODUCTION':10,'GOLD':30,'FOOD':5,'FAITH':5,'CULTURE':10}
 NEW=[f'BUILDING_SPC_MEANING_PROBE_{y}_VALUE_{n}' for y,limit in LIMITS.items() if y!='PRODUCTION' for n in range(1,limit+1)]
@@ -241,47 +240,15 @@ class FinalYieldTests(unittest.TestCase):
    assert(globalScans==1 and nativeCalls==n and not shownSix:find('实测差值 +2.00',1,true))
    assert(not SPCBoostGreatWorkRead.ModifierDetails('read') and not copiedSix:find('Modifier诊断',1,true))
   """)
- def test_new_modifier_values_summary_and_detail_share_cache(self):
-  lua=modifier.ModifierReadTests().runtime();lua.execute(r"""
-   v.finalValues=true;v.productionOnly=false;v.mode='ACTIVE';definitions[2]=all_definitions.SPC_MEANING_PROBE_CULTURE_VALUE_3_WRITING;local b=GameInfo.Buildings.BUILDING_SPC_MEANING_PROBE_CULTURE_VALUE_3
-   assert(b.PrereqDistrict=='DISTRICT_THEATER');b.present=true
-   local report=read('six');assert(report:find('CULTURE_VALUE_3_WRITING',1,true),report)
-   local summary=SPCBoostGreatWorkRead.ModifierSummary('six');assert(summary:find('意义延展',1,true))
-   assert(SPCBoostGreatWorkRead.ModifierDetails('six')==report and calls==1)
-   read('six');assert(calls==1);SPCBoostGreatWorkRead.ClearModifierRead();assert(not SPCBoostGreatWorkRead.ModifierDetails('six'))
-  """)
- def test_same_token_changed_signature_discards_summary_detail_without_rescan(self):
-  lua=modifier.ModifierReadTests().runtime();lua.execute(r"""
-   v.finalValues=true;v.mode='ACTIVE';read('stale');assert(calls==1)
-   assert(SPCBoostGreatWorkRead.ModifierDetails('stale'))
-   v.configuredCulture=99;local expired=read('stale')
-   assert(expired:find('已释放或过期',1,true),expired)
-   assert(not SPCBoostGreatWorkRead.ModifierDetails('stale'))
-   assert(SPCBoostGreatWorkRead.ModifierSummary('stale'):find('未确认',1,true))
-   read('stale');assert(calls==1)
-  """)
- def test_current_culture_native_host_type_known_unknown_and_conflict(self):
-  for host in ('DISTRICT_THEATER','DISTRICT_CITY_CENTER',None):
-   with self.subTest(host=host):
-    lua=modifier.ModifierReadTests().mapped();lua.globals().actualHost=host
-    lua.execute(r"""
-     v.finalValues=true;v.mode='ACTIVE';ids={2};definitions[2]=all_definitions.SPC_MEANING_PROBE_CULTURE_VALUE_3_WRITING
-     GameInfo.Districts={[7]={DistrictType=actualHost}};district.GetType=function()return 7 end
-     local text=read('host')
-     if actualHost=='DISTRICT_THEATER' then assert(text:find('读取完整',1,true) and not text:find('CARRIER_HOST_',1,true),text)
-     else assert(text:find('CARRIER_HOST_',1,true) and text:find('读取不完整',1,true),text)end
-     assert(text:find('宿主区域=',1,true) and calls==1)
-    """)
  def test_package_syntax_current_exact_registry_and_old_design_frozen(self):
   from lupa.lua55 import LuaRuntime
   l=LuaRuntime(unpack_returned_tuples=True)
-  for p in ['CultureMeaningModel.lua','CultureMeaningProbe.lua','UI/BoostGreatWorkRead.lua','UI/P0Panel.lua','Probe.lua']:
+  for p in ['CultureMeaningModel.lua','CultureMeaningProbe.lua','UI/P0Panel.lua','Probe.lua']:
    with self.subTest(lua=p):self.assertIsNotNone(l.eval('function(s)return assert(load(s))end')(legacy.fixture_source(p)))
   root=ET.parse(R/'Mod/SpecializationP0.modinfo').getroot();self.assertEqual(root.attrib['version'],'190')
   for f in root.findall('.//File'): self.assertTrue((R/'Mod'/f.text).is_file(),f.text)
   self.assertEqual(subprocess.check_output(['git','show','36eceb2bf6d5d619783c02546a053a8c25896f33:Specialization/Design/Revisions/Specialization_Design_Spec_D0045.md'],cwd=R),subprocess.check_output(['git','show','b9c6bb7:Specialization/Design/Specialization_v0.1_Design_Spec.md'],cwd=R))
  test_k_cold_pair=legacy.MeaningProbeTests.test_real_sample_request_cold_c00_uses_both_receivers
- test_k_duplicate_sequence=legacy.MeaningProbeTests.test_real_sample_duplicate_sequence_does_not_reinterpret_changed_payload
  test_old_writer_failure=legacy.MeaningProbeTests.test_old_withdrawal_failure_does_not_enable_new
  test_ingress=legacy.MeaningProbeTests.test_actual_request_invalid_or_foreign_ingress_does_not_run_probe
  test_import_registry=legacy.MeaningProbeTests.test_import_registry_rejects_each_missing_action_import

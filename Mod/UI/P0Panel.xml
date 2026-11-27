@@ -9,8 +9,6 @@
     <GridButton Hidden="1" ID="InvestConfirmButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" String="Confirm investment" />
     <GridButton ID="InheritReadButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton" Hidden="1"><Label ID="InheritReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="实验对照" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="1" ID="ResearchReadButton" Anchor="L,B" Offset="542,106" Size="240,32" Style="MainButton" String="Read auto Lv1" />
-    <GridButton Hidden="1" ID="BoostBaseButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Boost baseline" />
-    <GridButton ID="GWBaselineButton" Anchor="L,B" Offset="18,106" Size="240,32" Style="MainButton" String="Record GW baseline" Hidden="1" />
     <GridButton ID="GWCityButton" Anchor="L,B" Offset="280,18" Size="240,32" Style="MainButton" Hidden="0"><Label ID="DialogueProjectCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_DIALOGUE_PROJECT_REPORT" Color="255,255,255,255" /></GridButton>
     <Container ID="LegacyProbeButtons" Size="840,664" Hidden="1">
       <GridButton ID="Lv2HousingButton" Anchor="L,B" Offset="18,62" Size="240,32" Style="MainButton" String="Read Lv2 housing" Hidden="1" />
@@ -25,7 +23,6 @@
     <GridButton ID="BackgroundRoutesButton" Anchor="L,B" Offset="18,98" Size="240,32" Style="MainButton" Hidden="1"><Label ID="BackgroundRoutesButtonCaption" Anchor="C,C" Style="FontNormal14" String="当前商路" Color="255,255,255,255" /></GridButton>
       <GridButton ID="NetworkButton" Anchor="L,B" Offset="280,138" Size="240,32" Style="MainButton" Hidden="0"><Label ID="NetworkButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络概况" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CarrierStepButton" Anchor="L,B" Offset="542,138" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CarrierStepButtonCaption" Anchor="C,C" Style="FontNormal14" String="网络来源 / 接收" Color="255,255,255,255" /></GridButton>
-      <GridButton Hidden="1" ID="BoostReadButton" Anchor="L,B" Offset="18,58" Size="240,32" Style="MainButton"><Label ID="BoostReadButtonCaption" Anchor="C,C" Style="FontNormal14" String="尤里卡 / 鼓舞" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CommerceREADButton" Anchor="L,B" Offset="18,178" Size="240,32" Style="MainButton" Hidden="0"><Label ID="CommerceREADButtonCaption" Anchor="C,C" Style="FontNormal14" String="商业四汇聚" Color="255,255,255,255" /></GridButton>
     <GridButton Hidden="0" ID="TemplatesButton" Anchor="L,B" Offset="280,178" Size="240,32" Style="MainButton"><Label ID="TemplatesButtonCaption" Anchor="C,C" Style="FontNormal14" String="LOC_SPC_INDUSTRY_HISTORY_BUTTON" Color="255,255,255,255" /></GridButton>
     <GridButton ID="CopyButton" Anchor="L,B" Offset="542,18" Size="240,32" Style="MainButton" Hidden="1"><Label ID="CopyButtonCaption" Anchor="C,C" Style="FontNormal14" String="写入诊断日志" Color="255,255,255,255" /></GridButton>

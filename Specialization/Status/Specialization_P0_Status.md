@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1169
-Implementation Build: develop B551.578 / modinfo578. Installed temporary B551.578 / modinfo578. Stable B528.555 / modinfo555.
+Status Revision: S1170
+Implementation Build: develop B552.579 / modinfo579. Installed temporary B551.578 / modinfo578. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,50 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B551.578 / modinfo578 [夹具替身迁移](#fixture-double-migration--s1168)（契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B551.578](#fixture-double-migration-installed--s1169)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B552.579 / modinfo579 [诊断显示路径退役](#diagnostic-display-path-retired--s1170)（夹具替身迁移见 [S1168](#fixture-double-migration--s1168)，契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B551.578](#fixture-double-migration-installed--s1169)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B550.577 实机短测通过（[S1167](#contract-audit-batches-2-5-native-smoke--s1167)）：建城、投资、存档读档后专业与潜力一致，采集日志无 `[SPC][ERR]`。容量窗口徽章与标题仍待复验；考察团归档沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 契约审计后续：诊断显示路径（`UI/BoostGreatWorkRead`）去留待 Owner 决定。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | 临时安装 B552.579 后做一次短测：点“对话项目”，报告末尾不再出现旧的巨作实验段、正文不变；点“意义延展”，报告正常显示。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Diagnostic display path retired — S1170
+
+Owner 2026-11-27 批准删除诊断显示路径（契约审计 CA-C03 旁注、CA-D15 的 `UI/BoostGreatWorkRead` 部分）。旧代码保留在 Git 历史。
+
+静态核对（`STATIC_CONFIRMED`）：
+
+- `Boost` 只服务两个隐藏按钮（尤里卡/鼓舞基线），Gameplay 对这两个请求只回固定文字。
+- `Meaning`、`ProductionDiagnostic`、`Modifiers`、`ModifierSummary`、`ModifierDetails` 依赖 `CultureMeaningView`；意义延展模块存在时 Gameplay 先清空该视图并返回，后面的实验分支所需的 `shared.CultureMeaningProbe` 没有任何生产代码创建，所以这些函数走不到。
+- `Works` 的“记录巨作基线”入口是隐藏按钮；它唯一在生产中运行的地方，是每次点“对话项目”时在报告末尾追加一段旧巨作实验数据（本实验合格件数、作品文化/旅游、事件后台、主题化建筑），与对话项目无关。
+- `Data/CultureMeaningProbe.sql` 定义的是意义延展正式效果载体，生产在用，不在本批范围。
+
+B552.579 实施内容：
+
+- 删除 `Mod/UI/BoostGreatWorkRead.lua` 及 modinfo 中两处引用。
+- P0 面板：去掉 include、Boost/意义延展实验视图/巨作追加三个显示分支、只为它们服务的状态与清理调用、复制按钮的意义延展诊断分支，以及三个隐藏按钮（`BoostReadButton`、`BoostBaseButton`、`GWBaselineButton`）的回调、标题和界面控件。意义延展与对话项目报告照常显示 Gameplay 返回的正文。
+- Gameplay：删除 L2 意义延展探针请求块和收藏确认后通知探针的分支（对话样本配对确认仍照常调用），删除 `BOOST_READ`/`BOOST_BASELINE`、`GW_READ`/`GW_BASELINE` 请求处理。意义延展模块未加载时统一显示“意义延展：当前城市暂不可读。”
+- 运行时影响：只删除，不新增自动依赖；生产写入、存档与事件不涉及。`CultureMeaning.Start` 中对探针冲突的断言未动。
+
+测试：
+
+- 新增 `DevelopmentTests/test_diagnostic_display_retirement.py`（3 项）。
+- 删除只测已删代码的 `test_modifier_read.py`（诊断读取器）与 `test_culture_meaning_diagnostic.py`（实验诊断显示）。
+- 意义延展历史测试中删除改动后新失败的用例（这些用例经已删的 Gameplay 探针请求块或读取器驱动旧探针）：`test_culture_meaning_probe` 11 项、`test_culture_meaning_l2c` 8 项、`test_culture_meaning_final_yields` 4 项、`test_culture_meaning_cleanup` 1 项、`test_culture_meaning_single_value` 1 项；`final_yields` 的包语法清单去掉已删文件。这些文件中其余失败与 HEAD 完全相同。
+- `test_o7_legacy_panel_cleanup` 把三个按钮登记为本批退役，保留请求对比时不再比较随点击序号变化的令牌；`test_network_boost_retirement` 去掉对已删 `BOOST_*` 回复文字的断言。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：
+
+- 五批专项与本批退役测试通过；面板布局、对话项目界面相关模块结果与 HEAD 相同。
+- `CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-7e1fb81d93a94a24be1603c87d3de7ab/closure.json`，SHA256 `34a1c047ca46886cc013fce00e8fa46cdf6547b2e84e5e0682284fad68f78cdf`，已测源码快照 `e84cf0904ed922e9210e5056e8ab359be30f854404b5794b3690cd0895543b83`。
+- 174 份 Lua 编译、26 份 XML 解析、303 个包文件引用检查通过。
+- 与 HEAD 全量逐模块对比（496 个测试模块，两侧同一固定数据库配置）：**零新增失败**。487 个一致；其余 9 个为两个删除的文件、新增退役测试、上述五个删减用例的文件（失败数与 HEAD 相同），以及时好时坏的 `test_b244_capital_storage`。
+
+实机：`USER_GAME_TEST_REQUIRED`。短测：点“对话项目”，报告末尾不再出现巨作实验段、正文不变；点“意义延展”，报告正常显示。
 
 ### Fixture-double migration installed — S1169
 

@@ -13,6 +13,8 @@ RETIRED_CONTROLS = frozenset((
     'PurchaseReadButton', 'Lv2GPPButton', 'BaselineButton', 'InspirationEndButton',
     'InheritRecordButton', 'DP1Button',
 ))
+# B552: the hidden Boost/GW-baseline diagnostic controls left with UI/BoostGreatWorkRead.
+DIAGNOSTIC_CONTROLS = {'GWBaselineButton': 'GW_BASELINE', 'BoostReadButton': 'BOOST_READ', 'BoostBaseButton': 'BOOST_BASELINE'}
 IDENTITY_EVENTS = ('CityTransfered', 'CulturalIdentityCityConverted', 'CityLiberated')
 RETIRED_EXPERIMENT_FILES = ('GreatWorkProbe.lua', 'PurchaseProbe.lua', 'PurchaseProbeRead.lua')
 
@@ -44,7 +46,7 @@ def panel(root, *, legacy=False):
                     {'GWCityButton',left},{'GWCityButton',right},{'BoostReadButton',left},
                     {'BoostBaseButton',left},{'TemplatesButton',left},{'TemplatesButton',right},
                     {'InheritReadButton',left},{'ResearchReadButton',left},{'CommerceREADButton',left}}
-      for _,click in ipairs(clicks) do Controls[click[1]].callbacks[click[2]]() end
+      for _,click in ipairs(clicks) do if Controls[click[1]] then Controls[click[1]].callbacks[click[2]]() end end
     """)
     requests = [dict(packet.items()) for packet in vm.globals().requests.values()]
     return buttons, requests, dict(vm.globals().eventAdds.items())
@@ -336,11 +338,15 @@ class LegacyPanelCleanup(unittest.TestCase):
         with package(B476) as previous:
             before, old_requests, old_events = panel(previous, legacy=True)
         after, requests, events = panel(ROOT)
-        for control in RETIRED_CONTROLS:
+        for control in RETIRED_CONTROLS | set(DIAGNOSTIC_CONTROLS):
             self.assertTrue(before.pop(control)[0], control)
             self.assertNotIn(control, after)
         self.assertEqual(before, after)
-        self.assertEqual(requests, old_requests)
+        retired = set(DIAGNOSTIC_CONTROLS.values())
+        self.assertEqual(sorted(r['Action'] for r in old_requests if r['Action'] in retired), sorted(retired))
+        shape = lambda rows: [{k: v for k, v in r.items() if k != 'Token'} for r in rows]  # tokens carry the click sequence
+        self.assertEqual(shape(requests), shape(r for r in old_requests if r['Action'] not in retired))
+        self.assertEqual(len({r['Token'] for r in requests}), len(requests))
         for name in IDENTITY_EVENTS:
             self.assertEqual(old_events.pop(name), 1)
             self.assertNotIn(name, events)
