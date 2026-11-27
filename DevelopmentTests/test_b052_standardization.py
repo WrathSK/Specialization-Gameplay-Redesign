@@ -23,7 +23,7 @@ function reset()
  hooks={};local function events() return setmetatable({},{__index=function(t,k)
  local e={Add=function(f) hooks[k]=hooks[k] or {};table.insert(hooks[k],f) end};rawset(t,k,e);return e end}) end
  Events=events();GameEvents=events()
- shared={EffectiveFacts={Read=function(pid,c) assert(not c.unready,'UNREADY');return {token=c.token,specialization=c.kind} end}}
+ shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) assert(not c.unready,'UNREADY');return {token=c.token,specialization=c.kind} end}}
 end
 function fire(n,...) for _,f in ipairs(hooks[n] or {}) do f(...) end end
 cities={};writes=0;checks=0

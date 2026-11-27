@@ -163,7 +163,7 @@ print('Lua compile + modinfo + human/singleplayer gate PASS')
 
 # Execute the actual operation dispatch fragment so the visible button reaches the store.
 g=(M/'Gameplay.lua').read_text();frag=g[g.index("  if params.Action=='PROGRESSION_IMPORT'"):g.index("  if params.Action=='IDENTITY_RECORD'")]
-u=LuaRuntime();u.execute("P={IsTestPlayer=function()return true end};Players={[0]={GetCities=function()return {FindID=function()return 'selected' end}end}};shared={CityProgressionStore={Import=function(pid,c)assert(pid==0 and c=='selected');return 'IMPORTED'end,Describe=function()return 'SUMMARY'end},CityIdentityExperiment={Begin=function()return 'E1_BEGIN'end,Describe=function()return 'E1_READ'end}}")
+u=LuaRuntime();u.execute("P={IsTestPlayer=function()return true end};Players={[0]={GetCities=function()return {FindID=function()return 'selected' end}end}};shared={CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){Import=function(pid,c)assert(pid==0 and c=='selected');return 'IMPORTED'end,Describe=function()return 'SUMMARY'end},CityIdentityExperiment={Begin=function()return 'E1_BEGIN'end,Describe=function()return 'E1_READ'end}}")
 u.execute('function dispatch(playerID,params) '+frag+' end')
 u.execute("dispatch(0,{Action='PROGRESSION_IMPORT',CityID=7,Token='1'});assert(shared.Snapshot=='IMPORTED');dispatch(0,{Action='PROGRESSION_STORE_READ',Token='2'});assert(shared.Snapshot=='SUMMARY');dispatch(0,{Action='IDENTITY_EXPERIMENT_READ',Token='3'});assert(shared.Snapshot=='E1_READ')")
 print('Actual request dispatch PASS')

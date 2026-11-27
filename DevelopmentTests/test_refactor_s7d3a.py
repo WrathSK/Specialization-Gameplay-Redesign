@@ -12,7 +12,7 @@ def fixture(state='FRESH'):
     c.execute('''
     state=...;scalarReads=0;readerReads=0;wakes={};readerSerial=0
     P={Field=function(t,k)return t and t[k]end}
-    shared.CityProgressionStore={HistoryStartStatus=function()
+    shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){HistoryStartStatus=function()
       scalarReads=scalarReads+1;return state
     end}
     shared.StartStatus={ClaimProjects={state='OK'},DialogueProjects={state='OK'},

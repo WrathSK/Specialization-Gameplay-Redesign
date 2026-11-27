@@ -86,7 +86,7 @@ c={GetOwner=function() return owner end,GetID=function() return 8 end,
  GetBuildQueue=function() return {CreateBuilding=function() present=true;changes=changes+1 end} end}
 d={GetCity=function() return c end,GetID=function() return 3 end,GetType=function() return 1 end,IsComplete=function() return complete end}
 Players={[0]={GetCities=function() return {Members=function() return ipairs({c}) end} end,GetDistricts=function() return {Members=function() return ipairs({d}) end} end}}
-shared={EffectiveFacts={Read=function() return {specialization=spec,potential=1,active=1,first={districtID=3,type='DISTRICT_INDUSTRIAL_ZONE'}} end}}
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function() return {specialization=spec,potential=1,active=1,first={districtID=3,type='DISTRICT_INDUSTRIAL_ZONE'}} end}}
 Events={LoadScreenClose={Add=function(f) load=f end}};GameEvents={}
 ''')
 v.execute((r/'CrewProjects.lua').read_text());v.execute('''

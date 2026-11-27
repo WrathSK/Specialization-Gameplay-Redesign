@@ -75,7 +75,7 @@ shared.CityFlowProbe={SupportFacts=function(pid,c)
 end}
 -- B547: the Store is the only facts/ledger authority. This double keeps the
 -- fixture's City Property ledger behind the Store interface.
-shared.CityProgressionStore={Owns=function()return true end,
+shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){Owns=function()return true end,
  Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,
  Investment=function(pid,c)return c:GetProperty(KEY)end,
  WriteInvestment=function(pid,c,old,nextValue)P.SetProperty(c,KEY,cp(nextValue))end,

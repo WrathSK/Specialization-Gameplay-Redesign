@@ -63,14 +63,15 @@ class Removed(unittest.TestCase):
             self.assertNotIn('if observer then', s, name)
 
 
-class Kept(unittest.TestCase):
-    """Second arms still reached by fixture doubles or frozen-baseline replays."""
+class FixtureArmsRetired(unittest.TestCase):
+    """B551: the four arms kept in B549 for fixture doubles are gone; doubles now
+    provide the methods the real modules always define."""
 
-    def test_documented_fixture_arms_remain(self):
-        self.assertIn('LEGACY_NATIVE', src('CityReference'))
-        self.assertIn('effective.NewReader and effective.NewReader()', src('RuntimeWork'))
-        self.assertIn('if not service.Inspect then', src('CurrentSpecializationFacts'))
-        self.assertIn('facts and facts.DistrictWriteVersion', src('DistrictCompleteness'))
+    def test_fixture_only_arms_removed(self):
+        self.assertNotIn('LEGACY_NATIVE', src('CityReference'))
+        self.assertNotIn('effective.NewReader and effective.NewReader()', src('RuntimeWork'))
+        self.assertNotIn('if not service.Inspect then', src('CurrentSpecializationFacts'))
+        self.assertNotIn('facts.Version and facts.Version()', src('DistrictCompleteness'))
 
 
 if __name__ == '__main__':

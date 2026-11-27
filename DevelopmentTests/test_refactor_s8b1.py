@@ -131,7 +131,7 @@ class Rebuild(unittest.TestCase):
   local n=seed();n.dialogueKnown=false;install(n);local key=T.key(ca);local setter=Game.SetProperty;local start=SPCCityProgressionStore.Start
   begins,ends=0,0
   SPCCityProgressionStore.Start=function(P,s,legacy)
-   s.EffectiveFacts={BeginWrite=function()begins=begins+1;return {}end,EndWrite=function()ends=ends+1 end}
+   s.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){BeginWrite=function()begins=begins+1;return {}end,EndWrite=function()ends=ends+1 end}
    return start(P,s,legacy)
   end
   Game.SetProperty=function(o,k,v)if k==key then error(setmetatable({},{__tostring=function()error('FORMAT_FAILED')end}))end;return setter(o,k,v)end

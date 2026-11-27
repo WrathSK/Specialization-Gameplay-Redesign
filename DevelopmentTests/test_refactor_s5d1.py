@@ -13,6 +13,8 @@ def research():
         ns['LuaRuntime']=TrackedLua51;ns['ns']['LuaRuntime']=TrackedLua51;ns['ns']['ns']['LuaRuntime']=TrackedLua51
         ns['ns']['ns']['FIX']=separate_legacy_event_namespaces(ns['ns']['ns']['FIX'])
         l=ns['runtime'](2)
+    # B551: CityReference reads the Store token; minimal double returns the city token property.
+    l.execute("shared.CityProgressionStore=shared.CityProgressionStore or {ReferenceToken=function(c)return c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')or nil end,RegisterExit=function()end,RegisterReturn=function()end}")
     # Explicit native-double profile: historical P0-C emitted (0,0) for every
     # removal. Real engine removal uses the previous building plot, before erase.
     l.execute("""

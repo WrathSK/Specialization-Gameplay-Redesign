@@ -36,7 +36,7 @@ Players={[0]={GetCities=function() return {Members=iter({city})} end,GetDistrict
 base={[10]={[4]=3},[11]={[5]=2},[14]={[2]=4}}
 Map={GetPlot=function(x,y) return {GetAdjacencyYield=function(_,pid,cid,typ,yi) return (base[x] or {})[yi] or 0 end,GetYield=function() error('actual must never be queried') end} end}
 works={{type='GREATWORKOBJECT_WRITING'},{type='GREATWORKOBJECT_ARTIFACT'},{type='GREATWORKOBJECT_RELIC'},{type='GREATWORKOBJECT_PRODUCT'}}
-shared={Dialogue={samples={[0]={turn=1,cities={[1]=works}}}},EffectiveFacts={Read=function() return {specialization=kind,active=active} end}}
+shared={Dialogue={samples={[0]={turn=1,cities={[1]=works}}}},EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function() return {specialization=kind,active=active} end}}
 """)
 l.execute((M/'GreatWorkAdjacencyModel.lua').read_text());l.execute((M/'GreatWorkAdjacency.lua').read_text())
 l.execute("""

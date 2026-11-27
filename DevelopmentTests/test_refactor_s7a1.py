@@ -31,7 +31,7 @@ class Kernel(unittest.TestCase):
     def test_partial_confirmations_count_before_later_exception(self):
         c=kernel();c.execute("fail='C';assert(not pcall(apply,{[0]=true,B=true,C=true}));assert(changes==2 and state.ZERO and state.B and not state.C)")
     def test_exact_exit_delegates_reference_loss_to_store_without_definition_reads(self):
-        c=kernel();c.execute("shared.CityProgressionStore={RemoveOwned=function(c,loss,ids)assert(c==city and loss==proof and #ids==3 and ids[1]=='ZERO');ids[1]='BAD';called=true;return 'OWNED'end};proof={};assert(set.Exit(shared,city,proof)=='OWNED'and called and resolved==0 and set.Names()[1]=='ZERO')")
+        c=kernel();c.execute("shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RemoveOwned=function(c,loss,ids)assert(c==city and loss==proof and #ids==3 and ids[1]=='ZERO');ids[1]='BAD';called=true;return 'OWNED'end};proof={};assert(set.Exit(shared,city,proof)=='OWNED'and called and resolved==0 and set.Names()[1]=='ZERO')")
     def test_noop_apply_has_no_create_remove_or_change(self):
         c=kernel();c.execute("state.ZERO=true;apply({[0]=true});assert(changes==0 and #trace==3 and state.ZERO)")
 

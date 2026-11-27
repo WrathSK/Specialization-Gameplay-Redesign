@@ -37,7 +37,7 @@ c1=city(1,'INDUSTRY',1);c2=city(2,'INDUSTRY',4);c3=city(3,'CULTURE',1)
 c1.built[rows.BUILDING_MONUMENT.Index]=true
 receivers[3]={1,2};allowed[3]={BUILDING_MONUMENT=true,BUILDING_GRANARY=true}
 Players={[0]={GetCities=function() return {Members=function() return ipairs(cities) end,FindID=function(_,id) return cities[id] end} end}}
-shared={Version=P.VERSION,EffectiveFacts={Read=function(pid,c) assert(c.owner==pid,'OWNER');return facts[c.id] end},NetworkBridge={RecipientSources=function(pid,c,k) assert(k=='INDUSTRY');return receivers[c.id] or {} end}}
+shared={Version=P.VERSION,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) assert(c.owner==pid,'OWNER');return facts[c.id] end},NetworkBridge={RecipientSources=function(pid,c,k) assert(k=='INDUSTRY');return receivers[c.id] or {} end}}
 ExposedMembers={SPC_P0=shared}
 ''')
 for f in ['StandardizationCatalog.lua','Standardization.lua','StandardizationDiscount.lua']:l.execute((r/f).read_text())

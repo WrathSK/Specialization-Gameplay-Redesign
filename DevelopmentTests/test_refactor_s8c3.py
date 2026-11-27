@@ -138,7 +138,7 @@ class DeferredEffects(unittest.TestCase):
    c=Context();c.execute("""
    P={Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid==0 end,Count=function()end,
     Info=function()error('INLINE_NATIVE_READ')end,Rows=function()error('INLINE_NATIVE_SCAN')end}
-   returns={};shared.CityProgressionStore={RegisterExit=function()end,RegisterReturn=function(n,f)returns[n]=f end}
+   returns={};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function()end,RegisterReturn=function(n,f)returns[n]=f end}
    shared.GreatWorkFacts={RegisterConsumer=function()end};shared.CultureInspirationProbe={retired=true}
    shared.GreatWorkAdjacency={retired=true};shared.Dialogue={Init=function()end}
    GameInfo={Eras=function()local i=0;return function()i=i+1;if i<=8 then return {EraType='ERA_'..i}end end end}

@@ -24,7 +24,7 @@ P={IsTestPlayer=function(pid) return pid==0 end,Info=function(t,k)
  if t=='Buildings' and k=='BUILDING_LIBRARY' then return {Index=2,PrereqDistrict='DISTRICT_CAMPUS',IsWonder=false} end
  if t=='Buildings' and k=='WONDER' then return {Index=7,IsWonder=true} end
 end}
-shared={EffectiveFacts={Read=function() return {specialization='RESEARCH',potential=potential,first={districtID=3,type='DISTRICT_CAMPUS'}} end}}
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function() return {specialization='RESEARCH',potential=potential,first={districtID=3,type='DISTRICT_CAMPUS'}} end}}
 ''')
 for n in ['UnitActionSitePolicy.lua','UnitSiteProbe.lua']:l.execute((r/n).read_text())
 l.execute('''

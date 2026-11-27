@@ -10,8 +10,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1167",
-    "runtime": "B550.577 / modinfo577",
+    "status": "S1168",
+    "runtime": "B551.578 / modinfo578",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -36,7 +36,7 @@
   "implementation_plan": "Specialization/Architecture/Specialization_v0.1_Architecture.md",
   "runtime_commit": "78fa192c390a8c52cd70749c8959f352f81916b2",
   "current_batch": "MANAGEMENT_CAPACITY_LAYOUT_AWAITING_VISUAL_REVIEW",
-  "next_batch": "The Owner decides the next step: fixture-double migration (four kept fixture-only arms) or the diagnostic display path decision.",
+  "next_batch": "Install B551.578 temporarily (no native test needed). The Owner decides the diagnostic display path (UI/BoostGreatWorkRead).",
   "manifest": "Specialization/Workflow/P0-H.json",
   "live": "B550.577 / modinfo577 temporary, 305/305 MATCH at 8f4c1479ba839275cdb4f3812e2f25ae31b1e252f1ec1656166d6c3c876124c1. Receipt B550.577-78fa192-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
   "stable": "main B528.555 / modinfo555 from PR #9 merge 0beca3138b58595bfa02749e4f5ba3662736b9e9. Previous stable B489.516 rollback verified.",
@@ -45,7 +45,7 @@
   ],
   "stale_navigation": "Historical version/build prose is not current authority; current Spec/Status and task-specific Architecture govern. B069 investigation maps and B076 inventory/validation are retrieved through the fixed Historical index; current module review provenance remains in Runtime_Index.files.",
   "deployment_authorization": "2026-11-07 Owner reaffirmed autonomous deployment during the development phase, including focused in-game reproduction and verification. Locally verified, committed and pushed develop packages may be deployed after confirmed game exit, reviewed source and runtime hashes, and receipt-bound recovery checks. The Owner determines when this mode ends. Game launch and main promotion retain separate authorization. 2026-11-08 Owner direction: batches with sufficient local verification go to develop without local deployment.",
-  "context_review_status": "S1167 D0067 A0192. Contract audit batches 2-5 native smoke passed on B550.577.",
+  "context_review_status": "S1168 D0067 A0192. Fixture-double migration; no gameplay change.",
   "implementation_scope": {
     "v0_1": [
       "RESEARCH",
@@ -60,7 +60,7 @@
     "boundary": "Design presence is not implementation authorization or dependency expansion. Government/Military/Harbor and other future Design remain metadata, not required context for four-profession P0 batches.",
     "current_player_scope": "Dedicated independent America/Roosevelt test pair for new games; existing Scotland test pair retained only for legacy saves. Single-player human only; exact pairs, AI/MP/unknown rejection retained. No original America/Roosevelt powers or access extension to ordinary civilizations."
   },
-  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-5-own-payloads-not-re-validated--s1165",
-  "source_status": "B550.577 / modinfo577 temporarily installed. Stable main B528.555.",
+  "context_revalidation_report": "Specialization/Status/Specialization_P0_Status.md#fixture-double-migration--s1168",
+  "source_status": "B551.578 / modinfo578 source removes the four fixture-only arms kept in B549; fixture doubles provide the real methods. B550.577 remains installed.",
   "continuation_authorization": "Owner reaffirmed continuous develop work in accepted scope until a required external review, decision or native/deployment gate. Ordinary slices remain independently verified and published. 2026-11-18: Primary may classify and retire eligible tracked document families without a file-count approval gate; preserve actual current responsibilities, verified published originals and existing evidence/role boundaries. 2026-11-18 Owner resumed document maintenance after the S1105 safe checkpoint; continue the existing delegated criteria and decision boundaries. No runtime/deployment/main action. 2026-11-20 Owner accepted the city ownership rules and implementation sequence. Develop only; new permanent fields require separate approval."
 }

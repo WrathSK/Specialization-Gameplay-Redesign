@@ -99,7 +99,7 @@ city1={GetID=function()return 1 end};city2={GetID=function()return 2 end}
 Players={[0]={GetCities=function()return {Members=function()return ipairs({city1,city2})end}end}}
 ExposedMembers.SPC_P0={Version='S2',Dialogue={seq={[0]=0},generation=1,ready=true},
  GreatWorkFacts={epoch=1,ack=0,inputRevision=1,dirtyScope={all=true,cities={}}},
- EffectiveFacts={Read=function(pid,c)return {specialization='CULTURE',active=c==city1 and nil or 1}end}}
+ EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)return {specialization='CULTURE',active=c==city1 and nil or 1}end}}
 -- Lua and/or cannot represent an intentional nil. Set it explicitly.
 ExposedMembers.SPC_P0.EffectiveFacts.Read=function(pid,c)
  local f={specialization='CULTURE',active=1};if c==city1 then f.active=nil end;return f

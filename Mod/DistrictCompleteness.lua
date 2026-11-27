@@ -193,10 +193,9 @@ function M.Start(P,shared)
   end
  end
  local function writeVersion(pid,cid)
-  local facts=shared.EffectiveFacts
-  if facts and facts.DistrictWriteVersion then return facts.DistrictWriteVersion(pid,cid)end
-  local version=facts and facts.Version and facts.Version()or nil
-  return version,version,false
+  local facts=shared.EffectiveFacts -- not a declared dependency: absence is real
+  if facts then return facts.DistrictWriteVersion(pid,cid)end
+  return nil,nil,false
  end
  local function read(pid,c,token,detail)
   count('read');assert(P.IsTestPlayer(pid),'DC_OWNER_NOT_ENABLED')

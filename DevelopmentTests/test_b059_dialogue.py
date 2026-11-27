@@ -42,7 +42,7 @@ end
 c1=city(1);c2=city(2);cities={c1,c2}
 local col={Members=function() local i=0;return function() i=i+1;if cities[i] then return i,cities[i] end end end,FindID=function(_,id) for _,c in ipairs(cities) do if c.id==id and c.owner==0 then return c end end end}
 Players={[0]={GetCities=function() return col end}}
-shared={Version=P.VERSION,EffectiveFacts={Read=function(pid,c) return {active=c.active,specialization=c.kind} end}}
+shared={Version=P.VERSION,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) return {active=c.active,specialization=c.kind} end}}
 ExposedMembers={SPC_P0=shared};SPCP0=P
 """)
 l.execute((M/'DialogueModel.lua').read_text());l.execute((M/'Dialogue.lua').read_text())

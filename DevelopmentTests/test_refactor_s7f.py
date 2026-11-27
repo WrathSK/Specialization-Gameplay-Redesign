@@ -59,7 +59,7 @@ class ScalarReference(unittest.TestCase):
   function a:GetOwner()return self.owner end;function a:GetID()return self.id end
   function a:GetX()return self.x end;function a:GetY()return self.y end
   function a:GetProperty()rawReads=rawReads+1;return self.token end
-  rawReads=0;shared.CityProgressionStore={UsesNewAuthority=true,ReferenceToken=function(c)if callback then callback(c)end;return formalToken end}
+  rawReads=0;shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){UsesNewAuthority=true,ReferenceToken=function(c)if callback then callback(c)end;return formalToken end}
   formalToken='FORMAL'
   """);return c
  def test_modern_token_never_follows_city_marker_and_unregistered_is_not_fallback(self):

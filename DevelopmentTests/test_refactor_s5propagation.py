@@ -107,7 +107,7 @@ class Scopes(unittest.TestCase):
     def test_actual_dialogue_access_method_has_no_embedded_effect_relay(self):
         c=Context();c.load('DialogueProjectModel');c.load('DialogueProjects')
         c.execute("""
-        P={IsTestPlayer=function()return true end,Field=function(o,k)return o[k]end};shared.CityProgressionStore={RegisterExit=function()end,RegisterReturn=function()end};effects=0
+        P={IsTestPlayer=function()return true end,Field=function(o,k)return o[k]end};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function()end,RegisterReturn=function()end};effects=0
         shared.DialogueEffects={Audit=function()effects=effects+1 end}
         SPCDialogueProjects.Start(P,shared);shared.DialogueProjects.RefreshAccess(0,1);assert(effects==0)
         shared.DialogueProjects.Refresh(0,1);assert(effects==1)

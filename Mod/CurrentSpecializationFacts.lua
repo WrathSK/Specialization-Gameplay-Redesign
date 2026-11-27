@@ -7,11 +7,9 @@ function SPCCurrentSpecializationFacts.Read(P,shared,pid,city)
   activeStatus=f.activeStatus,token=f.token,first=f.first and SPCDistrictCompleteness.Clone(f.first)}
 end
 
--- Read-only projection shares the real EffectiveFacts guard. The no-Inspect arm
--- serves only the frozen-baseline replay in test_shared_d_fact_read (CurrentGameplay).
+-- Read-only projection shares the real EffectiveFacts phase and freshness guard.
 function SPCCurrentSpecializationFacts.Inspect(P,shared,pid,city,project,negativeAnchor)
  local service=shared.EffectiveFacts
- if not service.Inspect then local function fresh(_,read)return read()end;return project(SPCCurrentSpecializationFacts.Read(P,shared,pid,city),fresh,fresh)end
  local function use(f,workers,anchors)
   local current={validity='VERIFIED',identity=f.specialization,potential=f.potential,active=f.active,
    activeStatus=f.activeStatus,token=f.token,first=f.first and SPCDistrictCompleteness.Clone(f.first)}

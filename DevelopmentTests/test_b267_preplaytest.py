@@ -37,7 +37,7 @@ def observer():
       shared={}
       for _,name in ipairs({'NetworkBridge','ResearchSupport','Lv2Housing','Lv2GPP','ResearchInfrastructure',
        'ResearchCross','ResearchApply','ResearchChair','ResearchTraditionEffects','Restructuring','CultureNetwork','CultureAesthetic','Lv3Support','Lv3Effects'})do shared[name]={ready=false}end
-      shared.CityProgressionStore={FreshReady=function()return fresh==true end}
+      shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){FreshReady=function()return fresh==true end}
       function ready()fresh=true;for _,v in pairs(shared)do if v.ready~=nil then v.ready=true end end end
       function count(stage)local n=0;for _,v in ipairs(logs)do if v.stage==stage then n=n+1 end end;return n end
       function last(stage)for i=#logs,1,-1 do if logs[i].stage==stage then return logs[i]end end end

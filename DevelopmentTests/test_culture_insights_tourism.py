@@ -37,7 +37,7 @@ def fixture():
        HasBuilding=function(c,n)reads=reads+1;if unreadable then return nil end;return c.present[n]==true end,
        RemoveBuilding=function(c,n)if failRemove then error('remove failed')end;c.present[n]=nil;removes=removes+1;Events.CityBuildingsChanged(c.owner,c.id)end,
        CreateBuilding=function(c,n)creates=creates+1;if not failCreate then c.present[n]=true;c.pillaged[n]=nil end;Events.CityBuildingsChanged(c.owner,c.id)end}
-      shared={EffectiveFacts={Read=function(pid,c)
+      shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)
        facts=facts+1;if c.unknown then error('unknown')end
        return {specialization=c.specialization,potential=c.potential,active=c.active,activeStatus='KNOWN',token=c.token}
       end}}

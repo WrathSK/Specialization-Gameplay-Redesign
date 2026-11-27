@@ -14,7 +14,7 @@ d={GetCity=function() return city end,GetID=function() return 3 end,GetType=func
 local function members(x) return function() local done=false;return function() if not done then done=true;return 1,x end end end end
 Players={[0]={GetCities=function() return {Members=members(city)} end,GetDistricts=function() return {Members=members(d)} end}}
 P={Field=function(t,k) return t[k] end,IsTestPlayer=function(p) return p==0 end,Info=function(t,k) if t=='Districts' then return {DistrictType=districts[kind]} end;return {Index=k} end}
-shared={EffectiveFacts={Read=function() return {specialization=kind,active=active,potential=potential,first={districtID=3,type=districts[kind]}} end},IndustrySupport={ReadBase=function() if base==nil then error('BASE_PENDING') end;return base end}}
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function() return {specialization=kind,active=active,potential=potential,first={districtID=3,type=districts[kind]}} end},IndustrySupport={ReadBase=function() if base==nil then error('BASE_PENDING') end;return base end}}
 ''')
 l.execute((r/'Lv3Support.lua').read_text())
 l.execute('''

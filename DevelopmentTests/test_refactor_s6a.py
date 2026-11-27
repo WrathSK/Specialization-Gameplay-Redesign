@@ -102,7 +102,7 @@ class Cache(unittest.TestCase):
 
     def test_native_write_generation_during_capture_requires_new_related_cause(self):
         c=depth_context();c.execute('''
-        local version=0;shared.EffectiveFacts={Version=function()return version end}
+        local version=0;shared.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Version=function()return version end}
         sample(1);local get=cities[1].GetBuildings;local once=true
         cities[1].GetBuildings=function()if once then once=false;version=version+1 end;return get()end
         shared.DistrictCompleteness.MarkDirty(0,1);local d=sample(1)
@@ -123,7 +123,7 @@ class Cache(unittest.TestCase):
         ''')
 
     def test_confirmed_store_return_matches_old_location_not_new_city_id(self):
-        context=Context();context.execute("shared.CityProgressionStore={RegisterReturn=function(name,fn)onReturn=fn end}")
+        context=Context();context.execute("shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterReturn=function(name,fn)onReturn=fn end}")
         with patch('refactor_fixtures.Context',return_value=context):c=depth_context()
         c.execute('''
         cities[1].GetX=function()return 1 end;sample(1);sample(2)

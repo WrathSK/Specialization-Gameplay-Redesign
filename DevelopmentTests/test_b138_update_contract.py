@@ -112,7 +112,7 @@ def check_batches(mod):
     lua.execute('''
       function city(pid,id)return {GetID=function()return id end,GetOwner=function()return pid end}end
       a=city(4,1);b=city(4,2);foreign=city(7,1);version=1;factReads=0;failFacts=false
-      shared={EffectiveFacts={Read=function(pid,c)
+      shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)
         factReads=factReads+1;if failFacts then error('FACTS_UNKNOWN')end
         assert(c:GetOwner()==pid);return {owner=pid,city=c:GetID(),version=version}
       end}}

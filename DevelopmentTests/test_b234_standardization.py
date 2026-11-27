@@ -53,10 +53,10 @@ for id=1,4 do
  ledgers[id]={foundation=c.token,learned={},districts={learned={}}}
 end
 Players={[0]={GetCities=function()return {Members=function()return pairs(cities)end,FindID=function(_,id)return cities[id]end}end},[64]={GetCities=function()return nil end}}
-shared={EffectiveFacts={Read=function(pid,c)factReads[c.id]=(factReads[c.id] or 0)+1;if unknown[c.id]then error('STD_FACTS_UNKNOWN')end;return facts[c.id]end},
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)factReads[c.id]=(factReads[c.id] or 0)+1;if unknown[c.id]then error('STD_FACTS_UNKNOWN')end;return facts[c.id]end},
  Standardization={ReadKnowledge=function(pid,c)ledgerReads[c.id]=(ledgerReads[c.id] or 0)+1;if ledgers[c.id]==false then error('STD_HISTORY_CORRUPT')end;return ledgers[c.id]end},
  NetworkBridge={Input=function()return {validity=networkValidity}end,CurrentIndustryBatch=function()if networkError then error(networkError)end;return {input={validity=networkValidity,availability='AVAILABLE'},recipients=recipients}end,RequestPendingProof=function()requests=requests+1 end},
- CityProgressionStore={EngineeringState=function(pid,c)return {token=c.token}end,HistoryStartStatus=function()return 'READY'end,RegisterExit=function(k,f)exits[k]=f end,RegisterReturn=function(k,f)returns[k]=f end,
+ CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){EngineeringState=function(pid,c)return {token=c.token}end,HistoryStartStatus=function()return 'READY'end,RegisterExit=function(k,f)exits[k]=f end,RegisterReturn=function(k,f)returns[k]=f end,
  RemoveOwned=function(c,loss,ids)for _,id in ipairs(ids)do local r=P.Info('Buildings',id);if P.HasBuilding(c.built,r.Index)then P.RemoveBuilding(c.built,r.Index);assert(not P.HasBuilding(c.built,r.Index))end end end}}
 function industry(id,level)facts[id].specialization='INDUSTRY';facts[id].active=level;facts[id].potential=level end
 function learn(id,building)

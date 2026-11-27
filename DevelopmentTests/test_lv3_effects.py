@@ -34,7 +34,7 @@ local function members(t) return function() return ipairs(t) end end
 local cities={};for i=1,4 do cities[i]={GetID=function() return i end,GetOwner=function() return 0 end} end
 Players={[0]={GetCities=function() return {FindID=function(_,i) return cities[i] end,GetCapitalCity=function() return cities[1] end,Members=members(cities)} end,GetTrade=function() return {CountOutgoingRoutes=function() return routeCount end} end}}
 local kinds={[1]='RESEARCH',[2]='RESEARCH',[3]='COMMERCE',[4]='COMMERCE'}
-local bridgeShared={EffectiveFacts={Read=function(_,c) return {potential=1,specialization=kinds[c:GetID()]} end},RouteSignalRevision=0}
+local bridgeShared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(_,c) return {potential=1,specialization=kinds[c:GetID()]} end},RouteSignalRevision=0}
 bridgeFixture={cities=cities,shared=bridgeShared};routeCount=3
 ''')
 l.execute((r/'NetworkBridge.lua').read_text())

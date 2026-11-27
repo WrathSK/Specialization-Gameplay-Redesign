@@ -116,14 +116,14 @@ CityManager={GetCityAt=function(x,y)for _,c in ipairs(cities)do if c.x==x then r
 Players={[0]={GetCities=function()return {Members=members(cities),FindID=function(_,id)for _,c in ipairs(cities)do if c.id==id and c.owner==0 then return c end end end}end,
  GetDistricts=function()return {Members=members(ds)}end}}
 exits={};returns={}
-shared={EffectiveFacts={Read=function(pid,c)
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)
  if c.factsUnknown then error('TEMPORARY_FACT_UNKNOWN')end
  return {specialization=c.identity,potential=c.potential,active=c.active,activeStatus=c.active and 'KNOWN' or 'UNKNOWN_GOVERNOR',token=c.token,first=c.first or {districtID=c.ds[3] and c.ds[3].id,type='DISTRICT_COMMERCIAL_HUB'}}
 end},GreatWorkFacts={Summary=function(pid,id)
  local c=Players[pid]:GetCities():FindID(id)
  return c and {eraCount=c.eras,availability=c.worksUnknown and 'UNKNOWN' or 'KNOWN',hasConfirmed=not c.neverConfirmed,reference=SPCNetworkInput.Reference(c)}
 end,Read=function(pid,id)return {eras={ERA_CLASSICAL=1,ERA_MEDIEVAL=1}}end},NetworkBridge={ConnectedKinds=function()return {RESEARCH=true,CULTURE=true}end},
- CityProgressionStore={RegisterExit=function(n,f)assert(not exits[n]);exits[n]=f end,RegisterReturn=function(n,f)assert(not returns[n]);returns[n]=f end,
+ CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(n,f)assert(not exits[n]);exits[n]=f end,RegisterReturn=function(n,f)assert(not returns[n]);returns[n]=f end,
  IsExitTarget=function(c,loss)return loss.confirmed==true and c.id==loss.targetID and c.owner~=loss.origin.owner end}}
 -- Fixture-only direct notification adapter for older single-consumer model cases.
 -- Production delivery/isolation is tested with the real GreatWorkFacts receiver.

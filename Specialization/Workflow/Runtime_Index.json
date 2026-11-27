@@ -164,9 +164,9 @@
       "provenance": "B549 contract audit batch 4 (dead presence checks) or build identity; S1163."
     },
     "Mod/CurrentSpecializationFacts.lua": {
-      "sha256": "a9f51a48cba4a217fb05845d07a6ade61c3ed56302d64ee0b9d9a3f51497abdf",
+      "sha256": "3566c87cf440d5bed2dd535eb5471d06eff987866988ab02fb138d68df702da1",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B549 contract audit batch 4 (dead presence checks) or build identity; S1163."
+      "provenance": "B551 fixture-double migration (fixture-only arms removed) or build identity; S1168."
     },
     "Mod/Data/ClaimProjects.sql": {
       "sha256": "5d704c476ddb10b853d855dee8c751734bda1976251ca4bc55012e386f4f216d",
@@ -467,9 +467,9 @@
       "provenance": "S1049/B490.517 typed queue recovery and scoped local build validation."
     },
     "Mod/DistrictCompleteness.lua": {
-      "sha256": "82b0ccb60aea64a830bece28943467a78502a370858bd8a6920bbffb0f9838cc",
+      "sha256": "8e228dd430e4aa2535941af46d13105bba6a85c4c82058744835fbf2b7a8fb26",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B548 contract audit batch 3 (internal asserts) or build identity; S1161."
+      "provenance": "B551 fixture-double migration (fixture-only arms removed) or build identity; S1168."
     },
     "Mod/EffectiveFacts.lua": {
       "sha256": "53e5c1f200bd90d4fecaea67cdc959aa514dfb4014466c0493dd51a9babe1165",
@@ -624,9 +624,9 @@
       "provenance": "S1134 B534. Remove unused boost label."
     },
     "Mod/Probe.lua": {
-      "sha256": "94a866e77bf68c0bfeef1179d5c6c1fdf8da1b7127708ebf5d814069340e51ae",
+      "sha256": "7d24ed78307b54e3cbc4389663e3f49f88f4e6bc7cdc0fadf9ab6a47f3b43149",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B550 contract audit batch 5 (own payloads not re-validated) or build identity; S1165."
+      "provenance": "B551 fixture-double migration (fixture-only arms removed) or build identity; S1168."
     },
     "Mod/ReadinessSummary.lua": {
       "sha256": "04942c90aa011f3f3802f29bf2b2cea88f3dc5423c38a25870959aa3a92d6d40",
@@ -717,9 +717,9 @@
       "provenance": "B130 opt-in bounded memory observation; no gameplay semantic changes"
     },
     "Mod/RuntimeWork.lua": {
-      "sha256": "aee8bd0dd0940156e89b1aeaa7bcadaff24c19c687b108fef3099cb7be34aa57",
+      "sha256": "a0de41d1e1c55a96ca16f59da53be21a57cf1e7f566955fd02c14b9869c13235",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B550 contract audit batch 5 (own payloads not re-validated) or build identity; S1165."
+      "provenance": "B551 fixture-double migration (fixture-only arms removed) or build identity; S1168."
     },
     "Mod/SampleLifecycle.lua": {
       "sha256": "2da51a00e9e87dc6b6e7dcdad570c317e4318f8089a5259fa368bd9173381348",
@@ -743,9 +743,9 @@
       "provenance": "S0909/B415.442 scoped O5a definition/asset review. Pinned database replay and package checks recorded; native validation pending."
     },
     "Mod/SpecializationP0.modinfo": {
-      "sha256": "cebc139e00232c046738022177cf27cd910fe059d4a16428d3a2de7b0ca6d42e",
+      "sha256": "2da45d6b5f4d770b0555ad78eca5fec7b1d04012e592ed70aa760b48ada0bbf4",
       "review_source": "Specialization/Status/Specialization_P0_Status.md",
-      "provenance": "B550 contract audit batch 5 (own payloads not re-validated) or build identity; S1165."
+      "provenance": "B551 fixture-double migration (fixture-only arms removed) or build identity; S1168."
     },
     "Mod/Standardization.lua": {
       "sha256": "86a906ee34e1102c24bd389be14eae9016bfe6c93872d4883fb3eb9990bf2742",
@@ -1432,9 +1432,9 @@
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B330_Refactor_S7e.md"
     },
     "Mod/CityReference.lua": {
-      "sha256": "d9e91fd89a5b5f3d180f09bcb6961c8e10cbe278fc7e404f4ce2731bb07345e8",
+      "sha256": "b7a9b74dc48f9f98e04cac539daefd23080d2a2dddd09b1c0846cbb8741359a5",
       "review_source": "Specialization/Historical/README.md",
-      "provenance": "B549 contract audit batch 4 (dead presence checks) or build identity; S1163.",
+      "provenance": "B551 fixture-double migration (fixture-only arms removed) or build identity; S1168.",
       "historical_review_source": "https://github.com/WrathSK/Specialization-Gameplay-Redesign/blob/36eceb2bf6d5d619783c02546a053a8c25896f33/Specialization/Status/Validation/Results/Specialization_B331_Refactor_S7f.md"
     },
     "Mod/StoreSubrecords.lua": {
@@ -1639,5 +1639,5 @@
   },
   "source_review": "S1153 scoped Lua 5.1 capacity states, sizing, atlas and packaging checks; native result pending.",
   "source_runtime": "B544.571 / modinfo571 develop, 302 files.",
-  "tested_source_snapshot_sha256": "9fe5f6399dd2642021822599c78840b78fc574c23b937998ecaebd208e0543c7"
+  "tested_source_snapshot_sha256": "4257b9ed82da786c2fe1c68a77c4abcf8482548fec5b7f202882c9f42a8d165c"
 }

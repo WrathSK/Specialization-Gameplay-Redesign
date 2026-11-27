@@ -38,6 +38,8 @@ def history():
 def retirement():
  c=Context();c.load('RuntimeWork');c.execute("""
  P={Field=function(t,k)return t and t[k]end};SPCRuntimeWork.StartRetirement(P,shared)
+ -- B551: CityReference reads the Store token; minimal double returns the city token property.
+ shared.CityProgressionStore=shared.CityProgressionStore or {ReferenceToken=function(c)return c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')end}
  calls=0
  function city(id)local c={owner=0,id=id,x=id,token='T'}
  function c:GetOwner()return self.owner end;function c:GetID()return self.id end
@@ -66,7 +68,7 @@ def convergence(*,old=False):
  function a:GetOwner()return self.owner end;function a:GetID()return self.id end
  function a:GetX()return self.x end;function a:GetY()return 20 end
  function a:GetProperty()return self.token end;function a:GetBuildings()return {}end
- shared.CityProgressionStore={HistoricalReference=function(c)counts.references=counts.references+1;return reference end,
+ shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){HistoricalReference=function(c)counts.references=counts.references+1;return reference end,
  RegisterExit=function(name,fn)exits[name]=fn end,RemoveOwned=function(c,loss,ids)
  assert(c==a and loss==proof,'WRONG_EXIT');exitNames=ids
  for _,id in ipairs(ids)do if present[id]then P.RemoveBuilding({},id)end end end}

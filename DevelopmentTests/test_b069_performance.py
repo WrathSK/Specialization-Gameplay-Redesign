@@ -39,7 +39,7 @@ l.execute((M/'Probe.lua').read_text())
 l.execute("""
 P=SPCP0;P.Info=function(t,k) if t=='Units' then return GameInfo.Units[k] end;if t=='Buildings' then return {Index=k} end;if t=='Yields' then return {Index=k:gsub('YIELD_','')} end end
 ExposedMembers.SPC_Performance=SPCPerformance.New()
-shared={Version=P.VERSION,RouteSignalRevision=0,EffectiveFacts={Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}};ExposedMembers.SPC_P0=shared
+shared={Version=P.VERSION,RouteSignalRevision=0,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}};ExposedMembers.SPC_P0=shared
 """)
 for f in ['NetworkBridge.lua','CommerceConvergence.lua']:l.execute((M/f).read_text())
 l.execute(retired_source('TradeRouteProbe.lua',B449))

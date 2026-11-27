@@ -19,7 +19,7 @@ def kernel_fixture(kind='ClaimProjects', gp_first=True):
       FindID=function(_,id)finds=finds+1;return cities[id]end}
     Players={[0]={GetCities=function()collections=collections+1;return collection end}}
     PlayerOperations={EXECUTE_SCRIPT=1}
-    shared.CityProgressionStore={HistoryStartStatus=function()return 'FRESH'end}
+    shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){HistoryStartStatus=function()return 'FRESH'end}
     shared.StartStatus={ClaimProjects={state='OK'},DialogueProjects={state='OK'},EngineeringStudyProjects={state='OK'}}
     ExposedMembers.SPC_P0=shared
     backend={views={},revision=0,syncAck={}};shared[kind]=backend

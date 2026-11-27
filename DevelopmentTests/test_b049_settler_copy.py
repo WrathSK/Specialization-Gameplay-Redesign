@@ -20,7 +20,7 @@ P.Info=function(t,k) if t=='Units' then return {UnitType='UNIT_SETTLER'} else re
 local district={GetCity=function() return c end,GetID=function() return 2 end,GetType=function() return 2 end,
  GetX=function() return 10 end,GetY=function() return 0 end,IsComplete=function() return complete end}
 Players[0].GetDistricts=function() return {Members=function() return ipairs({district}) end} end
-shared={Version=P.VERSION,EffectiveFacts={Read=function()
+shared={Version=P.VERSION,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function()
  local n=0;if ledger then for _ in pairs(ledger.investments) do n=n+1 end end
  return {owner=owner,cityID=8,token='CITY',first={districtID=2,type='DISTRICT_CAMPUS'},specialization='RESEARCH',potential=base+n,investmentCount=n,investmentPending=ledger and ledger.pending~=nil}
 end,Describe=function() return 'facts' end},UnitTargets={Refresh=function() shared.UnitTargetSnapshot={plots={{plot=10,cityID=8}}} end}}
@@ -90,7 +90,7 @@ P={IsTestPlayer=function() return true end,Families={DISTRICT_CAMPUS='RESEARCH',
  if t=='Districts' then return rows[k] end;return {Index=k:gsub('YIELD_','')} end}
 Players={[0]={GetCities=function() return {FindID=function(_,id) return cities[id] end} end,GetDistricts=function() return {Members=function() return ipairs(districts) end} end}}
 active=4;net=true
-shared={EffectiveFacts={Read=function(_,c) return {specialization=c:GetID()==1 and 'RESEARCH' or 'INDUSTRY',active=c:GetID()==3 and active or 4,first={districtID=c:GetID()}} end},
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(_,c) return {specialization=c:GetID()==1 and 'RESEARCH' or 'INDUSTRY',active=c:GetID()==3 and active or 4,first={districtID=c:GetID()}} end},
 NetworkBridge={RecipientSources=function() assert(net,'NETWORK_REFRESH_PENDING');return {2,3} end}}
 local m=SPCLv4CopyRead.Metadata(P,shared,0,cities[1],'t')
 assert(#m.sources==2);local text=SPCLv4CopyRead.Render(P,m);assert(text:find('max=6.0',1,true))

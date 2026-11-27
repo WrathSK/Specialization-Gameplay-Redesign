@@ -11,8 +11,8 @@
     "shared": "D0067",
     "presentation": "D0032",
     "architecture": "A0192",
-    "status": "S1167",
-    "runtime": "B550.577 / modinfo577",
+    "status": "S1168",
+    "runtime": "B551.578 / modinfo578",
     "military": "D0037",
     "harbor": "D0037",
     "government": "D0047"
@@ -60,7 +60,7 @@
   ],
   "result": {
     "runtime_identity": {
-      "source": "B550.577 / modinfo577 source validates own payloads once at the save boundary and drops the remaining re-checks of producer shapes; freshness, identity and native-read checks stay. B549.576 remains installed.",
+      "source": "B551.578 / modinfo578 source removes the four fixture-only arms kept in B549; fixture doubles provide the real methods. B550.577 remains installed.",
       "installed": "B550.577 / modinfo577 temporary, 305/305 MATCH at 8f4c1479ba839275cdb4f3812e2f25ae31b1e252f1ec1656166d6c3c876124c1. Receipt B550.577-78fa192-playtest.json DEVELOP_ACTIVE. Stable B528.555 backup verified.",
       "stable": "main B528.555. B489.516 retained for rollback."
     },
@@ -105,7 +105,7 @@
       "native_validation": "NOT_RUN"
     },
     "current_checkpoint": {
-      "report": "Specialization/Status/Specialization_P0_Status.md#contract-audit-batch-5-own-payloads-not-re-validated--s1165",
+      "report": "Specialization/Status/Specialization_P0_Status.md#fixture-double-migration--s1168",
       "owner_decision": "Specialization/Design/Design_ChangeLog.md#accepted-d0067--2026-11-22",
       "accepted_design": "D0067",
       "status": "LOCAL_SIMULATION_PASS",

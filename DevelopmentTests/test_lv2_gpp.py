@@ -55,7 +55,7 @@ Players={[0]={GetCities=function() return {Members=function() return ipairs(citi
 Map={GetPlot=function(x,y) return {GetWorkerCount=function() return cities[x].workers end} end}
 P={VERSION='P0-B-035',Info=function(t,k) return info[t][k] end,Rows=function() return points end,
  Field=function(t,k) return t and t[k] end,IsTestPlayer=function(pid) return pid==0 end,Scalar=tostring}
-shared={Version=P.VERSION,EffectiveFacts={Read=function(pid,city) if city.bad then error('BAD_IDENTITY') end;return city.f end}}
+shared={Version=P.VERSION,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,city) if city.bad then error('BAD_IDENTITY') end;return city.f end}}
 function boot() bus();SPCLv2GPP.Start(P,shared);Events.LoadScreenClose.fire() end
 local function count(city,kind)
  local n=0

@@ -17,8 +17,11 @@ include=previousInclude;previousInclude=nil
 local prior=shared.EffectiveFacts
 SPCEffectiveFacts.Start(P,shared)
 local facts=shared.EffectiveFacts
-if prior then facts.Read=prior.Read;facts.Inspect=nil end
+-- B551: Inspect passes through the fixture Read, as the retired no-Inspect arm did.
+if prior then facts.Read=prior.Read;facts.Inspect=function(pid,c,project)local function fresh(_,r)return r()end;return project(facts.Read(pid,c),fresh,fresh)end end
 SPCP0.FactReadService=facts;SPCP0.Count=P.Count
+-- B551: CityReference reads the Store token; minimal double returns the city token property.
+shared.CityProgressionStore=shared.CityProgressionStore or {ReferenceToken=function(c)return c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')or nil end,RegisterExit=function()end,RegisterReturn=function()end}
 SPCP0.Info=function(...)return P.Info(...)end
 P.CreateBuilding=SPCP0.CreateBuilding;P.RemoveBuilding=SPCP0.RemoveBuilding
 P.SetProperty=SPCP0.SetProperty

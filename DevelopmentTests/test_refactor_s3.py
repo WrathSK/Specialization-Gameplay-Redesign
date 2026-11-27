@@ -10,7 +10,7 @@ class Composition(unittest.TestCase):
         return c
     def test_late_failed_listeners_exit_return_and_consumer_quarantined(self):
         c=self.make();c.execute("""
-        callbacks={};shared.CityProgressionStore={RegisterExit=function(n,f)callbacks.exit=f end,RegisterReturn=function(n,f)callbacks.ret=f end}
+        callbacks={};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(n,f)callbacks.exit=f end,RegisterReturn=function(n,f)callbacks.ret=f end}
         shared.GreatWorkFacts={RegisterConsumer=function(n,f)callbacks.work=f end}
         previous=function()end;shared.OnPermanentCityWrite=previous
         originalRegister=shared.CityProgressionStore.RegisterExit
@@ -69,7 +69,7 @@ class Composition(unittest.TestCase):
     def test_deferred_attachment_failure_keeps_mandatory_cleanup_blocked(self):
         c=self.make();c.execute("""
         local event=Events.Test;local add=event.Add;local exit;local sibling=0;local attempted=0
-        shared.CityProgressionStore={RegisterExit=function(_,f)exit=f end}
+        shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(_,f)exit=f end}
         d.RequireCleanup('Ordinary','EXIT')
         add(function()sibling=sibling+1 end)
         event.Remove=nil
@@ -133,14 +133,14 @@ class Observers(unittest.TestCase):
 class Readiness(unittest.TestCase):
     def test_latch_waits_for_store_then_initializes_exactly_once_without_frames(self):
         for boundary in ('publish()','Events.PlayerTurnActivated.Fire(0)','Events.LoadScreenClose.Fire()'):
-            c=Context();c.load('RuntimeWork');c.execute("P={Field=function(t,k)return t[k]end};state='WAITING';shared.CityProgressionStore={HistoryStartStatus=function()return state end};starts=0;SPCRuntimeWork.StartReady(P,shared,'Fixture',function()starts=starts+1 end);for i=1,10 do publish();Events.PlayerTurnActivated.Fire(0);Events.LoadScreenClose.Fire()end;assert(starts==0 and frames==0);state='READY';"+boundary+";for i=1,10 do publish();Events.PlayerTurnActivated.Fire(0);Events.LoadScreenClose.Fire()end;assert(starts==1 and frames==0)")
+            c=Context();c.load('RuntimeWork');c.execute("P={Field=function(t,k)return t[k]end};state='WAITING';shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){HistoryStartStatus=function()return state end};starts=0;SPCRuntimeWork.StartReady(P,shared,'Fixture',function()starts=starts+1 end);for i=1,10 do publish();Events.PlayerTurnActivated.Fire(0);Events.LoadScreenClose.Fire()end;assert(starts==0 and frames==0);state='READY';"+boundary+";for i=1,10 do publish();Events.PlayerTurnActivated.Fire(0);Events.LoadScreenClose.Fire()end;assert(starts==1 and frames==0)")
     def test_actual_nine_load_only_modules_use_latch_and_self_register(self):
         modules=['ResearchSupport','Lv2Housing','Lv2GPP','ResearchInfrastructure','ResearchCross','ResearchApply','ResearchChair','ResearchTraditionEffects','NetworkBridge']
         c=Context();c.execute("""
         print=function()end;Players={};P={Field=function(t,k)return t and t[k]end,Count=function()end,Observe=function()end,IsTestPlayer=function()return false end,Rows=function()return {}end,Info=function()return {}end};SPCP0=P
         state='WAITING';registered={};shared.ReadinessSummary={Register=function(n)registered[n]=true end}
-        shared.CityProgressionStore={HistoryStartStatus=function()return state end,RegisterExit=function()end,RegisterReturn=function()end,VisitTradition=function()end}
-        shared.EffectiveFacts={};SPCResearchTradition={}
+        shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){HistoryStartStatus=function()return state end,RegisterExit=function()end,RegisterReturn=function()end,VisitTradition=function()end}
+        shared.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){};SPCResearchTradition={}
         """)
         for name in modules:c.load(name);c.execute('SPC'+name+'.Start(P,shared)')
         c.execute('publish()')
@@ -179,7 +179,7 @@ class Adapters(unittest.TestCase):
 
 class ReviewBoundaries(unittest.TestCase):
     def test_readiness_observer_failure_cannot_fail_business_registration(self):
-        c=Context();c.load('RuntimeWork');c.execute("P={Field=function(t,k)return t[k]end};shared.ReadinessSummary={Register=function()error('DIAGNOSTIC_ONLY')end};shared.CityProgressionStore={HistoryStartStatus=function()return 'READY'end};n=0;assert(pcall(SPCRuntimeWork.StartReady,P,shared,'Fixture',function()n=n+1 end));publish();assert(n==1)")
+        c=Context();c.load('RuntimeWork');c.execute("P={Field=function(t,k)return t[k]end};shared.ReadinessSummary={Register=function()error('DIAGNOSTIC_ONLY')end};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){HistoryStartStatus=function()return 'READY'end};n=0;assert(pcall(SPCRuntimeWork.StartReady,P,shared,'Fixture',function()n=n+1 end));publish();assert(n==1)")
     def test_required_missing_nil_before_never_admits_spc(self):
         for api in ('nil','{}','5',"{Before=function()return nil end}"):
             c=panel('SPCCapitalInvestmentUI.New=function()return '+api+' end')
@@ -212,7 +212,7 @@ class ReviewBoundaries(unittest.TestCase):
             self.assertEqual(c.eval("ExposedMembers.SPC_P0.StartStatus['%s'].state"%name),'OK')
         self.assertEqual(c.eval('ExposedMembers.SPC_P0.StartStatus.Lv2Housing.state'),'SKIPPED_DEPENDENCY')
     def test_readiness_cannot_hide_skipped_writers_or_exceed_fixed_fields(self):
-        c=Context();c.execute("P={Field=function(t,k)return t[k]end};rows={};SPCExpeditionTrainingDiagnostics={ENABLED=true,New=function()return {Record=function(stage,v)rows[#rows+1]={stage=stage,value=v}end}end};shared.CityProgressionStore={FreshReady=function()return true end};shared.StartStatus={Missing={state='SKIPPED_DEPENDENCY',code='D'},Failed={state='FAILED',code='START_ERROR'}}")
+        c=Context();c.execute("P={Field=function(t,k)return t[k]end};rows={};SPCExpeditionTrainingDiagnostics={ENABLED=true,New=function()return {Record=function(stage,v)rows[#rows+1]={stage=stage,value=v}end}end};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){FreshReady=function()return true end};shared.StartStatus={Missing={state='SKIPPED_DEPENDENCY',code='D'},Failed={state='FAILED',code='START_ERROR'}}")
         c.load('ReadinessSummary');c.execute("summary=SPCReadinessSummary.Start(P,shared)")
         for name in ['ResearchSupport','Lv2Housing','Lv2GPP','ResearchInfrastructure','ResearchCross','ResearchApply','ResearchChair','ResearchTraditionEffects','NetworkBridge']:
             c.execute("shared[...]= {ready=true};summary.Register(...)",name)

@@ -33,7 +33,7 @@ Players={[0]={GetCities=function() return {FindID=function(_,id) return cities[i
  GetDiplomacy=function() return {IsAtWarWith=function() return war end} end}}
 P={VERSION='P0-B-070.97',IsTestPlayer=function(pid) return pid==0 end,Field=function(t,k) return t and t[k] end,
  Count=function(k) counts[k]=(counts[k] or 0)+1 end}
-shared={RouteSignalRevision=0,EffectiveFacts={Read=function(pid,c)
+shared={RouteSignalRevision=0,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)
  if readFail or c.fail then error('TEMP_FACT_READ') end
  return {owner=pid,cityID=c.id,token=c.token,specialization=c.kind,potential=c.potential,active=c.active,
  first=c.kind~='NONE' and {districtID=c.id,type='DISTRICT_'..c.kind} or nil}

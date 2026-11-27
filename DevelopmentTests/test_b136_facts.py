@@ -213,7 +213,7 @@ for stage in ('INTENT', 'CONSUMED_CONFIRMED'):
             runtimes = pair()
             apply(runtimes, f"resetProperties(728);setPotential({potential});setPending('{stage}')")
             if store_owned:
-                apply(runtimes, "shared.CityProgressionStore={Owns=function(c) assert(c==city);return true end,Investment=function(pid,c) assert(pid==0 and c==city);count('store_investment');return ledger end}")
+                apply(runtimes, "shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){Owns=function(c) assert(c==city);return true end,Investment=function(pid,c) assert(pid==0 and c==city);count('store_investment');return ledger end}")
             assert differential(runtimes, (stage, potential, store_owned), 'valid_pending_and_store_borrow')[0]
             for lua in runtimes:
                 assert lua.globals().activeState()[3] is True

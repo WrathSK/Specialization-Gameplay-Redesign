@@ -29,7 +29,7 @@ local cities,ds={},{}
 local function members(t) local i=0;return function() i=i+1;if t[i] then return i,t[i] end end end
 Players={[0]={GetCities=function() return {Members=function() return members(cities) end} end,GetDistricts=function() return {Members=function() return members(ds) end} end}}
 P={Info=function(t,k) return info[t][k] end,Field=function(t,k) return t[k] end,IsTestPlayer=function(pid) return pid==0 end}
-s={EffectiveFacts={Read=function(pid,c) if c.bad then error('BAD_FACTS') end;return c.f end}}
+s={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) if c.bad then error('BAD_FACTS') end;return c.f end}}
 local types={'RESEARCH','CULTURE','COMMERCE','INDUSTRY'}
 for i=1,4 do
  local c={id=i,owner=0,buildings={},writes=0};cities[i]=c

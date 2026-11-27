@@ -48,7 +48,7 @@ cities={makeCity(1,0,'COMMERCE',1),makeCity(2,0,'RESEARCH',2),makeCity(3,0,'RESE
 capital=cities[1];routes={}
 local col={FindID=function(_,id) for _,c in ipairs(cities) do if c.id==id and c.owner==0 then return c end end end,GetCapitalCity=function() return capital end,Members=function() local i=0;return function() i=i+1;if cities[i] then return i,cities[i] end end end}
 Players={[0]={GetCities=function() return col end,GetTrade=function() return {CountOutgoingRoutes=function() return #routes end} end}}
-shared={EffectiveFacts={Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}}
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}}
 include=function() end
 ''')
 for name in ['BoostConfig.lua','NetworkBridge.lua','NetworkBoost.lua','GreatWorkProbe.lua']:lua.execute((M/name).read_text())

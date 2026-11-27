@@ -63,8 +63,8 @@ class ActualCurrentOwners(unittest.TestCase):
   captured={};owned={};plotWrites={};current=nil;Players={}
   P={Field=function(t,k)return t and t[k]end,IsTestPlayer=function(pid)return pid==0 end,Count=function()end,
    Info=function(t,k)return dbinfo(t,k)end,Rows=function(t)return dbrows(t)end,SetProperty=function(p,k,v)p:SetProperty(k,v)end}
-  SPCP0=P;shared.EffectiveFacts={Read=function()error('ACTIVE_FACTS_FORBIDDEN')end}
-  shared.CityProgressionStore={RegisterExit=function(n,f)assert(not captured[n]);captured[n]=f end,RegisterReturn=function()end,
+  SPCP0=P;shared.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function()error('ACTIVE_FACTS_FORBIDDEN')end}
+  shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(n,f)assert(not captured[n]);captured[n]=f end,RegisterReturn=function()end,
    RemoveOwned=function(c,loss,names)assert(not owned[current]);owned[current]=names end,IsExitTarget=function()return true end}
   GameInfo={};for _,t in ipairs({'Eras','HD_BuildingTiers','HD_DUMMY_BUILDINGS'})do
    local name=t;GameInfo[name]=function()local rows=dbrows(name);local i=0;return function()i=i+1;return rows[i]end end

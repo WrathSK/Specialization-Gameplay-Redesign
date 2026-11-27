@@ -65,7 +65,7 @@ shared.EffectiveFacts.Read=function(pid,c)
  return {specialization=c.kind,potential=c.potential,active=c.active,activeStatus=c.active==nil and 'UNKNOWN_GOVERNOR' or 'KNOWN',
   token=c.token,first=c.kind~='NONE' and {districtID=c.id,type=families[c.kind]} or nil}
 end
-shared.CityProgressionStore={
+shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){
  RegisterExit=function(name,fn)assert(not exits[name]);exits[name]=fn end,
  RegisterReturn=function(name,fn)assert(not returns[name]);returns[name]=fn end,
  ExpeditionInsights=function(pid,c)historyReads[c.id]=(historyReads[c.id]or 0)+1;if c.historyUnknown then error('HISTORY_UNKNOWN')end;return history[c.id]end,

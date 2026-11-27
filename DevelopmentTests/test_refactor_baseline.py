@@ -55,7 +55,7 @@ class RealConsumers(unittest.TestCase):
         # Both actual writers use the real shared phase. Native authority stamp/admission are doubles;
         # independent test_refactor_s5b.ActualWriters additionally proves the same count using the real Store.
         with legacy_source_observation():lua.execute((__import__('pathlib').Path(__file__).resolve().parents[1]/'Mod/EffectiveFacts.lua').read_text())
-        lua.execute("foundationReads=0;shared.CityFlowProbe={SupportFacts=function(pid,c)foundationReads=foundationReads+1;return {owner=pid,cityID=c:GetID(),token='REF',specialization='NONE',potential=0}end};shared.CityProgressionStore={FactStamp=function()return 'FIXTURE_AUTHORITY_1'end,Owns=function()return false end};SPCEffectiveFacts.Start(P,shared);resetCounts();shared.EffectiveFacts.WithPhase('REAL_WRITER_TEST',function()shared.Lv2Housing.Audit({player=0,city=0});shared.Lv2GPP.Audit({player=0,city=0})end)")
+        lua.execute("foundationReads=0;shared.CityFlowProbe={SupportFacts=function(pid,c)foundationReads=foundationReads+1;return {owner=pid,cityID=c:GetID(),token='REF',specialization='NONE',potential=0}end};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){FactStamp=function()return 'FIXTURE_AUTHORITY_1'end,Owns=function()return false end};SPCEffectiveFacts.Start(P,shared);resetCounts();shared.EffectiveFacts.WithPhase('REAL_WRITER_TEST',function()shared.Lv2Housing.Audit({player=0,city=0});shared.Lv2GPP.Audit({player=0,city=0})end)")
         n=lua.eval('foundationReads');measure('T04_effective_captures_two_writers',n)
         self.assertEqual(n,1,'S5_FACT_CAPTURE_NOT_SHARED')
     def test_T05_unchanged_pending_has_attempt_budget(self):
@@ -65,7 +65,7 @@ class RealConsumers(unittest.TestCase):
         n=lua.eval('factAttempts');measure('T05_pending_fact_attempts',n)
         self.assertLessEqual(n,1,'S4_PENDING_RETRY_STORM')
     def test_T06_failed_retirement_blocks_positive_writes(self):
-        c=Context();c.load('RuntimeWork');c.execute("c={GetOwner=function()return 0 end,GetID=function()return 1 end,GetX=function()return 1 end,GetY=function()return 2 end,GetProperty=function()return 'ref'end};local calls=0;local function apply()SPCRuntimeWork.RetireOnce({},shared,c,'owned',function()calls=calls+1;error('UNKNOWN')end);counts.positive=(counts.positive or 0)+1 end;assert(not pcall(apply));assert(not pcall(apply));assert(calls==2 and not counts.positive)")
+        c=Context();c.load('RuntimeWork');c.execute("shared.CityProgressionStore=shared.CityProgressionStore or {ReferenceToken=function(c)return c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')end};c={GetOwner=function()return 0 end,GetID=function()return 1 end,GetX=function()return 1 end,GetY=function()return 2 end,GetProperty=function()return 'ref'end};local calls=0;local function apply()SPCRuntimeWork.RetireOnce({},shared,c,'owned',function()calls=calls+1;error('UNKNOWN')end);counts.positive=(counts.positive or 0)+1 end;assert(not pcall(apply));assert(not pcall(apply));assert(calls==2 and not counts.positive)")
 
     def test_T01_real_chair_honors_city_scope(self):
         from test_b270_event_scope import make_fixture

@@ -29,6 +29,7 @@ for i=1,3 do
  local c={id=i,owner=i==3 and 3 or 0,built={}};cities[i]=c
  function c:GetOwner()return self.owner end
  function c:GetID()return self.id end
+ function c:GetX()return self.id end;function c:GetY()return 0 end -- B551: real cities always have a location
  function c:GetBuildings()return self.built end
  function c:GetBuildQueue()return self.built end
 end
@@ -44,7 +45,7 @@ P.Info=function(tab,name)if tab=='Buildings'then return {Index=name,BuildingType
 P.HasBuilding=function(b,id)reads=reads+1;if id==unknownPresence then return nil end;return b[id]==true end
 P.RemoveBuilding=function(b,id)removeCount=removeCount+1;if failRemove==id then return end;b[id]=nil end
 P.CreateBuilding=function(b,id)error('retirement must never create a building')end
-exits={};shared={CityProgressionStore={}}
+exits={};shared={CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){}}
 shared.CityProgressionStore.HistoricalReference=function(c)
  assert(c.owner==0 and not unproven[c.id],'STORE_REFERENCE_UNKNOWN')
  return {owner=c.owner,cityID=c.id,token='C'..c.id}
@@ -54,7 +55,7 @@ shared.CityProgressionStore.RemoveOwned=function(c,loss,names)
  assert(loss.confirmed,'EXIT_NOT_CONFIRMED')
  for _,id in ipairs(names)do if c.built[id]then P.RemoveBuilding(c.built,id);assert(not c.built[id],'EXIT_REMOVE_UNCONFIRMED')end end
 end
-shared.EffectiveFacts={Read=function(pid,c)return {specialization='COMMERCE',active=3,potential=3}end}
+shared.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)return {specialization='COMMERCE',active=3,potential=3}end}
 function seed(c)
  c.built.KEEP_EXTERNAL=true;c.built.BUILDING_SPC_COMMERCE_GOLD_0=true
  for _,yield in ipairs({'SCIENCE','CULTURE','PRODUCTION'})do for bit=0,15 do

@@ -119,7 +119,7 @@ Players={[0]={GetCities=function()return collection end,
 CityManager={GetCityAt=function(x,y)
  for _,v in ipairs(citylist)do if v.x==x and v.y==y then return v end end
 end}
-shared={Version=P.VERSION,EffectiveFacts={Read=function(pid,c)
+shared={Version=P.VERSION,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)
  assert(pid==0);return {specialization=c.kind,active=c.active}end}}
 ExposedMembers={SPC_P0=shared}
 Events=setmetatable({}, {__index=function(t,k)
@@ -129,7 +129,7 @@ Events=setmetatable({}, {__index=function(t,k)
 end})
 function fire(name,...)for _,f in ipairs(Events[name].list)do f(...)end end
 exits={};returns={};permanentStore={investment=250,insights={R=1},binding='immutable'}
-shared.CityProgressionStore={
+shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){
  RegisterExit=function(name,fn)assert(not exits[name]);exits[name]=fn end,
  RegisterReturn=function(name,fn)assert(not returns[name]);returns[name]=fn end,
  IsExitTarget=function(target,loss)return loss.confirmed==true and target.id==loss.targetID end,

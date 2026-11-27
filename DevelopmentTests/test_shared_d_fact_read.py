@@ -53,7 +53,7 @@ SPCDistrictCompleteness.Calculate=function(catalog,raw,detail)
 end''')
     lua.execute(r'''
 returnCallbacks={}
-shared.CityProgressionStore={RegisterReturn=function(name,callback)returnCallbacks[name]=callback end}
+shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterReturn=function(name,callback)returnCallbacks[name]=callback end}
 function restart()
  SPCDistrictCompleteness.Start(P,shared);svc=shared.DistrictCompleteness
  counters={};reads=0;writes=0
@@ -143,6 +143,9 @@ def writer_fixture(old=False):
         exec(compile(source[:source.index(boundary)], str(path), 'exec'), namespace)
         lua = namespace['runtime']()
     lua.globals().print = lambda *parts: None
+    # B551: CityReference always reads the Store token; both replays get the same
+    # minimal double that returns the city's token property, as the retired arm did.
+    lua.execute("if not shared.CityProgressionStore then shared.CityProgressionStore={ReferenceToken=function(c)return c.GetProperty and c:GetProperty('SPC_DEV_BINDING_B013_TOKEN')or nil end}end")
     lua.execute('''function carrierSnapshot()
 local out={}
 for _,city in pairs(cities)do

@@ -20,7 +20,7 @@ end
 make(1,'RESEARCH',1,{SCIENCE=28.4219});make(2,'COMMERCE',4,{SCIENCE=6});make(3,'RESEARCH',4,{SCIENCE=20});make(4,'COMMERCE',4,{});make(5,'CULTURE',4,{CULTURE=61});make(6,'INDUSTRY',4,{PRODUCTION=89})
 Players={[0]={GetCities=function() return {FindID=function(_,id) return cities[id] end,Members=function() return pairs(cities) end,GetCapitalCity=function() return cities[1] end} end,GetTrade=function() return {CountOutgoingRoutes=function() return count end} end}}
 P={VERSION='test',IsTestPlayer=function(pid) return pid==0 end,Field=function(t,k) return t[k] end,Info=function(t,k) if t=='Yields' then return {Index=k:gsub('YIELD_','')} end;if t=='Buildings' then return {Index=k} end end}
-shared={Version='test',RouteSignalRevision=0,EffectiveFacts={Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}};ExposedMembers.SPC_P0=shared;Locale={Lookup=function(s) return s end}
+shared={Version='test',RouteSignalRevision=0,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c) return {specialization=c.kind,active=c.active,potential=4} end}};ExposedMembers.SPC_P0=shared;Locale={Lookup=function(s) return s end}
 ''')
 for f in ['NetworkBridge.lua','NetworkSender.lua','CommerceConvergence.lua']:l.execute((M/f).read_text())
 l.execute('''

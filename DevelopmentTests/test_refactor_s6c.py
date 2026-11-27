@@ -40,7 +40,7 @@ def actual_supports():
     SPCResearchSupport.Start(P,shared);shared.ResearchSupport.ready=true;shared.ResearchSupport.Audit({player=0,city=1})
     -- Native authority double only; retain the actual EF investment overlay,
     -- original foundation fixture, DC, three writers and native carrier protocol.
-    shared.CityProgressionStore={Owns=function()return true end,Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,Investment=function(pid,c)return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end,FactStamp=function(pid,city)return city.token end}
+    shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){Owns=function()return true end,Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,Investment=function(pid,c)return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end,FactStamp=function(pid,city)return city.token end}
     f=shared.EffectiveFacts
     function audits()
      for _,name in ipairs({'ResearchSupport','Lv2Housing','Lv2GPP'})do shared[name].Audit({player=0,city=1});assert(not shared[name].errors['0:1'],shared[name].errors['0:1'])end

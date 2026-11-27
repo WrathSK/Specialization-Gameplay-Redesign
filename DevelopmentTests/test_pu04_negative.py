@@ -38,7 +38,7 @@ def cross():
         shared.CityFlowProbe={SupportFacts=function(pid,c)
          local f=clone(base(pid,c));f.owner=pid;f.cityID=c:GetID();f.token=c.token;f.potential=1;return f
         end}
-        shared.CityProgressionStore={Owns=function()return true end,Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,Investment=function(pid,c)return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end,FactStamp=function(pid,c)return c.token..':'..tostring(facts[c.id].active)end}
+        shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){Owns=function()return true end,Base=function(pid,c)return shared.CityFlowProbe.SupportFacts(pid,c)end,Investment=function(pid,c)return c:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end,FactStamp=function(pid,c)return c.token..':'..tostring(facts[c.id].active)end}
         P.GovernorGate=function(c)return c.owner,c.id,facts[c.id].active and 'KNOWN'or'UNKNOWN',facts[c.id].active end
         for _,c in pairs(cities)do local get=c.GetProperty;c.GetProperty=function(self,key)
          if key~='SPC_DEV_INVESTMENT_LEDGER_V1'then return get(self,key)end

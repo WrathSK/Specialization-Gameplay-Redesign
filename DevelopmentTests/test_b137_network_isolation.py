@@ -192,7 +192,7 @@ COUNTS['culture_local_recomputed']=1
 
 def network(old=False):
     l=runtime(NET,old)
-    l.execute("shared.Version=P.VERSION;ExposedMembers.SPC_P0=shared;Game.GetLocalPlayer=function() return 0 end;Game.SetProperty=function() propertyWrites=propertyWrites+1;error('PERMANENT_WRITE_FORBIDDEN') end;exits={};returns={};shared.CityProgressionStore={RegisterExit=function(n,f) exits[n]=f end,RegisterReturn=function(n,f) returns[n]=f end,IsExitTarget=function() return true end}")
+    l.execute("shared.Version=P.VERSION;ExposedMembers.SPC_P0=shared;Game.GetLocalPlayer=function() return 0 end;Game.SetProperty=function() propertyWrites=propertyWrites+1;error('PERMANENT_WRITE_FORBIDDEN') end;exits={};returns={};shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(n,f) exits[n]=f end,RegisterReturn=function(n,f) returns[n]=f end,IsExitTarget=function() return true end}")
     l.execute(source('NetworkBridge',old))
     l.execute('SPCNetworkBridge.Start(P,shared);net=shared.NetworkBridge;net.ready=true')
     return l

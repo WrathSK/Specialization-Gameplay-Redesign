@@ -63,7 +63,7 @@ function addCity(pid,cid,x,y)
  }
  return c
 end
-shared={EffectiveFacts={Read=function(pid,c)
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)
  assert(pid==0,'SHOULD_NOT_READ_AI_FACTS')
  return {specialization='NONE',potential=0,active=0,token='TEST:'..c:GetID()}
 end}}

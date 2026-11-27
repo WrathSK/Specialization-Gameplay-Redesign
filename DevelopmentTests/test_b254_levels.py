@@ -20,7 +20,7 @@ for i=1,2 do cities[i]=city(i);facts[i]={specialization='CULTURE',potential=4,ac
 local collection={FindID=function(_,id)return cities[id]end,Members=function()return pairs(cities)end}
 Players={[0]={GetCities=function()return collection end}}
 P={Field=function(s,k)return s[k]end,IsTestPlayer=function(pid)return pid==0 end}
-shared={OnPermanentCityWrite=function()priorWrites=priorWrites+1 end,EffectiveFacts={Read=function(pid,c)reads=reads+1;if fault then error('UNKNOWN')end;return facts[c:GetID()]end}}
+shared={OnPermanentCityWrite=function()priorWrites=priorWrites+1 end,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(pid,c)reads=reads+1;if fault then error('UNKNOWN')end;return facts[c:GetID()]end}}
 ''');load(l,'Mod/LevelBannerState.lua');l.execute('SPCLevelBannerState.Start(P,shared);d=shared.LevelBanners');return l
 
 def ui():

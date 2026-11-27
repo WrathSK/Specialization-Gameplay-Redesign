@@ -9,7 +9,7 @@ class InvestmentBanner(unittest.TestCase):
     l.execute("""
     c.governor=1
     -- Store-shaped adapter deliberately has no generic permanent-write notification.
-    shared.CityProgressionStore={Owns=function()return true end,
+    shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){Owns=function()return true end,
      Investment=function(pid,city)return city:GetProperty('SPC_DEV_INVESTMENT_LEDGER_V1')end,
      WriteInvestment=function(pid,city,old,value)city:SetProperty('SPC_DEV_INVESTMENT_LEDGER_V1',value)end}
     """)

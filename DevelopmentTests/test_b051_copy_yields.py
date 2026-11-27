@@ -44,7 +44,7 @@ P={VERSION='P0-B-051',Families={DISTRICT_CAMPUS='RESEARCH',DISTRICT_INDUSTRIAL_Z
 Events=setmetatable({},{__index=function(t,k) local e={Add=function(f) hooks[k]=hooks[k] or {};table.insert(hooks[k],f) end};rawset(t,k,e);return e end})
 function fire(n) for _,f in ipairs(hooks[n] or {}) do f() end end
 Game={GetCurrentGameTurn=function() return turn end,GetLocalPlayer=function() return 0 end}
-shared={Version=P.VERSION,EffectiveFacts={Read=function(_,c) return facts[c.id] end},NetworkBridge={RecipientSources=function(_,c)
+shared={Version=P.VERSION,EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(_,c) return facts[c.id] end},NetworkBridge={RecipientSources=function(_,c)
  assert(network,'NETWORK_REFRESH_PENDING');return c.id==1 and recipients or {} end}}
 SPCCopyYields.Start(P,shared)
 SPCP0=P;ExposedMembers={SPC_P0=shared};include=function() end;PlayerOperations={EXECUTE_SCRIPT=1}

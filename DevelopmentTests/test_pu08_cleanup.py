@@ -32,7 +32,7 @@ def declarations():
 def component():
  c=Context();c.load('RuntimeComposition');c.execute("""
  print=function()end;d=SPCRuntimeComposition.New(shared);calls=0;exits={};returns={}
- shared.CityProgressionStore={RegisterExit=function(n,f)assert(not exits[n]);exits[n]=f end,
+ shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(n,f)assert(not exits[n]);exits[n]=f end,
  RegisterReturn=function(n,f)assert(not returns[n]);returns[n]=f end}
  """);return c
 
@@ -49,7 +49,7 @@ def store_fixture(target='ResearchSupport',mode='failed'):
  P.RemoveBuilding=function(b,id)assert(id~=ordinary);removals=removals+1;if not removeNoop then b.city.present[id]=nil end end
  P.CreateBuilding=function()error('POSITIVE_EFFECT_FORBIDDEN')end
  P.Field=function(t,k)return t and t[k]end;P.Count=function()end
- shared.EffectiveFacts={Read=function()error('POSITIVE_FACTS_FORBIDDEN')end}
+ shared.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function()error('POSITIVE_FACTS_FORBIDDEN')end}
  s.HistoryStartStatus=function()return 'WAITING'end -- latch must not fabricate positive facts at startup
  local register,ret=s.RegisterExit,s.RegisterReturn
  s.RegisterExit=function(n,f)registered[n]=f;return register(n,f)end
@@ -121,7 +121,7 @@ class Required(unittest.TestCase):
  def test_wrong_owner_or_duplicate_binding_is_not_accepted(self):
   c=component();c.execute("d.RequireCleanup('Owner','EXIT');assert(not d.Run('Impostor',{}, {},function()shared.CityProgressionStore.RegisterExit('EXIT',function()calls=calls+1 end)end));assert(not pcall(exits.EXIT));assert(not d.Run('Owner',{}, {},function()shared.CityProgressionStore.RegisterExit('EXIT',function()calls=calls+1 end);shared.CityProgressionStore.RegisterExit('EXIT',function()calls=calls+1 end)end));assert(not pcall(exits.EXIT)and calls==0)")
  def test_late_requirement_store_replacement_and_optional_failure_do_not_bypass(self):
-  c=component();c.execute("d.RequireCleanup('Owner','EXIT');assert(d.Run('Owner',{}, {},function()shared.CityProgressionStore.RegisterExit('EXIT',function()calls=calls+1 end)end));assert(not d.Run('Observer',{}, {},function()error('OPTIONAL')end));assert(pcall(exits.EXIT)and calls==1);assert(not pcall(d.RequireCleanup,'Owner','ANOTHER'));shared.CityProgressionStore={};assert(not pcall(exits.EXIT)and calls==1)")
+  c=component();c.execute("d.RequireCleanup('Owner','EXIT');assert(d.Run('Owner',{}, {},function()shared.CityProgressionStore.RegisterExit('EXIT',function()calls=calls+1 end)end));assert(not d.Run('Observer',{}, {},function()error('OPTIONAL')end));assert(pcall(exits.EXIT)and calls==1);assert(not pcall(d.RequireCleanup,'Owner','ANOTHER'));shared.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){};assert(not pcall(exits.EXIT)and calls==1)")
  def test_all_actual_declared_names_have_reviewed_production_registration(self):
   rows=declarations();self.assertEqual(len(rows),34)
   self.assertEqual(sum(ex is not None for _,ex,_ in rows),29);self.assertEqual(sum(ret is not None for _,_,ret in rows),23)
@@ -137,7 +137,7 @@ class Required(unittest.TestCase):
   c=startup();c.execute("""
   requiredExits={};requiredReturns={}
   SPCCityProgressionStore.Start=function(P,s)
-   s.CityProgressionStore={RegisterExit=function(n,f)assert(not requiredExits[n]);requiredExits[n]=f end,
+   s.CityProgressionStore=(function(t)t.ReferenceToken=t.ReferenceToken or function(c)return c.GetProperty and c:GetProperty([[SPC_DEV_BINDING_B013_TOKEN]])or nil end;t.ExitCompleted=t.ExitCompleted or function()return true end;return t end){RegisterExit=function(n,f)assert(not requiredExits[n]);requiredExits[n]=f end,
     RegisterReturn=function(n,f)assert(not requiredReturns[n]);requiredReturns[n]=f end}
   end
   SPCResearchTraditionEffects=module('HealthyResearchTraditionEffects','ResearchTraditionEffects')

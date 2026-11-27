@@ -23,7 +23,7 @@ for i,k in ipairs({'RESEARCH','CULTURE'}) do
 end
 Players={[0]={GetCities=function() return {Members=function() return ipairs(cities) end} end,GetDistricts=function() return {Members=function() return ipairs(districts) end} end}}
 Map={GetPlot=function(x) return {GetWorkerCount=function() return workers[x] end} end}
-shared={EffectiveFacts={Read=function(_,c) if bad then error('fact failure') end;return facts[c.id] end}}
+shared={EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function(_,c) if bad then error('fact failure') end;return facts[c.id] end}}
 hooks={};Events=setmetatable({},{__index=function(t,k) local e={Add=function(f) hooks[k]=f end};t[k]=e;return e end});GameEvents={}
 function amount(i,k)
  local sum=0;for b=0,7 do if cities[i].b[rows['BUILDING_SPC_LV4_PERCENT_'..k..'_'..b].Index] then sum=sum+5*2^b end end;return sum

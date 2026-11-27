@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1167
-Implementation Build: develop B550.577 / modinfo577. Installed temporary B550.577 / modinfo577. Stable B528.555 / modinfo555.
+Status Revision: S1168
+Implementation Build: develop B551.578 / modinfo578. Installed temporary B550.577 / modinfo577. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,35 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B550.577 / modinfo577 [契约审计第 5 批：去掉自产数据复查](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)（第 2–4 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)、[S1161](#contract-audit-batch-3-internal-asserts--s1161)、[S1163](#contract-audit-batch-4-dead-checks-removed--s1163)）。本机[已临时安装 B550.577](#contract-audit-batch-5-installed--s1166)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B551.578 / modinfo578 [夹具替身迁移](#fixture-double-migration--s1168)（契约审计第 2–5 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)–[S1165](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)）。本机[已临时安装 B550.577](#contract-audit-batch-5-installed--s1166)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B550.577 实机短测通过（[S1167](#contract-audit-batches-2-5-native-smoke--s1167)）：建城、投资、存档读档后专业与潜力一致，采集日志无 `[SPC][ERR]`。容量窗口徽章与标题仍待复验；考察团归档沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | 契约审计后续：夹具替身迁移（收掉 S1163 保留的四处回退）、诊断显示路径去留，待 Owner 决定。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | 契约审计后续：诊断显示路径（`UI/BoostGreatWorkRead`）去留待 Owner 决定。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Fixture-double migration — S1168
+
+Owner 2026-11-26 批准夹具替身迁移。B551.578 删除第 4 批（S1163）保留的四处只服务夹具的回退：`CityReference.Read` 的无存储分支、运行工作的 `NewReader`/`Inspect` 回退、CurrentSpecializationFacts 的无 `Inspect` 分支、区域完整度的 `facts.Version` 回退。生产行为不变。
+
+测试夹具（只改夹具，不改断言）：
+
+- 41 个文件中的有效事实与存储替身字面量统一套上一层补齐包装：有效事实缺 `WithPhase`/`Inspect`/`NewReader`/`DistrictWriteVersion` 时补上转调 `Read`/`Version` 的实现；存储缺 `ReferenceToken`/`ExitCompleted` 时补上返回城市令牌属性与 `true` 的实现，行为与被删的回退一致；已显式定义的方法不受影响。
+- 没有存储的根夹具补最小存储替身（`ReferenceToken` 及空的 `RegisterExit`/`RegisterReturn`）：`test_arch_v2_c2` FIX、`test_refactor_s5d1.research`、`test_scoped_depth_write`、`test_refactor_s5d2`、`test_refactor_s7e`、`test_refactor_baseline` T06、`test_shared_d_fact_read` 冻结重放（两侧同一替身）。
+- `test_scoped_depth_write` 原先把真实有效事实的 `Inspect` 置空以走回退，改为转调夹具 `Read` 的 `Inspect`；`test_b239_commerce_integration` 的城市替身补上坐标。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：
+
+- 退役测试改为断言四处回退已删除；五批专项 30 项通过。
+- `CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-4ee0dc5a11aa42fcabe311642b4ae315/closure.json`，SHA256 `f058db60e2a1c3c0a83cc5a42bee9ee4da4ba48d3e044576e5b8ee4be9eff2a0`，已测源码快照 `4257b9ed82da786c2fe1c68a77c4abcf8482548fec5b7f202882c9f42a8d165c`。
+- 175 份 Lua 编译、26 份 XML 解析、304 个包文件引用检查通过。
+- 与 HEAD 全量逐模块对比（495 个测试模块，两侧同一固定数据库配置）：**零新增失败**；460 个一致，其余改善——第 4 批登记的“替身缺 `ExitCompleted`”类用例（s8c4 及 s8/s9 累积套件）恢复通过；`test_b244_capital_storage` 的不稳定用例除外。
+
+实机：生产行为不变，无需测试。
 
 ### Contract audit batches 2–5 native smoke — S1167
 

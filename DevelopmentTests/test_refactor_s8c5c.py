@@ -62,7 +62,7 @@ def production(extra='',failure=None,late=None,*,modules=None,gameplay=None):
  P.Info=function(t,k)if t=='Buildings'then return definitions[k]end;return priorInfo(t,k)end
  setmetatable(GameInfo,{__index=priorGameInfo})
  P.Rows=function()return {}end
- shared.EffectiveFacts={Read=function()error('POSITIVE_FACTS_FORBIDDEN')end}
+ shared.EffectiveFacts=(function(t)local function fresh(_,r)return r()end;t.WithPhase=t.WithPhase or function(_,fn,...)return fn(...)end;t.Inspect=t.Inspect or function(pid,c,project)return project(t.Read(pid,c),fresh,fresh)end;t.NewReader=t.NewReader or function()return function(pid,c,project)if project then return t.Inspect(pid,c,project)end;return t.Read(pid,c)end end;t.DistrictWriteVersion=t.DistrictWriteVersion or function()local v=t.Version and t.Version()or nil;return v,v,false end;return t end){Read=function()error('POSITIVE_FACTS_FORBIDDEN')end}
  local source=GameInfo.Eras
  P.Rows=function(t)if t~='Eras'then return {}end;local out={};for r in source()do out[#out+1]=r end;return out end
  registered={};local register=shared.CityProgressionStore.RegisterExit
