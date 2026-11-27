@@ -130,7 +130,6 @@ function SPCSafeAdapters.NewViewObserver()
  local d={};local owner,ownerRevision;local ownerSeen=false
  local key,rowRevision,present;local rowSeen=false
  local rowToken,reference,refOwner,refCity,refX,refY,refToken,refChanges;local closed=false
- local function scalar(n)return type(n)=='number'and n==n and math.abs(n)<9007199254740992 end
  local function source(value)
   if not sameIdentity(owner,value)then owner=value;ownerRevision=nil;ownerSeen=false;rowSeen=false end
  end
@@ -143,20 +142,12 @@ function SPCSafeAdapters.NewViewObserver()
  function d.Observe(value,cityKey,row)
   if closed then return false end
   source(value)
-  local exists=row~=nil;local revision=type(row)=='table'and row.revision or nil
-  if exists and not(type(revision)=='number'and revision>=0 and revision<9007199254740992 and revision%1==0)then
-   rowSeen=false;return true -- unavailable version is never cached as confirmed
-  end
-  local token=type(row)=='table'and row.token or nil
-  local r=type(row)=='table'and row.reference or nil;local ownerID,id,x,y,rt,changes
-  if exists then
-   if type(token)~='string'or #token==0 or #token>512 then rowSeen=false;return true end
-   if type(r)=='table'then
-    ownerID,id,x,y,rt,changes=r.owner,r.cityID,r.x,r.y,r.token,r.changes
-    if not scalar(ownerID)or not scalar(id)or not scalar(x)or not scalar(y)
-     or rt~=nil and(type(rt)~='string'or #rt>512)or changes~=nil and not scalar(changes)then rowSeen=false;return true end
-    r='TABLE'
-   elseif type(r)~='string'or #r==0 or #r>512 then rowSeen=false;return true end
+  -- Rows come from our Gameplay context; their shape is the producer's contract.
+  local exists=row~=nil;local revision=row and row.revision;local token=row and row.token
+  local r=row and row.reference;local ownerID,id,x,y,rt,changes
+  if type(r)=='table'then -- a reference is either a scalar key or a reference table
+   ownerID,id,x,y,rt,changes=r.owner,r.cityID,r.x,r.y,r.token,r.changes
+   r='TABLE'
   end
   local changed=not rowSeen or key~=cityKey or present~=exists or rowRevision~=revision or rowToken~=token
    or reference~=r or refOwner~=ownerID or refCity~=id or refX~=x or refY~=y or refToken~=rt or refChanges~=changes

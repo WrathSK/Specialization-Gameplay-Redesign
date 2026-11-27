@@ -96,7 +96,9 @@ function SPCRuntimeWork.NewAudit(P,shared,data,label,run,options)
  local function valid(v)return type(v)=='number' and v>=0 and v<2147483648 and v%1==0 end
  local function mark(scope)
   local transfer=type(scope)=='table' and scope.transfer
-  if type(transfer)=='table' and valid(transfer.owner) and valid(transfer.city) and valid(transfer.oldOwner)then
+  if transfer then
+   -- Our own hooks build transfer scopes; a malformed one is a bug, not a full audit.
+   assert(valid(transfer.owner) and valid(transfer.city) and valid(transfer.oldOwner),'RUNTIME_TRANSFER_SCOPE_INVALID')
    local k=transfer.owner..':'..transfer.city..':'..transfer.oldOwner
    if not transfers[k]then assert(total<2048,'RUNTIME_AUDIT_SCOPE_LIMIT');total=total+1 end
    transfers[k]={owner=transfer.owner,city=transfer.city,oldOwner=transfer.oldOwner};return true

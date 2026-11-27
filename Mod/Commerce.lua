@@ -208,7 +208,7 @@ function M.Start(P,shared)
    if speedReason~='COMMERCE_STANDARD_SPEED_ONLY'then out.unavailable=v.reason end
    return out -- a confirmed unsupported speed is distinct from an unreadable one
   end
-  assert(f.owner==pid and f.cityID==id and type(f.token)=='string','COMMERCE_REFERENCE_CHANGED')
+  assert(f.owner==pid and f.cityID==id,'COMMERCE_REFERENCE_CHANGED')
   local state=store.CommerceState(pid,c)
   assert(state.token==f.token,'COMMERCE_REFERENCE_CHANGED')
   local value=state.value or model.New(pid);model.Validate(value);assert(value.owner==pid,'COMMERCE_OWNER_CHANGED')

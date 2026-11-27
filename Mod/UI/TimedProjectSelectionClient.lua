@@ -43,19 +43,14 @@ function SPCTimedProjectSelectionClient.New(P,pending)
   if closed or registration then return end
   assert(config,'TIMED_UI_CONFIGURATION')
   if ExposedMembers[config.readerKey]~=config.reader then d.error='TIMED_UI_READER_REPLACED';return false end
-  local serial=ExposedMembers.SPC_TimedProjectReaderSerial or 0
-  assert(type(serial)=='number'and serial>=0 and serial%1==0 and serial<9007199254740991,'TIMED_UI_SERIAL')
-  serial=serial+1;ExposedMembers.SPC_TimedProjectReaderSerial=serial
-  local slots=ExposedMembers.SPC_TimedProjectReaderSlots
-  assert(slots==nil or type(slots)=='table','TIMED_UI_SLOTS')
-  slots=slots or {};ExposedMembers.SPC_TimedProjectReaderSlots=slots
+  local serial=(ExposedMembers.SPC_TimedProjectReaderSerial or 0)+1;ExposedMembers.SPC_TimedProjectReaderSerial=serial -- our own counter
+  local slots=ExposedMembers.SPC_TimedProjectReaderSlots or {};ExposedMembers.SPC_TimedProjectReaderSlots=slots
   local row={serial=serial,reader=config.reader}
   row.wake=function(backend,epoch,reader)
    if closed or registration~=row or slots[config.kind]~=row or ExposedMembers[config.readerKey]~=row.reader
     or reader~=row.reader or shared()[config.kind]~=backend then return end
    local service=shared().TimedProjectReaders
    if not service or service.readers[config.kind]~=row then return end
-   assert(type(epoch)=='number'and epoch>=1 and epoch%1==0,'TIMED_UI_EPOCH')
    if available and available.backend==backend and available.epoch==epoch and available.reader==reader and available.service==service then return end
    available={backend=backend,epoch=epoch,reader=reader,service=service};generation=generation+1;wakePending=true
    if config.kind=='DialogueProjects'then cultureObserve('UI_READER_WAKE',function()return {recordType=config.kind,packetEpoch=epoch,packetSeq=row.serial,ready=true}end)end

@@ -73,9 +73,9 @@ local function refresh()
    -- This is an optional refresh signature, never the authority for slot facts.
    -- A city-local identity/ACTIVE read failure must not discard other cities' works.
    local known,f=pcall(function()return s.EffectiveFacts.Read(pid,c)end)
-   local kind=known and type(f)=='table' and f.specialization or 'UNKNOWN'
-   local active=known and type(f)=='table' and f.active
-   signature[#signature+1]=id..':'..tostring(kind)..':'..(type(active)=='number' and tostring(active) or 'UNKNOWN')
+   local kind=known and f.specialization or 'UNKNOWN'
+   local active=known and f.active -- nil while the governor gate is unknown
+   signature[#signature+1]=id..':'..tostring(kind)..':'..(active and tostring(active) or 'UNKNOWN')
   end
   for id in pairs(cache) do if not seenCities[id] then cache[id]=nil end end
   assert(legacyValid,'GW_COLLECTION_UNAVAILABLE')

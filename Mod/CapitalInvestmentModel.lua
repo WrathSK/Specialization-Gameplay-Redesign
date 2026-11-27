@@ -192,7 +192,7 @@ function M.Terms(q,mode)
  return n
 end
 function M.Begin(old,q,mode,roll,request)
- local n=copy(old or M.New());M.Validate(n)
+ local n=copy(old or M.New()) -- validated when the Store loaded it; the result is validated below
  assert(not M.Open(n.contracts[q.domain]),'CAPITAL_DOMAIN_OCCUPIED')
  assert(mode=='STABLE' or mode=='VENTURE','CAPITAL_MODE_INVALID')
  assert(q.kind=='CAPITAL_TERMS_V1'and q.mode==mode,'CAPITAL_TERMS_REQUIRED')

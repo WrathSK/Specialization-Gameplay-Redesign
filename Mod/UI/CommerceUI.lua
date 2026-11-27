@@ -8,7 +8,7 @@ M.DOMAINS={
  {id='DISTRICT_HOLY_SITE',key='HOLY_SITE',icon='ICON_PROJECT_ENHANCE_DISTRICT_HOLY_SITE'},
  {id='DISTRICT_HARBOR',key='HARBOR',icon='ICON_PROJECT_ENHANCE_DISTRICT_HARBOR'}}
 function M.Backend()return (ExposedMembers.SPC_P0 or {}).Commerce end
-function M.Available(v)return type(v)=='table' and v.identity=='COMMERCE' and type(v.potential)=='number' and v.potential>=3 end
+function M.Available(v)return v~=nil and v.identity=='COMMERCE' and v.potential>=3 end
 function M.Reference(pid,c)return table.concat({pid,c:GetID(),c:GetX(),c:GetY()},':')end
 function M.New(P,notify,observer)
  local api={};assert(observer,'UI_VIEW_OBSERVER_REQUIRED') -- CrewProjectOrder always passes one

@@ -41,8 +41,9 @@ function M.Label(entry,key)
  return entry.localized and Locale.Lookup(value) or value
 end
 function M.Matches(v,pid,cid,x,y)
- return type(v)=='table' and not v.error and v.owner==pid and v.cityID==cid and v.x==x and v.y==y
-  and (M.BySpecialization[v.specialization]~=nil or type(v.institutionArchive)=='table') and type(v.potential)=='number' and v.potential>=0 and v.potential<=4
+ -- Identity and freshness only; the Gameplay presentation producer owns the shape.
+ return v~=nil and not v.error and v.owner==pid and v.cityID==cid and v.x==x and v.y==y
+  and (M.BySpecialization[v.specialization]~=nil or v.institutionArchive~=nil)
 end
 function M.Filter(data,owned)
  -- Copy only display tables we change; never edit CitySupport's shared data.
@@ -86,7 +87,7 @@ local function metric(entry,v)
    local value
    if available and s.templatesKnown then
     value=loc('TEMPLATES_VALUE',s.buildingTemplates,s.districtTemplates~=nil and tostring(s.districtTemplates) or loc('PENDING_SHORT'))
-    if v.activeStatus=='KNOWN' and type(v.active)=='number' then
+    if v.activeStatus=='KNOWN' then
      if entry.historical or v.active<3 then value=value..'[NEWLINE]'..loc('STANDARDIZATION_PAUSED')
      elseif v.active>=4 and s.engineeringKnown==false then value=value..'[NEWLINE]'..loc('PENDING')
      else local boost=v.active>=4 and 2*s.engineering or 0

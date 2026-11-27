@@ -41,7 +41,7 @@ function M.Validate(v,record)
  return v
 end
 function M.Begin(v,token,ref,e,turn)
- v=copy(v or M.New());M.Validate(v)
+ v=copy(v or M.New()) -- validated when the Store loaded it; the result is validated below
  assert(not v.pending and not v.used[e] and era(e) and integer(turn) and reference(ref),'DIALOGUE_START_REJECTED')
  v.serial=v.serial+1
  v.pending={id=v.serial,token=token,reference=copy(ref),era=e,start=turn,ended=false,stage='ACTIVE',reason='完整一回合计时中'}
@@ -66,7 +66,7 @@ function M.Calling(v,turn)
  p.stage='CALLING';p.reason='原生完成已请求；结果不明时不重复调用';return v
 end
 function M.Complete(v,id,x,turn)
- v=copy(v);M.Validate(v);local p=assert(v.pending,'DIALOGUE_NO_PENDING')
+ v=copy(v);local p=assert(v.pending,'DIALOGUE_NO_PENDING')
  assert(p.id==id and (p.stage=='ACTIVE' or p.stage=='CALLING') and integer(x) and x<=8
   and integer(turn) and turn>=p.start and not v.used[p.era],'DIALOGUE_COMPLETION_REJECTED')
  -- A native forced completion is the existing accepted exception, not proof of 1T.

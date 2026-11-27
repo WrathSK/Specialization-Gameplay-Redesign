@@ -262,7 +262,8 @@ function SPCDevelopmentInvestment.Start(P,shared)
   local priceReader=assert(ExposedMembers.SPC_DevelopmentPriceRead,'DEVELOPMENT_PRICE_READER_UNAVAILABLE')
   local out=reader(pid,c:GetID())
   local function current(v,phase)
-   assert(c:GetOwner()==pid and type(v)=='table'and v.protocol==2 and v.phase==phase and type(v.generation)=='number'and v.generation>=1 and v.generation<9007199254740992 and v.generation%1==0 and v.owner==pid and v.cityID==c:GetID()
+   -- Freshness and identity only; UI/DevelopmentInvestmentRead asserts its own shape.
+   assert(c:GetOwner()==pid and v.phase==phase and v.owner==pid and v.cityID==c:GetID()
     and v.x==c:GetX()and v.y==c:GetY()and v.turn==Game.GetCurrentGameTurn(),'DEVELOPMENT_NATIVE_FACTS_STALE')
   end
   current(out,'ELIGIBILITY')

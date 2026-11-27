@@ -149,7 +149,6 @@ function M.Start(P,shared,prepareObserver)
  end
  function d.SetAutoGC(pid,enabled,token)
   if not localHuman(pid)then return '仅本地人类玩家可诊断' end
-  if type(enabled)~='boolean' or type(token)~='string' or #token==0 or #token>100 then return 'GC开关请求无效' end
   if switchToken==token then return d.ReadGC(pid) end
   switchToken=token;pendingTurn=nil
   if not a.failure then a.enabled=enabled;log(enabled and 'ENABLED_WAIT_NEXT_TURN' or 'DISABLED_BY_USER') end
@@ -157,7 +156,6 @@ function M.Start(P,shared,prepareObserver)
  end
  function d.CollectGC(pid,token)
   if not localHuman(pid)then return '仅本地人类玩家可诊断' end
-  if type(token)~='string' or #token==0 or #token>100 then return 'GC请求标识无效；未执行' end
   if token==lastToken or gcBusy or a.failure then return d.ReadGC(pid) end
   lastToken=token
   -- Retained explicit diagnostic API shares the coordinator/cooldown; not the trial UI button.

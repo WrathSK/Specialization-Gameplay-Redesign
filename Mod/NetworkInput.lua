@@ -27,7 +27,7 @@ function N.Capture(P,shared,pid,rows,routeSignature,previous,sampling)
  local player=assert(Players[pid],'NETWORK_PLAYER_UNAVAILABLE')
  local cities=player:GetCities();local capital=cities:GetCapitalCity()
  local out={validity='VERIFIED',routeSignature=routeSignature,cities={},capital=capital and capital:GetID() or nil,
-  kResearch=SPCBoostConfig and SPCBoostConfig.k.RESEARCH or 1,kCulture=SPCBoostConfig and SPCBoostConfig.k.CULTURE or 1}
+  kResearch=SPCBoostConfig.k.RESEARCH,kCulture=SPCBoostConfig.k.CULTURE} -- NetworkBridge, the only builder, includes BoostConfig
  out.factAvailability='CONFIRMED';out.provenance={};out.factStamps={};out.factAuthority={}
  local function level(n)return type(n)=='number' and n>=0 and n<=4 and n%1==0 end
  local kinds={NONE=true,RESEARCH=true,CULTURE=true,INDUSTRY=true,COMMERCE=true}

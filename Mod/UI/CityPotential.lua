@@ -104,10 +104,10 @@ local function consume(c)
  local pid,id,x,y=c:GetOwner(),c:GetID(),c:GetX(),c:GetY()
  if stopped or not sameChannel(m)or pendingMeta~=nil or causeVersion~=m.cause
   or key~=m.key or pid~=m.owner or id~=m.cityID or x~=m.x or y~=m.y then return end
- local reply=good and type(row)=='table'and getmetatable(row)==nil and row.presentation
- local valid=type(row)=='table'and row.owner==m.owner and row.cityID==m.cityID and row.token==m.token
+ local reply=good and row and row.presentation
+ local valid=good and row~=nil and row.owner==m.owner and row.cityID==m.cityID and row.token==m.token
   and row.action=='CITY_PRESENTATION_READ'and row.version==P.VERSION and row.epoch==m.epoch
- if not valid or type(reply)~='table'or getmetatable(reply)~=nil or reply.token~=m.token
+ if not valid or not reply or reply.token~=m.token
   or reply.owner~=m.owner or reply.cityID~=m.cityID then reply=nil end
  view=M.Matches(reply,pid,id,x,y)and reply or nil
  record('INSTITUTION_UI_APPLIED',c,{requestKey=m.token,specialization=reply and reply.specialization,

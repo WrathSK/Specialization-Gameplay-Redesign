@@ -55,7 +55,7 @@ function M.Decode(v)
  end;return M.Validate(out)
 end
 function M.Begin(old,q,request)
- local n=M.Copy(old or M.New());M.Validate(n)
+ local n=M.Copy(old or M.New()) -- validated when the Store loaded it; the result is validated below
  assert(not M.Open(n.contracts[q.target.token]),'DEVELOPMENT_TARGET_OCCUPIED')
  n.sequence=n.sequence+1
  n.contracts[q.target.token]={sequence=n.sequence,source=M.Copy(q.source),target=M.Copy(q.target),domain=q.domain,

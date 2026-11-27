@@ -82,8 +82,8 @@ function M.ReputationUse(input,f)
  local function result(status,reason,effective,age)
   return {status=status,reason=reason,historyStatus=history,effective=effective,age=age}
  end
- if type(f)~='table'or f.activeStatus~='KNOWN'or not int(f.active)or f.active>4
-  or not int(f.potential)or f.potential>4 or f.active>f.potential or type(f.specialization)~='string'then
+ -- f is EffectiveFacts output, trusted by contract; only a real UNKNOWN ACTIVE is unknown here.
+ if f.activeStatus~='KNOWN'then
   return result('UNKNOWN','COMMERCE_REPUTATION_QUALIFICATION_UNKNOWN')
  end
  if f.specialization~='COMMERCE'or f.active<4 then
@@ -108,8 +108,9 @@ function M.ReputationText(use)
  end
  return '商业信誉暂不可确认；不据此新增信誉加成。'
 end
+-- Transitions take state the Store validated at load and validate only their result.
 function M.Select(v,domain,enabled)
- M.Validate(v);assert(domains[domain] and type(enabled)=='boolean','COMMERCE_SELECTION_REQUEST_INVALID')
+ assert(domains[domain] and type(enabled)=='boolean','COMMERCE_SELECTION_REQUEST_INVALID')
  local n=copy(v);local found
  for i,name in ipairs(n.selected)do if name==domain then found=i;break end end
  if enabled and not found then n.selected[#n.selected+1]=domain
@@ -117,21 +118,21 @@ function M.Select(v,domain,enabled)
  return M.Validate(n)
 end
 function M.EffectiveSelections(v,capacity)
- M.Validate(v);assert(int(capacity),'COMMERCE_CAPACITY_UNKNOWN')
+ assert(int(capacity),'COMMERCE_CAPACITY_UNKNOWN')
  local out={effective={},suspended={}}
  for i,domain in ipairs(v.selected)do local list=i<=capacity and out.effective or out.suspended;list[#list+1]=domain end
  return out
 end
 function M.BeginReputation(v,turn,receipt)
- M.Validate(v);assert(not v.reputation and int(turn) and type(receipt)=='string' and #receipt>0,'COMMERCE_REPUTATION_START_REJECTED')
+ assert(not v.reputation and int(turn) and type(receipt)=='string' and #receipt>0,'COMMERCE_REPUTATION_START_REJECTED')
  local n=copy(v);n.reputation={version=1,start=turn,cursor=turn,age=0,receipt=receipt,state='COUNTING'}
  return M.Validate(n)
 end
 function M.Exit(v)
- M.Validate(v);return M.New(v.owner) -- actual Identity exit, never temporary ACTIVE loss
+ return M.New(v.owner) -- actual Identity exit, never temporary ACTIVE loss
 end
 function M.Advance(v,turn,identity)
- M.Validate(v);assert(int(turn) and type(identity)=='string','COMMERCE_REPUTATION_TURN_UNKNOWN')
+ assert(int(turn) and type(identity)=='string','COMMERCE_REPUTATION_TURN_UNKNOWN')
  if identity~='COMMERCE'then return M.Exit(v)end
  local n=copy(v);local t=n.reputation;if not t then return n end
  assert(turn>=t.cursor,'COMMERCE_REPUTATION_TURN_REVERSED')
@@ -141,7 +142,7 @@ function M.Advance(v,turn,identity)
  return M.Validate(n),skipped
 end
 function M.OwnerChanged(v,owner,turn)
- M.Validate(v);assert(int(owner) and int(turn),'COMMERCE_OWNER_UNKNOWN')
+ assert(int(owner) and int(turn),'COMMERCE_OWNER_UNKNOWN')
  local n=copy(v);n.owner=owner;n.selected={}
  if n.reputation then
   assert(turn>=n.reputation.cursor,'COMMERCE_REPUTATION_TURN_REVERSED')
@@ -151,7 +152,7 @@ function M.OwnerChanged(v,owner,turn)
  return M.Validate(n)
 end
 function M.Resume(v,owner,turn)
- M.Validate(v);assert(int(owner) and int(turn),'COMMERCE_OWNER_UNKNOWN')
+ assert(int(owner) and int(turn),'COMMERCE_OWNER_UNKNOWN')
  local n=copy(v);n.owner=owner;n.selected={}
  if n.reputation then
   assert(turn>=n.reputation.cursor,'COMMERCE_REPUTATION_TURN_REVERSED')

@@ -32,7 +32,7 @@ function M.Validate(v,r)
  return v
 end
 function M.Begin(v,token,reference,turn,E)
- v=copy(v or M.New());M.Validate(v)
+ v=copy(v or M.New()) -- validated when the Store loaded it; the result is validated below
  assert(not v.pending and int(E) and v.L<E and int(turn) and ref(reference),'EST_BEGIN_REJECTED')
  v.serial=v.serial+1;v.pending={id=v.serial,token=token,reference=copy(reference),start=turn,ended=false,stage='ACTIVE',reason='EST_FULL_TURN'}
  M.Validate(v);return v
@@ -50,7 +50,7 @@ function M.Calling(v,turn)
  assert(p.stage=='ACTIVE' and p.ended and turn==p.start+1,'EST_FULL_TURN_UNCONFIRMED');p.stage='CALLING';p.reason='EST_NATIVE_PENDING';return v
 end
 function M.Complete(v,id,turn)
- v=copy(v);M.Validate(v);local p=assert(v.pending,'EST_NO_PENDING')
+ v=copy(v);local p=assert(v.pending,'EST_NO_PENDING')
  assert(p.id==id and (p.stage=='ACTIVE' or p.stage=='CALLING') and p.ended and turn==p.start+1,'EST_FULL_TURN_UNCONFIRMED')
  v.L=v.L+1;v.receipts[v.L]={id=id,start=p.start,completed=turn};v.last={id=id,reason='EST_COMPLETED'};v.pending=nil;M.Validate(v);return v
 end

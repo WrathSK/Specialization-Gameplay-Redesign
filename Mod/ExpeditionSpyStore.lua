@@ -108,7 +108,6 @@ end
 local function key(pid)return M.PREFIX..tostring(pid)end
 local function read(pid)
  local ok,raw=pcall(function()
-  assert(Game and type(Game.GetProperty)=='function','PROPERTY_READER_UNAVAILABLE')
   return Game:GetProperty(key(pid))
  end)
  if not ok then return nil,'STORE_UNREADABLE' end
@@ -121,10 +120,10 @@ function M.Read(pid)
  if not integer(pid)then return nil,'STORE_OWNER_INVALID' end
  return read(pid)
 end
+-- `expected` is a value Read already validated; the candidate is validated once
+-- here, at the save boundary.
 function M.Write(P,pid,expected,candidate)
- if not integer(pid)then return nil,'STORE_OWNER_INVALID' end
- local old
- if expected~=nil then old=envelope(expected,pid);if not old then return nil,'STORE_EXPECTED_INVALID' end end
+ local old=expected
  local nextValue=envelope(candidate,pid)
  if not nextValue then return nil,'STORE_CANDIDATE_INVALID' end
  if nextValue.revision~=(old and old.revision+1 or 1)or
@@ -136,8 +135,7 @@ function M.Write(P,pid,expected,candidate)
  -- Treat a writer return/exception as inconclusive. The validated readback is
  -- the outcome authority, including a write that succeeded before throwing.
  local result=SPCPropertyCell.WriteReadback(function()
-  assert(P and type(P.SetProperty)=='function','PROPERTY_WRITER_UNAVAILABLE')
-  P.SetProperty(Game,key(pid),envelope(nextValue,pid))
+  P.SetProperty(Game,key(pid),nextValue)
  end,function()return read(pid)end)
  if not result.readReturned then error(result.observed,0)end
  local observed,readError=result.observed,result.readReason

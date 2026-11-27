@@ -25,7 +25,7 @@ function SPCNetworkBridge.Start(P,shared)
  function d.TransactionCurrent(pid)
   local b=d.players[pid]
   return b~=nil and b.availability=='AVAILABLE' and b.revalidation=='VERIFIED'
-   and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b) and not b.queuedWork and not b.negativeHeld and not isolatedForProof(pid)
+   and b.signal==shared.RouteSignalRevision and currentGeneration(pid,b) and not b.queuedWork and not b.negativeHeld and not isolatedForProof(pid)
  end
  -- Display evidence for an already blocked investment. Reads only this player's accepted input.
  function d.InvestmentNotice(pid)
@@ -36,7 +36,7 @@ function SPCNetworkBridge.Start(P,shared)
    return {tag='LOC_SPC_INVESTMENT_NETWORK_LIMIT'}
   end
   local input=b.input
-  if b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and not b.error
+  if b.revalidation=='VERIFIED' and b.signal==shared.RouteSignalRevision and not b.error
    and input and input.pending and input.pendingCityID then
    return {tag='LOC_SPC_INVESTMENT_NETWORK_CITY',city=input.pendingCityName or ('#'..input.pendingCityID)}
   end
@@ -67,7 +67,7 @@ function SPCNetworkBridge.Start(P,shared)
    local token=type(reason)=='string' and (reason:match('NETWORK_[A-Z0-9_]+') or reason:match(':%d+: ([A-Z][A-Z0-9_]+)') or reason:match('^([A-Z][A-Z0-9_]+)$') or reason:match('^[A-Za-z][A-Za-z0-9_]+$') and reason:upper()) or nil
    stateTrace(stage,{owner=pid,reason=token or 'READ_ERROR',ready=d.ready,
     networkAvailability=b and b.availability,networkRevalidation=b and b.revalidation,
-    networkInputRevision=b and b.inputRevision,networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision or 0,
+    networkInputRevision=b and b.inputRevision,networkSignal=b and b.signal,routeSignal=shared.RouteSignalRevision,
     routeCount=b and b.routes and #b.routes,packetSeq=packet and packet.Seq,packetTurn=packet and packet.Turn,
     packetSignal=packet and packet.Signal,packetEpoch=packet and packet.Epoch})
   end)
@@ -117,7 +117,7 @@ function SPCNetworkBridge.Start(P,shared)
    for cid,set in pairs(recipients[kind] or {}) do
     for src in pairs(set) do
      local f=input.cities[src]
-     if f and f.specialization==kind and type(f.active)=='number' and f.active>=1 and f.active<=4 and f.active%1==0 then
+     if f and f.specialization==kind and f.active>=1 then -- NetworkInput rows always carry a level
       n.sources[src]=f.active;n.recipients[cid]=true;n.level=math.max(n.level,f.active)
      end
     end
@@ -184,7 +184,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local function proofSignature(b)
   local parts={tostring(b.inputRevision),tostring(b.validity),tostring(b.withdrawal),tostring(b.availability),tostring(b.effectAvailability),tostring(b.revalidation),
-   tostring(b.signal),tostring(shared.RouteSignalRevision or 0),tostring(b.transportFailure),tostring(b.continuityOnly),tostring(b.factGeneration or 0),tostring(b.queuedWork==true),tostring(b.negativeHeld==true)}
+   tostring(b.signal),tostring(shared.RouteSignalRevision),tostring(b.transportFailure),tostring(b.continuityOnly),tostring(b.factGeneration or 0),tostring(b.queuedWork==true),tostring(b.negativeHeld==true)}
   local ids={};for id in pairs(b.input and b.input.provenance or {})do ids[#ids+1]=id end;table.sort(ids)
   for _,id in ipairs(ids)do local f=b.input.provenance[id];parts[#parts+1]=id..':'..f.reference..':'..f.status end
   return table.concat(parts,'|')
@@ -410,14 +410,13 @@ function SPCNetworkBridge.Start(P,shared)
   b.refreshing=true
   local sampledGeneration=generation(pid)
   local candidate=b.candidate
-  if candidate and (candidate.turn~=Game.GetCurrentGameTurn() or candidate.signal~=(shared.RouteSignalRevision or 0)) then
+  if candidate and (candidate.turn~=Game.GetCurrentGameTurn() or candidate.signal~=shared.RouteSignalRevision) then
    b.candidate=nil;candidate=nil;P.Count('stale_input')
   end
   if not candidate and not b.routes then b.refreshing=false;return false end
   local rows=candidate and candidate.routes or b.routes
   local fingerprint=candidate and candidate.fingerprint or b.fingerprint
   local registry=shared.FactChanges;local provider=registry
-  if not (provider and type(provider.NetworkCityGeneration)=='function')then provider=nil end
   local effective,store=shared.EffectiveFacts,shared.CityProgressionStore
   local reader=effective and effective.Read
   local prior=inputProviders[pid];local now
@@ -472,7 +471,7 @@ function SPCNetworkBridge.Start(P,shared)
      b.pendingRoleGeneration=nil;b.roleRefreshError=nil
     end
     b.continuityOnly=not candidate and b.continuityOnly==true or withdrawal and b.revalidation=='NEEDS_REVALIDATION' or false
-    local fresh=b.revalidation=='VERIFIED' and b.signal==(shared.RouteSignalRevision or 0) and currentGeneration(pid,b)
+    local fresh=b.revalidation=='VERIFIED' and b.signal==shared.RouteSignalRevision and currentGeneration(pid,b)
     -- Topology proof permits source-local D2 effects; MIXED remains unfit for transactions.
     b.effectAvailability=b.continuityOnly and 'RETAINED_NEGATIVE' or fresh and 'AVAILABLE' or 'PENDING'
     b.availability=(input.pending or not fresh) and 'NEEDS_REVALIDATION' or 'AVAILABLE';b.error=b.transportFailure
@@ -564,7 +563,7 @@ function SPCNetworkBridge.Start(P,shared)
   b.seq=p.Seq;b.candidate=nil -- a newer packet supersedes any unpublished older candidate
   local ok,err=pcall(function()
    assert(d.ready,'LOAD_NOT_READY')
-   assert(p.Turn==Game.GetCurrentGameTurn() and p.Signal==(shared.RouteSignalRevision or 0),'STALE_SIGNAL_OR_TURN')
+   assert(p.Turn==Game.GetCurrentGameTurn() and p.Signal==shared.RouteSignalRevision,'STALE_SIGNAL_OR_TURN')
    if p.Valid~=1 then
     local prior=b.availability
     pendingProof(pid,b,false)
@@ -710,7 +709,7 @@ function SPCNetworkBridge.Start(P,shared)
   assert(d.ready and P.IsTestPlayer(pid),'NETWORK_NOT_READY_OR_OWNER')
   local v=currentView(pid,true);local rows=v.recipients.CULTURE or {}
   local roles=v.rolesPending and v.rolesPending.CULTURE
-  if type(selection)=='table'and type(selection.sources)=='table'and type(selection.targets)=='table'then
+  if selection then -- callers pass {sources=...,targets=...} or nothing
    local candidates={};local scoped=true
    for cid,selected in pairs(selection.targets)do if selected then candidates[cid]=true end end
    for source,changed in pairs(selection.sources)do if changed then
@@ -747,8 +746,8 @@ function SPCNetworkBridge.Start(P,shared)
    and b.derivedFor==b.inputRevision and v.signature==b.inputSignature
   if not matches then out.reason='NETWORK_VIEW_UNAVAILABLE';return out end
   if not (effects and (b.effectAvailability=='AVAILABLE' or b.continuityOnly)) and
-   (b.availability~='AVAILABLE' or b.revalidation~='VERIFIED' or b.signal~=(shared.RouteSignalRevision or 0)) then
-   if b.signal~=(shared.RouteSignalRevision or 0)then state('NETWORK_SIGNAL_STALE',pid,b,'NETWORK_SIGNAL_UNPROVEN')end
+   (b.availability~='AVAILABLE' or b.revalidation~='VERIFIED' or b.signal~=shared.RouteSignalRevision) then
+   if b.signal~=shared.RouteSignalRevision then state('NETWORK_SIGNAL_STALE',pid,b,'NETWORK_SIGNAL_UNPROVEN')end
    out.reason=b.transportFailure or 'NETWORK_REVALIDATION_PENDING';return out
   end
   local ok,ids,references,reference=pcall(function()
@@ -992,7 +991,7 @@ function SPCNetworkBridge.Start(P,shared)
    found=true
    if pid==owner or pid==oldOwner then return true end
    if not b.routes or not b.routeReferences or b.revalidation~='VERIFIED'
-    or b.signal~=(shared.RouteSignalRevision or 0)or b.refreshing or b.receiving or b.queuedWork or b.negativeHeld then return true end
+    or b.signal~=shared.RouteSignalRevision or b.refreshing or b.receiving or b.queuedWork or b.negativeHeld then return true end
    for _,route in ipairs(b.routes)do
     -- Transfer carries the destination's new city ID, not the former owner's ID.
     if oldOwner~=nil then
@@ -1004,7 +1003,7 @@ function SPCNetworkBridge.Start(P,shared)
  end
  local function routeUnitRelevant(pid,id,removed)
   local b=d.players[pid]
-  return not P.RouteUnitRelevant or P.RouteUnitRelevant(pid,id,removed and b and b.routeReferences or nil)
+  return P.RouteUnitRelevant(pid,id,removed and b and b.routeReferences or nil)
  end
  local function signal(namespace,name,unit)
   local event=P.Field(namespace,name);if not event or not event.Add then return end

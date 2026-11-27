@@ -1,8 +1,8 @@
 # Specialization P0 Status
 
 Document Owner: Codex
-Status Revision: S1164
-Implementation Build: develop B549.576 / modinfo576. Installed temporary B549.576 / modinfo576. Stable B528.555 / modinfo555.
+Status Revision: S1165
+Implementation Build: develop B550.577 / modinfo577. Installed temporary B549.576 / modinfo576. Stable B528.555 / modinfo555.
 Architecture Revision Reviewed: A0192
 Design Revision Reviewed: D0067
 Latest Accepted Design Revision: D0067
@@ -13,16 +13,44 @@ Work State: MANAGEMENT_CAPACITY_LAYOUT_PREVIEW
 
 | Area | Current state |
 |---|---|
-| Source and installation | Develop B549.576 / modinfo576 [契约审计第 4 批：删除死检查](#contract-audit-batch-4-dead-checks-removed--s1163)（第 2、3 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)、[S1161](#contract-audit-batch-3-internal-asserts--s1161)）。本机[已临时安装 B549.576](#contract-audit-batch-4-installed--s1164)，main 稳定包是 B528.555。 |
+| Source and installation | Develop B550.577 / modinfo577 [契约审计第 5 批：去掉自产数据复查](#contract-audit-batch-5-own-payloads-not-re-validated--s1165)（第 2–4 批见 [S1159](#contract-audit-batch-2-legacy-compatibility-retired--s1159)、[S1161](#contract-audit-batch-3-internal-asserts--s1161)、[S1163](#contract-audit-batch-4-dead-checks-removed--s1163)）。本机[已临时安装 B549.576](#contract-audit-batch-4-installed--s1164)，main 稳定包是 B528.555。 |
 | Recovery | 本次临时安装回执绑定了已核对的 B528.555 原包。更早的 B489、B527 回退凭据见[稳定版部署记录](#b528555-stable-playtest-package-deployed--s1123)。 |
 | Validation | B544 实机：负责人接受激活状态颜色与窗口宽度，要求标题改用城市面板的带底色等级徽章，并指出部分标题偏上。B545 已修改，原生渲染待复验。考察团归档仍沿用[先前的证据边界](#expedition-archive-city-choice--s1138)。 |
-| Next action | B549.576 已临时安装（含第 2–4 批），做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续：去掉自产数据复查（第 5 批）、夹具替身迁移（收掉 S1163 保留的四处回退）待 Owner 批准计划。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
+| Next action | B549.576 已临时安装（含第 2–4 批），做一次短测（建城、投资、存档读档，看采集日志有无 `[SPC][ERR]`）。契约审计后续：夹具替身迁移（收掉 S1163 保留的四处回退）、诊断显示路径去留，待 Owner 决定。容量窗口：检查带底色徽章与标题垂直居中。本轮之后界面外观冻结，其余打磨见 [Playtest Backlog](Playtest_Backlog.md#pre-release-polish)。 |
 
 Use [Authority](../Workflow/Authority.json) for the active task and version pointers and the [resumption guide](../Workflow/README.md#action-scoped-reading-and-interruption-recovery) when picking up after a pause.
 
 2026-11-05 Owner明确授权按现行统一计划持续推进，普通片段完成后不再逐片请求授权；遇到规定的外部审计检查点、新的玩法／核心职责／保存或不可逆操作取舍、无法安全解决的问题或现有明确门禁时停止并报告。每片保留定域调查、Runtime Impact Contract、本地验证、独立commit/push develop和当前状态记录。此授权不自动部署、不晋升main、不启动游戏，也不把本地结果当实机通过。
 
 ## Recent checkpoints
+
+### Contract audit batch 5: own payloads not re-validated — S1165
+
+Owner 2026-11-26 批准第 5 批计划。原则：自产数据只在存档边界（存储写入与读档）校验一次；保留新鲜度、身份、引擎读数和读档校验。
+
+B550.577 实施内容：
+
+- **CA-A03**：存储的训练观察只核对发起会话身份，不再复查序号、状态、输入长度与令牌长度。
+- **CA-A07**：区域采样的跨界面缓存只在计数器未发布时跳过，不再复查自家行与计数器类型；来自引擎的区域类型和产出索引保留标量检查。运行期回收不再复查自家界面的开关与令牌参数。
+- **CA-A09**：考察见闻存储写入时不再重新校验 `Read` 已校验的旧值，不再判断 `Game`/`P.SetProperty` 是否存在；候选值在存档边界校验一次。
+- **CA-C02**：资本、发展、对话、工程研习模型不再校验所拷贝的存档旧值，只校验新结果；商业模型七个状态转换同样处理；商业信誉用途只在 ACTIVE 真未知时给“未知”；网络桥去掉 `RouteSignalRevision or 0`、`P.RouteUnitRelevant` 与 `NetworkCityGeneration` 存在判断和来源等级的类型复查；网络输入直接使用 BoostConfig；运行工作遇到畸形转移范围报错（`RUNTIME_TRANSFER_SCOPE_INVALID`），不再扩大成全量审计。
+- **CA-B11、D02、D10、D15（部分）**：机构展示、城市潜力、视图观察器、商业界面可用判断、发展投资与标准化效果的界面读数、计时项目客户端、对话刷新，只保留身份与新鲜度检查。
+
+**未改**：D15 的 `UI/BoostGreatWorkRead`——它读取的 `totalScience` 等字段在生产代码中没有产出方，这条诊断显示路径疑似只服务夹具，与诊断路径去留一并决定。
+
+实施中发现并修复了一个本批自己引入的问题：计时项目客户端一行末尾的注释吞掉了计数器写回，已在提交前修正，相关 s7d3b 用例恢复与 HEAD 一致。
+
+本地验证（`LOCAL_SIMULATION_PASS`）：
+
+- 新增 `DevelopmentTests/test_contract_batch5_own_payloads.py`，5 项通过；前四批专项 25 项仍通过。
+- `CurrentGameplay` 固定 HD 数据库 42 项通过，记录 `local/refactor/CurrentGameplay-28a7f51387bc4dc3a2564472a5d1d120/closure.json`，SHA256 `d33f1a1998c15e991f07434120e5c52139a37b4f3565d143dd146ca026386806`，已测源码快照 `9fe5f6399dd2642021822599c78840b78fc574c23b937998ecaebd208e0543c7`。
+- 175 份 Lua 编译、26 份 XML 解析、304 个包文件引用检查通过。
+- 与 HEAD 全量逐模块对比（495 个测试模块，两侧同一固定数据库配置）：451 个一致。修正后剩下的新增失败均属以下几类，按 DevelopmentTests README 保留原断言并登记为“已被 B550 取代”：
+  - 专测本批删除的复查：考察见闻存储传入非法旧值（expedition_spy_store、s7b1 及累积套件）、有效事实给出畸形 ACTIVE/潜力（pu06b）、发展投资界面读数的协议/世代号（s9d1b）、商业模型对被改坏的内存状态调用不产生新状态的 `EffectiveSelections`（s8b7a 及累积套件）、有效事实读取返回 nil（s4a 一个子例）。
+  - 夹具没有加载 BoostConfig（s9e3 1 项）。
+  - `test_b244_capital_storage` 的一个用例在 HEAD 上同样时好时坏，不计为回归；`test_refactor_s9e6` 一个用例在 HEAD 上已失败，只是失败形式改变。
+
+实机：正常情况下行为不变，无需专门测试；B547 起的短测仍待做（`USER_GAME_TEST_REQUIRED`）。
 
 ### Contract audit batch 4 installed — S1164
 

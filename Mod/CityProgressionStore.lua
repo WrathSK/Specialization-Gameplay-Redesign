@@ -245,7 +245,6 @@ local function CreateProgressionRecord(P,shared,storage)
  local bindingObservation,bindingOwner,bindingCity,bindingX,bindingY,bindingToken,bindingChanges
  local factObservation,factOwner,factCity,factX,factY,factToken,factIssuer,factSerial,factInput
  local function trainingReference(a)
-  if type(a)~='table'then return nil end
   return tostring(a.owner)..':'..tostring(a.cityID)..':'..tostring(a.x)..':'..tostring(a.y)
  end
  local bindingTicket
@@ -274,11 +273,9 @@ local function CreateProgressionRecord(P,shared,storage)
   return value
  end
  function d.ObserveTrainingFacts(pid,id,x,y,token,state,issuer,serial,input)
-  local facts=shared.EffectiveFacts
-  if not facts or facts.TrainingObservationIssuer~=issuer or type(issuer)~='table'
-   or type(serial)~='number'or serial<1 or serial%1~=0 or serial>=9007199254740992 then return false end
-  if state~='FACTS_CONFIRMED'and state~='FACTS_UNKNOWN'and state~='FACTS_UNAVAILABLE'and state~='FACTS_BUDGET_UNKNOWN'then return false end
-  if input~=nil and(type(input)~='string'or #input>512)then return false end
+  -- Serial, state and input come from EffectiveFacts and are trusted by contract;
+  -- only the issuing session identity and freshness are checked here.
+  if shared.EffectiveFacts.TrainingObservationIssuer~=issuer then return false end
   if not ready or fault or committing or not root or not root.base then return false end
   local a=root.current or root.origin
   if not a or a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y or root.base.token~=token then return false end
@@ -291,11 +288,10 @@ local function CreateProgressionRecord(P,shared,storage)
   if not ready or fault then return 'WORKER_UNAVAILABLE'end
   if committing then return 'WORKER_COMMITTING'end
   local r=root;local a=r and(r.current or r.origin)
-  if not r or type(a)~='table'or type(r.base)~='table'then return 'UNAVAILABLE'end
+  if not r then return 'UNAVAILABLE'end
   local reference=trainingReference(a)
   if a.owner~=pid or a.cityID~=id or a.x~=x or a.y~=y then return 'REFERENCE_MISMATCH'end
   local token=r.base.token
-  if type(token)~='string'or #token>256 then return 'IDENTITY_UNAVAILABLE'end
   local observed=bindingOwner==a.owner and bindingCity==a.cityID and bindingX==a.x and bindingY==a.y
    and bindingToken==token and bindingChanges==(r.ownerChanges or 0)and bindingObservation or 'UNOBSERVED'
   local rest=r.restructuring;local inv

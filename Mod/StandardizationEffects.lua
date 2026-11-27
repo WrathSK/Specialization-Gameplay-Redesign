@@ -403,9 +403,9 @@ function SPCStandardizationEffects.Start(P,shared)
   assert(ref(c)==r.reference,'STD_PROGRESS_CHANGED')
   local current=c:GetBuildQueue():CurrentlyBuilding()
   local q=read(pid,id,current)
-  assert(type(q)=='table' and getmetatable(q)==nil and q.owner==pid and q.city==id and q.x==x and q.y==y
-   and q.turn==turn and type(q.target)=='string' and type(q.hash)=='number' and q.hash~=0
-   and (q.target==current or q.hash==current) and ExposedMembers.SPC_StandardizationProgressRead==read
+  -- Freshness and identity only; the UI reader owns the payload shape.
+  assert(q.owner==pid and q.city==id and q.x==x and q.y==y
+   and q.turn==turn and (q.target==current or q.hash==current)
    and d.records[key(pid,id)]==r and ref(c)==r.reference and Game.GetCurrentGameTurn()==turn
    and c:GetBuildQueue():CurrentlyBuilding()==current,'STD_PROGRESS_CHANGED')
   assert(type(q.cost)=='number' and q.cost>0 and q.cost<math.huge

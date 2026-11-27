@@ -244,15 +244,14 @@ end
 local function productionStamp(P,turn)
  local e=ExposedMembers;local g=e.SPC_P0
  local i,x=g and g.IndustrySupport,g and g.ResearchCross
- if not g or g.Version~=P.VERSION or not i or not x or not i.ready or not x.ready
-  or not integer(turn)then return nil end
+ if not g or g.Version~=P.VERSION or not i or not x or not i.ready or not x.ready then return nil end
+ -- Our own producers write these counters; nil only means "not published yet".
  local fields={e.SPC_C2_industry_generation,e.SPC_C2_cross_generation,
   e.SPC_C2_industry_epoch,e.SPC_C2_cross_epoch}
- for n=1,4 do if not integer(fields[n])then return nil end end
+ for n=1,4 do if fields[n]==nil then return nil end end
  if i.generation~=fields[1]or x.generation~=fields[2]then return nil end
  fields[5]=turn;fields[6]=e.SPC_RuntimeUIRevision or 0
  fields[7]=i.sampleRevision or 0;fields[8]=x.sampleRevision or 0
- for n=5,8 do if not integer(fields[n])then return nil end end
  return table.concat(fields,':')
 end
 function L.ReadBaseProduction(P,pid,r,districtType,yieldIndex,turn)
@@ -262,9 +261,8 @@ function L.ReadBaseProduction(P,pid,r,districtType,yieldIndex,turn)
  end
  local function indexScalar(v)return type(v)=='number'and v==v and math.abs(v)<1e8 or type(v)=='string'and #v<=256 end
  local stamp=productionStamp(P,turn)
- if not stamp or not integer(pid)or not integer(r.id)or not integer(r.cityID)
-  or not integer(r.x)or not integer(r.y)or type(r.reference)~='string'or type(r.type)~='string'
-  or not indexScalar(districtType)or not indexScalar(yieldIndex)then return native()end
+ -- The row comes from our own sample; the two indexes are engine values and keep their check.
+ if not stamp or not indexScalar(districtType)or not indexScalar(yieldIndex)then return native()end
  local e=ExposedMembers;local c=e.SPC_C2_BaseProduction
  if not c or c.schema~=1 or c.version~=P.VERSION then
   c={schema=1,version=P.VERSION,authority='NATIVE_SAMPLE_ONLY',revision=0,rows={},count=0,textBytes=0}
@@ -277,14 +275,14 @@ function L.ReadBaseProduction(P,pid,r,districtType,yieldIndex,turn)
   return row and row.reference==r.reference and row.city==r.cityID and row.x==r.x and row.y==r.y
    and row.type==r.type and row.districtType==districtType and row.yieldIndex==yieldIndex
  end
- if same(prior)and type(prior.value)=='number'and prior.value==prior.value and math.abs(prior.value)<1e8 then
+ if same(prior)then -- installed below only after the native value passed its check
   if P.Count then P.Count('adj_base_hit')end;return prior.value
  end
  local revision=c.revision
  local value=native() -- a thrown/unknown read is never installed or retried here
  if e.SPC_C2_BaseProduction==c and c.revision==revision and productionStamp(P,turn)==stamp
-  and type(value)=='number'and value==value and math.abs(value)<1e8 and type(r.reference)=='string'then
-  local bytes=#r.reference+(type(r.type)=='string'and #r.type or 0)
+  and type(value)=='number'and value==value and math.abs(value)<1e8 then
+  local bytes=#r.reference+#r.type
   local oldBytes=prior and prior.textBytes or 0
   if (prior or c.count<512)and c.textBytes-oldBytes+bytes<=262144 then
    c.rows[key]={reference=r.reference,city=r.cityID,x=r.x,y=r.y,type=r.type,
